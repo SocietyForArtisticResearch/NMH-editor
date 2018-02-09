@@ -22,7 +22,8 @@
         "styles.css",
         "../node_modules/bootstrap/dist/css/bootstrap.min.css"
       ],
-      "scripts": ["assets/tinymce/js/tinymce/tinymce.min.js"],
+      "scripts": ["assets/tinymce/js/tinymce/tinymce.min.js",
+      "assets/rclang/js/lib/rcexposition.js"],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",
