@@ -1,0 +1,33 @@
+title: An Exposition
+authors: Leonardo da Vinci, Domenico Scarlatti
+
+style:style.css
+breakpoint:1200
+
+grid 3 3 w1
+
+text t1 1 1 { # Introduction
+
+Leonardo's approach to science was observational: he tried 
+ } class:myclass
+
+text t2 3 2 { ## Murals
+
+Leonardo's The Battle of Anghiara was a fresco commissioned in 1505 for the Salone dei Cinquecento (Hall of the Five 
+}
+
+grid 3 1 w2
+
+text t3 2 1 { ## another weave 
+
+**contains this** }
+
+pdf pdf1 1 1 media/268.pdf width:300 height:400
+
+grid 2 2 w3
+
+video vid1 2 1 media/horowitz.mp4
+
+audio aud1 1 1 media/sonata.mp3
+
+image im1 2 2 media/leonardo.jpg width:300

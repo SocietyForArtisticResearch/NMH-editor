@@ -1,0 +1,53 @@
+title: Casper Makes An Exposition
+authors: Casper Schipper, Somebody som
+
+style st1.css
+
+grid 4 4
+
+text t1 1 1 {
+
+# My First Chapter
+Lacus suspendisse faucibus interdum posuere lorem ipsum. Tempus egestas sed sed risus pretium quam vulputate. Egestas congue quisque egestas diam in arcu. Magna sit amet purus gravida quis. Pulvinar neque laoreet suspendisse interdum consectetur. Justo donec enim diam vulputate ut pharetra sit.
+
+}
+
+
+text t1 2 2 {
+
+## RC lang is 
+Lacus suspendisse faucibus interdum posuere lorem ipsum. Tempus egestas sed sed risus pretium quam vulputate. Egestas congue quisque egestas diam in arcu. Magna sit amet purus gravida quis. Pulvinar neque laoreet suspendisse interdum consectetur. Justo donec enim diam vulputate ut pharetra sit.
+
+Lacus suspendisse faucibus interdum posuere lorem ipsum. Tempus egestas sed sed risus pretium quam vulputate. Egestas congue quisque egestas diam in arcu. Magna sit amet purus gravida quis. Pulvinar neque laoreet suspendisse interdum consectetur. Justo donec enim diam vulputate ut pharetra sit.
+
+Lacus suspendisse faucibus interdum posuere lorem ipsum. Tempus egestas sed sed risus pretium quam vulputate. Egestas congue quisque egestas diam in arcu. Magna sit amet purus gravida quis. Pulvinar neque laoreet suspendisse interdum consectetur. Justo donec enim diam vulputate ut pharetra sit.
+
+
+
+}
+
+image im5 1 2 media/cat1.jpeg width:250
+
+text t2 2 1 {
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Facilisis sed odio morbi quis. Sit amet mattis vulputate enim nulla. Aenean et tortor at risus viverra. Elit at imperdiet dui accumsan sit amet nulla facilisi morbi. 
+}
+
+image im1 3 1 media/code1.png width:300
+image im2 4 2 media/code2.png width:300
+image im3 3 3 media/code3.png width:300
+
+text t3 3 2 {
+_I am a cursive text_
+  
+
+* this
+* is 
+* a 
+* list 
+   - some nested item
+   - some other nested item.
+
+
+1 Numbered list
+2 Second Item
+}

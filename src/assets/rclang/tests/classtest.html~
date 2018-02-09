@@ -1,0 +1,10 @@
+<html>
+
+    <body>
+    
+<div class='modal modal-red'>
+    This modal has a red border
+</div>
+    </body>
+
+</html>

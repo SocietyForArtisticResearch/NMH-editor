@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <header>
+	<title>
+	    Sending test data
+	</title>
+    </header>
+    <script>
+
+     let markdown = `# Title
+Some sentence 
+* and an item`;
+     
+     var http = new XMLHttpRequest();
+     var url = "http://localhost:3000/pandoc/docx";
+
+     http.onreadystatechange = function() {
+	 if (http.readyState === 4) {
+	     let file = http.response;
+	     console.log(window.location.pathname + "/" + file);
+	     window.open(file, '_blank');
+	 }
+     }
+     
+     http.open("POST", url, true);
+
+     http.setRequestHeader("Content-Type", "text/plain");
+     
+     http.send(markdown);
+    </script>
+    <body>
+    </body>
+</html>

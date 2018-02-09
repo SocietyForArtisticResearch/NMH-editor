@@ -1,0 +1,36 @@
+<html>
+    <head>
+	<link rel="stylesheet" id="dynStylesheet" href=""/>
+	<script src="../lib/nearley/nearley.js"></script>
+	<script src="../lib/markdown-it/markdown-it.js"></script>
+	<script src="../lib/filesaver/FileSaver.min.js"></script>
+	<script src="../parser/rclangparser.js"></script>
+	<script src="../lib/rcexposition.js"></script>
+    </head>
+    
+    <body>
+	
+	<div id="editor">
+	    <textarea id="markdownInput" rows="20" cols="80"></textarea></br>
+	    <button onclick="getMarkdownInput()">Submit</button>
+	    <select id="pandocEnding">
+		<option value="docx">docx</option>
+		<option value="odt">odt</option>
+		<option value="epub">epub</option>
+		<option value="pdf">pdf</option>
+	    </select>
+	    <button onclick="pandocConvert()">Convert</button>
+	    <button onclick="saveJSON()">Download JSON</button>
+	    Load JSON: <input type="file" id="fileInput">
+	</div>
+	
+	<hr>
+	
+	<div id="weave">
+	</div>
+
+    </body>
+    
+    
+    <script src="parsertest.js"></script>
+</html>
