@@ -8,15 +8,18 @@ import { Component, OnInit } from '@angular/core';
 export class ObjectListComponent implements OnInit {
   expositionObjects = [];
 
-
   constructor() { }
+
+  trashTool(id) {
+    this.expositionObjects = this.expositionObjects.filter( (object) => { object.id == id } ); 
+  }
 
   createTextTool($event) {
     let indexNumber = this.expositionObjects.length + 1;
 
   	this.expositionObjects.push( {
-  		idx : indexNumber;
-      identity : 'text-tool-editbox-'+ indexNumber;
+  		idx : indexNumber,
+      identity : 'text-tool-editbox-'+ indexNumber
   	});
   }
 
