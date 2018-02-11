@@ -12,8 +12,11 @@ export class ObjectListComponent implements OnInit {
   constructor() { }
 
   createTextTool($event) {
+    let indexNumber = this.expositionObjects.length + 1;
+
   	this.expositionObjects.push( {
-  		'name' : 'casper'
+  		idx : indexNumber;
+      identity : 'text-tool-editbox-'+ indexNumber;
   	});
   }
 

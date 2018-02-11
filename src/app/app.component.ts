@@ -7,5 +7,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 	// this is the exposition object in rclang.
-	exposition
+	exposition = {};
 }

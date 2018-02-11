@@ -1,4 +1,3 @@
-<p>
-  This is a text tool.
-</p>
-<editor [(ngModel)]="textContent" [init]="{plugins: 'link'}"></editor>
+<p>This is a text tool.</p>
+<textarea [(ngModel)]="textContent" (keyup)="textChange($event)" cols="50" rows="10" id="myFirstText"></textarea>
+<p>{{response}}</p>

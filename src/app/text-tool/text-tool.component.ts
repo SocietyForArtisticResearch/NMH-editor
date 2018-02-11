@@ -6,9 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./text-tool.component.css']
 })
 export class TextToolComponent implements OnInit {
-  textContent = "blablah";
+  response = '';
 
-  constructor() { }
+  textChange($event) {
+    this.response = $event.target.value;
+  }
 
   ngOnInit() {
   }

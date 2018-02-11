@@ -22,8 +22,14 @@
         "styles.css",
         "../node_modules/bootstrap/dist/css/bootstrap.min.css"
       ],
-      "scripts": ["assets/tinymce/js/tinymce/tinymce.min.js",
-      "assets/rclang/js/lib/rcexposition.js"],
+      "scripts": [
+        "assets/tinymce/js/tinymce/tinymce.min.js",
+        "assets/rclang/lib/markdown-it/markdown-it.js",
+        "assets/rclang/lib/nearley/nearley.js",
+        "assets/rclang/lib/filesaver/FileSaver.min.js",
+        "assets/rclang/parser/rclangparser.js",
+        "assets/rclang/lib/rcexposition.js"]
+,
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",
