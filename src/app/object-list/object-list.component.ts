@@ -11,7 +11,8 @@ export class ObjectListComponent implements OnInit {
   constructor() { }
 
   trashTool(id) {
-    this.expositionObjects = this.expositionObjects.filter( (object) => { object.id == id } ); 
+    console.log('delete tools with '+id)
+    this.expositionObjects = this.expositionObjects.filter( (object) => { return object.identity !== id } ); 
   }
 
   createTextTool($event) {

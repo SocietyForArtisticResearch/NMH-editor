@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 
 /*
  * This is a component, 
@@ -11,24 +11,25 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 })
 export class TextToolComponent implements OnInit {
   response:string = '';
-  id:string = ""
-
   static count:number = 0;
 
-
-  constructor() {
-  	this.id = "text-tool-editbox-"+TextToolComponent.count;
-  }
-
+  @Input() 
+  identity: string;
 
   @Output() 
   trash: EventEmitter<string> = new EventEmitter<string>();
+
+  constructor() {
+
+  }
+
+  
 
   onTrash() {
   	/*
   	 * Trash this, through parent.
   	 */
-  	this.trash.emit(this.id);
+  	this.trash.emit(this.identity);
   }
 
   textChange($event) {
