@@ -14,6 +14,8 @@ import { RCExpositionModel } from '../shared/RC-Exposition-Mode.service';
 export class TextToolComponent implements OnInit {
   response:string = '';
   static count:number = 0;
+  content:string = '';
+  textContent:string = '';
 
   @Input() 
   identity: string;
@@ -32,8 +34,8 @@ export class TextToolComponent implements OnInit {
   	this.trash.emit(this.identity);
   }
 
-  textChange($event) {
-    this.response = $event.target.value;
+  onChange($event) {
+    alert("hey you typed something !");
   }
 
   ngOnInit() {

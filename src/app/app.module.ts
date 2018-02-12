@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { TinymceModule } from 'angular2-tinymce';
 
 
 
@@ -21,7 +22,8 @@ import { RCExpositionModel } from '../shared/RC-exposition-model.service';
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    TinymceModule
   ],
   providers: [RCExpositionModel],
   bootstrap: [AppComponent]

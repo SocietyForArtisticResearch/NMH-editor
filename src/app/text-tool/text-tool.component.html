@@ -1,5 +1,11 @@
 <p>This is a text tool.</p>
-<textarea [(ngModel)]="textContent" (keyup)="textChange($event)" cols="50" rows="10"></textarea>
+<!-- <textarea [(ngModel)]="textContent" (keyup)="textChange($event)" cols="50" rows="10"></textarea> -->
+<app-tinymce 
+    [(ngModel)]="textContent"
+    cols="50" 
+    rows="10">
+</app-tinymce>
 <br>
 <button (click)="onTrash()" class="btn">X</button>
 <p>{{rcExpoModel.test}}</p>
+
