@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RCExpositionModel } from '../shared/RC-Exposition-Mode.service';
+import { RCExpositionModel } from '../shared/RC-exposition-model.service';
 
 @Component({
   selector: 'app-expo-preview',

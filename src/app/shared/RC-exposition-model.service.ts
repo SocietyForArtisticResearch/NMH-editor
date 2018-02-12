@@ -2,13 +2,11 @@ export class RCExpositionModel {
 	exposition = [];
 	test = 'hello world!';
 
-    createTextTool function ( name, text ) {
+    createTextTool ( name, text ) {
 
     }	
 
-    updateTextTool function ( ) {
+    updateTextTool ( ) {
 
     }
-
-    removeTextTool
 }

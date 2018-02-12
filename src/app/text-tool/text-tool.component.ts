@@ -1,5 +1,8 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
-import { RCExpositionModel } from '../shared/RC-Exposition-Mode.service';
+import { RCExpositionModel } from '../shared/RC-exposition-model.service';
+import { tinymceDefaultSettings } from 'angular-tinymce';
+import { TinyMceModule } from 'angular-tinymce';
+
 
 
 /*
@@ -16,6 +19,7 @@ export class TextToolComponent implements OnInit {
   static count:number = 0;
   content:string = '';
   textContent:string = '';
+  customTinyMCESettings = <any>{};
 
   @Input() 
   identity: string;
@@ -39,6 +43,7 @@ export class TextToolComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.customTinyMCESettings = tinymceDefaultSettings();
+    this.customTinyMCESettings.height = '420px';
   }
-
 }
