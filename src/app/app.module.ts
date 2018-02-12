@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { TinymceModule } from 'angular2-tinymce';
 
 
 
@@ -19,7 +20,8 @@ import { ExpoPreviewComponent } from './expo-preview/expo-preview.component';
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    TinymceModule
   ],
   providers: [],
   bootstrap: [AppComponent]
