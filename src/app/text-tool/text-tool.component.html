@@ -1,11 +1,20 @@
 <p>This is a text tool.</p>
 <!-- <textarea [(ngModel)]="textContent" (keyup)="textChange($event)" cols="50" rows="10"></textarea> -->
-<angular-tinymce 
+<div class="panel panel-primary">
+<div class="panel-heading">
+	Text tool
+</div>
+<div class="panel-body">
+	<angular-tinymce 
     [(ngModel)]="textContent"
+    [settings]="customTinyMCESettings"
     cols="43" 
     rows="40">
-</angular-tinymce>
-<br>
-<button (click)="onTrash()" class="btn">X</button>
-<p>{{rcExpoModel.test}}</p>
+	</angular-tinymce>
+	<br>
+	<button (click)="onTrash()" class="btn">remove</button>
+   </div>
+</div>
 
+
+	

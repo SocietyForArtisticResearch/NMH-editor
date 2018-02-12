@@ -19,6 +19,7 @@ export class TextToolComponent implements OnInit {
   static count:number = 0;
   content:string = '';
   textContent:string = '';
+  
   customTinyMCESettings = <any>{};
 
   @Input() 
@@ -45,5 +46,7 @@ export class TextToolComponent implements OnInit {
   ngOnInit() {
     this.customTinyMCESettings = tinymceDefaultSettings();
     this.customTinyMCESettings.height = '420px';
+    this.customTinyMCESettings.branding = false;
+    this.customTinyMCESettings.statusbar = false;
   }
 }
