@@ -9,6 +9,8 @@ import { ObjectListComponent } from './object-list/object-list.component';
 import { TextToolComponent } from './text-tool/text-tool.component';
 import { ExpoPreviewComponent } from './expo-preview/expo-preview.component';
 
+import { RCExpositionModel } from '../shared/RC-exposition-model.service';
+
 
 @NgModule({
   declarations: [
@@ -21,7 +23,7 @@ import { ExpoPreviewComponent } from './expo-preview/expo-preview.component';
     BrowserModule,
     FormsModule
   ],
-  providers: [],
+  providers: [RCExpositionModel],
   bootstrap: [AppComponent]
 })
 export class AppModule {

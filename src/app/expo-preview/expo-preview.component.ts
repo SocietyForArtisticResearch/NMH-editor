@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { RCExpositionModel } from '../shared/RC-Exposition-Mode.service';
 
 @Component({
   selector: 'app-expo-preview',
@@ -7,7 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ExpoPreviewComponent implements OnInit {
 
-  constructor() { }
+  constructor( private rcExpoModel : RCExpositionModel ) { }
+
 
   ngOnInit() {
   }

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { RCExpositionModel } from '../shared/RC-exposition-model.service';
+
 
 @Component({
   selector: 'app-object-list',
@@ -8,10 +10,9 @@ import { Component, OnInit } from '@angular/core';
 export class ObjectListComponent implements OnInit {
   expositionObjects = [];
 
-  constructor() { }
+  constructor( private rcExpoModel : RCExpositionModel ) { }
 
   trashTool(id) {
-    console.log('delete tools with '+id)
     this.expositionObjects = this.expositionObjects.filter( (object) => { return object.identity !== id } ); 
   }
 

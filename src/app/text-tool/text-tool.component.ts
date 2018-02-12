@@ -1,4 +1,6 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { RCExpositionModel } from '../shared/RC-Exposition-Mode.service';
+
 
 /*
  * This is a component, 
@@ -19,11 +21,9 @@ export class TextToolComponent implements OnInit {
   @Output() 
   trash: EventEmitter<string> = new EventEmitter<string>();
 
-  constructor() {
+  constructor(private rcExpoModel : RCExpositionModel ) {
 
   }
-
-  
 
   onTrash() {
   	/*
