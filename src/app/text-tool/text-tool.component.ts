@@ -6,7 +6,7 @@ import { TinyMceModule } from 'angular-tinymce';
 
 
 /*
- * This is a component, 
+ * Text tool editor (using tinymce) component
  */
 
 @Component({
@@ -22,11 +22,9 @@ export class TextToolComponent implements OnInit {
   
   customTinyMCESettings = <any>{};
 
-  @Input() 
-  identity: string;
+  @Input() identity: string;
 
-  @Output() 
-  trash: EventEmitter<string> = new EventEmitter<string>();
+  @Output() trash: EventEmitter<string> = new EventEmitter<string>();
 
   constructor(private rcExpoModel : RCExpositionModel ) {
 
@@ -39,11 +37,12 @@ export class TextToolComponent implements OnInit {
   	this.trash.emit(this.identity);
   }
 
-  onChange($event) {
-    alert("hey you typed something !");
+  onChange($event) {  
+    this.rcExpoModel.updateTextToolWithIdAndContent(id: String,content: String)
   }
 
   ngOnInit() {
+    // customize the tinymce plugin:
     this.customTinyMCESettings = tinymceDefaultSettings();
     this.customTinyMCESettings.height = '420px';
     this.customTinyMCESettings.branding = false;

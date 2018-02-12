@@ -1,11 +1,18 @@
 import { Component } from '@angular/core';
+import { RCExpositionModel } from './shared/RC-exposition-model.service';
+
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  providers : [RCExpositionModel]
 })
 export class AppComponent {
-	// this is the exposition object in rclang.
+	// rcExpoModel is injected into this compenent (and all its children !)
+	constructor( private rcExpoModel : RCExpositionModel) {
+
+	}
+
 	exposition = {};
 }

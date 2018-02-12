@@ -25,7 +25,12 @@ export class ObjectListComponent implements OnInit {
   	});
   }
 
-  ngOnInit() {
+  renderAll() {
+
   }
 
+  ngOnInit() {
+    // This method assigns the model array directly to this instance.
+    this.expositionObjects = this.rcExpoModel.expositionObjects;
+  }
 }

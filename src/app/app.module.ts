@@ -11,8 +11,10 @@ import { ObjectListComponent } from './object-list/object-list.component';
 import { TextToolComponent } from './text-tool/text-tool.component';
 import { ExpoPreviewComponent } from './expo-preview/expo-preview.component';
 
-import { RCExpositionModel } from './shared/RC-exposition-model.service';
 
+/**
+ * RCExpositionModel
+ */
 
 @NgModule({
   declarations: [
@@ -24,9 +26,9 @@ import { RCExpositionModel } from './shared/RC-exposition-model.service';
   imports: [
     BrowserModule,
     FormsModule,
-    TinyMceModule.forRoot(tinymceDefaultSettings())
+    TinyMceModule.forRoot(tinymceDefaultSettings()) // is customised in text-tool.component
   ],
-  providers: [RCExpositionModel],
+  providers: [], 
   bootstrap: [AppComponent]
 })
 export class AppModule {

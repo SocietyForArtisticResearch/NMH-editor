@@ -1,12 +1,27 @@
 export class RCExpositionModel {
-	exposition = [];
-	test = 'hello world!';
+	/**
+	 * @argument expositionObjects
+	 */ 
 
-    createTextTool ( name, text ) {
+    expositionObjects = [];
+
+
+
+
+
+	constructor ( ) {
+	
+	}
+
+    addTextTool ( textTool ) {
 
     }	
 
-    updateTextTool ( ) {
-
-    }
+	updateTextToolWithIdAndContent(id: String, content: String) {
+        // find the right text tool
+        
+        // update the text tool
+        
+        // 
+	}
 }
