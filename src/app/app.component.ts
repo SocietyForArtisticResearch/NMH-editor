@@ -9,7 +9,7 @@ import { RCExpositionModel } from './shared/RC-exposition-model.service';
   providers : [RCExpositionModel]
 })
 export class AppComponent {
-	// rcExpoModel is injected into this compenent (and all its children !)
+	// rcExpoModel is injected into this compenent (and all its children through their constructors !)
 	constructor( private rcExpoModel : RCExpositionModel) {
 
 	}

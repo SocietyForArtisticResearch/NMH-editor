@@ -45,6 +45,10 @@ export class RCExpositionModel {
 	}
 
 	toolWithID(id: string) {
+		/**
+		 * finds a tool with a certain id in the object list.
+		 * @param { string } id  HTML identifier as in <tag id="myIdentifier">
+		 */
 		let filtered = this.expositionObjects.filter( ( object ) => { return object.identity === id } );
 		if (filtered.length > 0) {
 			return filtered[0]; 
@@ -66,7 +70,7 @@ export class RCExpositionModel {
 	//
     addTool ( type: string ) {
     	/**
-    	 * Adds an 
+    	 * Adds a tool, based on string. 
     	 */
     	this.objectCounter = this.objectCounter + 1;
  

@@ -15,10 +15,8 @@ import { TextToolData } from '../shared/tools/text-tooldata';
   styleUrls: ['./text-tool.component.css']
 })
 export class TextToolComponent implements OnInit {
-  response:string = '';
-  static count:number = 0;
+  // This is bound with [(ngModel)]
   textContent:string = '';
-  
   customTinyMCESettings = <any>{};
 
   @Input() identity: string;
@@ -35,16 +33,22 @@ export class TextToolComponent implements OnInit {
   }
 
   onChange($event) {  
+    /* 
+     * On change, is only after finished element in editor (pressing enter)
+     */ 
     //this.rcExpoModel.updateTextToolWithIdAndContent(this.identity,this.textContent);
   }
 
   onKeyUp() {
+    /* 
+     *
+     */
     this.rcExpoModel.updateTextToolWithIdAndContent(this.identity,this.textContent);
   }
 
   ngOnInit() {
-    // customize the tinymce plugin:
-    let settings = tinymceDefaultSettings();
+    // customize the tinymce plugin, only assign once, otherwise goes nuts!
+    let settings = tinymceDefaultSettings(); // <- contains important path instructions
     settings.height = '300px';
     settings.branding = false;
     settings.statusbar = false;    

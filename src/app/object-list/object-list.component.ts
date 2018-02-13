@@ -9,6 +9,9 @@ import { TextToolData } from '../shared/tools/text-tooldata';
   styleUrls: ['./object-list.component.css']
 })
 export class ObjectListComponent implements OnInit {
+  /*
+   * This expositionObjects should be a reference to the model object, but that somehow doesn't work, see ngOnInit() 
+   */
   expositionObjects = [];
 
   constructor( private rcExpoModel : RCExpositionModel ) { }
@@ -22,7 +25,7 @@ export class ObjectListComponent implements OnInit {
   }
 
   ngOnInit() {
-    // This method assigns the model array directly to this instance.
+    // here I assing the expositionObjects, but modifying it doesn't update the model ?
     this.expositionObjects = this.rcExpoModel.expositionObjects;
   }
 }
