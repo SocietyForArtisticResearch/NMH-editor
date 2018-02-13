@@ -17,7 +17,6 @@ import { TinyMceModule } from 'angular-tinymce';
 export class TextToolComponent implements OnInit {
   response:string = '';
   static count:number = 0;
-  content:string = '';
   textContent:string = '';
   
   customTinyMCESettings = <any>{};
@@ -38,7 +37,7 @@ export class TextToolComponent implements OnInit {
   }
 
   onChange($event) {  
-    this.rcExpoModel.updateTextToolWithIdAndContent(id: String,content: String)
+    this.rcExpoModel.updateTextToolWithIdAndContent(this.identity,this.textContent)
   }
 
   ngOnInit() {
