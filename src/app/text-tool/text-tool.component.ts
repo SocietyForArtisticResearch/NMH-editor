@@ -3,7 +3,7 @@ import { RCExpositionModel } from '../shared/RC-exposition-model.service';
 import { tinymceDefaultSettings } from 'angular-tinymce';
 import { TinyMceModule } from 'angular-tinymce';
 
-
+import { TextToolData } from '../shared/tools/text-tooldata';
 
 /*
  * Text tool editor (using tinymce) component
@@ -23,17 +23,15 @@ export class TextToolComponent implements OnInit {
 
   @Input() identity: string;
 
-  @Output() trash: EventEmitter<string> = new EventEmitter<string>();
-
   constructor(private rcExpoModel : RCExpositionModel ) {
 
   }
 
   onTrash() {
-  	/*
-  	 * Trash this, through parent.
-  	 */
-  	this.trash.emit(this.identity);
+    /*
+     * Directly remove this on the model, model will result in object list view update.
+     */
+    this.rcExpoModel.trashToolWithID(this.identity);
   }
 
   onChange($event) {  
@@ -42,9 +40,10 @@ export class TextToolComponent implements OnInit {
 
   ngOnInit() {
     // customize the tinymce plugin:
-    this.customTinyMCESettings = tinymceDefaultSettings();
-    this.customTinyMCESettings.height = '420px';
-    this.customTinyMCESettings.branding = false;
-    this.customTinyMCESettings.statusbar = false;
+    let settings = tinymceDefaultSettings();
+    settings.height = '300px';
+    settings.branding = false;
+    settings.statusbar = false;    
+    this.customTinyMCESettings = settings;
   }
 }

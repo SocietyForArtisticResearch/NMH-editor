@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RCExpositionModel } from '../shared/RC-exposition-model.service';
+import { TextToolData } from '../shared/tools/text-tooldata';
 
 
 @Component({
@@ -12,21 +13,14 @@ export class ObjectListComponent implements OnInit {
 
   constructor( private rcExpoModel : RCExpositionModel ) { }
 
-  trashTool(id) {
-    this.expositionObjects = this.expositionObjects.filter( (object) => { return object.identity !== id } ); 
-  }
-
   createTextTool($event) {
-    let indexNumber = this.expositionObjects.length + 1;
+    // make sure our model knows about
+  	this.rcExpoModel.addTool( 'text' );
 
-  	this.expositionObjects.push( {
-  		idx : indexNumber,
-      identity : 'text-tool-editbox-'+ indexNumber
-  	});
   }
 
   renderAll() {
-
+    this.rcExpoModel.renderTest();
   }
 
   ngOnInit() {
