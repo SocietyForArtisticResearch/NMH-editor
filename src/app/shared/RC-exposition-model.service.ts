@@ -1,4 +1,5 @@
 import { TextToolData } from './tools/text-tooldata';
+import * from '../assets/RCLang/lib/RCExposition';
 
 export class RCExpositionModel {
 	/**
