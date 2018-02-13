@@ -15,5 +15,6 @@
   "include": [
     "**/*.spec.ts",
     "**/*.d.ts"
-  ]
+  ],
+  "AllowJs": true
 }

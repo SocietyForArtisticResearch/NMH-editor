@@ -1,5 +1,11 @@
 import { TextToolData } from './tools/text-tooldata';
 
+declare var RCText: any;
+declare var RCExposition: any;
+declare var RCGrid: any;
+declare var RCWeave: any;
+declare var RCImage: any;
+
 export class RCExpositionModel {
 	/**
 	 * @prop objectCounter { integer }
@@ -11,7 +17,7 @@ export class RCExpositionModel {
 	constructor ( ) {
 
 	}
-
+ 
 	render() {
 		let list = [];
 		for (let i = 0;i<this.expositionObjects.length;i++) {
