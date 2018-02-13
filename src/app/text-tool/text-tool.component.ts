@@ -29,13 +29,13 @@ export class TextToolComponent implements OnInit {
 
   onTrash() {
     /*
-     * Directly remove this on the model, model will result in object list view update.
+     * Directly remove this on the model, model change will automatically result in view update.
      */
     this.rcExpoModel.trashToolWithID(this.identity);
   }
 
   onChange($event) {  
-    this.rcExpoModel.updateTextToolWithIdAndContent(this.identity,this.textContent)
+    this.rcExpoModel.updateTextToolWithIdAndContent(this.identity,this.textContent);
   }
 
   ngOnInit() {

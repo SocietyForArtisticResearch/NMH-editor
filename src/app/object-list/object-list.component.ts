@@ -14,13 +14,11 @@ export class ObjectListComponent implements OnInit {
   constructor( private rcExpoModel : RCExpositionModel ) { }
 
   createTextTool($event) {
-    // make sure our model knows about
   	this.rcExpoModel.addTool( 'text' );
-
   }
 
   renderAll() {
-    this.rcExpoModel.renderTest();
+    this.rcExpoModel.render();
   }
 
   ngOnInit() {
