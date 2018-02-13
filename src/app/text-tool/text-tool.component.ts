@@ -35,6 +35,10 @@ export class TextToolComponent implements OnInit {
   }
 
   onChange($event) {  
+    //this.rcExpoModel.updateTextToolWithIdAndContent(this.identity,this.textContent);
+  }
+
+  onKeyUp() {
     this.rcExpoModel.updateTextToolWithIdAndContent(this.identity,this.textContent);
   }
 

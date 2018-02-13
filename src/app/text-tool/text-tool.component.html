@@ -7,6 +7,7 @@
     [(ngModel)]="textContent"
     [settings]="customTinyMCESettings"
     (change)="onChange()"
+    (keyup)="onKeyUp()"
     cols="43" 
     rows="40">
 	</angular-tinymce>
