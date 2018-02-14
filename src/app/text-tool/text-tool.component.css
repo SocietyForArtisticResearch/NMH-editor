@@ -1,3 +1,8 @@
 .float-right {
 	float:right;
 }
+
+.form-control {
+	width: 250px;
+	display: inline;
+}

@@ -1,8 +1,10 @@
 <div class="panel panel-primary">
-<div class="panel-heading">
-	Text tool ({{identity}})<button (click)="onTrash()" class="btn-danger float-right">x</button>
+<div class="panel-heading" (click)="collapsed = !collapsed">
+	Text tool ({{identity}})
+    <input type="text" [(ngModel)]="name" class="form-control form-control-sm" placeholder="name" size="30">
+    <button (click)="onTrash()" class="btn-danger float-right">x</button>
 </div>
-<div class="panel-body">
+<div class="panel-body" [ngClass]="{collapse: collapsed}">
 	<angular-tinymce 
     [(ngModel)]="textContent"
     [settings]="customTinyMCESettings"

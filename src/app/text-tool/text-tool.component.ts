@@ -18,6 +18,7 @@ export class TextToolComponent implements OnInit {
   // This is bound with [(ngModel)]
   textContent:string = '';
   customTinyMCESettings = <any>{};
+  name:string = '';
 
   @Input() identity: string;
 
