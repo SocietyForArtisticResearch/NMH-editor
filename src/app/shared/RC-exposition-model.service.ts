@@ -17,6 +17,11 @@ export class RCExpositionModel {
 	constructor ( ) {
 
 	}
+
+	reset( ) {
+		this.expositionObjects = [];
+		this.render();
+	}
  
 	render() {
 		let list = [];

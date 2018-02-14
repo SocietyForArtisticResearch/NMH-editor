@@ -1,8 +1,15 @@
 <div class="panel panel-primary">
-<div class="panel-heading" (click)="collapsed = !collapsed">
-	Text tool ({{identity}})
-    <input type="text" [(ngModel)]="name" class="form-control form-control-sm" placeholder="name" size="30">
-    <button (click)="onTrash()" class="btn-danger float-right">x</button>
+<div class="panel-heading">
+    <span (click)="collapsed = !collapsed" 
+    class="glyphicon"
+    [ngClass]="collapsed ? 'glyphicon-chevron-down' :'glyphicon-chevron-up'"
+    title="{{collapsed ? 'expand' : 'collapse' }}"></span>
+
+    <span>Text tool ({{identity}})</span>
+    <input type="text" [(ngModel)]="name" class="form-control input-sm" placeholder="name" size="30">
+    <div class="float-right">
+    <button (click)="onTrash()" class="btn btn-danger btn-xs">x</button>
+    </div>
 </div>
 <div class="panel-body" [ngClass]="{collapse: collapsed}">
 	<angular-tinymce 

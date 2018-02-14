@@ -1,5 +1,6 @@
 .float-right {
 	float:right;
+	display:inline;
 }
 
 .form-control {

@@ -13,7 +13,6 @@ export class ObjectListComponent implements OnInit {
    * This expositionObjects should be a reference to the model object, but that somehow doesn't work, see ngOnInit() 
    */
   expositionObjects = [];
-  animals = ['cow','fish','dog','cat','lion'];
 
   constructor( private rcExpoModel : RCExpositionModel ) { }
 
@@ -23,6 +22,10 @@ export class ObjectListComponent implements OnInit {
 
   renderAll() {
     this.rcExpoModel.render();
+  }
+
+  removeAll() {
+    this.rcExpoModel.reset();
   }
 
   ngOnInit() {
