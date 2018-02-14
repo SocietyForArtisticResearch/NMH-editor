@@ -1,6 +1,6 @@
 <h3> Current objects </h3>
-<ul>
-	<li *ngFor="let tool of rcExpoModel.expositionObjects" >
+<ul [sortablejs]="rcExpoModel.expositionObjects">
+	<li *ngFor="let tool of rcExpoModel.expositionObjects">	
 		<app-text-tool 
 		  [id]="tool.identity" 
 		  [identity]="tool.identity">

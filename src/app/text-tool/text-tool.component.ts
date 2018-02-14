@@ -19,6 +19,7 @@ export class TextToolComponent implements OnInit {
   textContent:string = '';
   customTinyMCESettings = <any>{};
   name:string = '';
+  collapsed = false;
 
   @Input() identity: string;
 
