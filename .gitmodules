@@ -1,3 +1,6 @@
 [submodule "rclang"]
 	path = rclang
 	url = https://github.com/casperschipper/rclang
+[submodule "src/assets/rcexposition"]
+	path = src/assets/rcexposition
+	url = https://github.com/lucdoebereiner/rcexposition.git
