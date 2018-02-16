@@ -29,8 +29,7 @@
         "assets/rclang/lib/markdown-it/markdown-it.js",
         "assets/rclang/lib/nearley/nearley.js",
         "assets/rclang/lib/filesaver/FileSaver.min.js",
-        "assets/rclang/parser/rclangparser.js",
-        "assets/rclang/lib/rcexposition.js"]
+        "assets/rclang/parser/rclangparser.js"]
 ,
       "environmentSource": "environments/environment.ts",
       "environments": {

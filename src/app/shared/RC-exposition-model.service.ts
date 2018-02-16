@@ -1,10 +1,6 @@
 import { TextToolData } from './tools/text-tooldata';
-
-declare var RCText: any;
-declare var RCExposition: any;
-declare var RCGrid: any;
-declare var RCWeave: any;
-declare var RCImage: any;
+//import * as RC from '../../../node_modules/rcexposition/built/rcexposition.js'
+import * as RC from '../../../node_modules/rcexposition/src/rcexposition';
 
 export class RCExpositionModel {
 	/**
@@ -27,18 +23,18 @@ export class RCExpositionModel {
 		let list = [];
 		for (let i = 0;i<this.expositionObjects.length;i++) {
 			let object = this.expositionObjects[i];
-			let rcObj = new RCText(object.identity,1,i+1,object.textContent);
+			let rcObj = new RC.RCText(object.identity,1,i+1,object.textContent);
 			list.push( rcObj );
 		}
 
 		// define grid
-		let grid = new RCGrid(1,list.length);
+		let grid = new RC.RCGrid(1,list.length);
 
 		// create a weave
-		let weave1 = new RCWeave(grid, "w1", list);
+		let weave1 = new RC.RCWeave(grid, "w1", list);
 
 		// create exposition
-		let exposition = new RCExposition("This is JS !", ["David Bowie"], "", [weave1]);
+		let exposition = new RC.RCExposition("This is JS !", ["David Bowie"], "", [weave1]);
 		exposition.renderResponsive();
 
 	}
@@ -97,24 +93,24 @@ export class RCExpositionModel {
 
 	renderTest() {
 		/*
-		 * just to see if the library works, taken from RCLang examples.
+		 * just to see if the library works, taken from RC.RCLang examples.
 		 */
 		// define objects
-		let ob1 = new RCText("text tool 1", 1, 1, "hello world");
-		let ob2 = new RCImage("leonardo", 1, 2, "assets/rclang/tests/media/leonardo.jpg");
-		let ob3 = new RCText("text tool 2", 2, 2, "some more *stuff*");
+		let ob1 = new RC.RCText("text tool 1", 1, 1, "hello world");
+		let ob2 = new RC.RCImage("leonardo", 1, 2, "assets/rclang/tests/media/leonardo.jpg");
+		let ob3 = new RC.RCText("text tool 2", 2, 2, "some more *stuff*");
 
 		// an object in the same cell as ob3 (will be fused)
-		let ob4 = new RCText("text tool 3", 2, 2, "and even more **stuff**");
+		let ob4 = new RC.RCText("text tool 3", 2, 2, "and even more **stuff**");
 
 		// define grid
-		let grid = new RCGrid(2,2);
+		let grid = new RC.RCGrid(2,2);
 
 		// create a weave
-		let weave1 = new RCWeave(grid, "w1", [ob1, ob2, ob3, ob4]);
+		let weave1 = new RC.RCWeave(grid, "w1", [ob1, ob2, ob3, ob4]);
 
 		// create exposition
-		let exposition = new RCExposition("title of expo", ["Jane Doe"], "", [weave1]);
+		let exposition = new RC.RCExposition("title of expo", ["Jane Doe"], "", [weave1]);
 
 		// render
 		exposition.renderResponsive();

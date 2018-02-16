@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RCExpositionModel } from '../shared/RC-exposition-model.service';
+
 import { TextToolData } from '../shared/tools/text-tooldata';
 import { SortablejsOptions } from 'angular-sortablejs';
 
