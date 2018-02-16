@@ -1,6 +1,6 @@
 <h3> Current objects </h3>
 <p [innerText]="rcExpoModel.expositionObjects.length >= 2 ? 'Tip: drag to sort the tools' : ''"></p>
-<ul [sortablejs]="rcExpoModel.expositionObjects">
+<ul [sortablejs]="rcExpoModel.expositionObjects" [sortablejsOptions]="eventOptions">
 	<li *ngFor="let tool of rcExpoModel.expositionObjects">	
 		<app-text-tool 
 		  [id]="tool.identity" 

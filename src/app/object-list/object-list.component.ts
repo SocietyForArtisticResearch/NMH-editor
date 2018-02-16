@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RCExpositionModel } from '../shared/RC-exposition-model.service';
 import { TextToolData } from '../shared/tools/text-tooldata';
-import { SortablejsModule } from 'angular-sortablejs';
+import { SortablejsOptions } from 'angular-sortablejs';
 
 @Component({
   selector: 'app-object-list',
@@ -13,6 +13,13 @@ export class ObjectListComponent implements OnInit {
    * This expositionObjects should be a reference to the model object, but that somehow doesn't work, see ngOnInit() 
    */
   expositionObjects = [];
+  eventOptions = {
+    onUpdate: ( event ) => { 
+      console.log(event.oldIndex);
+      console.log(event.newIndex);
+      console.log('event');
+    }
+  }
 
   constructor( private rcExpoModel : RCExpositionModel ) { }
 
