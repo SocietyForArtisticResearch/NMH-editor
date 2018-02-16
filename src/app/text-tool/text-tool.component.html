@@ -5,9 +5,10 @@
     [ngClass]="collapsed ? 'glyphicon-chevron-down' :'glyphicon-chevron-up'"
     title="{{collapsed ? 'expand' : 'collapse' }}"></span>
 
-    <span>Text tool ({{identifier}})</span>
-    <input type="text" [(ngModel)]="name" class="form-control input-sm" placeholder="name" size="30">
+    <span>(id={{identifier}}) {{name}}</span>
+    
     <div class="float-right">
+     <input type="text" [(ngModel)]="name" class="form-control input-sm" placeholder="name" size="10">
     <button (click)="onTrash()" class="btn btn-danger btn-xs">x</button>
     </div>
 </div>

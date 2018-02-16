@@ -14,12 +14,12 @@ import { TinyMceModule } from 'angular-tinymce';
 })
 export class TextToolComponent implements OnInit {
   // This is bound with [(ngModel)]
+  name: string;
   textContent:string = '';
   customTinyMCESettings = <any>{};
   collapsed = false;
 
   @Input() identifier: number;
-  @Input() name: string;
 
   constructor(private rcExpoModel : RCExpoModel ) {
 
