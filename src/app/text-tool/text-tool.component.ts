@@ -43,7 +43,6 @@ export class TextToolComponent implements OnInit {
     /* 
      *
      */
-    console.log(this.identifier);
     this.rcExpoModel.exposition.updateRCTextWithIdAndContent(this.identifier,this.textContent);
   }
 
