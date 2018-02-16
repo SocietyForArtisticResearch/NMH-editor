@@ -1,9 +1,7 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
-import { RCExpositionModel } from '../shared/RC-exposition-model.service';
+import { RCExpoModel }  from '../../../node_modules/rcexposition/src/rcexposition';
 import { tinymceDefaultSettings } from 'angular-tinymce';
 import { TinyMceModule } from 'angular-tinymce';
-
-import { TextToolData } from '../shared/tools/text-tooldata';
 
 /*
  * Text tool editor (using tinymce) component
@@ -18,12 +16,12 @@ export class TextToolComponent implements OnInit {
   // This is bound with [(ngModel)]
   textContent:string = '';
   customTinyMCESettings = <any>{};
-  name:string = '';
   collapsed = false;
 
-  @Input() identity: string;
+  @Input() identifier: number;
+  @Input() name: string;
 
-  constructor(private rcExpoModel : RCExpositionModel ) {
+  constructor(private rcExpoModel : RCExpoModel ) {
 
   }
 
@@ -31,7 +29,7 @@ export class TextToolComponent implements OnInit {
     /*
      * Directly remove this on the model, model change will automatically result in view update.
      */
-    this.rcExpoModel.trashToolWithID(this.identity);
+    this.rcExpoModel.exposition.removeObjectWithID(this.identifier);
   }
 
   onChange($event) {  
@@ -45,7 +43,8 @@ export class TextToolComponent implements OnInit {
     /* 
      *
      */
-    this.rcExpoModel.updateTextToolWithIdAndContent(this.identity,this.textContent);
+    console.log(this.identifier);
+    this.rcExpoModel.exposition.updateRCTextWithIdAndContent(this.identifier,this.textContent);
   }
 
   ngOnInit() {

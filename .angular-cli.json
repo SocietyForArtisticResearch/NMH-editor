@@ -25,11 +25,8 @@
       "scripts": [
         "../node_modules/tinymce/tinymce.js",
         "../node_modules/tinymce/themes/modern/theme.js",
-        "../node_modules/tinymce/plugins/paste/plugin.js",
-        "assets/rclang/lib/markdown-it/markdown-it.js",
-        "assets/rclang/lib/nearley/nearley.js",
-        "assets/rclang/lib/filesaver/FileSaver.min.js",
-        "assets/rclang/parser/rclangparser.js"]
+        "../node_modules/tinymce/plugins/paste/plugin.js"
+]
 ,
       "environmentSource": "environments/environment.ts",
       "environments": {

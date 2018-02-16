@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RCExpositionModel } from '../shared/RC-exposition-model.service';
+import { RCExpoModel } from '../../../node_modules/rcexposition/src/rcexposition';
 
 /*
  * This is the actual exposition, just by creating a <div id='weave'> in .html file
@@ -12,7 +12,7 @@ import { RCExpositionModel } from '../shared/RC-exposition-model.service';
 })
 export class ExpoPreviewComponent implements OnInit {
 
-  constructor( private rcExpoModel : RCExpositionModel ) { }
+  constructor( private rcExpoModel : RCExpoModel ) { }
 
 
   ngOnInit() {
@@ -20,3 +20,4 @@ export class ExpoPreviewComponent implements OnInit {
   }
 
 }
+ 

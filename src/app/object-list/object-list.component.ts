@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { RCExpositionModel } from '../shared/RC-exposition-model.service';
-
-import { TextToolData } from '../shared/tools/text-tooldata';
 import { SortablejsOptions } from 'angular-sortablejs';
+
+import { RCExpoModel, RCText, RCExposition } from '../../../node_modules/rcexposition/src/rcexposition';
+
 
 @Component({
   selector: 'app-object-list',
@@ -10,10 +10,6 @@ import { SortablejsOptions } from 'angular-sortablejs';
   styleUrls: ['./object-list.component.css'],
 })
 export class ObjectListComponent implements OnInit {
-  /*
-   * This expositionObjects should be a reference to the model object, but that somehow doesn't work, see ngOnInit() 
-   */
-  expositionObjects = [];
   eventOptions = {
     onUpdate: ( event ) => { 
       console.log(event.oldIndex);
@@ -22,22 +18,31 @@ export class ObjectListComponent implements OnInit {
     }
   }
 
-  constructor( private rcExpoModel : RCExpositionModel ) { }
+  constructor( private rcExpoModel : RCExpoModel ) { }
 
-  createTextTool($event) {
-  	this.rcExpoModel.addTool( 'text' );
+  toolsFromModel() {
+    console.log(this.rcExpoModel.exposition.weaves[0].objects);
+    return [0];
+  }
+
+  createTextTool() {
+    //name, gridX, gridY, text, width = 1, height = 1, userClass, tocDepth
+    let textObject = new RCText('myText', 0, 0, '' , 1, 1, 'myClass',1);
+    console.log('identifier:');
+    console.log(textObject.id);
+
+  	this.rcExpoModel.exposition.addObject(textObject, 0);
   }
 
   renderAll() {
-    this.rcExpoModel.render();
+    this.rcExpoModel.exposition.renderResponsiveOnce();
   }
 
   removeAll() {
-    this.rcExpoModel.reset();
+    this.rcExpoModel.exposition.reset();
   }
 
   ngOnInit() {
     // here I assing the expositionObjects, but modifying it doesn't update the model ?
-    this.expositionObjects = this.rcExpoModel.expositionObjects;
   }
 }
