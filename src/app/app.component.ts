@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RCExpoModel, RCExposition, RCGrid, RCWeave } from '../../node_modules/rcexposition/src/rcexposition';
-
+import { RCExpoModel } from './shared/RCExpoModel';
 
 
 @Component({
@@ -16,10 +15,6 @@ export class AppComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		// number of Y cells should be updated by number of tools).
-        let grid = new RCGrid(1,1,true);
-        let weave = new RCWeave(grid,'default',[]);
-
-        this.rcExpoModel.exposition = new RCExposition('myExpo','authors',null,[weave],1200);
+		
 	}
 }

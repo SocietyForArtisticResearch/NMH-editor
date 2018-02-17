@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
-import { RCExpoModel }  from '../../../node_modules/rcexposition/src/rcexposition';
+import { RCExpoModel }  from '../shared/RCExpoModel';
 import { tinymceDefaultSettings } from 'angular-tinymce';
 import { TinyMceModule } from 'angular-tinymce';
 

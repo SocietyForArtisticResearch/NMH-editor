@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { RCExpoModel } from '../../../node_modules/rcexposition/src/rcexposition';
+import { RCExpoModel } from '../shared/RCExpoModel';
+
 
 /*
  * This is the actual exposition, just by creating a <div id='weave'> in .html file
