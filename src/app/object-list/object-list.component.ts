@@ -40,7 +40,7 @@ export class ObjectListComponent implements OnInit {
   }
 
   removeAll() {
-    this.rcExpoModel.exposition.reset();
+    this.rcExpoModel.exposition.weaves[0].objects = [];
   }
 
   ngOnInit() {

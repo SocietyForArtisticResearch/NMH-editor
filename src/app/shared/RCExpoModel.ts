@@ -10,7 +10,7 @@ export class  RCExpoModel {
 
 	constructor ( ) {
     	// number of Y cells should be updated by number of tools).
-	    let grid = new RCGrid(1,1,true);
+	    let grid = new RCGrid(1,0,true);
 	    let weave = new RCWeave(grid,'default',[]);
 
 	    this.exposition = new RCExposition('myExpo','authors',null,[weave],1200);

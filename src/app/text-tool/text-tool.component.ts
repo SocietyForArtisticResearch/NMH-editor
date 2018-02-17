@@ -51,7 +51,8 @@ export class TextToolComponent implements OnInit {
     let settings = tinymceDefaultSettings(); // <- contains important path instructions
     settings.height = '300px';
     settings.branding = false;
-    settings.statusbar = false;    
+    settings.statusbar = false;   
+    settings.menubar = 'file view format'; 
     this.customTinyMCESettings = settings;
   }
 }
