@@ -16,22 +16,15 @@ export class ObjectListComponent implements OnInit {
       console.log(event.oldIndex);
       console.log(event.newIndex);
       console.log('event');
+      this.rcExpoModel.exposition.renderResponsiveOnce();
     }
   }
 
   constructor( private rcExpoModel : RCExpoModel ) { }
 
-  toolsFromModel() {
-    console.log(this.rcExpoModel.exposition.weaves[0].objects);
-    return [0];
-  }
-
   createTextTool() {
     //name, gridX, gridY, text, width = 1, height = 1, userClass, tocDepth
     let textObject = new RCText('myText', 0, 0, '' , 1, 1, 'myClass',1);
-    console.log('identifier:');
-    console.log(textObject.id);
-
   	this.rcExpoModel.exposition.addObject(textObject, 0);
   }
 

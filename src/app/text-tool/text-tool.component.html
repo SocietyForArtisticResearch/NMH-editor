@@ -8,7 +8,7 @@
     <span>(id={{identifier}}) {{name}}</span>
     
     <div class="float-right">
-     <input type="text" [(ngModel)]="name" class="form-control input-sm" placeholder="name" size="10">
+     <input type="text" [(ngModel)]="name" (keyup)="onNameChange($event)" class="form-control input-sm" placeholder="name" size="10">
     <button (click)="onTrash()" class="btn btn-danger btn-xs">x</button>
     </div>
 </div>

@@ -25,6 +25,12 @@ export class TextToolComponent implements OnInit {
 
   }
 
+  onNameChange($event) {
+    let object = this.rcExpoModel.exposition.getObjectWithID(this.identifier);
+    object.name = $event.target.value;
+    this.rcExpoModel.exposition.renderResponsiveOnce();
+  }
+
   onTrash() {
     /*
      * Directly remove this on the model, model change will automatically result in view update.
