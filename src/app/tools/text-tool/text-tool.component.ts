@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
-import { RCExpoModel }  from '../shared/RCExpoModel';
+import { RCExpoModel }  from '../../shared/RCExpoModel';
 import { tinymceDefaultSettings } from 'angular-tinymce';
 import { TinyMceModule } from 'angular-tinymce';
 
@@ -20,6 +20,7 @@ export class TextToolComponent implements OnInit {
   collapsed = false;
 
   @Input() identifier: number;
+  
 
   constructor(private rcExpoModel : RCExpoModel ) {
 

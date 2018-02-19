@@ -1,0 +1,17 @@
+.float-right {
+	float:right;
+	display:inline;
+}
+
+.input-sm {
+	height:20px;
+}
+
+.form-control {
+	width: 250px;
+	display: inline;
+}
+
+.panel-body {
+	padding:0;
+}

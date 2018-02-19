@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SortablejsOptions } from 'angular-sortablejs';
 
 import { RCExpoModel } from '../shared/RCExpoModel';
-import { RCText, RCExposition } from '../../../node_modules/rcexposition/src/rcexposition';
+import {  RCText, RCExposition } from '../../../node_modules/rcexposition/src/rcexposition';
 
 
 @Component({
@@ -11,6 +11,7 @@ import { RCText, RCExposition } from '../../../node_modules/rcexposition/src/rce
   styleUrls: ['./object-list.component.css'],
 })
 export class ObjectListComponent implements OnInit {
+
   eventOptions = {
     onUpdate: ( event ) => { 
       console.log(event.oldIndex);
@@ -24,8 +25,12 @@ export class ObjectListComponent implements OnInit {
 
   createTextTool() {
     //name, gridX, gridY, text, width = 1, height = 1, userClass, tocDepth
-    let textObject = new RCText('myText', 0, 0, '' , 1, 1, 'myClass',1);
+    let textObject = new RCText('myText', 0, this.rcExpoModel.exposition.weaves[0].objects.length, '' , 1, 1, 'myClass',1);
   	this.rcExpoModel.exposition.addObject(textObject, 0);
+  }
+
+  toolType(obj) {
+    return obj.constructor.name;
   }
 
   renderAll() {

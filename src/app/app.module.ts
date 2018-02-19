@@ -7,8 +7,10 @@ import { SortablejsModule } from 'angular-sortablejs';
 
 import { AppComponent } from './app.component';
 import { ObjectListComponent } from './object-list/object-list.component';
-import { TextToolComponent } from './text-tool/text-tool.component';
+import { TextToolComponent } from './tools/text-tool/text-tool.component';
 import { ExpoPreviewComponent } from './expo-preview/expo-preview.component';
+import { ImageToolComponent } from './tools/image-tool/image-tool.component';
+import { BasicToolComponent } from './tools/basic-tool/basic-tool.component';
 
 /**
  * RCExpositionModel
@@ -19,7 +21,9 @@ import { ExpoPreviewComponent } from './expo-preview/expo-preview.component';
     AppComponent,
     ObjectListComponent,
     TextToolComponent,
-    ExpoPreviewComponent
+    ExpoPreviewComponent,
+    ImageToolComponent,
+    BasicToolComponent
   ],
   imports: [
     SortablejsModule.forRoot({ animation: 150 }),

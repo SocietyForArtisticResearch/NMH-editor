@@ -2,8 +2,8 @@
 <p [innerText]="rcExpoModel.exposition.weaves[0].objects.length >= 2 ? 'Tip: drag to sort the tools' : ''"></p>
 <ul [sortablejs]="rcExpoModel.exposition.weaves[0].objects" [sortablejsOptions]="eventOptions"> 
 	<li *ngFor="let myObject of rcExpoModel.exposition.weaves[0].objects">	
-		<app-text-tool [id]="'editor'+myObject.id" [identifier]="myObject.id">
-		</app-text-tool>
+		<app-basic-tool [id]="'editor'+myObject.id" [identifier]="myObject.id" [toolType]="toolType(myObject)">
+		</app-basic-tool>
 	</li>
 
 </ul>
