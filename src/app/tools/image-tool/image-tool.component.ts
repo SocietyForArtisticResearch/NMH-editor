@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { RCExpoModel }  from '../../shared/RCExpoModel';
 
 
@@ -8,6 +8,9 @@ import { RCExpoModel }  from '../../shared/RCExpoModel';
   styleUrls: ['./image-tool.component.css']
 })
 export class ImageToolComponent implements OnInit {
+  @Input() identifier: number;
+
+
 
   constructor(private rcExpoModel : RCExpoModel) { }
 

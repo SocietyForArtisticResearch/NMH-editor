@@ -13,9 +13,10 @@
     </div>
 </div>
 
-<div ng-switch="toolType" class="panel-body" [ngClass]="{collapse: collapsed}">
-  <app-text-tool [identifier]="identifier" ng-switch-when="text-tool"></app-text-tool>
-  <app-image-tool ng-switch-when="image-tool"></app-image-tool>
+<div [ngSwitch]="toolType" class="panel-body" [ngClass]="{collapse: collapsed}">
+  <app-text-tool [identifier]="identifier" *ngSwitchCase="'RCText'"></app-text-tool>
+  <app-image-tool [identifier]="identifier" *ngSwitchCase="'RCImage'"></app-image-tool>
+  <p *ngSwitchDefault>"{{toolType}}", doesn't exist.</p>
 </div>
 
 </div>

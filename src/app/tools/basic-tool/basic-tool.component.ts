@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { NgSwitch } from '@angular/common';
 import { RCExpoModel }  from '../../shared/RCExpoModel';
 
 
