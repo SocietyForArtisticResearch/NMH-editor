@@ -1,3 +1,25 @@
-<p>
-  picture-tool works!
-</p>
+<!--  /** Creates an RCImage object.  
+     * @param {string} name - the name of the tool
+     * @param {number} gridX - horizontal position
+     * @param {number} gridY - vertical position
+     * @param {string} url - the file to be displayed
+     * @param {number} pxWidth - the width in pixels
+     * @param {number} pxHeight - the height in pixels
+     * @param {number} width - number of cells it spans horizontally
+     * @param {number} height - number of cells it spans vertically
+     * @param {string} userClass - optional user CSS class
+     */ -->
+
+<form #imageToolForm="ngForm">
+	<div class="form-group">
+          <label for="{{id}}+'imageUrlField'">Image url:</label>
+     	<input class="form-control" id="{{id}}+'imageUrlField'" type="text" [(ngModel)]="url">
+     	
+          <label for="{{id}}+'pxWidthField'">Width in pixels:</label>
+     	<input class="form-control" id="{{id}}+'pxWidthField'" type="number" [(ngModel)]="pxWidth">
+     	
+          <label for="{{id}}+'pxHeightField'">Height in pixels:</label>
+     	<input class="form-control" id="{{id}}+'pxHeightField'" type="number" [(ngModel)]="pxHeight">
+     </div>
+</form>
+

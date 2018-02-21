@@ -33,5 +33,5 @@ export class MarkdownToolComponent implements AfterViewInit {
 			spellChecker: false
 		});
 		this.mde.codemirror.on("keyHandled",( ) => { console.log('hallo')});
-	});
+	};
 }
