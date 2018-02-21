@@ -28,6 +28,7 @@
     "bootstrap": "^3.3.7",
     "core-js": "^2.4.1",
     "jquery": "^3.3.1",
+    "ng2-simplemde": "^2.0.1",
     "rcexposition": "git+https://github.com/lucdoebereiner/rcexposition.git",
     "rxjs": "^5.5.6",
     "sortablejs": "^1.7.0",

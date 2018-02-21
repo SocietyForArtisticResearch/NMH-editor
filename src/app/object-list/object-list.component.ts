@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SortablejsOptions } from 'angular-sortablejs';
 
 import { RCExpoModel } from '../shared/RCExpoModel';
-import {  RCText, RCExposition } from '../../../node_modules/rcexposition/src/rcexposition';
+import { RCText, RCExposition } from '../../../node_modules/rcexposition/src/rcexposition';
 
 
 @Component({

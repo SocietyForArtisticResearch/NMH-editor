@@ -2,15 +2,28 @@
 	<h1> MHN Exposition Editor </h1>
 	<hr>
 	<div class="row">
-		<div class="col-sm-6">
-			<app-object-list></app-object-list>
-		</div>
-		<div class="col-sm-6">
-			<app-expo-preview></app-expo-preview>
+	    <div class="col-xs-12 col-sm-10 col-md-8">
+	      <ul class="nav nav-tabs">
+	        <li routerLinkActive='active'
+				[routerLinkActiveOptions]="{exact: true}"
+	        	role="presentation" class="active">
+	        	<a routerLink='/' >
+				Home
+				</a>
+	        </li>
+	        <li role="presentation" routerLinkActive='active'>
+	        	<a routerLink='objectList'>
+	        	Media Object List
+	        	</a>
+	    	</li>
+	      </ul>
+	    </div>
+  	</div>
+	<div class="row">
+		<div class="col-sm-12">
+			<router-outlet></router-outlet>
 		</div>
 	</div>
 </div>
-
-
 
 
