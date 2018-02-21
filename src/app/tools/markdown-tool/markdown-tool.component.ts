@@ -27,6 +27,7 @@ export class MarkdownToolComponent implements AfterViewInit {
     }
 
     ngAfterViewInit() {
+        let expoModel = this.rcExpoModel;
         this.mde = new SimpleMDE({
             element: this.textarea.nativeElement,
             showIcons: ["code", "table"],
@@ -34,8 +35,8 @@ export class MarkdownToolComponent implements AfterViewInit {
         });
         this.mde.markdown = function (text) {
             // preprocess and convert via rcexposition
-            return "pre-processing";
+            return expoModel.processMarkdown(text);
         }
-        this.mde.codemirror.on("keyHandled", () => { console.log('hallo') });
+        //        this.mde.codemirror.on("keyHandled", () => { console.log('hallo') });
     };
 }
