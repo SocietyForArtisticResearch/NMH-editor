@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SortablejsOptions } from 'angular-sortablejs';
 
 import { RCExpoModel } from '../shared/RCExpoModel';
-import { RCText, RCImage, RCExposition } from '../shared/rcexposition';
+import { RCImage, RCAudio, RCSvg, RCPdf, RCVideo } from '../shared/rcexposition';
 
 
 @Component({
@@ -18,54 +18,38 @@ export class ObjectListComponent implements OnInit {
             console.log(event.oldIndex);
             console.log(event.newIndex);
             console.log('event');
-            this.rcExpoModel.exposition.renderResponsiveOnce();
         }
     }
 
     constructor(private rcExpoModel: RCExpoModel) { }
 
+    // TO BE REMOVED!
     createTextTool() {
-        //name, gridX, gridY, text, width = 1, height = 1, userClass, tocDepth
-        let textObject = new RCText('myText', 0, this.rcExpoModel.exposition.weaves[0].objects.length, '', 1, 1, 'myClass', 1);
-        this.rcExpoModel.exposition.addObject(textObject, 0);
+
     }
 
+    // TO BE FIXED! (ALWAYS NEEDS A UNIQUE NAME)
     createImageTool() {
-        /*
-        @param {string} name - the name of the tool
-         * @param {number} gridX - horizontal position
-         * @param {number} gridY - vertical position
-         * @param {string} url - the file to be displayed
-         * @param {number} pxWidth - the width in pixels
-         * @param {number} pxHeight - the height in pixels
-         * @param {number} width - number of cells it spans horizontally
-         * @param {number} height - number of cells it spans vertically
-         * @param {string} userClass - optional user CSS class
-         */
-        let imageObject = new RCImage(
-            'myImage',
-            0,
-            this.rcExpoModel.exposition.weaves[0].objects.length,
-            this.imageUri,
-            200,
-            100,
-            1,
-            1,
-            '',
-            1);
-        this.rcExpoModel.exposition.addObject(imageObject, 0);
+        // let imageObject = new RCImage(
+        //     'myImage',
+        //     0,
+        //     this.rcExpoModel.exposition.weaves[0].objects.length,
+        //     this.imageUri,
+        //     200,
+        //     100,
+        //     1,
+        //     1,
+        //     '',
+        //     1);
+        // this.rcExpoModel.exposition.addObject(imageObject, 0);
     }
 
     toolType(obj) {
         return obj.constructor.name;
     }
 
-    renderAll() {
-        this.rcExpoModel.exposition.renderResponsiveOnce();
-    }
-
     removeAll() {
-        this.rcExpoModel.exposition.weaves[0].objects = [];
+        this.rcExpoModel.exposition.media = [];
     }
 
     ngOnInit() {

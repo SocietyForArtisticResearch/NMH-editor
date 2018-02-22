@@ -19,16 +19,10 @@ export class MarkdownToolComponent implements AfterViewInit {
 
     constructor(private rcExpoModel: RCExpoModel) { }
 
-    onKeyup() {
-        this.rcExpoModel.exposition.updateRCTextWithIdAndContent(
-            this.identifier,
-            this.mde.value()
-        );
-    }
 
     ngAfterViewInit() {
         let expoModel = this.rcExpoModel;
-        this.mde = new Editor.RCMDE({
+        this.mde = new Editor.RCMDE(expoModel.exposition, {
             element: this.textarea.nativeElement,
             showIcons: ["code", "table"],
             spellChecker: false

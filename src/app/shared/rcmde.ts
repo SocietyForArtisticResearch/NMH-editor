@@ -10,6 +10,7 @@ import("codemirror/mode/gfm/gfm.js");
 import("codemirror/mode/xml/xml.js");
 import * as MarkdownIt from "markdown-it";
 const md = new MarkdownIt('commonmark');
+import { RCImage, RCAudio, RCSvg, RCPdf, RCVideo, RCExposition } from '../shared/rcexposition';
 
 //import * as CodeMirrorSpellChecker from 'codemirror-spell-checker'
 // var CodeMirrorSpellChecker = require("codemirror-spell-checker");
@@ -1360,8 +1361,10 @@ export class RCMDE {
     autosaveTimeoutId: number;
     toolbar: any[];
     toolbarElements: any;
+    exposition: RCExposition;
 
-    constructor(options) {
+    constructor(exposition: RCExposition, options) {
+        this.exposition = exposition;
         this.options = options;
         options.parent = this;
         // Check if Font Awesome needs to be auto downloaded
@@ -1479,13 +1482,31 @@ export class RCMDE {
         }
     }
 
+    static outerHTML(node) {
+        return node.outerHTML || new XMLSerializer().serializeToString(node);
+    }
+
+    mediaHTML(name: string) {
+        let tool = this.exposition.getObjectWithName(name);
+        console.log(this.exposition.media);
+        let str = name.big();
+        if (tool !== undefined) {
+            tool.createHTML();
+            str = RCMDE.outerHTML(tool.html);
+        }
+        console.log(str)
+        return str;
+    }
+
+
     /**
      * Default markdown render.
-     * Will need RCExposition
      */
     markdown(text: string) {
-
-        return md.render(text);
+        let self = this;
+        let re = /!{(\w+)}/g;
+        let insertedTools = text.replace(re, function (m, p1) { return self.mediaHTML(p1) });
+        return md.render(insertedTools);
     }
 
 
