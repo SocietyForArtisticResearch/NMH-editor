@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, ViewChild, AfterViewInit, ElementRef } from '@angular/core';
 import { RCExpoModel } from '../../shared/RCExpoModel';
-import * as SimpleMDE from 'simplemde';
+import { RCMDE } from '../../shared/rcmde';
 //declare var SimpleMDE : any;
 
 @Component({
@@ -28,15 +28,21 @@ export class MarkdownToolComponent implements AfterViewInit {
 
     ngAfterViewInit() {
         let expoModel = this.rcExpoModel;
-        this.mde = new SimpleMDE({
+        this.mde = new RCMDE({
             element: this.textarea.nativeElement,
             showIcons: ["code", "table"],
             spellChecker: false
         });
-        this.mde.markdown = function (text) {
-            // preprocess and convert via rcexposition
-            return expoModel.processMarkdown(text);
-        }
+        //        this.mde.toggleSideBySide();
+
+        // this.mde.markdown = function (text) {
+        //     // preprocess and convert via rcexposition
+        //     return expoModel.processMarkdown(text);
+        // }
+        // this.mde.togglePreview = function (ed) {
+        //     console.log("toggled preview");
+        // }
+        // console.log(this.mde.togglePreview);
         //        this.mde.codemirror.on("keyHandled", () => { console.log('hallo') });
     };
 }
