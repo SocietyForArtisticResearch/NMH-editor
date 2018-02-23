@@ -26,17 +26,17 @@ export class ObjectListComponent implements OnInit {
 
     // TO BE FIXED! (ALWAYS NEEDS A UNIQUE NAME)
     createImageTool() {
-        let imageName = 'image-tool-'+this.rcExpoModel.exposition.media.length;
-        let imageObject = new RCImage(imageName, this.imageUri, 'myClass', 100,100);
+        let imageName = 'image-tool-' + this.rcExpoModel.exposition.media.length;
+        let imageObject = new RCImage(imageName, this.imageUri, 'myClass', 100, 100);
         this.rcExpoModel.exposition.addObject(imageObject);
         this.selectedObject = imageObject;
         // this.rcExpoModel.exposition.addObject(imageObject, 0);
     }
 
-    onSelect(id: number,object: RCObject) {
+    onSelect(id: number, object: RCObject) {
         this.selectedObject = object;
-        console.log('this.selected'+this.selectedObject.id);
-        console.log(this.selectedObject.name,'name');
+        console.log('this.selected' + this.selectedObject.id);
+        console.log(this.selectedObject.name, 'name');
     }
 
     getCurrentSelection() {
@@ -52,8 +52,9 @@ export class ObjectListComponent implements OnInit {
     }
 
     ngOnInit() {
-        if(this.rcExpoModel.exposition.media.length > 0);
-        this.selectedObject = this.rcExpoModel.exposition.media[0];
+        if (this.rcExpoModel.exposition.media.length > 0) {
+            this.selectedObject = this.rcExpoModel.exposition.media[0];
+        }
     }
 
 
