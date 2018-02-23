@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, ViewChild, AfterViewInit, ElementRef } from '@angular/core';
 import { RCExpoModel } from '../../shared/RCExpoModel';
-import { RCMDE } from '../../shared/rcmde';
+import * as Editor from '../../shared/rcmde';
 //declare var SimpleMDE : any;
 
 @Component({
@@ -19,20 +19,15 @@ export class MarkdownToolComponent implements AfterViewInit {
 
     constructor(private rcExpoModel: RCExpoModel) { }
 
-    onKeyup() {
-        this.rcExpoModel.exposition.updateRCTextWithIdAndContent(
-            this.identifier,
-            this.mde.value()
-        );
-    }
 
     ngAfterViewInit() {
         let expoModel = this.rcExpoModel;
-        this.mde = new RCMDE({
+        this.mde = new Editor.RCMDE(expoModel.exposition, {
             element: this.textarea.nativeElement,
             showIcons: ["code", "table"],
             spellChecker: false
         });
+        Editor.toggleSideBySide(this.mde);
         //        this.mde.toggleSideBySide();
 
         // this.mde.markdown = function (text) {

@@ -1,7 +1,6 @@
 import * as CodeMirror from 'codemirror'
 // var CodeMirror = require("codemirror");
 import("codemirror/addon/edit/continuelist.js");
-import("./tablist");
 import("codemirror/addon/display/fullscreen.js");
 import("codemirror/mode/markdown/markdown.js");
 import("codemirror/addon/mode/overlay.js");
@@ -11,6 +10,7 @@ import("codemirror/mode/gfm/gfm.js");
 import("codemirror/mode/xml/xml.js");
 import * as MarkdownIt from "markdown-it";
 const md = new MarkdownIt('commonmark');
+import { RCImage, RCAudio, RCSvg, RCPdf, RCVideo, RCExposition } from '../shared/rcexposition';
 
 //import * as CodeMirrorSpellChecker from 'codemirror-spell-checker'
 // var CodeMirrorSpellChecker = require("codemirror-spell-checker");
@@ -27,12 +27,13 @@ var bindings = {
     "drawLink": drawLink,
     "toggleHeadingSmaller": toggleHeadingSmaller,
     "toggleHeadingBigger": toggleHeadingBigger,
-    "drawImage": drawImage,
+    //    "drawImage": drawImage,
+    "drawMedia": drawMedia,
     "toggleBlockquote": toggleBlockquote,
     "toggleOrderedList": toggleOrderedList,
     "toggleUnorderedList": toggleUnorderedList,
     "toggleCodeBlock": toggleCodeBlock,
-    "togglePreview": togglePreview,
+    "togglePreview": openPreview,
     "toggleStrikethrough": toggleStrikethrough,
     "toggleHeading1": toggleHeading1,
     "toggleHeading2": toggleHeading2,
@@ -42,7 +43,7 @@ var bindings = {
     "drawHorizontalRule": drawHorizontalRule,
     "undo": undo,
     "redo": redo,
-    "toggleSideBySide": toggleSideBySide,
+    //    "toggleSideBySide": toggleSideBySide,
     "toggleFullScreen": toggleFullScreen
 };
 
@@ -53,13 +54,14 @@ var shortcuts = {
     "toggleHeadingSmaller": "Cmd-H",
     "toggleHeadingBigger": "Shift-Cmd-H",
     "cleanBlock": "Cmd-E",
-    "drawImage": "Cmd-Alt-I",
+    //    "drawImage": "Cmd-Alt-I",
+    "drawMedia": "Cmd-Alt-I",
     "toggleBlockquote": "Cmd-'",
     "toggleOrderedList": "Cmd-Alt-L",
     "toggleUnorderedList": "Cmd-L",
     "toggleCodeBlock": "Cmd-Alt-C",
     "togglePreview": "Cmd-P",
-    "toggleSideBySide": "F9",
+    //    "toggleSideBySide": "F9",
     "toggleFullScreen": "F11"
 };
 
@@ -92,6 +94,48 @@ function fixShortcut(name) {
     }
     return name;
 }
+
+
+function tabAndIndentMarkdownList(cm) {
+    var ranges = cm.listSelections();
+    var pos = ranges[0].head;
+    var eolState = cm.getStateAfter(pos.line);
+    var inList = eolState.list !== false;
+
+    if (inList) {
+        cm.execCommand("indentMore");
+        return;
+    }
+
+    if (cm.options.indentWithTabs) {
+        cm.execCommand("insertTab");
+    }
+    else {
+        var spaces = Array(cm.options.tabSize + 1).join(" ");
+        cm.replaceSelection(spaces);
+    }
+};
+
+function shiftTabAndUnindentMarkdownList(cm) {
+    var ranges = cm.listSelections();
+    var pos = ranges[0].head;
+    var eolState = cm.getStateAfter(pos.line);
+    var inList = eolState.list !== false;
+
+    if (inList) {
+        cm.execCommand("indentLess");
+        return;
+    }
+
+    if (cm.options.indentWithTabs) {
+        cm.execCommand("insertTab");
+    }
+    else {
+        var spaces = Array(cm.options.tabSize + 1).join(" ");
+        cm.replaceSelection(spaces);
+    }
+};
+
 
 
 /**
@@ -225,23 +269,23 @@ function toggleFullScreen(editor) {
 
 
     // Update toolbar class
-    var wrap = cm.getWrapperElement();
+    // var wrap = cm.getWrapperElement();
 
-    if (!/fullscreen/.test(wrap.previousSibling.className)) {
-        wrap.previousSibling.className += " fullscreen";
-    } else {
-        wrap.previousSibling.className = wrap.previousSibling.className.replace(/\s*fullscreen\b/, "");
-    }
+    // if (!/fullscreen/.test(wrap.previousSibling.className)) {
+    //     wrap.previousSibling.className += " fullscreen";
+    // } else {
+    //     wrap.previousSibling.className = wrap.previousSibling.className.replace(/\s*fullscreen\b/, "");
+    // }
 
 
-    // Update toolbar button
-    var toolbarButton = editor.toolbarElements.fullscreen;
+    // // Update toolbar button
+    // var toolbarButton = editor.toolbarElements.fullscreen;
 
-    if (!/active/.test(toolbarButton.className)) {
-        toolbarButton.className += " active";
-    } else {
-        toolbarButton.className = toolbarButton.className.replace(/\s*active\s*/g, "");
-    }
+    // if (!/active/.test(toolbarButton.className)) {
+    //     toolbarButton.className += " active";
+    // } else {
+    //     toolbarButton.className = toolbarButton.className.replace(/\s*active\s*/g, "");
+    // }
 
 
     // Hide side by side if needed
@@ -674,6 +718,17 @@ function drawImage(editor) {
     _replaceSelection(cm, stat.image, options.insertTexts.image, url);
 }
 
+
+/**
+ * Action for drawing an img.
+ */
+function drawMedia(editor) {
+    var cm = editor.codemirror;
+    var stat = getState(cm, undefined);
+    var options = editor.options;
+    _replaceSelection(cm, stat.image, options.insertTexts.media, undefined);
+}
+
 /**
  * Action for drawing a table.
  */
@@ -718,7 +773,7 @@ function redo(editor) {
 /**
  * Toggle side by side preview
  */
-function toggleSideBySide(editor) {
+export function toggleSideBySide(editor) {
     var cm = editor.codemirror;
     var wrapper = cm.getWrapperElement();
     var preview = wrapper.nextSibling;
@@ -728,8 +783,8 @@ function toggleSideBySide(editor) {
         preview.className = preview.className.replace(
             /\s*editor-preview-active-side\s*/g, ""
         );
-        toolbarButton.className = toolbarButton.className.replace(/\s*active\s*/g, "");
-        wrapper.className = wrapper.className.replace(/\s*CodeMirror-sided\s*/g, " ");
+        //      toolbarButton.className = toolbarButton.className.replace(/\s*active\s*/g, "");
+        //   wrapper.className = wrapper.className.replace(/\s*CodeMirror-sided\s*/g, " ");
     } else {
         // When the preview button is clicked for the first time,
         // give some time for the transition from editor.css to fire and the view to slide from right to left,
@@ -739,8 +794,8 @@ function toggleSideBySide(editor) {
                 toggleFullScreen(editor);
             preview.className += " editor-preview-active-side";
         }, 1);
-        toolbarButton.className += " active";
-        wrapper.className += " CodeMirror-sided";
+        //        toolbarButton.className += " active";
+        //     wrapper.className += " CodeMirror-sided";
         useSideBySideListener = true;
     }
 
@@ -1071,14 +1126,14 @@ function _mergeProperties(target, source) {
     return target;
 }
 
-// Merge an arbitrary number of objects into one.
-function extend(target) {
-    for (var i = 1; i < arguments.length; i++) {
-        target = _mergeProperties(target, arguments[i]);
-    }
+// // Merge an arbitrary number of objects into one.
+// function extend(target) {
+//     for (var i = 1; i < arguments.length; i++) {
+//         target = _mergeProperties(target, arguments[i]);
+//     }
 
-    return target;
-}
+//     return target;
+// }
 
 /* The right word count in respect for CJK. */
 function wordCount(data) {
@@ -1094,6 +1149,14 @@ function wordCount(data) {
         }
     }
     return count;
+}
+
+function openPreview(editor) {
+    var w = window.open("Preview");
+    var cm = editor.codemirror;
+    var wrapper = cm.getWrapperElement();
+    var preview = wrapper.nextSibling;
+    w.document.write(preview.innerHTML);
 }
 
 var toolbarBuiltInButtons = {
@@ -1200,11 +1263,11 @@ var toolbarBuiltInButtons = {
         title: "Create Link",
         default: true
     },
-    "image": {
-        name: "image",
-        action: drawImage,
+    "media": {
+        name: "media",
+        action: drawMedia,
         className: "fa fa-picture-o",
-        title: "Insert Image",
+        title: "Insert Media",
         default: true
     },
     "table": {
@@ -1224,18 +1287,18 @@ var toolbarBuiltInButtons = {
     },
     "preview": {
         name: "preview",
-        action: togglePreview,
+        action: openPreview,
         className: "fa fa-eye no-disable",
         title: "Toggle Preview",
         default: true
     },
-    "side-by-side": {
-        name: "side-by-side",
-        action: toggleSideBySide,
-        className: "fa fa-columns no-disable no-mobile",
-        title: "Toggle Side by Side",
-        default: true
-    },
+    // "side-by-side": {
+    //     name: "side-by-side",
+    //     action: toggleSideBySide,
+    //     className: "fa fa-columns no-disable no-mobile",
+    //     title: "Toggle Side by Side",
+    //     default: true
+    // },
     "fullscreen": {
         name: "fullscreen",
         action: toggleFullScreen,
@@ -1273,6 +1336,7 @@ var toolbarBuiltInButtons = {
 var insertTexts = {
     link: ["[", "](#url#)"],
     image: ["![](", "#url#)"],
+    media: ["!{", "}"],
     table: ["", "\n\n| Column 1 | Column 2 | Column 3 |\n| -------- | -------- | -------- |\n| Text     | Text     | Text     |\n\n"],
     horizontalRule: ["", "\n\n-----\n\n"]
 };
@@ -1297,8 +1361,10 @@ export class RCMDE {
     autosaveTimeoutId: number;
     toolbar: any[];
     toolbarElements: any;
+    exposition: RCExposition;
 
-    constructor(options) {
+    constructor(exposition: RCExposition, options) {
+        this.exposition = exposition;
         this.options = options;
         options.parent = this;
         // Check if Font Awesome needs to be auto downloaded
@@ -1416,13 +1482,31 @@ export class RCMDE {
         }
     }
 
+    static outerHTML(node) {
+        return node.outerHTML || new XMLSerializer().serializeToString(node);
+    }
+
+    mediaHTML(name: string) {
+        let tool = this.exposition.getObjectWithName(name);
+        console.log(this.exposition.media);
+        let str = name.big();
+        if (tool !== undefined) {
+            tool.createHTML();
+            str = RCMDE.outerHTML(tool.html);
+        }
+        console.log(str)
+        return str;
+    }
+
+
     /**
      * Default markdown render.
-     * Will need RCExposition
      */
     markdown(text: string) {
-
-        return md.render(text);
+        let self = this;
+        let re = /!{(\w+)}/g;
+        let insertedTools = text.replace(re, function (m, p1) { return self.mediaHTML(p1) });
+        return md.render(insertedTools);
     }
 
 
@@ -1886,6 +1970,77 @@ export class RCMDE {
         }
     };
 
+    /**
+     * Bind instance methods for exports.
+     */
+    toggleBold() {
+        toggleBold(this);
+    };
+    toggleItalic() {
+        toggleItalic(this);
+    };
+    toggleStrikethrough() {
+        toggleStrikethrough(this);
+    };
+    toggleBlockquote() {
+        toggleBlockquote(this);
+    };
+    toggleHeadingSmaller() {
+        toggleHeadingSmaller(this);
+    };
+    toggleHeadingBigger() {
+        toggleHeadingBigger(this);
+    };
+    toggleHeading1() {
+        toggleHeading1(this);
+    };
+    toggleHeading2() {
+        toggleHeading2(this);
+    };
+    toggleHeading3() {
+        toggleHeading3(this);
+    };
+    toggleCodeBlock() {
+        toggleCodeBlock(this);
+    };
+    toggleUnorderedList() {
+        toggleUnorderedList(this);
+    };
+    toggleOrderedList() {
+        toggleOrderedList(this);
+    };
+    cleanBlock() {
+        cleanBlock(this);
+    };
+    drawLink() {
+        drawLink(this);
+    };
+    drawImage() {
+        drawImage(this);
+    };
+    drawTable() {
+        drawTable(this);
+    };
+    drawHorizontalRule() {
+        drawHorizontalRule(this);
+    };
+    undo() {
+        undo(this);
+    };
+    redo() {
+        redo(this);
+    };
+    togglePreview() {
+        togglePreview(this);
+    };
+    toggleSideBySide() {
+        toggleSideBySide(this);
+    };
+    toggleFullScreen() {
+        toggleFullScreen(this);
+    };
+
+
 
 }
 
@@ -1928,75 +2083,6 @@ export class RCMDE {
 // SimpleMDE.toggleSideBySide = toggleSideBySide;
 // SimpleMDE.toggleFullScreen = toggleFullScreen;
 
-// /**
-//  * Bind instance methods for exports.
-//  */
-// SimpleMDE.prototype.toggleBold = function() {
-// 	toggleBold(this);
-// };
-// SimpleMDE.prototype.toggleItalic = function() {
-// 	toggleItalic(this);
-// };
-// SimpleMDE.prototype.toggleStrikethrough = function() {
-// 	toggleStrikethrough(this);
-// };
-// SimpleMDE.prototype.toggleBlockquote = function() {
-// 	toggleBlockquote(this);
-// };
-// SimpleMDE.prototype.toggleHeadingSmaller = function() {
-// 	toggleHeadingSmaller(this);
-// };
-// SimpleMDE.prototype.toggleHeadingBigger = function() {
-// 	toggleHeadingBigger(this);
-// };
-// SimpleMDE.prototype.toggleHeading1 = function() {
-// 	toggleHeading1(this);
-// };
-// SimpleMDE.prototype.toggleHeading2 = function() {
-// 	toggleHeading2(this);
-// };
-// SimpleMDE.prototype.toggleHeading3 = function() {
-// 	toggleHeading3(this);
-// };
-// SimpleMDE.prototype.toggleCodeBlock = function() {
-// 	toggleCodeBlock(this);
-// };
-// SimpleMDE.prototype.toggleUnorderedList = function() {
-// 	toggleUnorderedList(this);
-// };
-// SimpleMDE.prototype.toggleOrderedList = function() {
-// 	toggleOrderedList(this);
-// };
-// SimpleMDE.prototype.cleanBlock = function() {
-// 	cleanBlock(this);
-// };
-// SimpleMDE.prototype.drawLink = function() {
-// 	drawLink(this);
-// };
-// SimpleMDE.prototype.drawImage = function() {
-// 	drawImage(this);
-// };
-// SimpleMDE.prototype.drawTable = function() {
-// 	drawTable(this);
-// };
-// SimpleMDE.prototype.drawHorizontalRule = function() {
-// 	drawHorizontalRule(this);
-// };
-// SimpleMDE.prototype.undo = function() {
-// 	undo(this);
-// };
-// SimpleMDE.prototype.redo = function() {
-// 	redo(this);
-// };
-// SimpleMDE.prototype.togglePreview = function() {
-// 	togglePreview(this);
-// };
-// SimpleMDE.prototype.toggleSideBySide = function() {
-// 	toggleSideBySide(this);
-// };
-// SimpleMDE.prototype.toggleFullScreen = function() {
-// 	toggleFullScreen(this);
-// };
 
 // SimpleMDE.prototype.isPreviewActive = function() {
 // 	var cm = this.codemirror;

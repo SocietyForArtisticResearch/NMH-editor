@@ -1,5 +1,6 @@
+/// TO BE REMOVED
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
-import { RCExpoModel }  from '../../shared/RCExpoModel';
+import { RCExpoModel } from '../../shared/RCExpoModel';
 import { tinymceDefaultSettings } from 'angular-tinymce';
 import { TinyMceModule } from 'angular-tinymce';
 
@@ -8,58 +9,58 @@ import { TinyMceModule } from 'angular-tinymce';
  */
 
 @Component({
-  selector: 'app-text-tool',
-  templateUrl: './text-tool.component.html',
-  styleUrls: ['./text-tool.component.css']
+    selector: 'app-text-tool',
+    templateUrl: './text-tool.component.html',
+    styleUrls: ['./text-tool.component.css']
 })
 export class TextToolComponent implements OnInit {
-  // This is bound with [(ngModel)]
-  name: string;
-  textContent:string = '';
-  customTinyMCESettings = <any>{};
-  collapsed = false;
+    // This is bound with [(ngModel)]
+    name: string;
+    textContent: string = '';
+    customTinyMCESettings = <any>{};
+    collapsed = false;
 
-  @Input() identifier: number;
-  
+    @Input() identifier: number;
 
-  constructor(private rcExpoModel : RCExpoModel ) {
 
-  }
+    constructor(private rcExpoModel: RCExpoModel) {
 
-  onNameChange($event) {
-    let object = this.rcExpoModel.exposition.getObjectWithID(this.identifier);
-    object.name = $event.target.value;
-    this.rcExpoModel.exposition.renderResponsiveOnce();
-  }
+    }
 
-  onTrash() {
-    /*
-     * Directly remove this on the model, model change will automatically result in view update.
-     */
-    this.rcExpoModel.exposition.removeObjectWithID(this.identifier);
-  }
+    onNameChange($event) {
+        let object = this.rcExpoModel.exposition.getObjectWithID(this.identifier);
+        object.name = $event.target.value;
+        //        this.rcExpoModel.exposition.renderResponsiveOnce();
+    }
 
-  onChange($event) {  
-    /* 
-     * On change, is only after finished element in editor (pressing enter)
-     */ 
-    //this.rcExpoModel.updateTextToolWithIdAndContent(this.identity,this.textContent);
-  }
+    onTrash() {
+        /*
+         * Directly remove this on the model, model change will automatically result in view update.
+         */
+        this.rcExpoModel.exposition.removeObjectWithID(this.identifier);
+    }
 
-  onKeyUp() {
-    /* 
-     *
-     */
-    this.rcExpoModel.exposition.updateRCTextWithIdAndContent(this.identifier,this.textContent);
-  }
+    onChange($event) {
+        /* 
+         * On change, is only after finished element in editor (pressing enter)
+        */
+        //this.rcExpoModel.updateTextToolWithIdAndContent(this.identity,this.textContent);
+    }
 
-  ngOnInit() {
-    // customize the tinymce plugin, only assign once, otherwise goes nuts!
-    let settings = tinymceDefaultSettings(); // <- contains important path instructions
-    settings.height = '300px';
-    settings.branding = false;
-    settings.statusbar = false;   
-    settings.menubar = 'file view format'; 
-    this.customTinyMCESettings = settings;
-  }
+    onKeyUp() {
+        /* 
+         *
+         */
+        //        this.rcExpoModel.exposition.updateRCTextWithIdAndContent(this.identifier, this.textContent);
+    }
+
+    ngOnInit() {
+        // customize the tinymce plugin, only assign once, otherwise goes nuts!
+        let settings = tinymceDefaultSettings(); // <- contains important path instructions
+        settings.height = '300px';
+        settings.branding = false;
+        settings.statusbar = false;
+        settings.menubar = 'file view format';
+        this.customTinyMCESettings = settings;
+    }
 }
