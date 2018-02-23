@@ -1,10 +1,12 @@
 # TODO
 
+## Issues
+* Compile error  (basic-tool.component.ts(50,24): error TS2304: Cannot find name 'SimpleChanges'.)
+* Media List should not be in tab but sidebar
+* When changing from media list to editor, content in editor is gone
+* We need proportional image resizing
+
 ## Luc
-1. make ts class from editor and adapt to rc (tools, preview, media insert etc) (done)
-2. Simplify rcexposition and adapt RCExpoModel (done)
-3. Rendering with markdown-it and replacement with tools (done)
-4. User CSS import
 5. JSON serialization loading and saving
 6. backend input/export
 
@@ -22,3 +24,8 @@ I could remove a lot of "adapter" code.
 It would be good if a RCText constructs a unique identity (<tag id="">) when created.
 
 RCText - have a method for setting HTML directly (because of tinymce output).
+
+1. make ts class from editor and adapt to rc (tools, preview, media insert etc) (done)
+2. Simplify rcexposition and adapt RCExpoModel (done)
+3. Rendering with markdown-it and replacement with tools (done)
+4. User CSS import

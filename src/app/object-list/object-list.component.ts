@@ -28,12 +28,13 @@ export class ObjectListComponent implements OnInit {
     createImageTool() {
         let imageName = 'image-'+this.rcExpoModel.exposition.media.length;
         let imageObject = new RCImage(imageName, this.imageUri, 'myClass', 100,100);
+
         this.rcExpoModel.exposition.addObject(imageObject);
         this.selectedObject = imageObject;
         // this.rcExpoModel.exposition.addObject(imageObject, 0);
     }
 
-    onSelect(id: number,object: RCObject) {
+    onSelect(id: number, object: RCObject) {
         this.selectedObject = object;
     }
 
@@ -50,8 +51,9 @@ export class ObjectListComponent implements OnInit {
     }
 
     ngOnInit() {
-        if(this.rcExpoModel.exposition.media.length > 0);
-        this.selectedObject = this.rcExpoModel.exposition.media[0];
+        if (this.rcExpoModel.exposition.media.length > 0) {
+            this.selectedObject = this.rcExpoModel.exposition.media[0];
+        }
     }
 
 
