@@ -23,24 +23,11 @@ export class ObjectListComponent implements OnInit {
 
     constructor(private rcExpoModel: RCExpoModel) { }
 
-    // TO BE REMOVED!
-    createTextTool() {
-
-    }
-
     // TO BE FIXED! (ALWAYS NEEDS A UNIQUE NAME)
     createImageTool() {
-        // let imageObject = new RCImage(
-        //     'myImage',
-        //     0,
-        //     this.rcExpoModel.exposition.weaves[0].objects.length,
-        //     this.imageUri,
-        //     200,
-        //     100,
-        //     1,
-        //     1,
-        //     '',
-        //     1);
+        let imageName = 'image-tool-'+this.rcExpoModel.exposition.media.length;
+        let imageObject = new RCImage(imageName, this.imageUri, 'myClass');
+        this.rcExpoModel.exposition.addObject(imageObject);
         // this.rcExpoModel.exposition.addObject(imageObject, 0);
     }
 

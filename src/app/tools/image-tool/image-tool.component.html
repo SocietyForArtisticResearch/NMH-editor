@@ -13,13 +13,13 @@
 <form #imageToolForm="ngForm">
 	<div class="form-group">
           <label for="{{id}}+'imageUrlField'">Image url:</label>
-     	<input class="form-control" id="{{id}}+'imageUrlField'" type="text" [(ngModel)]="url">
+     	<input name="url" class="form-control" id="{{id}}+'imageUrlField'" type="text" [(ngModel)]="imageUrl">
      	
           <label for="{{id}}+'pxWidthField'">Width in pixels:</label>
-     	<input class="form-control" id="{{id}}+'pxWidthField'" type="number" [(ngModel)]="pxWidth">
+     	<input name="widthInPixels" class="form-control" id="{{id}}+'pxWidthField'" type="number" [(ngModel)]="pxWidth">
      	
           <label for="{{id}}+'pxHeightField'">Height in pixels:</label>
-     	<input class="form-control" id="{{id}}+'pxHeightField'" type="number" [(ngModel)]="pxHeight">
+     	<input name="heightInPixels" class="form-control" id="{{id}}+'pxHeightField'" type="number" [(ngModel)]="pxHeight">
      </div>
 </form>
 

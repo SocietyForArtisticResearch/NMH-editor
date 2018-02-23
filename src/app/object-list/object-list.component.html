@@ -1,22 +1,19 @@
 <h3> Current objects </h3>
 
-<p [innerText]="rcExpoModel.exposition.weaves[0].objects.length >= 2 ? 'Tip: drag to sort the tools' : ''"></p>
+<p [innerText]="rcExpoModel.exposition.media.length >= 2 ? 'Tip: drag to sort the tools' : ''"></p>
 
-<ul [sortablejs]="rcExpoModel.exposition.weaves[0].objects" 
+<ul [sortablejs]="rcExpoModel.exposition.media" 
 [sortablejsOptions]="eventOptions">
 
-	<li *ngFor="let myObject of rcExpoModel.exposition.weaves[0].objects">	
-		<app-basic-tool [id]="'editor'+myObject.id" 
-		[identifier]="myObject.id" 
-		[toolType]="toolType(myObject)" 
-		[hidden]='myObject.name =="root"'>
-		
+	<li *ngFor="let rcObject of rcExpoModel.exposition.media">	
+		<app-basic-tool [id]="'editor'+rcObject.id" 
+		[identifier]="rcObject.id" 
+		[toolType]="toolType(rcObject)">		
 		</app-basic-tool>
 	</li>
 
 </ul>
 
-<button (click)="createTextTool()" class="btn btn-primary">Create text tool</button>
 <button (click)="createImageTool()" class="btn btn-primary">Create image tool</button>
 
 <button (click)="removeAll()" class="btn btn-danger">Remove all</button>

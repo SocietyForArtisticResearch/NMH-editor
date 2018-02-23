@@ -13,14 +13,17 @@ export class ImageToolComponent implements OnInit {
 
   id: string = 'blah';
 
-  imageUrl: string;
-  pixWidth: number;
-  pixHeight: number;
+  imageUrl: string = 'myUrl';
+  pxWidth: number = 100;
+  pxHeight: number = 100;
 
   constructor(private rcExpoModel : RCExpoModel) { }
 
   ngOnInit() {
   	this.id = 'imageTool=' + this.identifier;
+
+    window.setTimeout( ( ) => { this.imageUrl = "thisIsMyImageUrl"; }, 2000);
+
   }
 
 }
