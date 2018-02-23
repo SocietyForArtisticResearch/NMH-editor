@@ -1,23 +1,11 @@
 <div class="panel panel-primary">
-<div class="panel-heading">
+  <div class="panel-heading">
     <span (click)="collapsed = !collapsed" 
     class="glyphicon"
     [ngClass]="collapsed ? 'glyphicon-chevron-down' :'glyphicon-chevron-up'"
     title="{{collapsed ? 'expand' : 'collapse' }}"></span>
 
-    <label for="tool-edit-header-{{identifier}}">Name:</label>
     
-    <form [formGroup]="toolForm" #formDir="ngForm">
-      <input 
-        id="tool-edit-header-{{identifier}}" 
-        type="{{toolType}}" 
-        formControlName="name"
-        class="form-control input-sm" 
-        placeholder="name" 
-        size="7">
-      <button type="submit" class="btn btn-default btn-xs"
-              (click)="submitName()"
-              [disabled]="toolForm.invalid">Submit</button>
 <!-- 
     <div *ngIf="name.invalid && (name.dirty || name.touched)"
      class="alert alert-danger">
@@ -25,21 +13,45 @@
       Name cannot be {{name.errors}}.
       </div>
     </div> -->
-    </form>
 
-    <span>(id={{identifier}}) {{object.name}}</span>
+    <span>(id={{id}}) {{object.name}}</span>
     
     <div class="float-right">
      
     <button (click)="onTrash()" class="btn btn-danger btn-xs">x</button>
     </div>
-</div>
-<div [ngSwitch]="toolType" class="panel-body" [ngClass]="{collapse: collapsed}">
-  <app-text-tool [identifier]="identifier" *ngSwitchCase="'RCText'"></app-text-tool>
-  <app-image-tool [identifier]="identifier" *ngSwitchCase="'RCImage'"></app-image-tool>
-  <p *ngSwitchDefault>"{{toolType}}", doesn't exist.</p>
-</div>
+  </div>
+  <div class="panel-body" [ngClass]="{collapse: collapsed}">
+    <form [formGroup]="toolForm" #formDir="ngForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="tool-edit-header-{{id}}">Name:</label>
+      <input 
+            id="tool-edit-header-{{id}}" 
+            type="{{toolType}}" 
+            formControlName="name"
+            class="form-control input-sm" 
+            placeholder="name" 
+            size="7">
+    </div>
+    <div class="form-group">
 
+        <label for="'imageUrlField'+{{id}}">Image url:</label>
+        <input formControlName="imageUrl" class="form-control" id="'imageUrlField'+{{id}}" type="text">
+        
+        <label for="'pxWidthField'+{{id}}">Width in pixels:</label>
+        <input formControlName="widthInPixels" class="form-control" id="'pxWidthField'+{{id}}" type="number">
+        
+        <label for="'pxHeightField'+{{id}}">Height in pixels:</label>
+        <input formControlName="heightInPixels" class="form-control" id="pxHeightField'+{{id}}" type="number">
+
+        <button [disabled]="toolForm.invalid" type="submit" class="btn btn-primary" >Update</button>
+      </div>
+      <div class="submitted-message" *ngIf="formDir.submitted">
+    <p>You've submitted a change !?</p>
+  </div>
+     </form>
+
+  </div>
 </div>
 
 

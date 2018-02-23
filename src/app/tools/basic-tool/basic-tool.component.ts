@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NgSwitch } from '@angular/common';
 import { RCExpoModel }  from '../../shared/RCExpoModel';
-import { RCObject } from '../../shared/rcexposition';
+import { RCMedia, RCImage } from '../../shared/rcexposition';
 import { FormControl, AbstractControl, FormGroup, ValidatorFn, Validators} from '@angular/forms';
 
 
@@ -22,34 +22,49 @@ export class BasicToolComponent implements OnInit {
   // name: string = '';
   collapsed: boolean = false;
   toolForm : FormGroup;
+  toolType : string;
 
-  @Input() identifier: number;
-  @Input() object: RCObject;
+  identifier: number;
+  @Input() object: RCMedia;
+  @Input() id: number;
+
 
   constructor(private rcExpoModel: RCExpoModel) { }
 
   ngOnInit() {
+    this.identifier = this.id;
+    console.log(this.id+this.identifier);
+
     this.toolForm = new FormGroup({
       'name': new FormControl(this.object.name, [
       forbiddenNameValidator(this.rcExpoModel), // <-- Here's how you pass in the custom validator.
-      Validators.required
-      ])
-    });
+      Validators.required]),
+      'imageUrl': new FormControl(this.object.url,[Validators.required]),
+      'widthInPixels' : new FormControl(this.object.pxWidth),
+      'heightInPixels' : new FormControl(this.object.pxHeight)
+     });
+
+    this.toolType = this.object.constructor.name;
   }
 
-  toolType() {
-    return obj.constructor.name;
+  onSubmit() {
+     // Angular protects its values of the model very strictly, so we have to update rcexposition through a deepcopy of the tool.
+     let deepCopy = this.prepareSaveObject();
+     this.rcExpoModel.exposition.replaceObjectWithID(this.object.id,deepCopy);
   }
 
-  submitName( ) {
-    this.object.name = this.name;
+  prepareSaveObject(): RCImage {
+    const formModel = this.toolForm.value;
+    const newObject :RCImage = new RCImage(formModel.name,formModel.imageUrl,'userClass',formModel.widthInPixels,formModel.heightInPixels);
+    return newObject;
   }
 
   onTrash() {
     /*
      * Directly remove this on the model, model change will automatically result in view update.
      */
-    this.rcExpoModel.exposition.removeObjectWithID(this.object.id);
+    this.rcExpoModel.exposition.removeObjectWithID(this.id);
+
   }
 
 }

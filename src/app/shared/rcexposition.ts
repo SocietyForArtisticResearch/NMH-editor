@@ -111,6 +111,15 @@ export class RCExposition {
         this.media.push(obj);
     }
 
+    replaceObjectWithID(id: number,obj: RCObject) {
+        let index = this.media.findIndex(obj => obj.id === id);
+        if (index > -1) {
+            this.media[index] = obj;
+        } else {
+            console.log('replace failed, no object for id: '+id+' found.');
+        }
+    }
+
     /**
      * Returns a JSON string representation of the exposition
      * @returns {string} - JSON string representation fo the exposition
@@ -227,7 +236,7 @@ export class RCObject {
 
 // generic prototype media class for image, svg, pdf, video, audio
 /** Abstract class for media subclasses for image, svg, pdf, video, audio */
-class RCMedia extends RCObject {
+export class RCMedia extends RCObject {
     url: string;
     pxWidth: number;
     pxHeight: number;

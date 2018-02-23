@@ -34,11 +34,11 @@ export class ObjectListComponent implements OnInit {
 
     onSelect(id: number,object: RCObject) {
         this.selectedObject = object;
-        console.log('this.selectedToolIdentifier'+this.selectedObject);
+        console.log('this.selected'+this.selectedObject.id);
     }
 
     getCurrentSelection() {
-        return this.selectedTool;
+        return this.selectedObject;
     }
 
     toolType(obj) {

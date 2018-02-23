@@ -25,7 +25,7 @@ export class ImageToolComponent implements OnInit {
   }
 
   updateModel() {
-    var object : RCImage = <RCImage> this.rcExpoModel.exposition.getObjectWithID(this.identifier);
+    var object : RCImage = <RCImage>this.rcExpoModel.exposition.getObjectWithID(this.identifier);
     object.url = this.imageUrl;
     object.pxWidth = this.pxWidth;
     object.pxHeight = this.pxHeight;
