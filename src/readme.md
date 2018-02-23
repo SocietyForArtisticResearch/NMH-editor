@@ -17,6 +17,11 @@
 4. is editor responsive?
 5. buttons for import/export
 
+## Changes in rcexpostion.ts 23/02/2018
+
+1. fixed a bug with removing object by Id.
+2. added a method for replacing an object by id (I needed it because of the way Angular updates models from 'reactive' forms).
+
 # OLD/DONE
 If RCExposition were a typescript class Angular would be really happy.
 I could remove a lot of "adapter" code.
