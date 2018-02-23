@@ -1,19 +1,42 @@
-<h3> Current objects </h3>
+<h3> Media </h3>
 
 <p [innerText]="rcExpoModel.exposition.media.length >= 2 ? 'Tip: drag to sort the tools' : ''"></p>
 
-<ul [sortablejs]="rcExpoModel.exposition.media" 
-[sortablejsOptions]="eventOptions">
+<div class="row">
+	<div class="span4">
+		<ul [sortablejs]="rcExpoModel.exposition.media" 
+		[sortablejsOptions]="eventOptions">
 
-	<li *ngFor="let rcObject of rcExpoModel.exposition.media">	
-		<app-basic-tool [id]="'editor'+rcObject.id" 
-		[identifier]="rcObject.id" 
-		[toolType]="toolType(rcObject)">		
-		</app-basic-tool>
-	</li>
+			<li *ngFor="let rcObject of rcExpoModel.exposition.media">	
+				<strong>ID</strong>&nbsp;
+				<span>URL</span>&nbsp;
+				<span>pxWidth</span>&nbsp;
+				<span>pxHeight</span>
+			</li>
+			<li *ngFor="let rcObject of rcExpoModel.exposition.media">	
+				<strong>{{rcObject.id}}</strong>&nbsp;
+				<span>{{rcObject.url}}</span>&nbsp;
+				<span>{{rcObject.pxWidth}}</span>&nbsp;
+				<span>{{rcObject.pxHeight}}</span>
+			</li>
 
-</ul>
+		</ul>
+	</div>
+	<div class="span8">
+		<ul [sortablejs]="rcExpoModel.exposition.media" 
+		[sortablejsOptions]="eventOptions">
 
-<button (click)="createImageTool()" class="btn btn-primary">Create image tool</button>
+			<li *ngFor="let rcObject of rcExpoModel.exposition.media">	
+				<app-basic-tool [id]="'editor'+rcObject.id" 
+				[identifier]="rcObject.id" 
+				[toolType]="toolType(rcObject)">		
+				</app-basic-tool>
+			</li>
 
-<button (click)="removeAll()" class="btn btn-danger">Remove all</button>
+		</ul>
+		<button (click)="createImageTool()" class="btn btn-primary">Create image tool</button>
+		<button (click)="removeAll()" class="btn btn-danger">Remove all</button>
+
+	</div>
+</div>
+
