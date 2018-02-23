@@ -518,8 +518,8 @@ span.CodeMirror-selectedtext{
     margin-left:1em
 }
 .editor-preview,.editor-preview-side{
-    padding:10px;
-    background:#fafafa;
+//    padding:10px;
+    background:#FFFFFF;
     overflow:auto;
     display:none;
     box-sizing:border-box

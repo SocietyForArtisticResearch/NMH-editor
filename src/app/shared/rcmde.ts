@@ -1152,11 +1152,13 @@ function wordCount(data) {
 }
 
 function openPreview(editor) {
-    var w = window.open("Preview");
-    var cm = editor.codemirror;
-    var wrapper = cm.getWrapperElement();
-    var preview = wrapper.nextSibling;
-    w.document.write(preview.innerHTML);
+    var w = window.open("", "Preview");
+    w.document.write(editor.exposition.renderedHTML);
+    //    let head = w.document.getElementById("head");
+    let css: HTMLStyleElement = w.document.createElement("style");
+    css.type = "text/css";
+    css.innerHTML = editor.exposition.style;
+    w.document.body.appendChild(css);
 }
 
 var toolbarBuiltInButtons = {
@@ -1498,6 +1500,19 @@ export class RCMDE {
         return str;
     }
 
+    updateStyling() {
+        let css: HTMLStyleElement = document.getElementById("exposition-style") as HTMLStyleElement;
+        let newEl = false;
+        if (css == null) {
+            css = document.createElement("style");
+            newEl = true;
+        };
+        css.type = "text/css";
+        css.innerHTML = this.exposition.style;
+        if (newEl) {
+            document.body.appendChild(css);
+        }
+    }
 
     /**
      * Default markdown render.
@@ -1506,7 +1521,12 @@ export class RCMDE {
         let self = this;
         let re = /!{(\w+)}/g;
         let insertedTools = text.replace(re, function (m, p1) { return self.mediaHTML(p1) });
-        return md.render(insertedTools);
+        let basicHTML = md.render(insertedTools);
+        let renderedHTML = "<div class=\"exposition\">" + "<div class=\"exposition-content\">" + basicHTML + "</div>" + "</div>";
+        self.exposition.markdownInput = text;
+        self.exposition.renderedHTML = renderedHTML;
+        this.updateStyling();
+        return renderedHTML;
     }
 
 
