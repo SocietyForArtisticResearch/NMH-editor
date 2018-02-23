@@ -19,7 +19,7 @@ export class AppComponent implements OnInit {
     ngOnInit() {
 
         // for testing purposes
-        let imageObject = new RCImage('leonardo', "../../assets/media/leonardo.jpg", 'myClass');
+        let imageObject = new RCImage('leonardo', "../../assets/media/leonardo.jpg", 'myClass',100,100);
         this.rcExpoModel.exposition.addObject(imageObject);
     }
 }

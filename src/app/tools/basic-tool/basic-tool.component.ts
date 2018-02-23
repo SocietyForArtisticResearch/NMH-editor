@@ -33,7 +33,6 @@ export class BasicToolComponent implements OnInit {
 
   ngOnInit() {
     this.identifier = this.id;
-    console.log(this.id+this.identifier);
 
     this.toolForm = new FormGroup({
       'name': new FormControl(this.object.name, [
@@ -44,7 +43,19 @@ export class BasicToolComponent implements OnInit {
       'heightInPixels' : new FormControl(this.object.pxHeight)
      });
 
+
     this.toolType = this.object.constructor.name;
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (this.toolForm) {
+      this.toolForm.setValue({
+        name:    this.object.name,
+        imageUrl: this.object.url,
+        widthInPixels: this.object.pxWidth,
+        heightInPixels : this.object.pxHeight
+      });
+    }
   }
 
   onSubmit() {

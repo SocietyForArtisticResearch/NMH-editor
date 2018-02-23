@@ -29,7 +29,7 @@
 		</div>
 		<div class="col-xs-3">	
 			<app-basic-tool 
-				*ngIf="selectedObject"
+				*ngIf="selectedObject != undefined"
 			    [id]="'editor'+selectedObject.id" 
 				[object]="selectedObject">		
 			</app-basic-tool>
