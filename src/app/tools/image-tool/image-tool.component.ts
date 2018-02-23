@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { RCExpoModel }  from '../../shared/RCExpoModel';
+import { RCImage } from '../../shared/rcexposition';
 
 
 
@@ -11,7 +12,7 @@ import { RCExpoModel }  from '../../shared/RCExpoModel';
 export class ImageToolComponent implements OnInit {
   @Input() identifier: number;
 
-  id: string = 'blah';
+  id: string;
 
   imageUrl: string = 'myUrl';
   pxWidth: number = 100;
@@ -20,10 +21,14 @@ export class ImageToolComponent implements OnInit {
   constructor(private rcExpoModel : RCExpoModel) { }
 
   ngOnInit() {
-  	this.id = 'imageTool=' + this.identifier;
+  	this.id = 'imageTool-' + this.identifier;
+  }
 
-    window.setTimeout( ( ) => { this.imageUrl = "thisIsMyImageUrl"; }, 2000);
-
+  updateModel() {
+    var object : RCImage = <RCImage> this.rcExpoModel.exposition.getObjectWithID(this.identifier);
+    object.url = this.imageUrl;
+    object.pxWidth = this.pxWidth;
+    object.pxHeight = this.pxHeight;
   }
 
 }

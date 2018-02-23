@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { TinyMceModule } from 'angular-tinymce';
 import { tinymceDefaultSettings } from 'angular-tinymce';
 import { SortablejsModule } from 'angular-sortablejs';
@@ -36,6 +36,7 @@ const appRoutes: Routes = [
     SortablejsModule.forRoot({ animation: 150 }),
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     TinyMceModule.forRoot(tinymceDefaultSettings()),
     RouterModule.forRoot(appRoutes)
   ],

@@ -20,6 +20,8 @@
      	
           <label for="{{id}}+'pxHeightField'">Height in pixels:</label>
      	<input name="heightInPixels" class="form-control" id="{{id}}+'pxHeightField'" type="number" [(ngModel)]="pxHeight">
+
+          <button type="button" class="btn btn-primary" (click)="updateModel()">Update</button>
      </div>
 </form>
 
