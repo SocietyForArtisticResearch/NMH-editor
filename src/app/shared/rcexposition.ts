@@ -124,7 +124,7 @@ export class RCExposition {
 
 // Object prototype class
 /** Abstract class specfiying basic functionality of all RCObjects, which are subclasses of RCObject. */
-class RCObject {
+export class RCObject {
     __className: string;
     name: string;
     objectClass: string;

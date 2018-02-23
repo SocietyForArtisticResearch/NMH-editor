@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NgSwitch } from '@angular/common';
 import { RCExpoModel }  from '../../shared/RCExpoModel';
+import { RCObject } from '../../shared/rcexposition';
 import { FormControl, AbstractControl, FormGroup, ValidatorFn, Validators} from '@angular/forms';
 
 
@@ -18,34 +19,37 @@ function forbiddenNameValidator(rcModel: RCExpoModel): ValidatorFn {
   styleUrls: ['./basic-tool.component.css']
 })
 export class BasicToolComponent implements OnInit {
-  name: string = '';
+  // name: string = '';
   collapsed: boolean = false;
   toolForm : FormGroup;
 
-  @Input() toolType = 'basic';
   @Input() identifier: number;
+  @Input() object: RCObject;
 
   constructor(private rcExpoModel: RCExpoModel) { }
 
   ngOnInit() {
     this.toolForm = new FormGroup({
-      'name': new FormControl(this.name, [
+      'name': new FormControl(this.object.name, [
       forbiddenNameValidator(this.rcExpoModel), // <-- Here's how you pass in the custom validator.
       Validators.required
       ])
     });
   }
 
-  onNameChange($event) {
-     var object = this.rcExpoModel.exposition.getObjectWithID(this.identifier);
-     object.name = $event.target.value;
+  toolType() {
+    return obj.constructor.name;
+  }
+
+  submitName( ) {
+    this.object.name = this.name;
   }
 
   onTrash() {
     /*
      * Directly remove this on the model, model change will automatically result in view update.
      */
-    this.rcExpoModel.exposition.removeObjectWithID(this.identifier);
+    this.rcExpoModel.exposition.removeObjectWithID(this.object.id);
   }
 
 }

@@ -2,41 +2,44 @@
 
 <p [innerText]="rcExpoModel.exposition.media.length >= 2 ? 'Tip: drag to sort the tools' : ''"></p>
 
-<div class="row">
-	<div class="span4">
-		<ul [sortablejs]="rcExpoModel.exposition.media" 
-		[sortablejsOptions]="eventOptions">
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-xs-9">
+			<div class="fields">
+					<strong>ID</strong>&nbsp;
+					<span>URL</span>&nbsp;
+					<span>Name</span>&nbsp;
+					<span>pxWidth</span>&nbsp;
+					<span>pxHeight</span>
+			</div>
+			<ul [sortablejs]="rcExpoModel.exposition.media" 
+			[sortablejsOptions]="eventOptions">
 
-			<li *ngFor="let rcObject of rcExpoModel.exposition.media">	
-				<strong>ID</strong>&nbsp;
-				<span>URL</span>&nbsp;
-				<span>pxWidth</span>&nbsp;
-				<span>pxHeight</span>
-			</li>
-			<li *ngFor="let rcObject of rcExpoModel.exposition.media">	
-				<strong>{{rcObject.id}}</strong>&nbsp;
-				<span>{{rcObject.url}}</span>&nbsp;
-				<span>{{rcObject.pxWidth}}</span>&nbsp;
-				<span>{{rcObject.pxHeight}}</span>
-			</li>
+				<li *ngFor="let rcObject of rcExpoModel.exposition.media" 
+				[class.selected]="selectedObject === rcObject"
+				    (click)="onSelect(rcObject.id,rcObject)">	
+					<strong>{{rcObject.id}}</strong>&nbsp;
+					<span>{{rcObject.name}}</span>&nbsp;
+					<span class="imageUrl">{{rcObject.url.substr(0,10)}}</span>&nbsp;
+					<span>{{rcObject.pxWidth}}</span>&nbsp;
+					<span>{{rcObject.pxHeight}}</span>
+				</li>
 
-		</ul>
+			</ul>
+		</div>
+		<div class="col-xs-3">	
+			<app-basic-tool 
+				*ngIf="selectedObject"
+			    [id]="'editor'+selectedObject.id" 
+				[identifier]="selectedObject.id"
+				[object]="selectedObject">		
+			</app-basic-tool>
+			
+		</div>
 	</div>
-	<div class="span8">
-		<ul [sortablejs]="rcExpoModel.exposition.media" 
-		[sortablejsOptions]="eventOptions">
-
-			<li *ngFor="let rcObject of rcExpoModel.exposition.media">	
-				<app-basic-tool [id]="'editor'+rcObject.id" 
-				[identifier]="rcObject.id" 
-				[toolType]="toolType(rcObject)">		
-				</app-basic-tool>
-			</li>
-
-		</ul>
+	<div class="row">
 		<button (click)="createImageTool()" class="btn btn-primary">Create image tool</button>
 		<button (click)="removeAll()" class="btn btn-danger">Remove all</button>
-
 	</div>
 </div>
 
