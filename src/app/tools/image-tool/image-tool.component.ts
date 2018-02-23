@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { RCExpoModel }  from '../../shared/RCExpoModel';
 import { RCImage } from '../../shared/rcexposition';
 
-
+// THIS OBJECT IS OBSOLETE (porbably)...
 
 @Component({
   selector: 'app-image-tool',

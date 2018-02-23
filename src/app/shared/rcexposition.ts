@@ -104,7 +104,7 @@ export class RCExposition {
     }
 
     removeObjectWithID(id: number) {
-        this.media.filter(obj => obj.id !== id);
+        this.media = this.media.filter(obj => obj.id !== id);
     }
 
     addObject(obj: RCObject) {

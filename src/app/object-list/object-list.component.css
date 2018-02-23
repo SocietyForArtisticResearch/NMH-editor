@@ -24,3 +24,24 @@ li {
 .fields {
 	border-bottom: 1px solid #555;
 }
+
+.object-list-id {
+	width:30px;
+	display:inline-block;
+}
+
+.object-list-imageUrl {
+	width:250px;
+	display:inline-block;
+}
+
+.object-list-width {
+	width:50px;
+	display:inline-block;
+
+}
+
+.heigth {
+	width:50px;
+	display:inline-block;
+}

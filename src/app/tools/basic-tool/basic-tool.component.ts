@@ -74,7 +74,7 @@ export class BasicToolComponent implements OnInit {
     /*
      * Directly remove this on the model, model change will automatically result in view update.
      */
-    this.rcExpoModel.exposition.removeObjectWithID(this.id);
+    this.rcExpoModel.exposition.removeObjectWithID(this.object.id);
 
   }
 

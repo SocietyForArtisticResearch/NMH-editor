@@ -1,16 +1,16 @@
 <h3> Media </h3>
 
-<p [innerText]="rcExpoModel.exposition.media.length >= 2 ? 'Tip: drag to sort the tools' : ''"></p>
+<!-- <p [innerText]="rcExpoModel.exposition.media.length >= 2 ? 'Tip: drag to sort the tools' : ''"></p> -->
 
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-xs-9">
 			<div class="fields">
-					<strong>ID</strong>&nbsp;
-					<span>URL</span>&nbsp;
-					<span>Name</span>&nbsp;
-					<span>pxWidth</span>&nbsp;
-					<span>pxHeight</span>
+					<strong class="object-list-id">ID</strong>&nbsp;
+					<span class="object-list-name">Name</span>&nbsp;
+					<span class="object-list-imageUrl">URL</span>&nbsp;
+					<span class="object-list-width">pxWidth</span>&nbsp;
+					<span class="object-list-height">pxHeight</span>
 			</div>
 			<ul [sortablejs]="rcExpoModel.exposition.media" 
 			[sortablejsOptions]="eventOptions">
@@ -18,11 +18,11 @@
 				<li *ngFor="let rcObject of rcExpoModel.exposition.media" 
 				[class.selected]="selectedObject === rcObject"
 				    (click)="onSelect(rcObject.id,rcObject)">	
-					<strong>{{rcObject.id}}</strong>&nbsp;
-					<span>{{rcObject.name}}</span>&nbsp;
-					<span class="imageUrl">{{rcObject.url.substr(0,10)}}</span>&nbsp;
-					<span>{{rcObject.pxWidth}}</span>&nbsp;
-					<span>{{rcObject.pxHeight}}</span>
+					<strong class="object-list-id">{{rcObject.id}}</strong>&nbsp;
+					<span class="object-list-name">{{rcObject.name}}</span>&nbsp;
+					<span class="object-list-imageUrl">{{rcObject.url.substr(0,32)}}</span>&nbsp;
+					<span class="object-list-width">{{rcObject.pxWidth}}</span>&nbsp;
+					<span class="object-list-height">{{rcObject.pxHeight}}</span>
 				</li>
 
 			</ul>

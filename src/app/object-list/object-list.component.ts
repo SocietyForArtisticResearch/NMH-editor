@@ -26,7 +26,7 @@ export class ObjectListComponent implements OnInit {
 
     // TO BE FIXED! (ALWAYS NEEDS A UNIQUE NAME)
     createImageTool() {
-        let imageName = 'image-tool-'+this.rcExpoModel.exposition.media.length;
+        let imageName = 'image-'+this.rcExpoModel.exposition.media.length;
         let imageObject = new RCImage(imageName, this.imageUri, 'myClass', 100,100);
         this.rcExpoModel.exposition.addObject(imageObject);
         this.selectedObject = imageObject;
@@ -35,8 +35,6 @@ export class ObjectListComponent implements OnInit {
 
     onSelect(id: number,object: RCObject) {
         this.selectedObject = object;
-        console.log('this.selected'+this.selectedObject.id);
-        console.log(this.selectedObject.name,'name');
     }
 
     getCurrentSelection() {
