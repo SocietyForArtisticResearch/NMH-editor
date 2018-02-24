@@ -1990,6 +1990,12 @@ export class RCMDE {
         }
     };
 
+    importDocJSON(json) {
+        this.exposition.addImageList(json.media);
+        this.value(json.markdown);
+        this.render();
+    }
+
     /**
      * Bind instance methods for exports.
      */

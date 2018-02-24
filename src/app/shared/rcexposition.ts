@@ -111,13 +111,19 @@ export class RCExposition {
         this.media.push(obj);
     }
 
-    replaceObjectWithID(id: number,obj: RCObject) {
+    replaceObjectWithID(id: number, obj: RCObject) {
         let index = this.media.findIndex(obj => obj.id === id);
         if (index > -1) {
             this.media[index] = obj;
         } else {
-            console.log('replace failed, no object for id: '+id+' found.');
+            console.log('replace failed, no object for id: ' + id + ' found.');
         }
+    }
+
+    addImageList(list) {
+        let self = this;
+        let obj = list.map(url => new RCImage("image" + String(uniqueID), url, ""));
+        obj.forEach(o => self.addObject(o));
     }
 
     /**
