@@ -1,5 +1,16 @@
 <div class="panel">
-<h5>Word doc import</h5>
-<input type="file" (change)="onFileSelected($event)" name="file">
-<button type="submit" (click)="onUpload()">upload</button>
+	<div class="row">
+		<div class="inlineBlock">
+			<h5>Word doc import</h5>
+			<input type="file" (change)="onFileSelected($event)" name="file">
+			<button type="submit" (click)="onUpload()">upload</button>
+		</div>
+		<div class="inlineBlock">
+			<h5>Import/Export</h5>
+			<input type="file" (change)="onJsonSelected($event)" name="jsonImport">
+			<button type="submit" (click)="onJsonImport()">import</button>
+			<br><br>
+			<button type="export" (click)="jsonDownload()">export</button>
+		</div>
+	</div>
 </div>

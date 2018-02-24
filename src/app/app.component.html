@@ -1,9 +1,11 @@
 <div class="container">
-	<h3> MHN Exposition Editor </h3>
+	<div class="row">
+	<h3>MHN Exposition Editor</h3>
 	<hr>
 	<app-doc-uploader></app-doc-uploader>
 	<button type="button" [disabled]="showMedia" class="btn btn-primary" (click)="showMedia = true">Open media list</button>
 	<app-markdown-tool></app-markdown-tool>
+	</div>
 </div>
 
 <!-- The Modal -->
@@ -14,6 +16,5 @@
     <button class="close" (click)="showMedia=false">&times;</button>
    	<app-object-list></app-object-list>
   </div>
-
 </div>
 

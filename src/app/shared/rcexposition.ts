@@ -461,7 +461,7 @@ export class RCVideo extends RCMedia {
  * have been exported using the serialize method can be imported and cast back into
  * {@link RCExposition} objects.
  */
-class RCExpositionDeserializer {
+export class RCExpositionDeserializer {
 
     static classList() {
         return {
