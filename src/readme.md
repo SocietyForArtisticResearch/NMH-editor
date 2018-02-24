@@ -5,6 +5,10 @@
 * When changing from media list to editor, content in editor is gone
 * We need proportional image resizing
 
+# export to doc/pdf/epub
+* you get the markdown from exposition.markdownInput, send it to the server to "/convert/pdf" with json { markdown: ... }
+
+
 ## Luc
 5. JSON serialization loading and saving
 6. from convert json
