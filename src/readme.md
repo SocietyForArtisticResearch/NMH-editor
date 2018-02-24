@@ -1,7 +1,6 @@
 # TODO
 
 ## Issues
-* Compile error  (basic-tool.component.ts(50,24): error TS2304: Cannot find name 'SimpleChanges'.)
 * Media List should not be in tab but sidebar
 * When changing from media list to editor, content in editor is gone
 * We need proportional image resizing
@@ -9,6 +8,7 @@
 ## Luc
 5. JSON serialization loading and saving
 6. backend input/export
+7. Table support is broken, we should remove button if we do not support.
 
 ## Casper
 1. fix CSS of editor, status bar, resizing, scrollbars, fullscreen, get rid of tab, wider editor

@@ -1,29 +1,18 @@
 <div class="container">
 	<h1> MHN Exposition Editor </h1>
 	<hr>
-	<div class="">
-	    <div class="">
-	      <ul class="nav nav-tabs">
-	        <li routerLinkActive='active'
-				[routerLinkActiveOptions]="{exact: true}"
-	        	role="presentation" class="active">
-	        	<a routerLink='/' >
-				Home
-				</a>
-	        </li>
-	        <li role="presentation" routerLinkActive='active'>
-	        	<a routerLink='objectList'>
-	        	Media Object List
-	        	</a>
-	    	</li>
-	      </ul>
-	    </div>
-  	</div>
-	<div class="">
-		<div class="">
-			<router-outlet></router-outlet>
-		</div>
-	</div>
+	<button type="button" [disabled]="showMedia" class="btn btn-primary" (click)="showMedia = true">Open media list</button>
+	<app-markdown-tool></app-markdown-tool>
 </div>
 
+<!-- The Modal -->
+<div id="myModal" class="modal" [ngStyle]="{ display: showMedia ? 'block' : 'none' }">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <button class="close" (click)="showMedia=false">&times;</button>
+   	<app-object-list></app-object-list>
+  </div>
+
+</div>
 

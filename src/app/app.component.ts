@@ -12,6 +12,8 @@ import { RCImage, RCAudio, RCSvg, RCPdf, RCVideo } from './shared/rcexposition';
 })
 export class AppComponent implements OnInit {
     // rcExpoModel is injected into this compenent (and all its children through their constructors !)
+    showMedia :boolean = false;
+
     constructor(private rcExpoModel: RCExpoModel) {
 
     }
@@ -21,5 +23,13 @@ export class AppComponent implements OnInit {
         // for testing purposes
         let imageObject = new RCImage('leonardo', "../../assets/media/leonardo.jpg", 'myClass',100,100);
         this.rcExpoModel.exposition.addObject(imageObject);
+    }
+
+    openMedia() {
+        this.showMedia = true;
+    }
+
+    closeMedia() {
+        this.showMedia = false;
     }
 }

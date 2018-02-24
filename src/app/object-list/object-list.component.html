@@ -4,13 +4,10 @@
 
 <div class="container-fluid">
 	<div class="row">
-		<div class="col-xs-9">
+		<div class="col-md-9">
 			<div class="fields">
 					<strong class="object-list-id">ID</strong>&nbsp;
 					<span class="object-list-name">Name</span>&nbsp;
-					<span class="object-list-imageUrl">URL</span>&nbsp;
-					<span class="object-list-width">pxWidth</span>&nbsp;
-					<span class="object-list-height">pxHeight</span>
 			</div>
 			<ul [sortablejs]="rcExpoModel.exposition.media" 
 			[sortablejsOptions]="eventOptions">
@@ -20,14 +17,12 @@
 				    (click)="onSelect(rcObject.id,rcObject)">	
 					<strong class="object-list-id">{{rcObject.id}}</strong>&nbsp;
 					<span class="object-list-name">{{rcObject.name}}</span>&nbsp;
-					<span class="object-list-imageUrl">{{rcObject.url.substr(0,32)}}</span>&nbsp;
-					<span class="object-list-width">{{rcObject.pxWidth}}</span>&nbsp;
-					<span class="object-list-height">{{rcObject.pxHeight}}</span>
+					<img src={{rcObject.url}} width="80" alt={{rcObject.url}}>
 				</li>
 
 			</ul>
 		</div>
-		<div class="col-xs-3">	
+		<div class="col-md-3">	
 			<app-basic-tool 
 				*ngIf="selectedObject != undefined"
 			    [id]="'editor'+selectedObject.id" 

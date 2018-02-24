@@ -1,3 +1,7 @@
+.inline {
+	display:inline-block;
+}
+
 .float-right {
 	float:right;
 	display:inline;
@@ -14,5 +18,16 @@
 
 .panel-body {
 	padding:5px;
+}
+
+.object-detail li {
+	display: inline-block;
+	clear: right;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+.object-detail .form-group input {
+	margin:5px;
 }
 
