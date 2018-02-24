@@ -10,7 +10,7 @@ import("codemirror/mode/gfm/gfm.js");
 import("codemirror/mode/xml/xml.js");
 import * as MarkdownIt from "markdown-it";
 import * as  MarkdownItFootnote from "markdown-it-footnote";
-const md = new MarkdownIt({ html: true, breaks: true, typographer: true }).use(MarkdownItFootnote);
+const md = new MarkdownIt({ html: true, typographer: true }).use(MarkdownItFootnote);
 import { RCImage, RCAudio, RCSvg, RCPdf, RCVideo, RCExposition } from '../shared/rcexposition';
 
 //import * as CodeMirrorSpellChecker from 'codemirror-spell-checker'

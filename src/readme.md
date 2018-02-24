@@ -1,9 +1,8 @@
 # TODO
 
 ## Issues
-* Media List should not be in tab but sidebar
-* When changing from media list to editor, content in editor is gone
 * We need proportional image resizing
+* variable "server" in rcexposition should be configurable and somewhere else
 
 # export to doc/pdf/epub
 * you get the markdown from exposition.markdownInput, send it to the server to "/convert/pdf" with json { markdown: ... }
@@ -11,10 +10,6 @@
 
 ## Luc
 5. JSON serialization loading and saving
-6. from convert json
-
-7. Images from not imported using rcmarkdown media notation ![] instead of !{}, 
-also embedded media does not show up in rcexposition.media array.
 
 TOC
 
@@ -46,3 +41,9 @@ RCText - have a method for setting HTML directly (because of tinymce output).
 4. User CSS import
 6. backend input/export
 7. Table support is broken, we should remove button if we do not support.
+* Media List should not be in tab but sidebar
+* When changing from media list to editor, content in editor is gone
+7. Images from not imported using rcmarkdown media notation ![] instead of !{}, 
+also embedded media does not show up in rcexposition.media array.
+
+6. from convert json
