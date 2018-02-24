@@ -20,10 +20,19 @@ export class DocUploaderComponent implements OnInit {
   }
 
   onUpload() {
+    //TODO check weird filenames!
+
   	const fd = new FormData();
   	fd.append('convertFile', this.selectedFile, this.selectedFile.name);
-  	this.http.post('http://localhost:3000/import',fd).subscribe(res => { console.log(res) } );
+  	this.http.post('http://localhost:3000/import',fd).subscribe(result => { 
+      this.onResult(result);
+    } );
 
+  }
+
+  onResult(result) {
+    console.log(result,'result');
+    this.rcExpoModel.mde.importDocJSON(result);
   }
 
 }

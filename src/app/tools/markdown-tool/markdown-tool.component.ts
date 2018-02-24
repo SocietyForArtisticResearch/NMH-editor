@@ -27,7 +27,11 @@ export class MarkdownToolComponent implements AfterViewInit {
             showIcons: ["code"],
             spellChecker: false
         });
+
+
         Editor.toggleSideBySide(this.mde);
+        expoModel.mde = this.mde;
+
         //        this.mde.toggleSideBySide();
 
         // this.mde.markdown = function (text) {

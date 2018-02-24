@@ -10,6 +10,7 @@ export class RCExpoModel {
     exposition: RCExposition;
     markdownInput: string;
     markdownProcessed: string;
+    mde :any;
 
     constructor() {
         // number of Y cells should be updated by number of tools).
