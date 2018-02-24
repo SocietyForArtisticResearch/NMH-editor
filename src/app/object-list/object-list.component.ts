@@ -26,7 +26,7 @@ export class ObjectListComponent implements OnInit {
 
     // TO BE FIXED! (ALWAYS NEEDS A UNIQUE NAME)
     createImageTool() {
-        let imageName = 'image-'+this.rcExpoModel.exposition.media.length;
+        let imageName = 'image'+this.rcExpoModel.exposition.media.length;
         let imageObject = new RCImage(imageName, this.imageUri, 'myClass', 100,100);
 
         this.rcExpoModel.exposition.addObject(imageObject);

@@ -5,6 +5,8 @@ import { TinyMceModule } from 'angular-tinymce';
 import { tinymceDefaultSettings } from 'angular-tinymce';
 import { SortablejsModule } from 'angular-sortablejs';
 import { Routes, RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
+
 // markdown editor:
 //import { SimplemdeModule, SIMPLEMDE_CONFIG } from 'ng2-simplemde'
 
@@ -15,6 +17,7 @@ import { ExpoPreviewComponent } from './expo-preview/expo-preview.component';
 import { ImageToolComponent } from './tools/image-tool/image-tool.component';
 import { BasicToolComponent } from './tools/basic-tool/basic-tool.component';
 import { MarkdownToolComponent } from './tools/markdown-tool/markdown-tool.component';
+import { DocUploaderComponent } from './doc-uploader/doc-uploader.component';
 
 // url routing
 const appRoutes: Routes = [
@@ -30,7 +33,8 @@ const appRoutes: Routes = [
     ExpoPreviewComponent,
     ImageToolComponent,
     BasicToolComponent,
-    MarkdownToolComponent
+    MarkdownToolComponent,
+    DocUploaderComponent
   ],
   imports: [
     SortablejsModule.forRoot({ animation: 150 }),
@@ -38,7 +42,8 @@ const appRoutes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     TinyMceModule.forRoot(tinymceDefaultSettings()),
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    HttpClientModule
   ],
   providers: [], 
   bootstrap: [AppComponent]
