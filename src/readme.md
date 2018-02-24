@@ -12,6 +12,8 @@
 ## Luc
 5. JSON serialization loading and saving
 6. from convert json
+7. Images from not imported using rcmarkdown media notation ![] instead of !{}, 
+also embedded media does not show up in rcexposition.media array.
 
 ## Casper
 1. fix CSS of editor, status bar, resizing, scrollbars, fullscreen, get rid of tab, wider editor
