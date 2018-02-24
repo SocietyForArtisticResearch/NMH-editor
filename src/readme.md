@@ -10,10 +10,6 @@
 
 ## Luc
 5. JSON serialization loading and saving
-6. from convert json
-
-7. Images from not imported using rcmarkdown media notation ![] instead of !{}, 
-also embedded media does not show up in rcexposition.media array.
 
 TOC
 
@@ -47,3 +43,7 @@ RCText - have a method for setting HTML directly (because of tinymce output).
 7. Table support is broken, we should remove button if we do not support.
 * Media List should not be in tab but sidebar
 * When changing from media list to editor, content in editor is gone
+7. Images from not imported using rcmarkdown media notation ![] instead of !{}, 
+also embedded media does not show up in rcexposition.media array.
+
+6. from convert json
