@@ -12,6 +12,7 @@
 ## Luc
 5. JSON serialization loading and saving
 6. from convert json
+TOC
 
 ## Casper
 1. fix CSS of editor, status bar, resizing, scrollbars, fullscreen, get rid of tab, wider editor
