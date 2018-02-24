@@ -50,6 +50,19 @@ export class ObjectListComponent implements OnInit {
         this.rcExpoModel.exposition.media = [];
     }
 
+    ngOnChanges() {
+        // check if object was removed
+        if (!this.rcExpoModel.exposition.getObjectWithID(this.selectedObject.id)) {
+            this.selectedObject = this.rcExpoModel.exposition.media[0];
+        }
+    }
+
+    objectWasRemoved(removedObjectId: number) {
+        if (this.selectedObject.id === removedObjectId) {
+             this.selectedObject = this.rcExpoModel.exposition.media[0];
+        }
+    }
+
     ngOnInit() {
         if (this.rcExpoModel.exposition.media.length > 0) {
             this.selectedObject = this.rcExpoModel.exposition.media[0];

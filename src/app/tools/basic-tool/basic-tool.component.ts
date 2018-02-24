@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter  } from '@angular/core';
 import { NgSwitch } from '@angular/common';
 import { RCExpoModel }  from '../../shared/RCExpoModel';
 import { RCMedia, RCImage } from '../../shared/rcexposition';
@@ -27,6 +27,8 @@ export class BasicToolComponent implements OnInit {
   identifier: number;
   @Input() object: RCMedia;
   @Input() id: number;
+
+  @Output() onRemoveObject = new EventEmitter();
 
 
   constructor(private rcExpoModel: RCExpoModel) { }
@@ -75,6 +77,8 @@ export class BasicToolComponent implements OnInit {
      * Directly remove this on the model, model change will automatically result in view update.
      */
     this.rcExpoModel.exposition.removeObjectWithID(this.object.id);
+    this.onRemoveObject.emit(this.object.id);
+    console.log('event was triggered');
 
   }
 
