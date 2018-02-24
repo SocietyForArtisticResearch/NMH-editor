@@ -7,15 +7,15 @@
 
 ## Luc
 5. JSON serialization loading and saving
-6. backend input/export
-7. Table support is broken, we should remove button if we do not support.
+6. from convert json
 
 ## Casper
 1. fix CSS of editor, status bar, resizing, scrollbars, fullscreen, get rid of tab, wider editor
 2. object list interface and binding 
 3. code editor for user css (where should that be)?
 4. is editor responsive?
-5. buttons for import/export
+5. buttons for import/export (buttons for JSON download/upload)
+
 
 ## Changes in rcexpostion.ts 23/02/2018
 
@@ -34,3 +34,5 @@ RCText - have a method for setting HTML directly (because of tinymce output).
 2. Simplify rcexposition and adapt RCExpoModel (done)
 3. Rendering with markdown-it and replacement with tools (done)
 4. User CSS import
+6. backend input/export
+7. Table support is broken, we should remove button if we do not support.
