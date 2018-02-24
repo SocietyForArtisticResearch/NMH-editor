@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { RCExpoModel } from '../shared/RCExpoModel';
 import { RCExpositionDeserializer } from '../shared/rcexposition';
 import * as FileSaver from 'file-saver';
+import * as Editor from '../shared/rcmde';
 
 @Component({
   selector: 'app-doc-uploader',
@@ -48,10 +49,13 @@ export class DocUploaderComponent implements OnInit {
       //  console.log(expositionJSON);
       let exposition = RCExpositionDeserializer.restoreObject(expositionJSON);
       //  console.log(exposition);
-      // a bit the dog wagging the tail ?
       this.rcExpoModel.exposition = exposition;
-      // TODO ???
-    }
+      console.log(this.rcExpoModel.exposition);
+      this.rcExpoModel.mde.render(); //???
+
+    };
+
+
     reader.readAsText(this.selectedJson);
   }
 
