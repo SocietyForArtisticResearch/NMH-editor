@@ -1991,9 +1991,19 @@ export class RCMDE {
         }
     };
 
+    static replaceImagesWithTools(md, lst) {
+        let re = /!\[.*\]\(.*\)(\{[^}]*\})?/g;
+        //        let re = /!\[.*\]\(.*\){.*}/g;
+        let c = 0;
+        let insertedTools = md.replace(re, function (m, p1) { let str = `!{${lst[c]}}`; c = c + 1; return str; });
+        return insertedTools;
+    }
+
+
     importDocJSON(json) {
-        this.exposition.addImageList(json.media);
-        this.value(json.markdown);
+        console.log(json.media);
+        let names = this.exposition.addImageList(json.media);
+        this.value(RCMDE.replaceImagesWithTools(json.markdown, names));
         this.render();
     }
 

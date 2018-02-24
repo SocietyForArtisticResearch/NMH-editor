@@ -21,6 +21,8 @@
 
 //const md = new MarkdownIt('commonmark');
 
+var server = "http://localhost:3000";
+
 let uniqueID = function () {
     var i = 1;
 
@@ -122,8 +124,9 @@ export class RCExposition {
 
     addImageList(list) {
         let self = this;
-        let obj = list.map(url => new RCImage("image" + String(uniqueID), url, ""));
+        let obj = list.map(url => new RCImage("image" + String(uniqueID()), server + "/" + url, "myClass"));
         obj.forEach(o => self.addObject(o));
+        return obj.map(o => o.name);
     }
 
     /**
