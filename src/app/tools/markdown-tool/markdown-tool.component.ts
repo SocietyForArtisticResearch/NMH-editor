@@ -24,7 +24,7 @@ export class MarkdownToolComponent implements AfterViewInit {
         let expoModel = this.rcExpoModel;
         this.mde = new Editor.RCMDE(expoModel.exposition, {
             element: this.textarea.nativeElement,
-            showIcons: ["code", "table"],
+            showIcons: ["code"],
             spellChecker: false
         });
         Editor.toggleSideBySide(this.mde);
