@@ -51,7 +51,6 @@ export class DocUploaderComponent implements OnInit {
             //  console.log(exposition);
             exposition.media.forEach(m => m.html = undefined);
             this.rcExpoModel.exposition = exposition;
-            //            console.log(this.rcExpoModel.exposition);
             this.rcExpoModel.mde.exposition = exposition;
             //          console.log(exposition.markdownInput);
             this.rcExpoModel.mde.value(exposition.markdownInput);
