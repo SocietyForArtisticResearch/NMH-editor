@@ -51,7 +51,9 @@ export class DocUploaderComponent implements OnInit {
       //  console.log(exposition);
       this.rcExpoModel.exposition = exposition;
       console.log(this.rcExpoModel.exposition);
+      this.rcExpoModel.mde.exposition = exposition;
       this.rcExpoModel.mde.render(); //???
+      console.log(this.rcExpoModel.mde);
 
     };
 
