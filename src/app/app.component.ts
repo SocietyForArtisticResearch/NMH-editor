@@ -13,6 +13,7 @@ import { RCImage, RCAudio, RCSvg, RCPdf, RCVideo } from './shared/rcexposition';
 export class AppComponent implements OnInit {
     // rcExpoModel is injected into this compenent (and all its children through their constructors !)
     showMedia :boolean = false;
+    showImport :boolean = false;
 
     constructor(private rcExpoModel: RCExpoModel) {
 

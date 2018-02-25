@@ -2,8 +2,8 @@
 	<div class="row">
 	<h3>MHN Exposition Editor</h3>
 	<hr>
-	<app-doc-uploader></app-doc-uploader>
 	<button type="button" [disabled]="showMedia" class="btn btn-primary" (click)="showMedia = true">Open media list</button>
+	<button type="button" [disabled]="showImport" class="btn btn-primary" (click)="showImport = true">Open import/export</button>
 	<app-markdown-tool></app-markdown-tool>
 	</div>
 </div>
@@ -14,7 +14,18 @@
   <!-- Modal content -->
   <div class="modal-content">
     <button class="close" (click)="showMedia=false">&times;</button>
-   	<app-object-list></app-object-list>
+  	<app-object-list></app-object-list>
   </div>
 </div>
+
+<!-- The Modal 2 -->
+<div id="importPanel" class="modal" [ngStyle]="{ display: showImport ? 'block' : 'none' }">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <button class="close" (click)="showImport=false">&times;</button>
+	<app-doc-uploader></app-doc-uploader>
+  </div>
+</div>
+
 

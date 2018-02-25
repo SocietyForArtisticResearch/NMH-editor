@@ -12,6 +12,11 @@
 	right:0px;
 }
 
+.importPanel {
+    z-index: 1050;
+    height: 300px;
+}
+
 /* The Modal (background) */
 .modal {
     display: none; /* Hidden by default */
