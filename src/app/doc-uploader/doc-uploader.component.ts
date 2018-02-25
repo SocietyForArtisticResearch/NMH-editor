@@ -6,69 +6,67 @@ import * as FileSaver from 'file-saver';
 import * as Editor from '../shared/rcmde';
 
 @Component({
-  selector: 'app-doc-uploader',
-  templateUrl: './doc-uploader.component.html',
-  styleUrls: ['./doc-uploader.component.css']
+    selector: 'app-doc-uploader',
+    templateUrl: './doc-uploader.component.html',
+    styleUrls: ['./doc-uploader.component.css']
 })
 export class DocUploaderComponent implements OnInit {
-  selectedFile : File = null;
-  selectedJson : File = null;
+    selectedFile: File = null;
+    selectedJson: File = null;
 
-  constructor(private http: HttpClient, private rcExpoModel: RCExpoModel) { }
+    constructor(private http: HttpClient, private rcExpoModel: RCExpoModel) { }
 
-  ngOnInit() {
-  }
-
-  onFileSelected(event) {
-  	this.selectedFile = <File>event.target.files[0];
-  }
-
-  onJsonSelected(event) {
-    this.selectedJson = <File>event.target.files[0];
-  }
-
-  onUpload() {
-    //TODO check weird filenames!
-
-  	const fd = new FormData();
-  	fd.append('convertFile', this.selectedFile, this.selectedFile.name);
-  	this.http.post('http://localhost:3000/import',fd).subscribe(result => { 
-      this.onResult(result);
-    } );
-
-  }
-
-  onJsonImport() {
-    if(!this.selectedJson) {
-      alert('please select json file first');
-      return;
+    ngOnInit() {
     }
-    let reader = new FileReader();
-    reader.onload = (e) => {
-      let expositionJSON = JSON.parse(reader.result);
-      //  console.log(expositionJSON);
-      let exposition = RCExpositionDeserializer.restoreObject(expositionJSON);
-      //  console.log(exposition);
-      this.rcExpoModel.exposition = exposition;
-      console.log(this.rcExpoModel.exposition);
-      this.rcExpoModel.mde.exposition = exposition;
-      this.rcExpoModel.mde.render(); //???
-      console.log(this.rcExpoModel.mde);
 
-    };
+    onFileSelected(event) {
+        this.selectedFile = <File>event.target.files[0];
+    }
+
+    onJsonSelected(event) {
+        this.selectedJson = <File>event.target.files[0];
+    }
+
+    onUpload() {
+        //TODO check weird filenames!
+
+        const fd = new FormData();
+        fd.append('convertFile', this.selectedFile, this.selectedFile.name);
+        this.http.post('http://localhost:3000/import', fd).subscribe(result => {
+            this.onResult(result);
+        });
+
+    }
+
+    onJsonImport() {
+        if (!this.selectedJson) {
+            alert('please select json file first');
+            return;
+        }
+        let reader = new FileReader();
+        reader.onload = (e) => {
+            let expositionJSON = JSON.parse(reader.result);
+            //  console.log(expositionJSON);
+            let exposition = RCExpositionDeserializer.restoreObject(expositionJSON);
+            //  console.log(exposition);
+            this.rcExpoModel.exposition = exposition;
+            this.rcExpoModel.mde.exposition = exposition;
+            this.rcExpoModel.mde.value(exposition.markdownInput);
+            this.rcExpoModel.mde.render();
+        };
 
 
-    reader.readAsText(this.selectedJson);
-  }
+        reader.readAsText(this.selectedJson);
+    }
 
-  onResult(result) {
-    this.rcExpoModel.mde.importDocJSON(result);
-  }
+    onResult(result) {
+        this.rcExpoModel.mde.importDocJSON(result);
+    }
 
-  jsonDownload( ) {
-    var blob = new Blob([this.rcExpoModel.exposition.serialize()], {type: "text/plain;charset=utf-8"});
-    FileSaver.saveAs(blob,"exposition.json");
-  }
+    jsonDownload() {
+        var blob = new Blob([this.rcExpoModel.exposition.serialize()], { type: "text/plain;charset=utf-8" });
+        FileSaver.saveAs(blob, "exposition.json");
+    }
 }
 
 /*
