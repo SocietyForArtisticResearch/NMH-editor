@@ -1491,13 +1491,12 @@ export class RCMDE {
 
     mediaHTML(name: string) {
         let tool = this.exposition.getObjectWithName(name);
-        console.log(this.exposition.media);
         let str = name.big();
         if (tool !== undefined) {
             tool.createHTML();
+            console.log(tool.html);
             str = RCMDE.outerHTML(tool.html);
         }
-        console.log(str)
         return str;
     }
 
@@ -2001,7 +2000,6 @@ export class RCMDE {
 
 
     importDocJSON(json) {
-        console.log(json.media);
         let names = this.exposition.addImageList(json.media);
         this.value(RCMDE.replaceImagesWithTools(json.markdown, names));
         this.render();
