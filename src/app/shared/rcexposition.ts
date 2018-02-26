@@ -57,7 +57,7 @@ export class RCExposition {
     authors: string[];
     breakpoint: number;
     markdownInput: string;
-    markdownOutput: string;
+    //    markdownOutput: string;
     renderedHTML: string;
     media: RCObject[];
 
@@ -71,15 +71,22 @@ export class RCExposition {
         this.media = [];
     }
 
+    static replaceToolsWithImages(text) {
+        let self = this;
+        let re = /!{(\w+)}/g;
+        let insertedTools = text.replace(re, function (m, p1) { return "![" + name + "](" + this.media.find(obj => obj.name == p1).url + ")"; });
+        return insertedTools;
+    }
+
     /**
      * Returns a markdown string of the whole exposition
      * @returns {string} Markdown representation of the exposition 
      */
-    asMarkdown() {
+    asMarkdown(replaceTools = true) {
         let markdown = `% ${this.title}
     % ${this.authors.join(';')}
     `;
-        return (markdown + this.renderedHTML);
+        return (markdown + RCExposition.replaceToolsWithImages(this.markdownInput));
     }
 
     // getTOC() {
@@ -129,6 +136,8 @@ export class RCExposition {
         return obj.map(o => o.name);
     }
 
+
+
     /**
      * Returns a JSON string representation of the exposition
      * @returns {string} - JSON string representation fo the exposition
@@ -150,6 +159,7 @@ export class RCObject {
     tocDepth: number;
     id: number;
     htmlId: string;
+    url: string;
     html: HTMLElement;
 
     /** Creates an RCObject. Cannot be called directly, but only by
