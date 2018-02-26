@@ -510,7 +510,7 @@ span.CodeMirror-selectedtext{
     padding:8px 10px;
     font-size:12px;
     color:#959694;
-    text-align:right
+    text-align:left
 }
 .editor-statusbar span{
     display:inline-block;
