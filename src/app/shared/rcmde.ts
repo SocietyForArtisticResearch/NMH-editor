@@ -749,6 +749,8 @@ function drawFootnote(editor) {
     var fnumber = String(uniqueFootnoteId());
     _replaceSelection(cm, stat.image, options.insertTexts.footnote, fnumber);
     cm.replaceRange("\n\n[^" + fnumber + "]:", CodeMirror.Pos(cm.lastLine()));
+    cm.setCursor(CodeMirror.Pos(cm.lastLine()))
+
     //    cm.value(cm.value() + "\n[^]:");
 }
 
