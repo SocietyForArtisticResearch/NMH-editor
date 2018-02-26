@@ -10,3 +10,4 @@ app-markdown-tool .CodeMirror { width:50.0%; height: 600px; overflow-y: hidden; 
 
 app-markdown-tool .editor-toolbar { width:80.0%; }
 
+app-markdown-tool .editor-statusbar { position: absolute; bottom: 0;}
