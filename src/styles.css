@@ -8,5 +8,5 @@
 
 app-markdown-tool .CodeMirror { width:50.0%; height: 600px; overflow-y: hidden; position:absolute; }
 
-app-markdown-tool .editor-toolbar { width:100.0%; }
+app-markdown-tool .editor-toolbar { width:80.0%; }
 
