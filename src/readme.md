@@ -15,6 +15,9 @@ TOC
 
 
 ## Casper
+* name of objects should be editable
+* size to be updatable (object list)
+* uploading of images
 1. fix CSS of editor, status bar, resizing, scrollbars, fullscreen, get rid of tab, wider editor
 2. object list interface and binding 
 3. code editor for user css (where should that be)?

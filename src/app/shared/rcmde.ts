@@ -732,6 +732,13 @@ function drawMedia(editor) {
     _replaceSelection(cm, stat.image, options.insertTexts.media, undefined);
 }
 
+function insertMediaString(editor, name: string) {
+    var cm = editor.codemirror;
+    var stat = getState(cm, undefined);
+    var options = editor.options;
+    _replaceSelection(cm, stat.image, ["!{", name + "}"], undefined);
+}
+
 let uniqueFootnoteId = function () {
     var i = 1;
     return function () {
@@ -1464,6 +1471,7 @@ export class RCMDE {
 
         // Handle status bar
         if (!options.hasOwnProperty("status")) {
+            //	    options.status = ["autosave","lines", "words", "cursor"];
             options.status = ["lines", "words", "cursor"];
         }
 
