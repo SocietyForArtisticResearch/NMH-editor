@@ -258,6 +258,7 @@ var saved_overflow = "";
 function toggleFullScreen(editor) {
     // Set fullscreen
     var cm = editor.codemirror;
+
     cm.setOption("fullScreen", !cm.getOption("fullScreen"));
 
 
@@ -817,8 +818,9 @@ export function toggleSideBySide(editor) {
         // instead of just appearing.
         setTimeout(function () {
             if (!cm.getOption("fullScreen"))
-                toggleFullScreen(editor);
-            preview.className += " editor-preview-active-side";
+                // removed to testing!
+                //                toggleFullScreen(editor);
+                preview.className += " editor-preview-active-side";
         }, 1);
         //        toolbarButton.className += " active";
         //     wrapper.className += " CodeMirror-sided";
