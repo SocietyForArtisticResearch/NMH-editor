@@ -46,7 +46,7 @@ var bindings = {
     "undo": undo,
     "redo": redo,
     //    "toggleSideBySide": toggleSideBySide,
-    "toggleFullScreen": toggleFullScreen
+    //    "toggleFullScreen": toggleFullScreen
 };
 
 var shortcuts = {
@@ -64,7 +64,7 @@ var shortcuts = {
     "toggleCodeBlock": "Cmd-Alt-C",
     "togglePreview": "Cmd-P",
     //    "toggleSideBySide": "F9",
-    "toggleFullScreen": "F11"
+    //    "toggleFullScreen": "F11"
 };
 
 var getBindingName = function (f) {
@@ -1343,16 +1343,16 @@ var toolbarBuiltInButtons = {
     //     title: "Toggle Side by Side",
     //     default: true
     // },
-    "fullscreen": {
-        name: "fullscreen",
-        action: toggleFullScreen,
-        className: "fa fa-arrows-alt no-disable no-mobile",
-        title: "Toggle Fullscreen",
-        default: true
-    },
-    "separator-4": {
-        name: "separator-4"
-    },
+    // "fullscreen": {
+    //     name: "fullscreen",
+    //     action: toggleFullScreen,
+    //     className: "fa fa-arrows-alt no-disable no-mobile",
+    //     title: "Toggle Fullscreen",
+    //     default: true
+    // },
+    // "separator-4": {
+    //     name: "separator-4"
+    // },
     "guide": {
         name: "guide",
         action: "https://simplemde.com/markdown-guide",
