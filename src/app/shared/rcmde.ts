@@ -26,6 +26,7 @@ var bindings = {
     "toggleBold": toggleBold,
     "toggleItalic": toggleItalic,
     "drawLink": drawLink,
+    "drawFootnote": drawFootnote,
     "toggleHeadingSmaller": toggleHeadingSmaller,
     "toggleHeadingBigger": toggleHeadingBigger,
     //    "drawImage": drawImage,
@@ -730,6 +731,28 @@ function drawMedia(editor) {
     _replaceSelection(cm, stat.image, options.insertTexts.media, undefined);
 }
 
+let uniqueFootnoteId = function () {
+    var i = 1;
+    return function () {
+        return i++;
+    };
+}();
+
+
+/**
+ * Action for drawing a footnote.
+ */
+function drawFootnote(editor) {
+    var cm = editor.codemirror;
+    var stat = getState(cm, undefined);
+    var options = editor.options;
+    var fnumber = String(uniqueFootnoteId());
+    _replaceSelection(cm, stat.image, options.insertTexts.footnote, fnumber);
+    cm.replaceRange("\n\n[^" + fnumber + "]:", CodeMirror.Pos(cm.lastLine()));
+    //    cm.value(cm.value() + "\n[^]:");
+}
+
+
 /**
  * Action for drawing a table.
  */
@@ -1273,6 +1296,13 @@ var toolbarBuiltInButtons = {
         title: "Insert Media",
         default: true
     },
+    "footnote": {
+        name: "footnote",
+        action: drawFootnote,
+        className: "fa fa-superscript",
+        title: "Insert Footnote",
+        default: true
+    },
     "table": {
         name: "table",
         action: drawTable,
@@ -1340,6 +1370,7 @@ var insertTexts = {
     link: ["[", "](#url#)"],
     image: ["![](", "#url#)"],
     media: ["!{", "}"],
+    footnote: ["[^", "#url#]"],
     table: ["", "\n\n| Column 1 | Column 2 | Column 3 |\n| -------- | -------- | -------- |\n| Text     | Text     | Text     |\n\n"],
     horizontalRule: ["", "\n\n-----\n\n"]
 };
