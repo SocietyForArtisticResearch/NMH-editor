@@ -1189,11 +1189,17 @@ function wordCount(data) {
 function openPreview(editor) {
     var w = window.open("", "Preview");
     w.document.write(editor.exposition.renderedHTML);
+    let boot: HTMLLinkElement = w.document.createElement("link");
+    boot.type = "text/css";
+    boot.rel = "stylesheet";
+    // TODO Make local
+    boot.href = "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css";
     //    let head = w.document.getElementById("head");
     let css: HTMLStyleElement = w.document.createElement("style");
     css.type = "text/css";
     css.innerHTML = editor.exposition.style;
-    w.document.body.appendChild(css);
+    w.document.head.appendChild(boot);
+    w.document.head.appendChild(css);
 }
 
 var toolbarBuiltInButtons = {
@@ -1548,10 +1554,11 @@ export class RCMDE {
         let newEl = false;
         if (css == null) {
             css = document.createElement("style");
+            css.id = "exposition-style";
+            css.type = "text/css";
+            css.innerHTML = this.exposition.style;
             newEl = true;
         };
-        css.type = "text/css";
-        css.innerHTML = this.exposition.style;
         if (newEl) {
             document.body.appendChild(css);
         }
