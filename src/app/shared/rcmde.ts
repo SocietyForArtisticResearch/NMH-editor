@@ -732,7 +732,7 @@ function drawMedia(editor) {
     _replaceSelection(cm, stat.image, options.insertTexts.media, undefined);
 }
 
-function insertMediaString(editor, name: string) {
+function insertMediaToken(editor, name: string) {
     var cm = editor.codemirror;
     var stat = getState(cm, undefined);
     var options = editor.options;
