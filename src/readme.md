@@ -5,6 +5,7 @@
 * variable "server" in rcexposition should be configurable and somewhere else
 * bootstrap link should be to local file
 * why do tables look different in previews
+* deal with non-image media in convert/export.
 
 # export to doc/pdf/epub
 * you get the markdown from exposition.markdownInput, send it to the server to "/convert/pdf" with json { markdown: ... }
