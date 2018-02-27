@@ -25,6 +25,7 @@ export class DocUploaderComponent implements OnInit {
 
     onJsonSelected(event) {
         this.selectedJson = <File>event.target.files[0];
+        // call the import straightaway.
     }
 
     onUpload() {

@@ -1,16 +1,19 @@
 <div class="panel">
 	<div class="row">
 		<div class="col-sm-4">
-			<h5>Word doc import</h5>
+			<h5>Doc import</h5>
+			<label for="">select a text document<br> (.docx, .odt):</label>
 			<input class="form-control-file" type="file" (change)="onFileSelected($event)" name="file">
 			<button class="btn btn-xs"type="submit" (click)="onUpload()">upload</button>
 		</div>
 		<div class="col-sm-4">
 			<h5>Import/Export</h5>
-			<input class="form-control-file" type="file" (change)="onJsonSelected($event)" name="jsonImport">
-			<button class="btn btn-xs" type="submit" (click)="onJsonImport()">import</button>
+			<label for="jsonFileSelect">select saved exposition (.json):</label>
+			<input id="jsonFileSelect" class="form-control-file" type="file" (change)="onJsonSelected($event)" name="jsonImport">
+			<button class="btn btn-xs" (click)="onJsonImport()">export</button>
+
 			<br><br>
-			<button class="btn btn-xs" type="export" (click)="jsonDownload()">export</button>
+			<button class="btn btn-xs" (click)="jsonDownload()">export</button>
 		</div>
 	</div>
 </div>

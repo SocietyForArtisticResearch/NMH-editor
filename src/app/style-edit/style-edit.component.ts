@@ -29,7 +29,6 @@ export class StyleEditComponent implements AfterViewInit {
   }
 
   updateStyle() {
-
     this.rcExpoModel.exposition.style = this.editor.getValue();
     this.closeWindow.emit();
   }

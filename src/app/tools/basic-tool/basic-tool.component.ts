@@ -3,6 +3,8 @@ import { NgSwitch } from '@angular/common';
 import { RCExpoModel }  from '../../shared/RCExpoModel';
 import { RCMedia, RCImage } from '../../shared/rcexposition';
 import { FormControl, AbstractControl, FormGroup, ValidatorFn, Validators} from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+
 
 
 function forbiddenNameValidator(rcModel: RCExpoModel): ValidatorFn {
@@ -23,6 +25,7 @@ export class BasicToolComponent implements OnInit {
   collapsed: boolean = false;
   toolForm : FormGroup;
   toolType : string;
+  selectedImage : File = null;
 
   identifier: number;
   @Input() object: RCMedia;
@@ -31,7 +34,7 @@ export class BasicToolComponent implements OnInit {
   @Output() onRemoveObject = new EventEmitter();
 
 
-  constructor(private rcExpoModel: RCExpoModel) { }
+  constructor(private http: HttpClient,private rcExpoModel: RCExpoModel) { }
 
   ngOnInit() {
     this.identifier = this.id;
@@ -82,4 +85,24 @@ export class BasicToolComponent implements OnInit {
 
   }
 
+  onImageSelect(event) {
+    this.selectedImage = <File>event.target.files[0];
+  }
+
+  onImageUpload() {
+    const fd = new FormData();
+    fd.append('uploadFile', this.selectedImage, this.selectedImage.name);
+    this.http.post('http://localhost:3000/upload', fd).subscribe(result => {
+        this.onResult(result);
+    });
+  }
+
+  onResult(result) {
+    console.log(result);
+    if (this.toolForm) {
+      this.toolForm.patchValue({
+        imageUrl: "",
+      });
+    }
+  }
 }
