@@ -1,3 +1,7 @@
+.align-right {
+	text-align:right;
+}
+
 .panel-body {
 	padding:0;
 }
@@ -8,8 +12,8 @@ ul {
 }
 
 li {
-	padding-top:10px;
-	padding-bottom:10px;
+	padding-top:;
+	padding-bottom:;
 }
 
 .selected {
@@ -23,6 +27,11 @@ li {
 
 .fields {
 	border-bottom: 1px solid #555;
+}
+
+.object-list-preview {
+	width:80px;
+	display:inline-block;
 }
 
 .object-list-id {

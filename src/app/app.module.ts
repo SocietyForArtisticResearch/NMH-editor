@@ -18,6 +18,7 @@ import { ImageToolComponent } from './tools/image-tool/image-tool.component';
 import { BasicToolComponent } from './tools/basic-tool/basic-tool.component';
 import { MarkdownToolComponent } from './tools/markdown-tool/markdown-tool.component';
 import { DocUploaderComponent } from './doc-uploader/doc-uploader.component';
+import { StyleEditComponent } from './style-edit/style-edit.component';
 
 // url routing
 const appRoutes: Routes = [
@@ -34,7 +35,8 @@ const appRoutes: Routes = [
     ImageToolComponent,
     BasicToolComponent,
     MarkdownToolComponent,
-    DocUploaderComponent
+    DocUploaderComponent,
+    StyleEditComponent
   ],
   imports: [
     SortablejsModule.forRoot({ animation: 150 }),

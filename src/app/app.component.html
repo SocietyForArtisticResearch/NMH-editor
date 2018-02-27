@@ -1,31 +1,43 @@
 <div class="container" style="width:90%">
-	<div class="row">
-	<h3>MHN Exposition Editor</h3>
-	<hr>
-	<button type="button" [disabled]="showMedia" class="btn btn-primary" (click)="showMedia = true">Open media list</button>
-	<button type="button" [disabled]="showImport" class="btn btn-primary" (click)="showImport = true">Open import/export</button>
-	<app-markdown-tool></app-markdown-tool>
-	</div>
+  <div class="row">
+  <h3>MHN Exposition Editor</h3>
+  <hr>
+  <button type="button" [disabled]="showMedia" class="btn btn-primary" (click)="showMedia = true">media list</button>
+  <button type="button" [disabled]="showImport" class="btn btn-primary" (click)="showImport = true">import/export</button>
+  <button type="button" [disabled]="editStyle" class="btn btn-primary" (click)="editStyle = true">edit style</button>
+  <app-markdown-tool></app-markdown-tool>
+  </div>
 </div>
 
 <!-- The Modal -->
-<div id="myModal" class="modal" [ngStyle]="{ display: showMedia ? 'block' : 'none' }">
+<div *ngIf="showMedia" id="mediaPanel" class="modal">
 
   <!-- Modal content -->
   <div class="modal-content">
     <button class="close" (click)="showMedia=false">&times;</button>
-  	<app-object-list></app-object-list>
+    <app-object-list></app-object-list>
   </div>
 </div>
 
 <!-- The Modal 2 -->
-<div id="importPanel" class="modal" [ngStyle]="{ display: showImport ? 'block' : 'none' }">
+<div *ngIf="showImport" id="importPanel" class="modal">
 
   <!-- Modal content -->
   <div class="modal-content">
     <button class="close" (click)="showImport=false">&times;</button>
-	<app-doc-uploader></app-doc-uploader>
+  <app-doc-uploader></app-doc-uploader>
   </div>
 </div>
+
+<!-- The Modal 3 -->
+<div *ngIf="editStyle" id="editStyle" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <button class="close" (click)="editStyle=false">&times;</button>
+    <app-style-edit></app-style-edit>
+  </div>
+</div>
+
 
 

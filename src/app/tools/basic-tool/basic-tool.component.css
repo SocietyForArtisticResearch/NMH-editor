@@ -2,18 +2,16 @@
 	display:inline-block;
 }
 
-.float-right {
-	float:right;
-	display:inline;
-}
-
 .input-sm {
 	height:20px;
 }
 
 .form-control {
-	width: 200px;
 	display: inline;
+}
+
+label {
+	display:block;
 }
 
 .panel-body {
@@ -29,5 +27,9 @@
 
 .object-detail .form-group input {
 	margin:5px;
+}
+
+.size-control {
+	width:60px;
 }
 

@@ -27,7 +27,7 @@ export class ObjectListComponent implements OnInit {
     // TO BE FIXED! (ALWAYS NEEDS A UNIQUE NAME)
     createImageTool() {
         let imageName = 'image'+this.rcExpoModel.exposition.media.length;
-        let imageObject = new RCImage(imageName, this.imageUri, 'myClass', 100,100);
+        let imageObject = new RCImage(imageName, this.imageUri, 'myClass', undefined,undefined);
 
         this.rcExpoModel.exposition.addObject(imageObject);
         this.selectedObject = imageObject;
@@ -61,6 +61,10 @@ export class ObjectListComponent implements OnInit {
         if (this.selectedObject.id === removedObjectId) {
              this.selectedObject = this.rcExpoModel.exposition.media[0];
         }
+    }
+
+    trashObject(rcObject) {
+        this.rcExpoModel.exposition.removeObjectWithID(rcObject.id);
     }
 
     ngOnInit() {

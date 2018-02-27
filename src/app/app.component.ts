@@ -14,6 +14,7 @@ export class AppComponent implements OnInit {
     // rcExpoModel is injected into this compenent (and all its children through their constructors !)
     showMedia :boolean = false;
     showImport :boolean = false;
+    editStyle :boolean = false;
 
     constructor(private rcExpoModel: RCExpoModel) {
 
