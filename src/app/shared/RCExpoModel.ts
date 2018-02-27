@@ -15,18 +15,18 @@ export class RCExpoModel {
     constructor() {
         // number of Y cells should be updated by number of tools).
 
-        let defaultStyle = ".exposition {\
-background-color: #FFFFFF;\
-font-family: \"Arial\", sans-serif;\
-font-size: 120%; \
-line-height: 125%; \
-} \
-.exposition-content {\
-margin: 40px;\
-    } \
-.rcimage {\
-        float: right;\
-    }";
+        let defaultStyle = `.exposition {
+    background-color: #FFFFFF;
+    font-family: \"Arial\", sans-serif;
+    font-size: 120%; 
+    line-height: 125%; 
+} 
+.exposition-content {
+margin: 40px;
+    } 
+.rcimage {
+        float: right;
+    }`;
 
         this.exposition = new RCExposition('title', 'authors', defaultStyle, 1200);
     }

@@ -1,4 +1,4 @@
-import { Component, ViewChild, AfterViewInit, ElementRef } from '@angular/core';
+import { Component, ViewChild, AfterViewInit, ElementRef, Output, EventEmitter } from '@angular/core';
 import { RCExpoModel } from "../shared/RCExpoModel";
 
 declare var CodeMirror;
@@ -11,15 +11,26 @@ declare var CodeMirror;
 export class StyleEditComponent implements AfterViewInit {
  	@ViewChild('styleEditBox') textarea: ElementRef;
 
- 	stylesheet : string = '';
+ 	editor :any;
 
-    constructor(private rcExpoModel: RCExpoModel) { }
+  @Output() closeWindow = new EventEmitter();
+
+  constructor(private rcExpoModel: RCExpoModel) { }
 
 
-    ngAfterViewInit() {
-      	var editor = new CodeMirror.fromTextArea(this.textarea.nativeElement, {
-        	mode: "text/css",
-      	});
-        editor.focus();
-    }
+  ngAfterViewInit() {
+  	this.editor = new CodeMirror.fromTextArea(this.textarea.nativeElement, {
+    	mode: "text/css",
+  	});
+    // puts curser in box
+    this.editor.focus();
+    // note that codemirror does not use textarea for value exchange
+    this.editor.setValue(this.rcExpoModel.exposition.style.replace(';',';\n'));
+  }
+
+  updateStyle() {
+
+    this.rcExpoModel.exposition.style = this.editor.getValue();
+    this.closeWindow.emit();
+  }
 }

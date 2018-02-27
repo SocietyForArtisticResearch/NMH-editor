@@ -26,4 +26,8 @@ export class AppComponent implements OnInit {
         let imageObject = new RCImage('leonardo', "../../assets/media/leonardo.jpg", 'myClass',100,100);
         this.rcExpoModel.exposition.addObject(imageObject);
     }
+
+    closeStyleWindow () {
+        editStyle = false;
+    }
 }

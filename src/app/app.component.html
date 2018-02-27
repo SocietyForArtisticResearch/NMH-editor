@@ -35,7 +35,7 @@
   <!-- Modal content -->
   <div class="modal-content">
     <button class="close" (click)="editStyle=false">&times;</button>
-    <app-style-edit></app-style-edit>
+    <app-style-edit (closeWindow)="editStyle=false"></app-style-edit>
   </div>
 </div>
 
