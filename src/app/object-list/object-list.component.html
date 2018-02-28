@@ -1,28 +1,31 @@
 <h3> Media </h3>
 
 <!-- <p [innerText]="rcExpoModel.exposition.media.length >= 2 ? 'Tip: drag to sort the tools' : ''"></p> -->
+	<!-- <ul [sortablejs]="rcExpoModel.exposition.media" 
+			[sortablejsOptions]="eventOptions"> -->
 
 <div class="container-fluid">
 	<div class="row">
-		<div class="col-md-6">
-			<div class="fields">
-				<span class="object-list-preview">Preview</span>&nbsp;
-				<span class="object-list-id">ID</span>&nbsp;
-				<span class="object-list-name">Name</span>&nbsp;
-			</div>
-			<ul [sortablejs]="rcExpoModel.exposition.media" 
-			[sortablejsOptions]="eventOptions">
-
-				<li *ngFor="let rcObject of rcExpoModel.exposition.media" 
-				[class.selected]="selectedObject === rcObject"
-				    (click)="onSelect(rcObject.id,rcObject)">
-					<img src={{rcObject.url}} width="80" alt={{rcObject.url}}>	
-					<strong class="object-list-id">{{rcObject.id}}</strong>&nbsp;
-					<span class="object-list-name">{{rcObject.name}}</span>&nbsp;
-					<button class="align-right" (click)="trashObject(rcObject)">&times;</button>
-				</li>
-
-			</ul>
+		<div class="col-md-6 rc-object-list">
+			<table>
+				<thead>
+					<tr>
+						<th><span class="object-list-preview">Preview</span></th>
+						<th><span class="object-list-id">ID</span></th>
+						<th><span class="object-list-name">Name</span></th>
+					</tr>
+				</thead>
+				<tbody>
+				<tr 
+						*ngFor="let rcObject of rcExpoModel.exposition.media" 
+						[class.selected]="selectedObject === rcObject"
+					    (click)="onSelect(rcObject.id,rcObject)">
+					<td><img class="image-preview" src={{rcObject.url}} height="66" width="66" alt={{rcObject.url}}></td>
+					<td><strong class="object-list-id">{{rcObject.id}}</strong></td>
+				    <td><span class="object-list-name">{{rcObject.name}}</span></td>
+					<td><button class="align-right" (click)="trashObject(rcObject)">&times;</button></td>
+				</tr>
+			</table>
 		</div>
 		<div class="col-md-6">	
 			<app-basic-tool 

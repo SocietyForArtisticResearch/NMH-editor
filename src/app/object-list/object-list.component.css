@@ -1,3 +1,13 @@
+.rc-object-list {
+	height:650px;
+	overflow-y:scroll;
+}
+
+
+.image-preview {
+	object-fit: cover;
+}
+
 .align-right {
 	text-align:right;
 }
@@ -37,6 +47,7 @@ li {
 .object-list-id {
 	width:30px;
 	display:inline-block;
+	text-align:center;
 }
 
 .object-list-imageUrl {
