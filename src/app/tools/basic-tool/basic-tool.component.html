@@ -5,16 +5,7 @@
     [ngClass]="collapsed ? 'glyphicon-chevron-down' :'glyphicon-chevron-up'"
     title="{{collapsed ? 'expand' : 'collapse' }}"></span> -->
 
-    
-<!-- 
-    <div *ngIf="name.invalid && (name.dirty || name.touched)"
-     class="alert alert-danger">
-      <div *ngIf="name.errors.forbiddenName">
-      Name cannot be {{name.errors}}.
-      </div>
-    </div> -->
-
-    <h5 class="inline">{{object.name}}</h5>
+    <h5>{{object.name}}</h5>
   </div>
   <div class="panel-body" [ngClass]="{collapse: collapsed}">
     <form [formGroup]="toolForm" #formDir="ngForm" (ngSubmit)="onSubmit()">
@@ -43,9 +34,6 @@
         <input formControlName="heightInPixels" class="" id="pxHeightField'+{{id}}" type="number">
         <button [disabled]="toolForm.invalid" type="submit" class="btn btn-primary" >Update</button>
       </div>
-      <div class="submitted-message" *ngIf="formDir.submitted">
-    <p>Tool has been updated</p>
-  </div>
      </form>
 
   </div>

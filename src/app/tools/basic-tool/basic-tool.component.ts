@@ -7,8 +7,12 @@ import { HttpClient } from '@angular/common/http';
 
 
 
-function forbiddenNameValidator(rcModel: RCExpoModel): ValidatorFn {
+function forbiddenNameValidator(rcModel: RCExpoModel,oldName: string): ValidatorFn {
   return (control: AbstractControl): {[key: string]: any} => {
+    if (control.value === oldName) {
+      // old name is allowed.
+      return null;
+    }
     const forbidden = rcModel.exposition.getObjectWithName(control.value);
     return forbidden ? {'name exists, be creative!': {value: control.value}} : null;
   };
@@ -38,11 +42,11 @@ export class BasicToolComponent implements OnInit {
   constructor(private http: HttpClient,private rcExpoModel: RCExpoModel) { }
 
   ngOnInit() {
-    this.identifier = this.id;
+    this.identifier = this.object.id;
 
     this.toolForm = new FormGroup({
       'name': new FormControl(this.object.name, [
-      forbiddenNameValidator(this.rcExpoModel), // <-- Here's how you pass in the custom validator.
+      forbiddenNameValidator(this.rcExpoModel,this.object.name), // <-- Here's how you pass in the custom validator.
       Validators.required]),
       'imageUrl': new FormControl(this.object.url,[Validators.required]),
       'widthInPixels' : new FormControl(this.object.pxWidth),
@@ -54,6 +58,7 @@ export class BasicToolComponent implements OnInit {
   }
 
   ngOnChanges() {
+    console.log(this.object);
     if (this.toolForm) {
       this.toolForm.setValue({
         name:    this.object.name,
