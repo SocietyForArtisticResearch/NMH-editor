@@ -1,12 +1,4 @@
 <div class="panel panel-primary">
-  <div class="panel-heading">
-<!--     <span (click)="collapsed = !collapsed" 
-    class="glyphicon"
-    [ngClass]="collapsed ? 'glyphicon-chevron-down' :'glyphicon-chevron-up'"
-    title="{{collapsed ? 'expand' : 'collapse' }}"></span> -->
-
-    <h5>{{object.name}}</h5>
-  </div>
   <div class="panel-body" [ngClass]="{collapse: collapsed}">
     <form [formGroup]="toolForm" #formDir="ngForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
@@ -25,8 +17,7 @@
         <input formControlName="imageUrl" class="" id="'imageUrlField'+{{id}}" type="text">
         <label for="imageFileSelect">Pick an image:</label>
         <input id="imageFileSelect" class="form-control-file" type="file" (change)="onImageSelect($event)" name="imageSelect">
-        <button class="btn btn-xs" (click)="onImageUpload()">upload</button>
-
+        
         <label for="'pxWidthField'+{{id}}">Width in pixels:</label>
         <input formControlName="widthInPixels" class="f" id="'pxWidthField'+{{id}}" type="number">
 

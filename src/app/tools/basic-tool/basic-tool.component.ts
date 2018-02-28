@@ -9,6 +9,7 @@ import { HttpClient } from '@angular/common/http';
 
 function forbiddenNameValidator(rcModel: RCExpoModel,oldName: string): ValidatorFn {
   return (control: AbstractControl): {[key: string]: any} => {
+    console.log('control,oldname',control.value,oldName);
     if (control.value === oldName) {
       // old name is allowed.
       return null;
@@ -45,9 +46,11 @@ export class BasicToolComponent implements OnInit {
     this.identifier = this.object.id;
 
     this.toolForm = new FormGroup({
-      'name': new FormControl(this.object.name, [
-      forbiddenNameValidator(this.rcExpoModel,this.object.name), // <-- Here's how you pass in the custom validator.
-      Validators.required]),
+      'name': new FormControl(this.object.name, 
+        [
+          forbiddenNameValidator(this.rcExpoModel,this.object.name), // <-- Here's how you pass in the custom validator.
+          Validators.required
+        ]),
       'imageUrl': new FormControl(this.object.url,[Validators.required]),
       'widthInPixels' : new FormControl(this.object.pxWidth),
       'heightInPixels' : new FormControl(this.object.pxHeight)
@@ -58,7 +61,6 @@ export class BasicToolComponent implements OnInit {
   }
 
   ngOnChanges() {
-    console.log(this.object);
     if (this.toolForm) {
       this.toolForm.setValue({
         name:    this.object.name,
@@ -66,6 +68,8 @@ export class BasicToolComponent implements OnInit {
         widthInPixels: this.object.pxWidth,
         heightInPixels : this.object.pxHeight
       });
+      this.toolForm.controls['name'].setValidators([forbiddenNameValidator(this.rcExpoModel,this.object.name), // <-- Here's how you pass in the custom validator.
+          Validators.required]);
     }
   }
 
@@ -91,9 +95,6 @@ export class BasicToolComponent implements OnInit {
 
   onImageSelect(event) {
     this.selectedImage = <File>event.target.files[0];
-  }
-
-  onImageUpload() {
     const fd = new FormData();
     fd.append('uploadFile', this.selectedImage, this.selectedImage.name);
     this.http.post('http://localhost:3000/uploadAngular', fd).subscribe(result => {

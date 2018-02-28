@@ -18,19 +18,18 @@ __I've updated *mnh-backend* with an extra uploadAngular option, that returns js
 5. JSON serialization loading and saving
 6. Server.js /upload is too good of trust, it accepts anything from anybody and hosts it, this would be a collosal security risk !
 	We should check:
-	- the thing uploaded is really an image
+	- the thing uploaded is really an image (and an image type we like: jpg, png, tiff, gif)
 	- the size is sane
 	- the filename should be turned into unique identifier to avoid problems of different images with the same name.
-	- check for types
 
 
 TOC
 
 
 ## Casper
-* name of objects should be editable
-2. object list interface and binding 
 4. is editor responsive?
+5. add export as other types of documents
+6. double click to add tool to current codemirror
 
 
 ## Changes in rcexpostion.ts 23/02/2018
