@@ -1,7 +1,10 @@
 # TODO
 
+# Important:
+
+__I've updated *mnh-backend* with an extra uploadAngular option, that returns json instead of a string (angular http client doesn't like plain strings). So be sure to pull !__
+
 ## Issues
-* We need proportional image resizing
 * variable "server" in rcexposition should be configurable and somewhere else
 * bootstrap link should be to local file
 * why do tables look different in previews
@@ -13,19 +16,21 @@
 
 ## Luc
 5. JSON serialization loading and saving
+6. Server.js /upload is too good of trust, it accepts anything from anybody and hosts it, this would be a collosal security risk !
+	We should check:
+	- the thing uploaded is really an image
+	- the size is sane
+	- the filename should be turned into unique identifier to avoid problems of different images with the same name.
+	- check for types
+
 
 TOC
 
 
 ## Casper
 * name of objects should be editable
-* size to be updatable (object list)
-* uploading of images
-1. fix CSS of editor, status bar, resizing, scrollbars, fullscreen, get rid of tab, wider editor
 2. object list interface and binding 
-3. code editor for user css (where should that be)?
 4. is editor responsive?
-5. buttons for import/export (buttons for JSON download/upload)
 
 
 ## Changes in rcexpostion.ts 23/02/2018
