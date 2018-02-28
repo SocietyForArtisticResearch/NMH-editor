@@ -34,6 +34,7 @@ export class BasicToolComponent implements OnInit {
   @Output() onRemoveObject = new EventEmitter();
 
 
+
   constructor(private http: HttpClient,private rcExpoModel: RCExpoModel) { }
 
   ngOnInit() {
@@ -81,8 +82,6 @@ export class BasicToolComponent implements OnInit {
      */
     this.rcExpoModel.exposition.removeObjectWithID(this.object.id);
     this.onRemoveObject.emit(this.object.id);
-    console.log('event was triggered');
-
   }
 
   onImageSelect(event) {
@@ -92,17 +91,18 @@ export class BasicToolComponent implements OnInit {
   onImageUpload() {
     const fd = new FormData();
     fd.append('uploadFile', this.selectedImage, this.selectedImage.name);
-    this.http.post('http://localhost:3000/upload', fd).subscribe(result => {
+    this.http.post('http://localhost:3000/uploadAngular', fd).subscribe(result => {
         this.onResult(result);
     });
   }
 
   onResult(result) {
-    console.log(result);
     if (this.toolForm) {
       this.toolForm.patchValue({
-        imageUrl: "",
+        imageUrl: result.url,
       });
     }
+    let deepCopy = this.prepareSaveObject();
+    this.rcExpoModel.exposition.replaceObjectWithID(this.object.id,deepCopy);
   }
 }

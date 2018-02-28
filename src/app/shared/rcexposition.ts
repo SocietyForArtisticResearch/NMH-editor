@@ -121,6 +121,7 @@ export class RCExposition {
     }
 
     replaceObjectWithID(id: number, obj: RCObject) {
+        obj.id = id; // also set the id to the old.
         let index = this.media.findIndex(obj => obj.id === id);
         if (index > -1) {
             this.media[index] = obj;
