@@ -1559,6 +1559,7 @@ export class RCMDE {
             css.innerHTML = this.exposition.style;
             newEl = true;
         };
+        css.innerHTML = this.exposition.style;
         if (newEl) {
             document.body.appendChild(css);
         }

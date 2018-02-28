@@ -1,5 +1,5 @@
 .rc-object-list {
-	height:650px;
+	height:500px;
 	overflow-y:scroll;
 }
 
@@ -61,7 +61,11 @@ li {
 
 }
 
-.heigth {
-	width:50px;
-	display:inline-block;
+.rc-object-list thead {
+	background-color:#555;
+	color:white;
+}
+
+.title-3 {
+	margin-left:15px;
 }

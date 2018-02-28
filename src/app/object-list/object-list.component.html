@@ -1,4 +1,4 @@
-<h3> Media </h3>
+<h3 class="title-3"> Media </h3>
 
 <!-- <p [innerText]="rcExpoModel.exposition.media.length >= 2 ? 'Tip: drag to sort the tools' : ''"></p> -->
 	<!-- <ul [sortablejs]="rcExpoModel.exposition.media" 
@@ -11,8 +11,9 @@
 				<thead>
 					<tr>
 						<th><span class="object-list-preview">Preview</span></th>
-						<th><span class="object-list-id">ID</span></th>
-						<th><span class="object-list-name">Name</span></th>
+<!-- 						<th><span class="object-list-id">ID</span></th>
+ -->						<th><span class="object-list-name">Name</span></th>
+						<th>&nbsp;</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -21,8 +22,8 @@
 						[class.selected]="selectedObject === rcObject"
 					    (click)="onSelect(rcObject.id,rcObject)">
 					<td><img class="image-preview" src={{rcObject.url}} height="66" width="66" alt={{rcObject.url}}></td>
-					<td><strong class="object-list-id">{{rcObject.id}}</strong></td>
-				    <td><span class="object-list-name">{{rcObject.name}}</span></td>
+<!-- 					<td><strong class="object-list-id">{{rcObject.id}}</strong></td>
+ -->				    <td><span class="object-list-name">{{rcObject.name}}</span></td>
 					<td><button class="align-right" (click)="trashObject(rcObject)">&times;</button></td>
 				</tr>
 			</table>

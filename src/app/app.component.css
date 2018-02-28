@@ -61,6 +61,6 @@
     cursor: pointer;
 }
 
-modal-media-content {
-    margin: 2%;
+.modal-media-content {
+    margin:10% auto;
 }
