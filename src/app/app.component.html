@@ -1,6 +1,6 @@
 <div class="container" style="width:90%">
   <div class="row">
-  <input class="editableTitle" type='text' value="Title" [(ngModel)]="this.rcExpoModel.exposition.title">
+  <input class="editableTitle" type='text' value="{{this.rcExpoModel.exposition.title}}" [(ngModel)]="this.rcExpoModel.exposition.title">
   <hr>
   <button type="button" [disabled]="showMedia" class="btn btn-primary" (click)="showMedia = true">Media list</button>
   <button type="button" [disabled]="showImport" class="btn btn-primary" (click)="showImport = true">Import/Export</button>

@@ -132,7 +132,7 @@ export class RCExposition {
 
     addImageList(list) {
         let self = this;
-        let obj = list.map(url => new RCImage("image" + String(uniqueID()), server + "/" + url, "myClass"));
+        let obj = list.map(url => new RCImage("image" + String(uniqueID()), server + "/" + url, "myClass",null,null));
         obj.forEach(o => self.addObject(o));
         return obj.map(o => o.name);
     }

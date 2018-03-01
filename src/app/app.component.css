@@ -69,7 +69,7 @@ input.editableTitle:focus, input.editableTitle {
     font-size: 18px;
     outline:none;
     background-color: transparent;
-    border: 1px dashed #999;
+    border: 1px dashed #dedede;
     margin-top:20px;
     font-size:24px;
 }
