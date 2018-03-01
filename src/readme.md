@@ -15,12 +15,13 @@ __I've updated *mnh-backend* with an extra uploadAngular option, that returns js
 
 
 ## Luc
-5. JSON serialization loading and saving
-6. Server.js /upload is too good of trust, it accepts anything from anybody and hosts it, this would be a collosal security risk !
-	We should check:
+6. Server.js /upload is probably too good of trust, it accepts anything from anybody and hosts it, I suspect it is to dangerous to put it in the wild (we may end up hosting DDOS networks, porn, nazi stuff and cryptocoin miners in minutes ;-) )
+Some checks:
 	- the thing uploaded is really an image (and an image type we like: jpg, png, tiff, gif)
 	- the size is sane
 	- the filename should be turned into unique identifier to avoid problems of different images with the same name.
+	- perhaps only allow calls from certain addresses.
+7. mde double click media insertion: if I insert twice, the current code inserts one media 'into' the other: !{!{image2}image1}.
 
 
 TOC
@@ -34,8 +35,8 @@ TOC
 
 ## Changes in rcexpostion.ts 23/02/2018
 
-1. fixed a bug with removing object by Id.
-2. added a method for replacing an object by id (I needed it because of the way Angular updates models from 'reactive' forms).
+2. added a method for replacing an object by id (I needed it because of the way Angular updates models from 'reactive' forms). 
+__This replace method introduces some change in behavior of the automatic id generation: it copies the old id into a new object. This may result in gaps in the id counting, maybe this is ok ?__
 
 # OLD/DONE
 If RCExposition were a typescript class Angular would be really happy.
