@@ -10,3 +10,7 @@
 .inline-block button {
 	display: inline-block;
 }
+
+.coll-md-4 {
+	overflow: hide;
+}

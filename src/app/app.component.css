@@ -65,6 +65,11 @@
     margin:10% auto;
 }
 
+.import-content {
+    width:90%;
+}
+
+
 input.editableTitle:focus, input.editableTitle {
     font-size: 18px;
     outline:none;
@@ -73,4 +78,5 @@ input.editableTitle:focus, input.editableTitle {
     margin-top:20px;
     font-size:24px;
 }
+
 

@@ -24,22 +24,7 @@ Some checks:
 7. mde double click media insertion: if I insert twice, the current code inserts one media 'into' the other: !{!{image2}image1}.
 * TOC
 
-8. When trying to export pdf, I get an error in Server.js
-My call is from __doc.uploader.component.ts__ line 86
-and __convert-doc.service.ts__ 
-
-full error:
-<code>
-error: "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<title>Error</title>\n</head>\n<body>\n<pre>TypeError: Cannot read property &#39;replace&#39; of undefined<br> &nbsp; &nbsp;at replaceToolsWithImages (/Users/casperschipper/Documents/Developer/mnh-backend/server.js:22:29)<br> &nbsp; &nbsp;at /Users/casperschipper/Documents/Developer/mnh-backend/server.js:131:10<br> &nbsp; &nbsp;at Layer.handle [as handle_request] (/Users/casperschipper/Documents/Developer/mnh-backend/node_modules/express/lib/router/layer.js:95:5)<br> &nbsp; &nbsp;at next (/Users/casperschipper/Documents/Developer/mnh-backend/node_modules/express/lib/router/route.js:137:13)<br> &nbsp; &nbsp;at Route.dispatch (/Users/casperschipper/Documents/Developer/mnh-backend/node_modules/express/lib/router/route.js:112:3)<br> &nbsp; &nbsp;at Layer.handle [as handle_request] (/Users/casperschipper/Documents/Developer/mnh-backend/node_modules/express/lib/router/layer.js:95:5)<br> &nbsp; &nbsp;at /Users/casperschipper/Documents/Developer/mnh-backend/node_modules/express/lib/router/index.js:281:22<br> &nbsp; &nbsp;at param (/Users/casperschipper/Documents/Developer/mnh-backend/node_modules/express/lib/router/index.js:354:14)<br> &nbsp; &nbsp;at param (/Users/casperschipper/Documents/Developer/mnh-backend/node_modules/express/lib/router/index.js:365:14)<br> &nbsp; &nbsp;at Function.process_params (/Users/casperschipper/Documents/Developer/mnh-backend/node_modules/express/lib/router/index.js:410:3)</pre>\n</body>\n</html>\n"
-headers: Object { normalizedNames: Map, lazyUpdate: null, lazyInit: HttpHeaders/this.lazyInit() }
-message: "Http failure response for http://localhost:3000/export/pdf: 500 Internal Server Error"
-name: "HttpErrorResponse"
-ok: false
-status: 500
-statusText: "Internal Server Error"
-url: "http://localhost:3000/export/pdf"
-__proto__: Object { constructor: HttpErrorResponse() }
-</code>
+8. Style of exported pdf a bit weird
 
 9. Style of exposition should be properly namespaced, currently editor styling also affected.
 
