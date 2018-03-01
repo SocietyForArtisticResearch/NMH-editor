@@ -71,6 +71,7 @@ export class BasicToolComponent implements OnInit {
       this.toolForm.controls['name'].setValidators(
           [forbiddenNameValidator(this.rcExpoModel,this.object.name), // <-- Here's how you pass in the custom validator.
           Validators.required]);
+      this.toolForm.controls['name'].updateValueAndValidity();
     }
   }
 
