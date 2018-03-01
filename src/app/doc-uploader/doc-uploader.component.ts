@@ -4,18 +4,23 @@ import { RCExpoModel } from '../shared/RCExpoModel';
 import { RCExpositionDeserializer } from '../shared/rcexposition';
 import * as FileSaver from 'file-saver';
 import * as Editor from '../shared/rcmde';
+import { ConvertDocService } from '../shared/convert-doc.service';
 
 @Component({
     selector: 'app-doc-uploader',
     templateUrl: './doc-uploader.component.html',
-    styleUrls: ['./doc-uploader.component.css']
+    styleUrls: ['./doc-uploader.component.css'],
+    providers: [ConvertDocService]
 })
 export class DocUploaderComponent implements OnInit {
     selectedFile: File = null;
     selectedJson: File = null;
     selectedExportFormat: string = "pdf";
 
-    constructor(private http: HttpClient, private rcExpoModel: RCExpoModel) { }
+    constructor(
+        private http: HttpClient, 
+        private rcExpoModel: RCExpoModel, 
+        private convertDocService: ConvertDocService) { }
 
     ngOnInit() {
     }
@@ -75,7 +80,13 @@ export class DocUploaderComponent implements OnInit {
     }
 
     onDocTypeChange(value) {
-        console.log(value);
+        this.selectedExportFormat = value;
+    }
+
+    otherFormatDownload() {
+        let markdownString: string = this.rcExpoModel.exposition.asMarkdown();
+        this.convertDocService.convert(markdownString,this.selectedExportFormat);
+        // hope for the best ?
     }
 }
 

@@ -31,7 +31,7 @@ export class RCExpoModel {
     float: right;
 }`;
 
-        this.exposition = new RCExposition('My First Exposition', 'authors', defaultStyle, 1200);
+        this.exposition = new RCExposition('My First Exposition', ['authors'], defaultStyle, 1200);
     }
 
 }
