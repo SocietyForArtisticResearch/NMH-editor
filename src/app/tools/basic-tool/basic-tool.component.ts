@@ -9,9 +9,9 @@ import { HttpClient } from '@angular/common/http';
 
 function forbiddenNameValidator(rcModel: RCExpoModel,oldName: string): ValidatorFn {
   return (control: AbstractControl): {[key: string]: any} => {
-    console.log('control,oldname',control.value,oldName);
     if (control.value === oldName) {
       // old name is allowed.
+      console.log('oldname is allowed');
       return null;
     }
     const forbidden = rcModel.exposition.getObjectWithName(control.value);
@@ -68,7 +68,8 @@ export class BasicToolComponent implements OnInit {
         widthInPixels: this.object.pxWidth,
         heightInPixels : this.object.pxHeight
       });
-      this.toolForm.controls['name'].setValidators([forbiddenNameValidator(this.rcExpoModel,this.object.name), // <-- Here's how you pass in the custom validator.
+      this.toolForm.controls['name'].setValidators(
+          [forbiddenNameValidator(this.rcExpoModel,this.object.name), // <-- Here's how you pass in the custom validator.
           Validators.required]);
     }
   }

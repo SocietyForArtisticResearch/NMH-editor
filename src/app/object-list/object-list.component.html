@@ -20,7 +20,8 @@
 				<tr 
 						*ngFor="let rcObject of rcExpoModel.exposition.media" 
 						[class.selected]="selectedObject === rcObject"
-					    (click)="onSelect(rcObject.id,rcObject)">
+					    (click)="onSelect(rcObject.id,rcObject)"
+					    (dblclick)="onDoubleClick(rcObject.id,rcObject)">
 					<td><img class="image-preview" src={{rcObject.url}} height="66" width="66" alt={{rcObject.url}}></td>
 <!-- 					<td><strong class="object-list-id">{{rcObject.id}}</strong></td>
  -->				    <td><span class="object-list-name">{{rcObject.name}}</span></td>
