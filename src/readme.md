@@ -22,16 +22,15 @@ Some checks:
 	- the filename should be turned into unique identifier to avoid problems of different images with the same name.
 	- perhaps only allow calls from certain addresses.
 7. mde double click media insertion: if I insert twice, the current code inserts one media 'into' the other: !{!{image2}image1}.
-
-
-TOC
+* TOC
 
 
 ## Casper
 4. is editor responsive?
 5. add export as other types of documents
 7. make media list more responsive (perhaps should be full screen on small screens ?).
-
+* Title as editable field (not "Article editor")
+* When importing media from doc/odt they appear in the object list but they cannot be selected.
 
 ## Changes in rcexpostion.ts 23/02/2018
 
