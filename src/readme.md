@@ -27,10 +27,8 @@ TOC
 
 
 ## Casper
-3. Name is still not verifiying correctly ! Still need to 'dirty' it before it allows update.
 4. is editor responsive?
 5. add export as other types of documents
-6. double click to add tool to current codemirror
 7. make media list more responsive (perhaps should be full screen on small screens ?).
 
 
