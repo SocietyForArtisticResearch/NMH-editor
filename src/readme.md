@@ -29,7 +29,6 @@ Some checks:
 4. is editor responsive?
 5. add export as other types of documents
 7. make media list more responsive (perhaps should be full screen on small screens ?).
-* When importing media from doc/odt they appear in the object list but they cannot be selected.
 
 ## Changes in rcexpostion.ts 23/02/2018
 

@@ -29,15 +29,19 @@ export class DocUploaderComponent implements OnInit {
         // call the import straightaway.
     }
 
-    onUpload() {
+    onDocUpload() {
         //TODO check weird filenames!
 
         const fd = new FormData();
         fd.append('convertFile', this.selectedFile, this.selectedFile.name);
         this.http.post('http://localhost:3000/import', fd).subscribe(result => {
-            this.onResult(result);
+            this.onDocImportResult(result);
         });
 
+    }
+
+    onDocImportResult(result) {
+        this.rcExpoModel.mde.importDocJSON(result);
     }
 
     onJsonImport() {
@@ -63,9 +67,7 @@ export class DocUploaderComponent implements OnInit {
         reader.readAsText(this.selectedJson);
     }
 
-    onResult(result) {
-        this.rcExpoModel.mde.importDocJSON(result);
-    }
+
 
     jsonDownload() {
         var blob = new Blob([this.rcExpoModel.exposition.serialize()], { type: "text/plain;charset=utf-8" });
