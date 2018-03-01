@@ -13,6 +13,7 @@ import * as Editor from '../shared/rcmde';
 export class DocUploaderComponent implements OnInit {
     selectedFile: File = null;
     selectedJson: File = null;
+    selectedExportFormat: string = "pdf";
 
     constructor(private http: HttpClient, private rcExpoModel: RCExpoModel) { }
 
@@ -69,6 +70,10 @@ export class DocUploaderComponent implements OnInit {
     jsonDownload() {
         var blob = new Blob([this.rcExpoModel.exposition.serialize()], { type: "text/plain;charset=utf-8" });
         FileSaver.saveAs(blob, "exposition.json");
+    }
+
+    onDocTypeChange(value) {
+        console.log(value);
     }
 }
 

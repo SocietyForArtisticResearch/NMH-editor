@@ -1,4 +1,5 @@
 import { RCExposition } from './rcexposition';
+import { RCMDE } from './rcmde';
 
 
 /** This is a class to provide MNH specific needs for RCExposition 
@@ -21,12 +22,14 @@ export class RCExpoModel {
     font-size: 120%; 
     line-height: 125%; 
 } 
+
 .exposition-content {
-margin: 40px;
-    } 
+    margin: 40px;
+}
+
 .rcimage {
-        float: right;
-    }`;
+    float: right;
+}`;
 
         this.exposition = new RCExposition('title', 'authors', defaultStyle, 1200);
     }
