@@ -24,6 +24,10 @@ Some checks:
 7. mde double click media insertion: if I insert twice, the current code inserts one media 'into' the other: !{!{image2}image1}.
 * TOC
 
+8. When trying to export pdf, I get an error, try for example: /Users/casperschipper/Documents/Developer/MNH-Editor/test/Lucia with cat.docx
+9. Style of exposition should be properly namespaced, currently editor styling also affected.
+
+
 
 ## Casper
 4. is editor responsive?

@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
+// Trying a proper module this time.
+
 @Injectable()
 export class ConvertDocService {
 
@@ -11,11 +13,11 @@ export class ConvertDocService {
     convert(markdownString: string, fileType : string) { //get file from service
     		let expositionJson = { markdown : markdownString };
     		let stringyfied = JSON.stringify(expositionJson);
-	        this.http.post("http://localhost:3000/convert", stringyfied);
-	    }).subscribe(
-	        (response) => { // download file
-	            var blob = new Blob([response.blob()], {type: 'application'+fileType});
-	            var filename = 'file.'+fileType;
+    		console.log()
+	        this.http.post("http://localhost:3000/convert", stringyfied).subscribe(
+	        (response: any) => { // download file
+	            let blob = new Blob([response.blob()], {type: 'application/'+fileType});
+	            let filename = 'file.'+fileType;
 	            saveAs(blob, filename);
 	    });
 	}

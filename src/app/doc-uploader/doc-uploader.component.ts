@@ -84,9 +84,9 @@ export class DocUploaderComponent implements OnInit {
     }
 
     otherFormatDownload() {
-        let markdownString: string = this.rcExpoModel.exposition.asMarkdown();
+        let exposition = this.rcExpoModel.exposition;
+        let markdownString: string = exposition.asMarkdown();
         this.convertDocService.convert(markdownString,this.selectedExportFormat);
-        // hope for the best ?
     }
 }
 
