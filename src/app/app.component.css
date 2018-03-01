@@ -64,3 +64,13 @@
 .modal-media-content {
     margin:10% auto;
 }
+
+input.editableTitle:focus, input.editableTitle {
+    font-size: 18px;
+    outline:none;
+    background-color: transparent;
+    border: 1px dashed #999;
+    margin-top:20px;
+    font-size:24px;
+}
+
