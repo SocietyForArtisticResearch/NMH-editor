@@ -11,10 +11,11 @@ export class ConvertDocService {
 	}
 
     convert(markdownString: string, fileType : string) { //get file from service
+    		let url = "http://localhost:3000/export/"+fileType;
     		let expositionJson = { markdown : markdownString };
     		let stringyfied = JSON.stringify(expositionJson);
     		console.log()
-	        this.http.post("http://localhost:3000/convert", stringyfied).subscribe(
+	        this.http.post(url , stringyfied).subscribe(
 	        (response: any) => { // download file
 	            let blob = new Blob([response.blob()], {type: 'application/'+fileType});
 	            let filename = 'file.'+fileType;
