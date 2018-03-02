@@ -1,0 +1,61 @@
+﻿{
+    "__className": "RCExposition",
+    "style": ".exposition {\n    background-color: #FFFFFF;\n\n\n\n\n\n    font-family: \"Georgia\", serif;\n    font-size: 120%; \n    line-height: 125%; \n} \n\n.exposition-content {\n    margin: 40px;\n}\n\n.rcimage {\n    margin:10px 10px;\n   float:right;\n}\n\np {\n  margin:50px 0;\n}",
+    "title": "My First Exposition",
+    "authors": [
+        "authors"
+    ],
+    "breakpoint": 1200,
+    "renderedHTML": "<div class=\"exposition\"><div class=\"exposition-content\"><h1>A demo text</h1>\n<div id=\"tony-24\" class=\"rcobject rcimage userClass\"><img src=\"http://localhost:3000/tony allen.jpg\" alt=\"tony\" width=\"250\"></div> Te horst steht es he wo kunde lampe. Schwachen em wohnstube um hemdarmel nichtstun te. Fertig des konnte gebaut sah geduld grauen starke. Kurios la diesen loffel so hinaus fu. Ten vom sauber werdet ist kommst andres sag drehte. Lehrlingen und ist gearbeitet birkendose uhr gesprachig vertreiben aufmerksam. Nickte hauses ist tur hab hinaus bis. \n<p>Erschrak im arbeiter manchmal schaffte ku te prachtig in. Eia das der angenehm heiraten jenseits verstand. Lieblinge hei besserung sudwesten ins unwissend von flanierte verlangst. Gearbeitet tat landsleute birkendose ers ist aufgespart und. Heimweh eigenes wandern aus vor sonntag lie bildnis. Seiest geduld dreien oha und neckte gut hof. Halboffene geschwatzt ungerechte pa verdrossen pa wo. Denen ihn art ehe stamm flick ihm. Tal hinten sommer ich schade hergab lustig.</p>\n<h1>Second section</h1>\n<p>Ab im sonderling ku ja befangenen halboffene geheiratet. Schen spiel las mit ans spurt adieu anzug klein. Ab luften siehst sprach grunde spahte starke du. Tun sprechen uberlegt brotlose ist ubrigens ein. Es mude mu teil ihre so he. Nur roch flo euer all bist als. Gekommen behalten so ei tadellos er. Brauchst stabelle ich schmalen all gab das. Einmal ri ganzen pa handen bi.</p>\n<div id=\"bach2-23\" class=\"rcobject rcimage userClass\"><img src=\"http://localhost:3000/CPEB_by_Löhr.jpg\" alt=\"bach2\" width=\"690\"></div> <div id=\"clara-21\" class=\"rcobject rcimage userClass\"><img src=\"http://localhost:3000/Clara_Schumann crop.jpg\" alt=\"clara\" width=\"250\"></div> Mudigkeit fur spazieren bekummert ihm neugierde fur senkrecht. Bei mogen hin genie kiste ich fremd. Rabatten ach ansprach tat frohlich gar gepflegt. Pa dabei wills er losen takte. Sammelt kleines zu stellte in gedacht lustige. Unbeirrt la begehrte pa funkelte. \n<p>Sonntag nachher wartete fremder es wo gedeckt ei meinung. Madele gelang hellen sa ebenso da. Vergnugen hemdarmel zu fu muhlenrad en lieblinge. Ku jahrlich leuchter eleonora la. Vielem em zuruck du glaubs la so andres kannte. Gebrauch behutsam zinnerne en kollegen es schuftet. Essen bello recht nadel fu boden immer so. Richten den hof stellte zuliebe.</p>\n<table>\n<thead>\n<tr>\n<th>First header</th>\n<th>Second header</th>\n<th>third Header</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>do</td>\n<td>More</td>\n<td>ok</td>\n</tr>\n<tr>\n<td>over</td>\n<td>data</td>\n<td>ok</td>\n</tr>\n<tr>\n<td>several</td>\n<td>don’t</td>\n<td>ok</td>\n</tr>\n<tr>\n<td>lines</td>\n<td>blah</td>\n<td>ok</td>\n</tr>\n</tbody>\n</table>\n<p>Bi messingnen grashalden vorpfeifen pa. Lag chen geht magd igen ans ruth. Bis naher gru herum geh recht. Unbemerkt ja stockwerk grasplatz um verlangst te uberhaupt dunkelrot. Erde ruh darf blau was als wenn. Wu grasplatz es vermodert schnellen mi ja studieren. Kraftiger zu sudwesten gestrigen mi nebendran. Seiner klaren freude du um zu sachen em.</p>\n<p>Abziehen brauchte fur gelernte schlafen all schreien hei gelandes. Kollegen jenseits zu es mitreden behalten marschen pa gegangen. Am achthausen aufmerksam schuttelte vertreiben es drechslers la grasgarten. Allein grauen ihr jemals lachte wichse sauber ich den. Den vom wie ins schones argerte traurig. Es da knapp funfe es ab haben sonne.</p>\n<p>Ab er nachtessen am he arbeitsame dienstmagd hereintrat. Blatt denkt von auf ihr keins genie sehet loben. In warmer daheim hinaus wochen hinein kinder es. Was eigentum schaffte jahrlich tal uberging ers. Ku kind em dann tage sa pa. Nun wies fur geht des uber man. Hausfrau uberlegt es an schreibt in. Schuppen doppelte mit zusammen lie tat ans. Stille la gerade je erzahl zu.</p>\n<p>Dahin gutes ob an ja riefe woher wovon. Hinabsah ein bei neu tor trostlos wirklich lampchen. Ei vorwarts brauchen wo freundes spielend la. Das gab bis euren feuer jeder enden kenne. Zwei sohn wies erst floh um kein du. Verwirrt eigentum kindbett zu in sorgfalt nebenaus sa. Es es kenne ab ihnen kaute in. Hausherr erschrak ja gegessen um ja um ehrbaren.</p>\n<p>Er nachtun dunkeln wimpern ku. Befehlen leichter horchend fur hinunter bei ton. Behaglich schnupfen all erstaunen verlangst gru. Fast ware fand ich bist seid flo geht vor. Erkundigte das achthausen hei nachmittag werkstatte vor. Freund und erfuhr fur wurden.</p>\n<div id=\"ciani-22\" class=\"rcobject rcimage userClass\"><img src=\"http://localhost:3000/modular.jpg\" alt=\"ciani\" width=\"500\"></div></div></div>",
+    "media": [
+        {
+            "__className": "RCImage",
+            "name": "tony",
+            "objectClass": "rcimage",
+            "userClass": "userClass",
+            "id": 1,
+            "htmlId": "tony-24",
+            "url": "http://localhost:3000/tony allen.jpg",
+            "pxWidth": 250,
+            "pxHeight": null,
+            "html": {}
+        },
+        {
+            "__className": "RCImage",
+            "name": "bach2",
+            "objectClass": "rcimage",
+            "userClass": "userClass",
+            "id": 3,
+            "htmlId": "bach2-23",
+            "url": "http://localhost:3000/CPEB_by_Löhr.jpg",
+            "pxWidth": 690,
+            "pxHeight": null,
+            "html": {}
+        },
+        {
+            "__className": "RCImage",
+            "name": "ciani",
+            "objectClass": "rcimage",
+            "userClass": "userClass",
+            "id": 4,
+            "htmlId": "ciani-22",
+            "url": "http://localhost:3000/modular.jpg",
+            "pxWidth": 500,
+            "pxHeight": null,
+            "html": {}
+        },
+        {
+            "__className": "RCImage",
+            "name": "clara",
+            "objectClass": "rcimage",
+            "userClass": "userClass",
+            "id": 5,
+            "htmlId": "clara-21",
+            "url": "http://localhost:3000/Clara_Schumann crop.jpg",
+            "pxWidth": 250,
+            "pxHeight": null,
+            "html": {}
+        }
+    ],
+    "markdownInput": "# A demo text  \n\n!{tony} Te horst steht es he wo kunde lampe. Schwachen em wohnstube um hemdarmel nichtstun te. Fertig des konnte gebaut sah geduld grauen starke. Kurios la diesen loffel so hinaus fu. Ten vom sauber werdet ist kommst andres sag drehte. Lehrlingen und ist gearbeitet birkendose uhr gesprachig vertreiben aufmerksam. Nickte hauses ist tur hab hinaus bis. \n\nErschrak im arbeiter manchmal schaffte ku te prachtig in. Eia das der angenehm heiraten jenseits verstand. Lieblinge hei besserung sudwesten ins unwissend von flanierte verlangst. Gearbeitet tat landsleute birkendose ers ist aufgespart und. Heimweh eigenes wandern aus vor sonntag lie bildnis. Seiest geduld dreien oha und neckte gut hof. Halboffene geschwatzt ungerechte pa verdrossen pa wo. Denen ihn art ehe stamm flick ihm. Tal hinten sommer ich schade hergab lustig. \n\n\n\n# Second section\n\nAb im sonderling ku ja befangenen halboffene geheiratet. Schen spiel las mit ans spurt adieu anzug klein. Ab luften siehst sprach grunde spahte starke du. Tun sprechen uberlegt brotlose ist ubrigens ein. Es mude mu teil ihre so he. Nur roch flo euer all bist als. Gekommen behalten so ei tadellos er. Brauchst stabelle ich schmalen all gab das. Einmal ri ganzen pa handen bi. \n\n!{bach2} !{clara} Mudigkeit fur spazieren bekummert ihm neugierde fur senkrecht. Bei mogen hin genie kiste ich fremd. Rabatten ach ansprach tat frohlich gar gepflegt. Pa dabei wills er losen takte. Sammelt kleines zu stellte in gedacht lustige. Unbeirrt la begehrte pa funkelte. \n\nSonntag nachher wartete fremder es wo gedeckt ei meinung. Madele gelang hellen sa ebenso da. Vergnugen hemdarmel zu fu muhlenrad en lieblinge. Ku jahrlich leuchter eleonora la. Vielem em zuruck du glaubs la so andres kannte. Gebrauch behutsam zinnerne en kollegen es schuftet. Essen bello recht nadel fu boden immer so. Richten den hof stellte zuliebe. \n\nFirst header | Second header | third Header\n-------------|----------------|------\n  do           | More   | ok\n over          | data  | ok\n several      |  don't | ok\n lines         |  blah | ok\n\nBi messingnen grashalden vorpfeifen pa. Lag chen geht magd igen ans ruth. Bis naher gru herum geh recht. Unbemerkt ja stockwerk grasplatz um verlangst te uberhaupt dunkelrot. Erde ruh darf blau was als wenn. Wu grasplatz es vermodert schnellen mi ja studieren. Kraftiger zu sudwesten gestrigen mi nebendran. Seiner klaren freude du um zu sachen em. \n\nAbziehen brauchte fur gelernte schlafen all schreien hei gelandes. Kollegen jenseits zu es mitreden behalten marschen pa gegangen. Am achthausen aufmerksam schuttelte vertreiben es drechslers la grasgarten. Allein grauen ihr jemals lachte wichse sauber ich den. Den vom wie ins schones argerte traurig. Es da knapp funfe es ab haben sonne. \n\nAb er nachtessen am he arbeitsame dienstmagd hereintrat. Blatt denkt von auf ihr keins genie sehet loben. In warmer daheim hinaus wochen hinein kinder es. Was eigentum schaffte jahrlich tal uberging ers. Ku kind em dann tage sa pa. Nun wies fur geht des uber man. Hausfrau uberlegt es an schreibt in. Schuppen doppelte mit zusammen lie tat ans. Stille la gerade je erzahl zu. \n\nDahin gutes ob an ja riefe woher wovon. Hinabsah ein bei neu tor trostlos wirklich lampchen. Ei vorwarts brauchen wo freundes spielend la. Das gab bis euren feuer jeder enden kenne. Zwei sohn wies erst floh um kein du. Verwirrt eigentum kindbett zu in sorgfalt nebenaus sa. Es es kenne ab ihnen kaute in. Hausherr erschrak ja gegessen um ja um ehrbaren. \n\nEr nachtun dunkeln wimpern ku. Befehlen leichter horchend fur hinunter bei ton. Behaglich schnupfen all erstaunen verlangst gru. Fast ware fand ich bist seid flo geht vor. Erkundigte das achthausen hei nachmittag werkstatte vor. Freund und erfuhr fur wurden. \n\n!{ciani}"
+}

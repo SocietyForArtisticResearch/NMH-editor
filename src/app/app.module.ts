@@ -19,6 +19,7 @@ import { BasicToolComponent } from './tools/basic-tool/basic-tool.component';
 import { MarkdownToolComponent } from './tools/markdown-tool/markdown-tool.component';
 import { DocUploaderComponent } from './doc-uploader/doc-uploader.component';
 import { StyleEditComponent } from './style-edit/style-edit.component';
+import { AudioToolComponent } from './tools/audio-tool/audio-tool.component';
 
 // url routing
 const appRoutes: Routes = [
@@ -36,7 +37,8 @@ const appRoutes: Routes = [
     BasicToolComponent,
     MarkdownToolComponent,
     DocUploaderComponent,
-    StyleEditComponent
+    StyleEditComponent,
+    AudioToolComponent
   ],
   imports: [
     SortablejsModule.forRoot({ animation: 150 }),
