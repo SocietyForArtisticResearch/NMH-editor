@@ -2,6 +2,25 @@
 	height:700px;
 }*/
 
+.container.main-app {
+    width:95%;
+}
+
+.left-hand-collumn {
+    position: fixed;
+    left:0;
+    top:0;
+    width:440px;
+    height:100%;
+    z-index:1050;
+    background-color:white;
+}
+
+.shifted  {
+    position:relative;
+    left:440px;
+}
+
 #myMedia {
     min-width:600px;
 }
