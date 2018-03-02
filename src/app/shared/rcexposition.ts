@@ -71,10 +71,10 @@ export class RCExposition {
         this.media = [];
     }
 
-    static replaceToolsWithImages(text) {
+    replaceToolsWithImages(text) {
         let self = this;
         let re = /!{(\w+)}/g;
-        let insertedTools = text.replace(re, function (m, p1) { return "![" + name + "](" + this.media.find(obj => obj.name == p1).url + ")"; });
+        let insertedTools = text.replace(re, function (m, p1) { return "![" + name + "](" + self.media.find(obj => obj.name == p1).url + ")"; });
         return insertedTools;
     }
 
@@ -83,10 +83,11 @@ export class RCExposition {
      * @returns {string} Markdown representation of the exposition 
      */
     asMarkdown(replaceTools = true) {
-        let markdown = `% ${this.title}
-    % ${this.authors.join(';')}
-    `;
-        return (markdown + RCExposition.replaceToolsWithImages(this.markdownInput));
+        //     let markdown = `% ${this.title}
+        // % ${this.authors.join(';')}
+        // `;
+        //    return (markdown + RCExposition.replaceToolsWithImages(this.markdownInput));
+        return this.replaceToolsWithImages(this.markdownInput);
     }
 
     // getTOC() {
@@ -132,7 +133,7 @@ export class RCExposition {
 
     addImageList(list) {
         let self = this;
-        let obj = list.map(url => new RCImage("image" + String(uniqueID()), server + "/" + url, "myClass",null,null));
+        let obj = list.map(url => new RCImage("image" + String(uniqueID()), server + "/" + url, "myClass", null, null));
         obj.forEach(o => self.addObject(o));
         return obj.map(o => o.name);
     }
