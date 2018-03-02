@@ -18,9 +18,9 @@ export class RCExpoModel {
 
         let defaultStyle = `.exposition {
     background-color: #FFFFFF;
-    font-family: \"Arial\", sans-serif;
+    font-family: \"Georgia\", serif;
     font-size: 120%; 
-    line-height: 125%; 
+    line-height: 150%; 
 } 
 
 .exposition-content {
@@ -28,7 +28,7 @@ export class RCExpoModel {
 }
 
 .rcimage {
-    float: right;
+    margin:10px;
 }`;
 
         this.exposition = new RCExposition('My First Exposition', ['authors'], defaultStyle, 1200);
