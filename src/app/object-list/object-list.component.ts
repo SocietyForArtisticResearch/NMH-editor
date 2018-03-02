@@ -59,7 +59,6 @@ export class ObjectListComponent implements OnInit {
         clearTimeout(this.dblClickCtrl.timer);
         this.dblClickCtrl.prevent = true;
         // insert object in mde
-        console.log('double click');
         this.selectedObject = object;
         let editor: RCMDE = this.rcExpoModel.mde;
         insertMediaToken(editor,object.name);

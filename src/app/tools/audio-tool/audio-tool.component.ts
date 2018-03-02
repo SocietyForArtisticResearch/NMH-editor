@@ -1,7 +1,7 @@
 import { Component, Input, OnInit, Output, EventEmitter  } from '@angular/core';
 import { NgSwitch } from '@angular/common';
 import { RCExpoModel }  from '../../shared/RCExpoModel';
-import { RCMedia, RCImage } from '../../shared/rcexposition';
+import { RCMedia, RCAudio } from '../../shared/rcexposition';
 import { FormControl, AbstractControl, FormGroup, ValidatorFn, Validators} from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 
@@ -10,6 +10,7 @@ import { HttpClient } from '@angular/common/http';
 function forbiddenNameValidator(rcModel: RCExpoModel,oldName: string): ValidatorFn {
   return (control: AbstractControl): {[key: string]: any} => {
     if (control.value === oldName) {
+      // old name is allowed.
       return null;
     }
     const forbidden = rcModel.exposition.getObjectWithName(control.value);
@@ -19,16 +20,16 @@ function forbiddenNameValidator(rcModel: RCExpoModel,oldName: string): Validator
 
 
 @Component({
-  selector: 'app-basic-tool',
-  templateUrl: './basic-tool.component.html',
-  styleUrls: ['./basic-tool.component.css']
+  selector: 'app-audio-tool',
+  templateUrl: './audio-tool.component.html',
+  styleUrls: ['./audio-tool.component.css']
 })
-export class BasicToolComponent implements OnInit {
+export class AudioToolComponent implements OnInit {
   // name: string = '';
   collapsed: boolean = false;
   toolForm : FormGroup;
   toolType : string;
-  selectedImage : File = null;
+  selectedAudio : File = null;
 
   identifier: number;
   @Input() object: RCMedia;
@@ -49,9 +50,7 @@ export class BasicToolComponent implements OnInit {
           forbiddenNameValidator(this.rcExpoModel,this.object.name), // <-- Here's how you pass in the custom validator.
           Validators.required
         ]),
-      'imageUrl': new FormControl(this.object.url,[Validators.required]),
-      'widthInPixels' : new FormControl(this.object.pxWidth),
-      'heightInPixels' : new FormControl(this.object.pxHeight)
+      'audioUrl': new FormControl(this.object.url,[Validators.required])
      });
 
 
@@ -62,9 +61,7 @@ export class BasicToolComponent implements OnInit {
     if (this.toolForm) {
       this.toolForm.setValue({
         name:    this.object.name,
-        imageUrl: this.object.url,
-        widthInPixels: this.object.pxWidth,
-        heightInPixels : this.object.pxHeight
+        audioUrl: this.object.url,
       });
       this.toolForm.controls['name'].setValidators(
           [forbiddenNameValidator(this.rcExpoModel,this.object.name), // <-- Here's how you pass in the custom validator.
@@ -79,9 +76,9 @@ export class BasicToolComponent implements OnInit {
      this.rcExpoModel.exposition.replaceObjectWithID(this.object.id,deepCopy);
   }
 
-  prepareSaveObject(): RCImage {
+  prepareSaveObject(): RCAudio {
     const formModel = this.toolForm.value;
-    const newObject :RCImage = new RCImage(formModel.name,formModel.imageUrl,'userClass',formModel.widthInPixels,formModel.heightInPixels);
+    const newObject :RCAudio = new RCAudio(formModel.name,formModel.audioUrl,false,false,'userClass');
     return newObject;
   }
 
@@ -93,10 +90,10 @@ export class BasicToolComponent implements OnInit {
     this.onRemoveObject.emit(this.object.id);
   }
 
-  onImageSelect(event) {
-    this.selectedImage = <File>event.target.files[0];
+  onAudioSelect(event) {
+    this.selectedAudio = <File>event.target.files[0];
     const fd = new FormData();
-    fd.append('uploadFile', this.selectedImage, this.selectedImage.name);
+    fd.append('uploadFile', this.selectedAudio, this.selectedAudio.name);
     this.http.post('http://localhost:3000/uploadAngular', fd).subscribe(result => {
         this.onResult(result);
     });
