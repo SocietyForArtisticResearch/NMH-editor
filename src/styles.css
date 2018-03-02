@@ -6,7 +6,7 @@
 	margin-bottom:5px;
 }
 
-app-markdown-tool .CodeMirror { width:50.0%; height: calc(100% - 210px); overflow-y: hidden; position:absolute; border-right: none }
+app-markdown-tool .CodeMirror { width:50.0%; height: calc(100% - 220px); overflow-y: hidden; position:absolute; border-right: none }
 
 app-markdown-tool .editor-toolbar { width:80.0%; }
 
