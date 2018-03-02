@@ -20,7 +20,7 @@ export class RCExpoModel {
     background-color: #FFFFFF;
     font-family: \"Georgia\", serif;
     font-size: 120%; 
-    line-height: 150%; 
+    line-height: 125%; 
 } 
 
 .exposition-content {
@@ -28,7 +28,7 @@ export class RCExpoModel {
 }
 
 .rcimage {
-    margin:10px;
+    margin:10px 0px;
 }`;
 
         this.exposition = new RCExposition('My First Exposition', ['authors'], defaultStyle, 1200);
