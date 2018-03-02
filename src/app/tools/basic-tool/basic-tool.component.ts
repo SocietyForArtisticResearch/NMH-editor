@@ -102,6 +102,7 @@ export class BasicToolComponent implements OnInit {
     this.http.post('http://localhost:3000/uploadAngular', fd).subscribe(result => {
         this.onResult(result);
     });
+    this.rcExpoModel.mde.render();
   }
 
   onResult(result) {
