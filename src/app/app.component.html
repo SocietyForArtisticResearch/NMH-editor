@@ -4,7 +4,7 @@
   <div [ngClass]="{ 'shifted' : showMedia }">
     <input class="editableTitle" type='text' value="{{this.rcExpoModel.exposition.title}}" [(ngModel)]="this.rcExpoModel.exposition.title">
     <hr>
-    <button type="button" [disabled]="showMedia" class="btn btn-primary" (click)="showMedia = true">Media list</button>
+    <button type="button" [class.active]="showMedia" class="btn btn-primary" (click)="showMedia = ! showMedia">Media list</button>
     <button type="button" [disabled]="showImport" class="btn btn-primary" (click)="showImport = true">Import/Export</button>
     <button type="button" [disabled]="editStyle" class="btn btn-primary" (click)="editStyle = true">Edit style</button>
     <app-markdown-tool></app-markdown-tool>
