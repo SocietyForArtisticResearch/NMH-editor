@@ -31,6 +31,10 @@ Some checks:
 
 
 ## Casper
+Note to self:
+Changed tsconfig.app.json,  "module": "esnext", to resolve conflict with use of javascript "import" in rcmde.ts
+
+3. Fix CSS problems, make sure  exposition css doesn't affect editor styling.
 4. is editor responsive?
 5. add export as other types of documents
 7. make media list more responsive (perhaps should be full screen on small screens ?).
