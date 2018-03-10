@@ -16,11 +16,11 @@ __I've updated *mnh-backend* with an extra uploadAngular option, that returns js
 
 ## Luc
 6. Server.js /upload is probably too good of trust, it accepts anything from anybody and hosts it, I suspect it is to dangerous to put it in the wild (we may end up hosting DDOS networks, porn, nazi stuff and cryptocoin miners in minutes ;-) )
-Some checks:
+Some checks we should add:
 	- the thing uploaded is really an image (and an image type we like: jpg, png, tiff, gif)
 	- the size is sane
 	- the filename should be turned into unique identifier to avoid problems of different images with the same name.
-	- perhaps only allow calls from certain addresses.
+	- perhaps only allow upload requests from localhost ?
 7. mde double click media insertion: if I insert twice, the current code inserts one media 'into' the other: !{!{image2}image1}.
 * TOC
 
