@@ -1,7 +1,9 @@
 <div class="container main-app">
   <div class="row">
 
-  <div [ngClass]="{ 'shifted' : showMedia }">
+<!--   <div [ngClass]="{ 'shifted' : showMedia }">
+ -->
+ <div>
     <input class="editableTitle" type='text' value="{{this.rcExpoModel.exposition.title}}" [(ngModel)]="this.rcExpoModel.exposition.title">
     <hr>
     <button type="button" [class.active]="showMedia" class="btn btn-primary" (click)="showMedia = ! showMedia">Media list</button>
@@ -11,7 +13,6 @@
   </div>
 
 
-  <!--
   <div *ngIf="showMedia" id="mediaPanel" class="modal">
 
 
@@ -21,7 +22,7 @@
     </div>
   </div>
 
-  -->
+
 
   <!-- The Modal 2 -->
   <div *ngIf="showImport" id="importPanel" class="modal">
@@ -45,10 +46,10 @@
   </div>
 </div>
 
-<div *ngIf="showMedia" class="left-hand-collumn">
+<!-- <div *ngIf="showMedia" class="left-hand-collumn">
       <button class="close" (click)="showMedia=false">&times;</button>
       <app-object-list></app-object-list>
 </div>
-
+ -->
 
 
