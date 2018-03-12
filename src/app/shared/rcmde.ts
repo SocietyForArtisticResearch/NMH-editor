@@ -1,13 +1,13 @@
 import * as CodeMirror from 'codemirror'
 // var CodeMirror = require("codemirror");
-import("codemirror/addon/edit/continuelist.js");
-import("codemirror/addon/display/fullscreen.js");
-import("codemirror/mode/markdown/markdown.js");
-import("codemirror/addon/mode/overlay.js");
-import("codemirror/addon/display/placeholder.js");
-import("codemirror/addon/selection/mark-selection.js");
-import("codemirror/mode/gfm/gfm.js");
-import("codemirror/mode/xml/xml.js");
+import "codemirror/addon/edit/continuelist.js";
+import "codemirror/addon/display/fullscreen.js";
+import "codemirror/mode/markdown/markdown.js";
+import "codemirror/addon/mode/overlay.js";
+import "codemirror/addon/display/placeholder.js";
+import "codemirror/addon/selection/mark-selection.js";
+import "codemirror/mode/gfm/gfm.js";
+import "codemirror/mode/xml/xml.js";
 import * as MarkdownIt from "markdown-it";
 import * as  MarkdownItFootnote from "markdown-it-footnote";
 const md = new MarkdownIt({ html: true, typographer: true }).use(MarkdownItFootnote);
