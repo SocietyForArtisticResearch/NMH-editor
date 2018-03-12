@@ -59,6 +59,7 @@ export class BasicToolComponent implements OnInit {
     }
 
     ngOnChanges() {
+        console.log(this.toolForm);
         if (this.toolForm) {
             this.toolForm.setValue({
                 name: this.object.name,
