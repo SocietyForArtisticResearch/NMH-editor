@@ -1690,6 +1690,7 @@ export class RCMDE {
         }.bind(temp_cm), 0);
     }
 
+    /// This renders the preview and the editor once
     forceRender() {
         //        this._rendered = null;
         var cm = this.codemirror;
