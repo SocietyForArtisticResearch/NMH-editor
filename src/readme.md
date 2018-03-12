@@ -7,6 +7,7 @@ __I've updated *mnh-backend* with an extra uploadAngular option, that returns js
 * basic-tool and audio-tool almost identical (what is basic/what is image tool?)
 
 ## Issues
+* when importing a js do import "filname" not import("filename")
 * bootstrap link should be to local file
 * why do tables look different in previews
 * deal with non-image media in convert/export.
