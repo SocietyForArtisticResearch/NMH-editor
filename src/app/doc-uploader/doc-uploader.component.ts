@@ -15,7 +15,7 @@ import { ConvertDocService } from '../shared/convert-doc.service';
 export class DocUploaderComponent implements OnInit {
     selectedFile: File = null;
     selectedJson: File = null;
-    selectedExportFormat: string = "pdf";
+    selectedExportFormat: string = "docx";
 
     constructor(
         private http: HttpClient,
