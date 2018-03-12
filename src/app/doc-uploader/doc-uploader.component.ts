@@ -39,7 +39,7 @@ export class DocUploaderComponent implements OnInit {
 
         const fd = new FormData();
         fd.append('convertFile', this.selectedFile, this.selectedFile.name);
-        this.http.post('https://localhost:3000/import', fd).subscribe(result => {
+        this.http.post('https://sar-announcements.com:3000/import', fd).subscribe(result => {
             this.onDocImportResult(result);
         });
 

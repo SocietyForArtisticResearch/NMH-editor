@@ -97,7 +97,7 @@ export class BasicToolComponent implements OnInit {
         this.selectedImage = <File>event.target.files[0];
         const fd = new FormData();
         fd.append('uploadFile', this.selectedImage, this.selectedImage.name);
-        this.http.post('https://localhost:3000/uploadAngular', fd).subscribe(result => {
+        this.http.post('https://sar-announcements.com:3000/uploadAngular', fd).subscribe(result => {
             this.onResult(result);
         });
         this.rcExpoModel.mde.render();

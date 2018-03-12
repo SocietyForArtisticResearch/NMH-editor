@@ -13,7 +13,7 @@ export class ConvertDocService {
     }
 
     convert(markdownString: string, fileType: string) { //get file from service
-        let url = "https://localhost:3000/export/" + fileType;
+        let url = "https://sar-announcements.com:3000/export/" + fileType;
         let expositionJson = { markdown: markdownString };
         let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
 
