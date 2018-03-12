@@ -1543,7 +1543,7 @@ export class RCMDE {
         let str = name.big();
         if (tool !== undefined) {
             tool.createHTML();
-            console.log(tool.html);
+            //console.log(tool.html);
             str = RCMDE.outerHTML(tool.html);
         }
         return str;
