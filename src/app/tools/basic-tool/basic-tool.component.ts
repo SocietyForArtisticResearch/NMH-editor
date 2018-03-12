@@ -106,7 +106,7 @@ export class BasicToolComponent implements OnInit {
     onResult(result) {
         if (this.toolForm) {
             this.toolForm.patchValue({
-                imageUrl: result.url,
+                imageUrl: 'https://sar-announcements.com:3000/' + result.url,
             });
         }
         let deepCopy = this.prepareSaveObject();

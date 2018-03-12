@@ -3,9 +3,10 @@
 # Important:
 
 __I've updated *mnh-backend* with an extra uploadAngular option, that returns json instead of a string (angular http client doesn't like plain strings). So be sure to pull !__
+* used server in rcexposition/tools etc should be configurable and somewhere else
+* basic-tool and audio-tool almost identical (what is basic/what is image tool?)
 
 ## Issues
-* variable "server" in rcexposition should be configurable and somewhere else
 * bootstrap link should be to local file
 * why do tables look different in previews
 * deal with non-image media in convert/export.
