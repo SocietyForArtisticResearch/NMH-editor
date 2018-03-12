@@ -18,12 +18,12 @@
 		<div class="col-md-3">
 			<h5>Export other formats</h5>
 			<label for="exportType">select a type:</label>
-			 <select (change)="onDocTypeChange($event.target.value)" id="exportType" name="exportTypeSelect">
-			  <option selected="selected" value="pdf">PDF</option>
-			  <option value="docx">Word (.docx)</option>
-			  <option value="odt">Open office (.odt)</option>
-			  <option value="md">Markdown (.md)</option>
-			  <option value="epub">EPUB (.epub)</option>
+			<select (change)="onDocTypeChange($event.target.value)" id="exportType" name="exportTypeSelect">
+			    <!-- <option selected="selected" value="pdf">PDF</option> -->
+			    <option selected="selected" value="docx">Word (.docx)</option>
+			    <option value="odt">Open office (.odt)</option>
+			    <option value="md">Markdown (.md)</option>
+			    <option value="epub">EPUB (.epub)</option>
 			</select> 
 			<button class="btn btn-xs" (click)="otherFormatDownload()">export {{selectedExportFormat}}</button>
 

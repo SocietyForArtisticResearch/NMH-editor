@@ -15,11 +15,11 @@ import { ConvertDocService } from '../shared/convert-doc.service';
 export class DocUploaderComponent implements OnInit {
     selectedFile: File = null;
     selectedJson: File = null;
-    selectedExportFormat: string = "pdf";
+    selectedExportFormat: string = "docx";
 
     constructor(
-        private http: HttpClient, 
-        private rcExpoModel: RCExpoModel, 
+        private http: HttpClient,
+        private rcExpoModel: RCExpoModel,
         private convertDocService: ConvertDocService) { }
 
     ngOnInit() {
@@ -39,7 +39,7 @@ export class DocUploaderComponent implements OnInit {
 
         const fd = new FormData();
         fd.append('convertFile', this.selectedFile, this.selectedFile.name);
-        this.http.post('http://localhost:3000/import', fd).subscribe(result => {
+        this.http.post('https://sar-announcements.com:3000/import', fd).subscribe(result => {
             this.onDocImportResult(result);
         });
 
@@ -86,8 +86,8 @@ export class DocUploaderComponent implements OnInit {
     otherFormatDownload() {
         let exposition = this.rcExpoModel.exposition;
         let markdownString: string = exposition.asMarkdown();
-        console.log('arguments:',markdownString,this.selectedExportFormat);
-        this.convertDocService.convert(markdownString,this.selectedExportFormat);
+        console.log('arguments:', markdownString, this.selectedExportFormat);
+        this.convertDocService.convert(markdownString, this.selectedExportFormat);
     }
 }
 

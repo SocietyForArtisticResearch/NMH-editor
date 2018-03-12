@@ -21,7 +21,7 @@
 
 //const md = new MarkdownIt('commonmark');
 
-var server = "http://localhost:3000";
+var server = "https://sar-announcements.com:3000";
 
 let uniqueID = function () {
     var i = 1;
