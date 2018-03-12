@@ -1589,6 +1589,7 @@ export class RCMDE {
             el = this.element || document.getElementsByTagName("textarea")[0];
         }
 
+
         if (this._rendered && this._rendered === el) {
             // Already rendered.
             return;
@@ -1688,6 +1689,16 @@ export class RCMDE {
             temp_cm.refresh();
         }.bind(temp_cm), 0);
     }
+
+    forceRender() {
+        //        this._rendered = null;
+        var cm = this.codemirror;
+        var wrapper = cm.getWrapperElement();
+        var preview = wrapper.nextSibling;
+        preview.innerHTML = this.options.previewRender(this.value(), preview);
+        this.render();
+    }
+
 
     // Safari, in Private Browsing Mode, looks like it supports localStorage but all calls to setItem throw QuotaExceededError. We're going to detect this and set a variable accordingly.
     static isLocalStorageAvailable() {
