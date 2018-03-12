@@ -29,6 +29,7 @@ export class BasicToolComponent implements OnInit {
     toolForm: FormGroup;
     toolType: string;
     selectedImage: File = null;
+    formattedMessage: string;
 
     identifier: number;
     @Input() object: RCMedia;
@@ -59,7 +60,6 @@ export class BasicToolComponent implements OnInit {
     }
 
     ngOnChanges() {
-        console.log(this.toolForm);
         if (this.toolForm) {
             this.toolForm.setValue({
                 name: this.object.name,
@@ -71,8 +71,14 @@ export class BasicToolComponent implements OnInit {
                 [forbiddenNameValidator(this.rcExpoModel, this.object.name), // <-- Here's how you pass in the custom validator.
                 Validators.required]);
             this.toolForm.controls['name'].updateValueAndValidity();
+
+            this.toolForm.valueChanges.subscribe(val => {
+                this.onSubmit();
+            });
+
         }
     }
+    
 
     onSubmit() {
         // Angular protects its values of the model very strictly, so we have to update rcexposition through a deepcopy of the tool.

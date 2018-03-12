@@ -37,9 +37,7 @@ Note to self:
 Changed tsconfig.app.json,  "module": "esnext", to resolve conflict with use of javascript "import" in rcmde.ts
 1. Update image tool immediately
 2. Only show other fields, after image is chosen.
-3. user feedback from form missing ??
 
-2. rcmde is not rendering the markdown correctly in the box !
 3. Fix CSS problems, make sure  exposition css doesn't affect editor styling.
 4. is editor responsive?
 5. add export as other types of documents

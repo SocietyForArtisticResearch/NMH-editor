@@ -25,11 +25,10 @@
           <label for="'pxHeightField'+{{id}}">Height in pixels:</label>
           <input formControlName="heightInPixels" class="" id="pxHeightField'+{{id}}" type="number">
         </fieldset>
-        <p> {{toolForm.control['imageUrl'].status}} </p>
         <button [disabled]="toolForm.invalid" type="submit" class="btn btn-primary" >Update</button>
       </div>
      </form>
-
+     <p>message:{{formattedMessage}}</p>
   </div>
 </div>
 
