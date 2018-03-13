@@ -3,8 +3,6 @@
 # Important:
 
 __I've updated *mnh-backend* with an extra uploadAngular option, that returns json instead of a string (angular http client doesn't like plain strings). So be sure to pull !__
-* used server in rcexposition/tools etc should be configurable and somewhere else
-* basic-tool and audio-tool almost identical (what is basic/what is image tool?)
 
 ## Issues
 * when importing a js do import "filname" not import("filename")
@@ -17,22 +15,18 @@ __I've updated *mnh-backend* with an extra uploadAngular option, that returns js
 
 
 ## Luc
-6. Server.js /upload is probably too good of trust, it accepts anything from anybody and hosts it, I suspect it is to dangerous to put it in the wild (we may end up hosting DDOS networks, porn, nazi stuff and cryptocoin miners in minutes ;-) )
-Some checks we should add:
-	- the thing uploaded is really an image (and an image type we like: jpg, png, tiff, gif)
-	- the size is sane
-	- the filename should be turned into unique identifier to avoid problems of different images with the same name.
-	- perhaps only allow upload requests from localhost ?
 7. mde double click media insertion: if I insert twice, the current code inserts one media 'into' the other: !{!{image2}image1}.
 * TOC
-
-8. Style of exported pdf a bit weird
 
 9. Style of exposition should be properly namespaced, currently editor styling also affected.
 
 
 
 ## Casper
+* used server in rcexposition/tools etc should be configurable and somewhere else
+* basic-tool and audio-tool almost identical (what is basic/what is image tool?)
+* media list update of name doesn't update in table
+
 Note to self:
 Changed tsconfig.app.json,  "module": "esnext", to resolve conflict with use of javascript "import" in rcmde.ts
 1. Update image tool immediately
@@ -68,3 +62,13 @@ RCText - have a method for setting HTML directly (because of tinymce output).
 also embedded media does not show up in rcexposition.media array.
 
 6. from convert json
+
+
+8. Style of exported pdf a bit weird
+
+6. Server.js /upload is probably too good of trust, it accepts anything from anybody and hosts it, I suspect it is to dangerous to put it in the wild (we may end up hosting DDOS networks, porn, nazi stuff and cryptocoin miners in minutes ;-) )
+Some checks we should add:
+	- the thing uploaded is really an image (and an image type we like: jpg, png, tiff, gif)
+	- the size is sane
+	- the filename should be turned into unique identifier to avoid problems of different images with the same name.
+	- perhaps only allow upload requests from localhost ?
