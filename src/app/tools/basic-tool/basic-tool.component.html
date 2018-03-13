@@ -12,11 +12,11 @@
             size="7">
     </div>
     <div class="form-group">
-
-        <label for="'imageUrlField'+{{id}}">Image url:</label>
-        <input formControlName="imageUrl" class="" id="'imageUrlField'+{{id}}" type="text">
         <label for="imageFileSelect">Pick an image:</label>
         <input id="imageFileSelect" class="form-control-file" type="file" (change)="onImageSelect($event)" name="imageSelect">
+        <label for="'imageUrlField'+{{id}}">Image url:</label>
+        <input formControlName="imageUrl" class="" id="'imageUrlField'+{{id}}" type="text">
+        
         
         <fieldset *ngIf="toolForm.controls['imageUrl'].status === 'VALID'">
           <label for="'pxWidthField'+{{id}}">Width in pixels:</label>

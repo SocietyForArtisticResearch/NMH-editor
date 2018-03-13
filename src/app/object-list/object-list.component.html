@@ -35,7 +35,7 @@
 			<app-basic-tool 
 				*ngIf="selectedObject != undefined"
 			    [id]="'editor'+selectedObject.id" 
-				[object]="selectedObject"
+				[rcobject]="selectedObject"
 				(onRemoveObject)="objectWasRemoved($event)"
 				>		
 			</app-basic-tool>

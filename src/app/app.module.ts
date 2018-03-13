@@ -14,7 +14,6 @@ import { AppComponent } from './app.component';
 import { ObjectListComponent } from './object-list/object-list.component';
 import { TextToolComponent } from './tools/text-tool/text-tool.component';
 import { ExpoPreviewComponent } from './expo-preview/expo-preview.component';
-import { ImageToolComponent } from './tools/image-tool/image-tool.component';
 import { BasicToolComponent } from './tools/basic-tool/basic-tool.component';
 import { MarkdownToolComponent } from './tools/markdown-tool/markdown-tool.component';
 import { DocUploaderComponent } from './doc-uploader/doc-uploader.component';
@@ -33,7 +32,6 @@ const appRoutes: Routes = [
     ObjectListComponent,
     TextToolComponent,
     ExpoPreviewComponent,
-    ImageToolComponent,
     BasicToolComponent,
     MarkdownToolComponent,
     DocUploaderComponent,

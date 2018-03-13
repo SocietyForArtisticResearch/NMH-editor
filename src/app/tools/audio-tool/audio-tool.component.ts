@@ -4,6 +4,7 @@ import { RCExpoModel } from '../../shared/RCExpoModel';
 import { RCMedia, RCAudio } from '../../shared/rcexposition';
 import { FormControl, AbstractControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { Backend } from '../../shared/Backend'
 
 
 
@@ -94,7 +95,7 @@ export class AudioToolComponent implements OnInit {
         this.selectedAudio = <File>event.target.files[0];
         const fd = new FormData();
         fd.append('uploadFile', this.selectedAudio, this.selectedAudio.name);
-        this.http.post('https://sar-announcements.com:3000/uploadAngular', fd).subscribe(result => {
+        this.http.post(Backend.uploadAddress, fd).subscribe(result => {
             this.onResult(result);
         });
         this.rcExpoModel.mde.render();
@@ -103,7 +104,7 @@ export class AudioToolComponent implements OnInit {
     onResult(result) {
         if (this.toolForm) {
             this.toolForm.patchValue({
-                imageUrl: 'https://sar-announcements.com:3000/' + result.url,
+                imageUrl: Backend.baseAddress + result.url,
             });
         }
         let deepCopy = this.prepareSaveObject();
