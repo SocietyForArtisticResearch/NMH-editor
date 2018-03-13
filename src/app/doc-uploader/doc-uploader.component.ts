@@ -5,6 +5,7 @@ import { RCExpositionDeserializer } from '../shared/rcexposition';
 import * as FileSaver from 'file-saver';
 import * as Editor from '../shared/rcmde';
 import { ConvertDocService } from '../shared/convert-doc.service';
+import { Backend } from '../shared/Backend';
 
 @Component({
     selector: 'app-doc-uploader',
@@ -39,7 +40,7 @@ export class DocUploaderComponent implements OnInit {
 
         const fd = new FormData();
         fd.append('convertFile', this.selectedFile, this.selectedFile.name);
-        this.http.post('https://sar-announcements.com:3000/import', fd).subscribe(result => {
+        this.http.post(Backend.import, fd).subscribe(result => {
             this.onDocImportResult(result);
         });
 
