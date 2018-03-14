@@ -21,3 +21,7 @@ app-markdown-tool .editor-statusbar { position: absolute; bottom: 0; z-index:100
 app-markdown-tool .editor-preview-side {
 	width:50.0%;
 }
+
+.cm-formatting {
+	color:rgba(0,0,0,.28);
+}
