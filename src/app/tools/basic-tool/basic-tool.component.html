@@ -14,16 +14,18 @@
     <div class="form-group">
         <label for="imageFileSelect">Pick an image:</label>
         <input id="imageFileSelect" class="form-control-file" type="file" (change)="onImageSelect($event)" name="imageSelect">
+        <div class="imageUrlElements">
         <label for="'imageUrlField'+{{id}}">Image url:</label>
         <input formControlName="imageUrl" class="" id="'imageUrlField'+{{id}}" type="text">
+        </div>
         
         
         <fieldset *ngIf="toolForm.controls['imageUrl'].status === 'VALID'">
-          <label for="'pxWidthField'+{{id}}">Width in pixels:</label>
-          <input formControlName="widthInPixels" class="f" id="'pxWidthField'+{{id}}" type="number">
+          <label for="{{'pxWidthField'+id}}">Width in pixels:</label>
+          <input formControlName="widthInPixels" class="f" id="{{'pxWidthField'+id}}" type="number">
 
-          <label for="'pxHeightField'+{{id}}">Height in pixels:</label>
-          <input formControlName="heightInPixels" class="" id="pxHeightField'+{{id}}" type="number">
+          <label for="{{'pxHeightField'+id}}">Height in pixels:</label>
+          <input formControlName="heightInPixels" class="" id="{{'pxHeightField'+id}}" type="number">
         </fieldset>
         <!-- <button [disabled]="toolForm.invalid" type="submit" class="btn btn-primary" >Update</button> -->
       </div>
