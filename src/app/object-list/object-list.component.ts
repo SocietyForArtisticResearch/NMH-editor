@@ -53,6 +53,7 @@ export class ObjectListComponent implements OnInit {
         this.dblClickCtrl.timer = setTimeout(() => {
             if (!this.dblClickCtrl.prevent) {
                 this.selectedObject = rcobject;
+                console.log(rcobject);
             }
             this.dblClickCtrl.prevent = false;
         }, this.dblClickCtrl.delay);
