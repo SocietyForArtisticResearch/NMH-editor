@@ -24,7 +24,23 @@
 						[class.selected]="selectedObject === rcObject"
 					    (click)="onSelect(rcObject.id,rcObject)"
 					    (dblclick)="onDoubleClick(rcObject.id,rcObject)">
-					<td><img class="image-preview" src={{rcObject.url}} height="66" width="66" alt={{rcObject.url}}></td>
+					<td>
+						<div [ngSwitch]="rcObject.__className">
+							
+							<img *ngSwitchCase="'RCImage'" 
+								class="image-preview" 
+								src={{rcObject.url}} 
+								height="66" 
+								width="66" 
+								alt={{rcObject.url}}>
+
+							<audio *ngSwitchCase="'RCAudio'">
+								<source src={{rcObject.url}}>
+								Browser error
+							</audio>
+						</div>
+
+					</td>
 <!-- 					<td><strong class="object-list-id">{{rcObject.id}}</strong></td>
  -->				    <td><span class="object-list-name">{{rcObject.name}}</span></td>
 					<td><button class="align-right" (click)="trashObject(rcObject)">&times;</button></td>
@@ -43,7 +59,8 @@
 		</div>
 	</div>
 	<div class="row">
-		<button (click)="createImageTool()" class="btn btn-primary">Create image tool</button>
+		<button (click)="createImageTool()" class="btn btn-primary">Add image</button>
+		<button (click)="createAudioTool()" class="btn btn-primary">Add audio</button>
 		<button (click)="removeAll()" class="btn btn-danger">Remove all</button>
 	</div>
 </div>

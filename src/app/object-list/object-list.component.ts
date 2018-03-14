@@ -23,15 +23,12 @@ export class ObjectListComponent implements OnInit {
 
     eventOptions = {
         onUpdate: (event) => {
-            console.log(event.oldIndex);
-            console.log(event.newIndex);
-            console.log('event');
+            
         }
     }
 
     constructor(private rcExpoModel: RCExpoModel) { }
 
-    // TO BE FIXED! (ALWAYS NEEDS A UNIQUE NAME)
     createImageTool() {
         let imageName = 'image' + this.rcExpoModel.exposition.media.length;
         let imageObject = new RCImage(imageName, this.imageUri, 'myClass', null, null);
@@ -41,12 +38,20 @@ export class ObjectListComponent implements OnInit {
         // this.rcExpoModel.exposition.addObject(imageObject, 0);
     }
 
+    createAudioTool() {
+        let imageName = 'audio' + this.rcExpoModel.exposition.media.length;
+        // name: string, url: string, autoplay, loop, userClass, pxWidth?: number, pxHeight?: number
+
+        let audioObject = new RCAudio(imageName, this.imageUri, false, false, 'myClass');
+
+        this.rcExpoModel.exposition.addObject(audioObject);
+        this.selectedObject = audioObject;    
+    }
+
     onSelect(id: number, rcobject: RCObject) {
         // only process click, if there was not a single click
-        console.log('click ?...');
         this.dblClickCtrl.timer = setTimeout(() => {
             if (!this.dblClickCtrl.prevent) {
-                console.log('single click');
                 this.selectedObject = rcobject;
             }
             this.dblClickCtrl.prevent = false;
@@ -55,7 +60,7 @@ export class ObjectListComponent implements OnInit {
     }
 
     onDoubleClick(id: number,rcobject: RCObject) {
-        // hey double click, don't process single click;
+        // detected double click, don't process single click;
         clearTimeout(this.dblClickCtrl.timer);
         this.dblClickCtrl.prevent = true;
         // insert rcobject in mde
