@@ -7,7 +7,7 @@
 }
 
 app-markdown-tool .CodeMirror { 
-	width:50.0%; 
+	width:45.0%; 
 	height: calc(100% - 220px); 
 	overflow-y: hidden; 
 	position:absolute; 
@@ -19,9 +19,9 @@ app-markdown-tool .editor-toolbar { width:80.0%; }
 app-markdown-tool .editor-statusbar { position: absolute; bottom: 0; z-index:1000;}
 
 app-markdown-tool .editor-preview-side {
-	width:50.0%;
+	width:50%; 
 }
 
 .cm-formatting {
-	color:rgba(0,0,0,.28);
+	color:rgba(0,0,80,.28);
 }

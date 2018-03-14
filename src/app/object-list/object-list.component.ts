@@ -41,27 +41,27 @@ export class ObjectListComponent implements OnInit {
         // this.rcExpoModel.exposition.addObject(imageObject, 0);
     }
 
-    onSelect(id: number, object: RCObject) {
+    onSelect(id: number, rcobject: RCObject) {
         // only process click, if there was not a single click
         console.log('click ?...');
         this.dblClickCtrl.timer = setTimeout(( ) => { 
             if (!this.dblClickCtrl.prevent) {
                 console.log('single click');
-                this.selectedObject = object;
+                this.selectedObject = rcobject;
             }
             this.dblClickCtrl.prevent = false;
         },this.dblClickCtrl.delay);
 
     }
 
-    onDoubleClick(id: number,object: RCObject) {
+    onDoubleClick(id: number,rcobject: RCObject) {
         // hey double click, don't process single click;
         clearTimeout(this.dblClickCtrl.timer);
         this.dblClickCtrl.prevent = true;
-        // insert object in mde
-        this.selectedObject = object;
+        // insert rcobject in mde
+        this.selectedObject = rcobject;
         let editor: RCMDE = this.rcExpoModel.mde;
-        insertMediaToken(editor,object.name);
+        insertMediaToken(editor,rcobject.name);
     }
 
     getCurrentSelection() {
@@ -77,7 +77,7 @@ export class ObjectListComponent implements OnInit {
     }
 
     ngOnChanges() {
-        // check if object was removed
+        // check if rcobject was removed
         if (!this.rcExpoModel.exposition.getObjectWithID(this.selectedObject.id)) {
             this.selectedObject = this.rcExpoModel.exposition.media[0];
         }

@@ -1,4 +1,4 @@
-<div class="dropzone" appDragDrop>
+<div class="dropzone" appDragDrop (filesChangeEmitter)="onFilesChange($event)">
   <div class="text-wrapper">
     <div class="centered">Drop your file here!</div>
   </div>
