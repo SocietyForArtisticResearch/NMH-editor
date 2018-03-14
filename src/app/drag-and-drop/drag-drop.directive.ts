@@ -1,4 +1,4 @@
-import { EventEmitter, HostBinding, HostListener, Directive } from '@angular/core';
+import { Output, EventEmitter, HostBinding, HostListener, Directive } from '@angular/core';
 
 @Directive({
   selector: '[appDragDrop]'
@@ -25,10 +25,11 @@ export class DragDropDirective {
   @HostListener('drop', ['$event']) public onDrop(evt){
     evt.preventDefault();
     evt.stopPropagation();
-    this.background = '#eee';
+    this.background = '#f00';
     let files = evt.dataTransfer.files;
     if(files.length > 0){
       this.filesChangeEmiter.emit(files);
+      console.log(files);
     }
   }
 }

@@ -20,6 +20,7 @@ import { DocUploaderComponent } from './doc-uploader/doc-uploader.component';
 import { StyleEditComponent } from './style-edit/style-edit.component';
 import { AudioToolComponent } from './tools/audio-tool/audio-tool.component';
 import { DragAndDropComponent } from './drag-and-drop/drag-and-drop.component';
+import { DragDropDirective } from './drag-and-drop/drag-drop.directive';
 
 // url routing
 const appRoutes: Routes = [
@@ -39,6 +40,7 @@ const appRoutes: Routes = [
     StyleEditComponent,
     AudioToolComponent,
     DragAndDropComponent,
+    DragDropDirective
   ],
   imports: [
     SortablejsModule.forRoot({ animation: 150 }),
