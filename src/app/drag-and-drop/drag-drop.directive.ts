@@ -4,7 +4,7 @@ import { Output, EventEmitter, HostBinding, HostListener, Directive } from '@ang
   selector: '[appDragDrop]'
 })
 export class DragDropDirective {
-  @Output() private filesChangeEmiter : EventEmitter<FileList> = new EventEmitter();
+  @Output() private filesChangeEmitter : EventEmitter<FileList> = new EventEmitter();
 
   constructor() { }
 
@@ -28,8 +28,8 @@ export class DragDropDirective {
     this.background = '#f00';
     let files = evt.dataTransfer.files;
     if(files.length > 0){
-      this.filesChangeEmiter.emit(files);
-      console.log(files);
+      this.filesChangeEmitter.emit(files);
+      console.log(this.filesChangeEmitter)
     }
   }
 }
