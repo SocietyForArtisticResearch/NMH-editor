@@ -729,8 +729,23 @@ function drawMedia(editor) {
     var cm = editor.codemirror;
     var stat = getState(cm, undefined);
     var options = editor.options;
-    _replaceSelection(cm, stat.image, options.insertTexts.media, undefined);
+    //    var url = "http://";
+    _replaceSelection(cm, stat.link, options.insertTexts.media, undefined);
 }
+
+export function insertMedia(editor, name) {
+    var cm = editor.codemirror;
+    //    var doc = editor.getDoc();
+    var cursor = cm.getCursor();
+
+    var pos = {
+        line: cursor.line,
+        ch: cursor.ch
+    }
+
+    cm.replaceRange("!{" + name + "}", pos);
+}
+
 
 export function insertMediaToken(editor, name: string) {
     var cm = editor.codemirror;
@@ -755,7 +770,7 @@ function drawFootnote(editor) {
     var stat = getState(cm, undefined);
     var options = editor.options;
     var fnumber = String(uniqueFootnoteId());
-    _replaceSelection(cm, stat.image, options.insertTexts.footnote, fnumber);
+    _replaceSelection(cm, stat.link, options.insertTexts.footnote, fnumber);
     cm.replaceRange("\n\n[^" + fnumber + "]:", CodeMirror.Pos(cm.lastLine()));
     cm.setCursor(CodeMirror.Pos(cm.lastLine()))
 

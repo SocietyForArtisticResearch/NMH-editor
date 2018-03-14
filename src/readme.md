@@ -15,7 +15,6 @@ __I've updated *mnh-backend* with an extra uploadAngular option, that returns js
 
 
 ## Luc
-7. mde double click media insertion: if I insert twice, the current code inserts one media 'into' the other: !{!{image2}image1}.
 * TOC
 
 9. Style of exposition should be properly namespaced, currently editor styling also affected.
@@ -72,3 +71,5 @@ Some checks we should add:
 	- the size is sane
 	- the filename should be turned into unique identifier to avoid problems of different images with the same name.
 	- perhaps only allow upload requests from localhost ?
+
+7. mde double click media insertion: if I insert twice, the current code inserts one media 'into' the other: !{!{image2}image1}.

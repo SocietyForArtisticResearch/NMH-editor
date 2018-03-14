@@ -25,7 +25,7 @@ export class DragDropDirective {
   @HostListener('drop', ['$event']) public onDrop(evt){
     evt.preventDefault();
     evt.stopPropagation();
-    this.background = '#f00';
+    this.background = '#eee';
     let files = evt.dataTransfer.files;
     if(files.length > 0){
       this.filesChangeEmitter.emit(files);

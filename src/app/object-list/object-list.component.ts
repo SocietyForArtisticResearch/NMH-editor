@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SortablejsOptions } from 'angular-sortablejs';
 
 import { RCExpoModel } from '../shared/RCExpoModel';
-import { RCMDE, insertMediaToken } from '../shared/rcmde';
+import { RCMDE, insertMediaToken, insertMedia } from '../shared/rcmde';
 import { RCObject, RCImage, RCAudio, RCSvg, RCPdf, RCVideo } from '../shared/rcexposition';
 
 
@@ -33,8 +33,8 @@ export class ObjectListComponent implements OnInit {
 
     // TO BE FIXED! (ALWAYS NEEDS A UNIQUE NAME)
     createImageTool() {
-        let imageName = 'image'+this.rcExpoModel.exposition.media.length;
-        let imageObject = new RCImage(imageName, this.imageUri, 'myClass', null,null);
+        let imageName = 'image' + this.rcExpoModel.exposition.media.length;
+        let imageObject = new RCImage(imageName, this.imageUri, 'myClass', null, null);
 
         this.rcExpoModel.exposition.addObject(imageObject);
         this.selectedObject = imageObject;
@@ -44,13 +44,13 @@ export class ObjectListComponent implements OnInit {
     onSelect(id: number, rcobject: RCObject) {
         // only process click, if there was not a single click
         console.log('click ?...');
-        this.dblClickCtrl.timer = setTimeout(( ) => { 
+        this.dblClickCtrl.timer = setTimeout(() => {
             if (!this.dblClickCtrl.prevent) {
                 console.log('single click');
                 this.selectedObject = rcobject;
             }
             this.dblClickCtrl.prevent = false;
-        },this.dblClickCtrl.delay);
+        }, this.dblClickCtrl.delay);
 
     }
 
@@ -61,7 +61,7 @@ export class ObjectListComponent implements OnInit {
         // insert rcobject in mde
         this.selectedObject = rcobject;
         let editor: RCMDE = this.rcExpoModel.mde;
-        insertMediaToken(editor,rcobject.name);
+        insertMedia(editor,rcobject.name);
     }
 
     getCurrentSelection() {
@@ -85,7 +85,7 @@ export class ObjectListComponent implements OnInit {
 
     objectWasRemoved(removedObjectId: number) {
         if (this.selectedObject.id === removedObjectId) {
-             this.selectedObject = this.rcExpoModel.exposition.media[0];
+            this.selectedObject = this.rcExpoModel.exposition.media[0];
         }
     }
 
