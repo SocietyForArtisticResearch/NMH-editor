@@ -58,6 +58,7 @@ var shortcuts = {
     "cleanBlock": "Cmd-E",
     //    "drawImage": "Cmd-Alt-I",
     "drawMedia": "Cmd-Alt-I",
+    "drawFootnote": "Cmd-Alt-F",
     "toggleBlockquote": "Cmd-'",
     "toggleOrderedList": "Cmd-Alt-L",
     "toggleUnorderedList": "Cmd-L",
@@ -1354,7 +1355,7 @@ var toolbarBuiltInButtons = {
         name: "preview",
         action: openPreview,
         className: "fa fa-eye no-disable",
-        title: "Toggle Preview",
+        title: "Open Preview",
         default: true
     },
     // "side-by-side": {
