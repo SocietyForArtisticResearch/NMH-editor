@@ -42,7 +42,7 @@ export class ObjectListComponent implements OnInit {
         let imageName = 'audio' + this.rcExpoModel.exposition.media.length;
         // name: string, url: string, autoplay, loop, userClass, pxWidth?: number, pxHeight?: number
 
-        let audioObject = new RCAudio(imageName, this.imageUri, false, false, 'myClass');
+        let audioObject = new RCAudio(imageName, this.imageUri, false, false, 'myClass', null, null);
 
         this.rcExpoModel.exposition.addObject(audioObject);
         this.selectedObject = audioObject;    
