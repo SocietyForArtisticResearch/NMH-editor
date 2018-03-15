@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { RCExpoModel } from './shared/RCExpoModel';
+import { RCMDE, insertMediaToken, insertMedia } from './shared/rcmde';
 import { RCImage, RCAudio, RCSvg, RCPdf, RCVideo } from './shared/rcexposition';
 import { ObjectListComponent } from './object-list/object-list.component';
 
@@ -26,6 +27,12 @@ export class AppComponent implements OnInit {
     onMediaButton() {
         this.showMedia = !this.showMedia;
         this.child.whenOpened();
+    }
+
+    onChangedObject(identity) {
+        let rcobject = this.rcExpoModel.exposition.getObjectWithID(identity);
+        let editor: RCMDE = this.rcExpoModel.mde;
+        insertMedia(editor,rcobject.name);
     }
 
     ngOnInit() {

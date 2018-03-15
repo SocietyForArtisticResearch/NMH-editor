@@ -98,4 +98,20 @@ input.editableTitle:focus, input.editableTitle {
     font-size:24px;
 }
 
+.dropZone {
+    display:inline-block;
+    min-width: unset;
+    min-height: unset;
+    width:200px;
+    margin: 0 auto;
+    height:unset;
+}
+
+.dropzone {
+    display:inline-block;
+    min-width: unset;
+    min-height: unset;
+    width:unset;
+    height:unset;
+}
 
