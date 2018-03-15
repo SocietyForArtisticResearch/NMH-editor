@@ -48,14 +48,23 @@
 			</table>
 		</div>
 		<div class="col-md-6">	
-			<app-basic-tool 
-				*ngIf="selectedObject != undefined"
-			    [id]="'editor'+selectedObject.id" 
-				[rcobject]="selectedObject"
-				(onRemoveObject)="objectWasRemoved($event)"
-				>		
-			</app-basic-tool>
-			<app-drag-and-drop></app-drag-and-drop>
+			<div *ngIf="selectedObject != undefined">
+				<div [ngSwitch]="selectedObject.__className">
+					<app-basic-tool *ngSwitchCase="'RCImage'"
+					    [id]="'editor'+selectedObject.id" 
+						[rcobject]="selectedObject"
+						(onRemoveObject)="objectWasRemoved($event)"
+						>		
+					</app-basic-tool>
+					<app-audio-tool *ngSwitchCase="'RCAudio'"
+					    [id]="'editor'+selectedObject.id" 
+						[rcobject]="selectedObject"
+						(onRemoveObject)="objectWasRemoved($event)"
+						>		
+					</app-audio-tool>
+					<app-drag-and-drop></app-drag-and-drop>
+				</div>
+			</div>
 		</div>
 	</div>
 	<div class="row">

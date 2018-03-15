@@ -12,9 +12,10 @@
             size="7">
     </div>
     <div class="form-group">
-
-        <label for="'audioUrlField'+{{id}}">Audio url</label>
-        <input formControlName="audioUrl" class="" id="'audioUrlField'+{{id}}" type="text">
+        <div class="urlField">
+            <label for="{{'audioUrlField'+id}}">Audio url</label>
+            <input formControlName="audioUrl" class="" id="{{'audioUrlField'+id}}" type="text">
+        </div>
         <label for="audioFileSelect">Pick an audio file:</label>
         <input id="audioFileSelect" class="form-control-file" type="file" (change)="onAudioSelect($event)" name="audioFile">
     </div>

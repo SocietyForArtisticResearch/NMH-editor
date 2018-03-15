@@ -33,7 +33,7 @@ export class AudioToolComponent implements OnInit {
     selectedAudio: File = null;
 
     identifier: number;
-    @Input() object: RCMedia;
+    @Input() rcobject: RCMedia;
     @Input() id: number;
 
     @Output() onRemoveObject = new EventEmitter();
@@ -43,29 +43,29 @@ export class AudioToolComponent implements OnInit {
     constructor(private http: HttpClient, private rcExpoModel: RCExpoModel) { }
 
     ngOnInit() {
-        this.identifier = this.object.id;
+        this.identifier = this.rcobject.id;
 
         this.toolForm = new FormGroup({
-            'name': new FormControl(this.object.name,
+            'name': new FormControl(this.rcobject.name,
                 [
-                    forbiddenNameValidator(this.rcExpoModel, this.object.name), // <-- Here's how you pass in the custom validator.
+                    forbiddenNameValidator(this.rcExpoModel, this.rcobject.name), // <-- Here's how you pass in the custom validator.
                     Validators.required
                 ]),
-            'audioUrl': new FormControl(this.object.url, [Validators.required])
+            'audioUrl': new FormControl(this.rcobject.url, [Validators.required])
         });
 
 
-        this.toolType = this.object.constructor.name;
+        this.toolType = this.rcobject.constructor.name;
     }
 
     ngOnChanges() {
         if (this.toolForm) {
             this.toolForm.setValue({
-                name: this.object.name,
-                audioUrl: this.object.url,
+                name: this.rcobject.name,
+                audioUrl: this.rcobject.url,
             });
             this.toolForm.controls['name'].setValidators(
-                [forbiddenNameValidator(this.rcExpoModel, this.object.name), // <-- Here's how you pass in the custom validator.
+                [forbiddenNameValidator(this.rcExpoModel, this.rcobject.name), // <-- Here's how you pass in the custom validator.
                 Validators.required]);
             this.toolForm.controls['name'].updateValueAndValidity();
         }
@@ -74,7 +74,7 @@ export class AudioToolComponent implements OnInit {
     onSubmit() {
         // Angular protects its values of the model very strictly, so we have to update rcexposition through a deepcopy of the tool.
         let deepCopy = this.prepareSaveObject();
-        this.rcExpoModel.exposition.replaceObjectWithID(this.object.id, deepCopy);
+        this.rcExpoModel.exposition.replaceObjectWithID(this.rcobject.id, deepCopy);
     }
 
     prepareSaveObject(): RCAudio {
@@ -87,8 +87,8 @@ export class AudioToolComponent implements OnInit {
         /*
          * Directly remove this on the model, model change will automatically result in view update.
          */
-        this.rcExpoModel.exposition.removeObjectWithID(this.object.id);
-        this.onRemoveObject.emit(this.object.id);
+        this.rcExpoModel.exposition.removeObjectWithID(this.rcobject.id);
+        this.onRemoveObject.emit(this.rcobject.id);
     }
 
     onAudioSelect(event) {
@@ -108,6 +108,6 @@ export class AudioToolComponent implements OnInit {
             });
         }
         let deepCopy = this.prepareSaveObject();
-        this.rcExpoModel.exposition.replaceObjectWithID(this.object.id, deepCopy);
+        this.rcExpoModel.exposition.replaceObjectWithID(this.rcobject.id, deepCopy);
     }
 }
