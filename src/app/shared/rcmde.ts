@@ -10,7 +10,8 @@ import "codemirror/mode/gfm/gfm.js";
 import "codemirror/mode/xml/xml.js";
 import * as MarkdownIt from "markdown-it";
 import * as  MarkdownItFootnote from "markdown-it-footnote";
-const md = new MarkdownIt({ html: true, typographer: true }).use(MarkdownItFootnote);
+import * as  MarkdownItCenter from "markdown-it-center-text";
+const md = new MarkdownIt({ html: true, typographer: true }).use(MarkdownItFootnote).use(MarkdownItCenter);
 import { RCImage, RCAudio, RCSvg, RCPdf, RCVideo, RCExposition } from '../shared/rcexposition';
 
 //import * as CodeMirrorSpellChecker from 'codemirror-spell-checker'
@@ -28,6 +29,25 @@ function nthIndexOf(input: string, pattern: string, n: number) {
     return i;
 }
 
+// Remember old renderer, if overriden, or proxy to default renderer
+var defaultRender = md.renderer.rules.link_open || function (tokens, idx, options, env, self) {
+    return self.renderToken(tokens, idx, options);
+};
+
+md.renderer.rules.link_open = function (tokens, idx, options, env, self) {
+    // If you are sure other plugins can't add `target` - drop check below
+    var aIndex = tokens[idx].attrIndex('target');
+
+    if (aIndex < 0) {
+        tokens[idx].attrPush(['target', '_blank']); // add new attribute
+    } else {
+        tokens[idx].attrs[aIndex][1] = '_blank';    // replace value of existing attr
+    }
+
+    // pass token to default renderer.
+    return defaultRender(tokens, idx, options, env, self);
+};
+
 // // Some variables
 const isMac = /Mac/.test(navigator.platform);
 
@@ -41,6 +61,7 @@ var bindings = {
     "toggleHeadingBigger": toggleHeadingBigger,
     //    "drawImage": drawImage,
     "drawMedia": drawMedia,
+    "toggleCenter": toggleCenter,
     "toggleBlockquote": toggleBlockquote,
     "toggleOrderedList": toggleOrderedList,
     "toggleUnorderedList": toggleUnorderedList,
@@ -331,6 +352,11 @@ function toggleItalic(editor) {
 function toggleStrikethrough(editor) {
     _toggleBlock(editor, "strikethrough", "~~", undefined);
 }
+
+function toggleCenter(editor) {
+    _toggleBlock(editor, "center", "->", "<-");
+}
+
 
 /**
  * Action for toggling code block.
@@ -1287,6 +1313,13 @@ var toolbarBuiltInButtons = {
         action: toggleCodeBlock,
         className: "fa fa-code",
         title: "Code"
+    },
+    "center": {
+        name: "center",
+        action: toggleCenter,
+        className: "fa fa-align-center",
+        title: "Center",
+        default: true
     },
     "quote": {
         name: "quote",

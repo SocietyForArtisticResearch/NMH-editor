@@ -16,8 +16,6 @@ __I've updated *mnh-backend* with an extra uploadAngular option, that returns js
 
 ## Luc
 * !{} why only with space
-* markdown center 
-* url in new window
 * TOC 2 levels h2, h3
 
 9. Style of exposition should be properly namespaced, currently editor styling also affected.
@@ -84,3 +82,6 @@ Some checks we should add:
 
 7. mde double click media insertion: if I insert twice, the current code inserts one media 'into' the other: !{!{image2}image1}.
 
+
+* url in new window
+* markdown center 
