@@ -71,8 +71,8 @@ export class BasicToolComponent implements OnInit {
                 'widthInPixels': this.rcobject.pxWidth,
                 'heightInPixels': this.rcobject.pxHeight,
             });
-            document.getElementById('imageFileSelect').value = null;
-            
+            (<HTMLInputElement>document.getElementById('imageFileSelect')).value = null;
+
             this.toolForm.controls['name'].setValidators(
                 [forbiddenNameValidator(this.rcExpoModel, this.rcobject.name), // <-- Here's how you pass in the custom validator.
                 Validators.required]);
