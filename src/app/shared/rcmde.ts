@@ -1431,11 +1431,13 @@ export class RCMDE {
     autosaveTimeoutId: number;
     toolbar: any[];
     toolbarElements: any;
+    changed: boolean;
     exposition: RCExposition;
 
     constructor(exposition: RCExposition, options) {
         this.exposition = exposition;
         this.options = options;
+        this.changed = true;
         options.parent = this;
         // Check if Font Awesome needs to be auto downloaded
         var autoDownloadFA = true;
@@ -1558,12 +1560,20 @@ export class RCMDE {
         //     console.log("typing");
         // });
         let self = this;
+        let cm = self.codemirror;
+        let wrapper = cm.getWrapperElement();
+        let preview = wrapper.nextSibling;
+        let scrolling = false;
+        // don't auto scroll when user is scrolling
+        preview.onscroll = function () {
+            scrolling = true;
+            self.changed = false;
+            setTimeout(() => scrolling = false, 2500);
+        };
+
         setInterval(function () {
-            var cm = self.codemirror;
-            var wrapper = cm.getWrapperElement();
-            var preview = wrapper.nextSibling;
             var el = document.getElementById("_cursorPosition");
-            if (el) {
+            if (el && cm.hasFocus() && !scrolling && self.changed) {
                 //                console.log(el.scrollTop);
                 //var top = el.scrollTop - (window.innerHeight / 2);
                 //window.scrollTo(0, top);
@@ -1572,7 +1582,7 @@ export class RCMDE {
                 preview.scrollTo({ left: 0, top: Math.max(0, el.offsetTop - 100), behavior: 'smooth' });
                 //                el.scrollIntoView();
             }
-        }, 1000);
+        }, 600);
 
     }
 
@@ -1629,6 +1639,7 @@ export class RCMDE {
                 text = text.substr(0, arrayPos) + cursorAnchor + text.substr(arrayPos);
             }
         };
+        self.changed = true;
         let insertedTools = text.replace(re, function (m, p1) { return self.mediaHTML(p1) });
         let basicHTML = md.render(insertedTools);
         let renderedHTML = "<div class=\"exposition\">" + "<div class=\"exposition-content\">" + basicHTML + "</div>" + "</div>";
