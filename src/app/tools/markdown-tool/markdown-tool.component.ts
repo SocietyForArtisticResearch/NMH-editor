@@ -33,6 +33,7 @@ export class MarkdownToolComponent implements AfterViewInit {
 
 
         this.mde.value(this.testString());
+        this.mde.exposition.footnoteCounter = 2;
 
         //        this.mde.toggleSideBySide();
 

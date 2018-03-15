@@ -53,6 +53,7 @@ The new Exposition does not contain weaves but a single markdown text. It replac
 export class RCExposition {
     __className: string;
     style: string;
+    footnoteCounter: number;
     title: string;
     authors: string[];
     breakpoint: number;
@@ -64,6 +65,7 @@ export class RCExposition {
     constructor(title, authors, style, breakpoint = 1200) {
         this.__className = "RCExposition";
         this.style = style;
+        this.footnoteCounter = 1;
         this.title = title;
         this.authors = authors;
         this.breakpoint = breakpoint;
