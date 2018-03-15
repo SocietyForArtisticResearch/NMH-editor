@@ -11,7 +11,7 @@ export class RCExpoModel {
     exposition: RCExposition;
     markdownInput: string;
     markdownProcessed: string;
-    mde :any;
+    mde: any;
 
     constructor() {
         // number of Y cells should be updated by number of tools).
@@ -29,7 +29,12 @@ export class RCExpoModel {
 
 .rcimage {
     margin:10px 0px;
-}`;
+}
+
+.rcimage img {
+	max-width: 100%;
+}
+`;
 
         this.exposition = new RCExposition('My First Exposition', ['authors'], defaultStyle, 1200);
     }
