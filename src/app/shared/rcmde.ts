@@ -1673,7 +1673,7 @@ export class RCMDE {
             }
         };
         self.changed = true;
-        text = "# " + this.exposition.title + text;
+        text = "# " + this.exposition.title + "\n" + text;
         let insertedTools = text.replace(re, function (m, p1) { return self.mediaHTML(p1) });
         let basicHTML = md.render(insertedTools);
         let renderedHTML = "<div class=\"exposition\">" + "<div class=\"exposition-content\">" + basicHTML + "</div>" + "</div>";

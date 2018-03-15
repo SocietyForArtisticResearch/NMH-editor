@@ -48,8 +48,7 @@ export class MarkdownToolComponent implements AfterViewInit {
     };
 
     testString() {
-        return `
-This note demonstrates some of what [Markdown](http://daringfireball.net/projects/markdown/) is capable of doing.
+        return `This note demonstrates some of what [Markdown](http://daringfireball.net/projects/markdown/) is capable of doing.
 
 *Note: Feel free to play with this page.*
 
