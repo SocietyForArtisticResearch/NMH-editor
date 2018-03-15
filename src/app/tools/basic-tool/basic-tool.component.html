@@ -2,7 +2,7 @@
   <div class="panel-body" [ngClass]="{collapse: collapsed}">
     <form [formGroup]="toolForm" #formDir="ngForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
-      <div *ngIf="allowEditName">
+      <div *ngIf="allowEditName()">
         <label for="tool-edit-header-{{id}}">Name:</label>
         <input 
               id="tool-edit-header-{{id}}" 
@@ -15,7 +15,7 @@
     </div>
     <div class="form-group">
         <label for="imageFileSelect">Pick an image:</label>
-        <input id="imageFileSelect" class="form-control-file" type="file" (change)="onImageSelect($event)" name="imageSelect">
+        <input formControlName="imagePickerButton" id="imageFileSelect" class="form-control-file" type="file" (change)="onImageSelect($event)" name="imageSelect">
         <div class="imageUrlElements">
         <label for="'imageUrlField'+{{id}}">Image url:</label>
         <input formControlName="imageUrl" class="" id="'imageUrlField'+{{id}}" type="text">

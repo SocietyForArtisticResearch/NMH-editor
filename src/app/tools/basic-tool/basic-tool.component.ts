@@ -31,7 +31,6 @@ export class BasicToolComponent implements OnInit {
     toolType: string;
     selectedImage: File = null;
     formattedMessage: string;
-    allowEditName: boolean = false;
 
     identifier: number;
     @Input() rcobject: RCMedia;
@@ -55,7 +54,8 @@ export class BasicToolComponent implements OnInit {
                 ]),
             'imageUrl': new FormControl(this.rcobject.url, [Validators.required]),
             'widthInPixels': new FormControl(this.rcobject.pxWidth),
-            'heightInPixels': new FormControl(this.rcobject.pxHeight)
+            'heightInPixels': new FormControl(this.rcobject.pxHeight),
+            'imagePickerButton' : new FormControl(null)
         });
 
 
@@ -70,8 +70,9 @@ export class BasicToolComponent implements OnInit {
                 'imageUrl': this.rcobject.url,
                 'widthInPixels': this.rcobject.pxWidth,
                 'heightInPixels': this.rcobject.pxHeight,
+                'imagePickerButton' : null
             });
-            (<HTMLInputElement>document.getElementById('imageFileSelect')).value = null;
+            //(<HTMLInputElement>document.getElementById('imageFileSelect')).value = null;
 
             this.toolForm.controls['name'].setValidators(
                 [forbiddenNameValidator(this.rcExpoModel, this.rcobject.name), // <-- Here's how you pass in the custom validator.
@@ -83,6 +84,13 @@ export class BasicToolComponent implements OnInit {
             });
 
         }
+    }
+
+    allowEditName() {
+        if (this.rcobject.url == null) {
+            return false;
+        }
+        return true;
     }
     
 
@@ -109,7 +117,6 @@ export class BasicToolComponent implements OnInit {
     }
 
     onImageSelect(event) {
-        this.allowEditName = true;
 
         this.selectedImage = <File>event.target.files[0];
         const fd = new FormData();
@@ -121,6 +128,7 @@ export class BasicToolComponent implements OnInit {
     }
 
     onResult(result) {
+
         if (this.toolForm) {
             this.toolForm.patchValue({
                 imageUrl: Backend.baseAddress + result.url,
