@@ -79,7 +79,7 @@ export class AudioToolComponent implements OnInit {
 
     prepareSaveObject(): RCAudio {
         const formModel = this.toolForm.value;
-        const newObject: RCAudio = new RCAudio(formModel.name, formModel.audioUrl, false, false, 'userClass');
+        const newObject: RCAudio = new RCAudio(formModel.name, formModel.audioUrl, false, false, 'userClass', null , null);
         return newObject;
     }
 
@@ -93,6 +93,7 @@ export class AudioToolComponent implements OnInit {
 
     onAudioSelect(event) {
         this.selectedAudio = <File>event.target.files[0];
+        console.log(this.selectedAudio);
         const fd = new FormData();
         fd.append('uploadFile', this.selectedAudio, this.selectedAudio.name);
         this.http.post(Backend.uploadAddress, fd).subscribe(result => {
@@ -104,7 +105,7 @@ export class AudioToolComponent implements OnInit {
     onResult(result) {
         if (this.toolForm) {
             this.toolForm.patchValue({
-                imageUrl: Backend.baseAddress + result.url,
+                audioUrl: Backend.baseAddress + result.url,
             });
         }
         let deepCopy = this.prepareSaveObject();
