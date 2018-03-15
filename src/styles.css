@@ -7,7 +7,7 @@
 }
 
 app-markdown-tool .CodeMirror { 
-	width:45.0%; 
+	width:47.0%; 
 	height: calc(100% - 220px); 
 	overflow-y: hidden; 
 	position:absolute; 
