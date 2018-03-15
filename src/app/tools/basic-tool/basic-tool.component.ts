@@ -37,6 +37,7 @@ export class BasicToolComponent implements OnInit {
     @Input() id: number;
 
     @Output() onRemoveObject = new EventEmitter();
+    @Output() onChangedObject = new EventEmitter();
 
 
 
@@ -121,5 +122,6 @@ export class BasicToolComponent implements OnInit {
         }
         let deepCopy = this.prepareSaveObject();
         this.rcExpoModel.exposition.replaceObjectWithID(this.rcobject.id, deepCopy);
+        this.onChangedObject.emit(this.rcobject.id);
     }
 }

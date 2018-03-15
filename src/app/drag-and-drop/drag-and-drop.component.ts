@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { DragDropDirective } from './drag-drop.directive';
 import { Backend } from '../shared/Backend';
 import { RCExpoModel } from '../shared/RCExpoModel';
@@ -13,6 +13,8 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./drag-and-drop.component.css'],
 })
 export class DragAndDropComponent implements OnInit {
+  @Output() onChangedObject = new EventEmitter();
+
   constructor(private http: HttpClient, private rcExpoModel: RCExpoModel) { }
 
   ngOnInit() {
@@ -35,6 +37,8 @@ export class DragAndDropComponent implements OnInit {
       let imageUri = Backend.baseAddress + result.url;
       let imageObject = new RCImage(imageName, imageUri, 'myClass', null, null);
       this.rcExpoModel.exposition.addObject(imageObject);
+
+      this.onChangedObject.emit(imageObject.id);
   }
  
 }
