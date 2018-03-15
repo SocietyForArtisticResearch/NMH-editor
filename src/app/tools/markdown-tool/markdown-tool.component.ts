@@ -31,8 +31,9 @@ export class MarkdownToolComponent implements AfterViewInit {
         Editor.toggleSideBySide(this.mde);
         expoModel.mde = this.mde;
 
-        
+
         this.mde.value(this.testString());
+        this.mde.exposition.footnoteCounter = 2;
 
         //        this.mde.toggleSideBySide();
 
@@ -47,16 +48,16 @@ export class MarkdownToolComponent implements AfterViewInit {
         //        this.mde.codemirror.on("keyHandled", () => { console.log('hallo') });
     };
 
-    testString( ) {
+    testString() {
         return `# An exhibit of Markdown
 
 This note demonstrates some of what [Markdown](http://daringfireball.net/projects/markdown/) is capable of doing.
 
-*Note: Feel free to play with this page. Unlike regular notes, this doesn't automatically save itself.*
+*Note: Feel free to play with this page.*
 
 ## Basic formatting
 
-Paragraphs can be written like so. A paragraph is the basic block of Markdown. A paragraph is what text will turn into when there is no reason it should become anything else.
+Paragraphs can be written like this. A paragraph is the basic block of Markdown. A paragraph is what text will turn into when there is no reason it should become anything else.
 
 Paragraphs must be separated by a blank line. Basic formatting of *italics* and **bold** is supported. This *can be **nested** like* so.
 
@@ -79,7 +80,7 @@ Paragraphs must be separated by a blank line. Basic formatting of *italics* and 
 * And there's more...
 
 # Footnotes
-This is a footnote [^1]
+This is a footnote[^1]. It's content is specified at the bottom of this page.
 
 ## Paragraph modifiers
 
@@ -96,14 +97,6 @@ You can also make \`inline code\` to add code into other things.
 ## Headings
 
 There are six levels of headings. They correspond with the six levels of HTML headings. You've probably noticed them already in the page. Each level down uses one more hash character.
-
-### Headings *can* also contain **formatting**
-
-### They can even contain \`inline code\`
-
-Of course, demonstrating what headings look like messes up the structure of the page.
-
-I don't recommend using more than three or four levels of headings here, because, when you're smallest heading isn't too small, and you're largest heading isn't too big, and you want each size up to look noticeably larger and more important, there there are only so many sizes that you can use.
 
 ## URLs
 

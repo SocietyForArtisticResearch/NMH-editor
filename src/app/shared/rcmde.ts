@@ -58,6 +58,7 @@ var shortcuts = {
     "cleanBlock": "Cmd-E",
     //    "drawImage": "Cmd-Alt-I",
     "drawMedia": "Cmd-Alt-I",
+    "drawFootnote": "Cmd-Alt-F",
     "toggleBlockquote": "Cmd-'",
     "toggleOrderedList": "Cmd-Alt-L",
     "toggleUnorderedList": "Cmd-L",
@@ -754,13 +755,6 @@ export function insertMediaToken(editor, name: string) {
     _replaceSelection(cm, stat.image, ["!{", name + "}"], undefined);
 }
 
-let uniqueFootnoteId = function () {
-    var i = 1;
-    return function () {
-        return i++;
-    };
-}();
-
 
 /**
  * Action for drawing a footnote.
@@ -769,7 +763,7 @@ function drawFootnote(editor) {
     var cm = editor.codemirror;
     var stat = getState(cm, undefined);
     var options = editor.options;
-    var fnumber = String(uniqueFootnoteId());
+    var fnumber = String(editor.nextFootnoteId());
     _replaceSelection(cm, stat.link, options.insertTexts.footnote, fnumber);
     cm.replaceRange("\n\n[^" + fnumber + "]:", CodeMirror.Pos(cm.lastLine()));
     cm.setCursor(CodeMirror.Pos(cm.lastLine()))
@@ -1354,7 +1348,7 @@ var toolbarBuiltInButtons = {
         name: "preview",
         action: openPreview,
         className: "fa fa-eye no-disable",
-        title: "Toggle Preview",
+        title: "Open Preview",
         default: true
     },
     // "side-by-side": {
@@ -1489,6 +1483,7 @@ export class RCMDE {
                 }
             }
         }
+
 
         // Handle status bar
         if (!options.hasOwnProperty("status")) {
@@ -2074,6 +2069,17 @@ export class RCMDE {
         let c = 0;
         let insertedTools = md.replace(re, function (m, p1) { let str = `!{${lst[c]}}`; c = c + 1; return str; });
         return insertedTools;
+    }
+
+    // let uniqueFootnoteId = function () {
+    // 	var i = 1;
+    // 	return function () {
+    //         return i++;
+    // 	};
+    // }();
+
+    nextFootnoteId() {
+        return this.exposition.footnoteCounter++;
     }
 
 
