@@ -4,7 +4,14 @@
 <!--   <div [ngClass]="{ 'shifted' : showMedia }">
  -->
       <div>
-	  <input class="editableTitle" type='text' value="{{this.rcExpoModel.exposition.title}}" [(ngModel)]="this.rcExpoModel.exposition.title" data-toggle="tooltip" data-placement="top" title="Edit title">
+	  <input class="editableTitle" 
+      type='text' 
+      value="{{this.rcExpoModel.exposition.title}}" 
+      [(ngModel)]="this.rcExpoModel.exposition.title" 
+      (keyup)="this.rcExpoModel.mde.forceRender()" 
+      data-toggle="tooltip" 
+      data-placement="top" 
+      title="Edit title">
     <app-drag-and-drop class="dropZone" (onChangedObject)=onChangedObject($event)></app-drag-and-drop>
 	  <hr>
 	  <button type="button" [class.active]="showMedia" class="btn btn-primary" (click)="onMediaButton()" data-toggle="tooltip" data-placement="top" title="Upload and inspect media">Media list</button>
