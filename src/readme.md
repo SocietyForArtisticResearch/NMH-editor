@@ -15,7 +15,10 @@ __I've updated *mnh-backend* with an extra uploadAngular option, that returns js
 
 
 ## Luc
-* TOC
+* !{} why only with space
+* markdown center 
+* url in new window
+* TOC 2 levels h2, h3
 
 9. Style of exposition should be properly namespaced, currently editor styling also affected.
 
@@ -35,6 +38,13 @@ Changed tsconfig.app.json,  "module": "esnext", to resolve conflict with use of 
 4. is editor responsive?
 5. add export as other types of documents
 7. make media list more responsive (perhaps should be full screen on small screens ?).
+
+
+## Possible but will cost them
+* less compiler
+* paragraph a la git doc
+
+
 
 ## Changes in rcexpostion.ts 23/02/2018
 
@@ -73,3 +83,4 @@ Some checks we should add:
 	- perhaps only allow upload requests from localhost ?
 
 7. mde double click media insertion: if I insert twice, the current code inserts one media 'into' the other: !{!{image2}image1}.
+

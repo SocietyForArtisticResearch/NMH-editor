@@ -1582,7 +1582,7 @@ export class RCMDE {
                 preview.scrollTo({ left: 0, top: Math.max(0, el.offsetTop - 100), behavior: 'smooth' });
                 //                el.scrollIntoView();
             }
-        }, 600);
+        }, 250);
 
     }
 
