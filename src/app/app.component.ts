@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { RCExpoModel } from './shared/RCExpoModel';
 import { RCMDE, insertMediaToken, insertMedia } from './shared/rcmde';
 import { RCImage, RCAudio, RCSvg, RCPdf, RCVideo } from './shared/rcexposition';
@@ -12,7 +12,7 @@ import { ObjectListComponent } from './object-list/object-list.component';
     styleUrls: ['./app.component.css'],
     providers: [RCExpoModel]
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements AfterViewInit {
     // rcExpoModel is injected into this compenent (and all its children through their constructors !)
     showMedia: boolean = false;
     showImport: boolean = false;
@@ -26,7 +26,9 @@ export class AppComponent implements OnInit {
 
     onMediaButton() {
         this.showMedia = !this.showMedia;
-        this.child.whenOpened();
+        if(this.child) {
+            this.child.whenOpened();
+        }
     }
 
     onChangedObject(identity) {
@@ -35,10 +37,7 @@ export class AppComponent implements OnInit {
         insertMedia(editor,rcobject.name);
     }
 
-    ngOnInit() {
+    ngAfterViewInit() {
 
-        // for testing purposes
-        //  let imageObject = new RCImage('leonardo', "assets/media/leonardo.jpg", 'myClass',100,100);
-        //this.rcExpoModel.exposition.addObject(imageObject);
     }
 }

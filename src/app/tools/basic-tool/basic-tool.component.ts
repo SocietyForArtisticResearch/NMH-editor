@@ -31,6 +31,7 @@ export class BasicToolComponent implements OnInit {
     toolType: string;
     selectedImage: File = null;
     formattedMessage: string;
+    allowEditName: boolean = false;
 
     identifier: number;
     @Input() rcobject: RCMedia;
@@ -62,13 +63,16 @@ export class BasicToolComponent implements OnInit {
     }
 
     ngOnChanges() {
+        console.log('this.obect.url',this.rcobject.url);
         if (this.toolForm) {
             this.toolForm.setValue({
-                name: this.rcobject.name,
-                imageUrl: this.rcobject.url,
-                widthInPixels: this.rcobject.pxWidth,
-                heightInPixels: this.rcobject.pxHeight
+                'name': this.rcobject.name,
+                'imageUrl': this.rcobject.url,
+                'widthInPixels': this.rcobject.pxWidth,
+                'heightInPixels': this.rcobject.pxHeight,
             });
+            document.getElementById('imageFileSelect').value = null;
+            
             this.toolForm.controls['name'].setValidators(
                 [forbiddenNameValidator(this.rcExpoModel, this.rcobject.name), // <-- Here's how you pass in the custom validator.
                 Validators.required]);
@@ -105,6 +109,8 @@ export class BasicToolComponent implements OnInit {
     }
 
     onImageSelect(event) {
+        this.allowEditName = true;
+
         this.selectedImage = <File>event.target.files[0];
         const fd = new FormData();
         fd.append('uploadFile', this.selectedImage, this.selectedImage.name);
