@@ -17,6 +17,16 @@ import { RCImage, RCAudio, RCSvg, RCPdf, RCVideo, RCExposition } from '../shared
 // var CodeMirrorSpellChecker = require("codemirror-spell-checker");
 // var marked = require("marked");
 
+function nthIndexOf(input: string, pattern: string, n: number) {
+    var i = -1;
+
+    while (n-- && i++ < input.length) {
+        i = input.indexOf(pattern, i);
+        if (i < 0) break;
+    }
+
+    return i;
+}
 
 // // Some variables
 const isMac = /Mac/.test(navigator.platform);
@@ -1542,6 +1552,28 @@ export class RCMDE {
         if (options.initialValue && (!this.options.autosave || this.options.autosave.foundSavedValue !== true)) {
             this.value(options.initialValue);
         }
+
+        // // scroller
+        // this.codemirror.on("keyup", function (cm, event) {
+        //     console.log("typing");
+        // });
+        let self = this;
+        setInterval(function () {
+            var cm = self.codemirror;
+            var wrapper = cm.getWrapperElement();
+            var preview = wrapper.nextSibling;
+            var el = document.getElementById("_cursorPosition");
+            if (el) {
+                //                console.log(el.scrollTop);
+                //var top = el.scrollTop - (window.innerHeight / 2);
+                //window.scrollTo(0, top);
+                //
+                //console.log(el.offsetTop);
+                preview.scrollTo({ left: 0, top: Math.max(0, el.offsetTop - 100), behavior: 'smooth' });
+                //                el.scrollIntoView();
+            }
+        }, 1000);
+
     }
 
     static outerHTML(node) {
@@ -1581,6 +1613,22 @@ export class RCMDE {
     markdown(text: string) {
         let self = this;
         let re = /!{(\w+)}/g;
+        if (this.codemirror.hasFocus()) {
+            //            let cursorAnchor = "<a href=\"#\" id=\"_cursorPosition\" style=\"display: none\"></a>";
+            let cursorAnchor = "<a href=\"#\" id=\"_cursorPosition\"></a>";
+            var cursor = this.codemirror.getCursor();
+            var pos = {
+                line: cursor.line,
+                ch: cursor.ch
+            };
+            let arrayPos = nthIndexOf(text, '\n', pos.line) + pos.ch;
+            arrayPos = Math.max(0, arrayPos);
+            if (arrayPos == 0) {
+                text = cursorAnchor + text;
+            } else {
+                text = text.substr(0, arrayPos) + cursorAnchor + text.substr(arrayPos);
+            }
+        };
         let insertedTools = text.replace(re, function (m, p1) { return self.mediaHTML(p1) });
         let basicHTML = md.render(insertedTools);
         let renderedHTML = "<div class=\"exposition\">" + "<div class=\"exposition-content\">" + basicHTML + "</div>" + "</div>";
@@ -1807,32 +1855,32 @@ export class RCMDE {
         }
 
         // Syncs scroll  editor -> preview
-        var cScroll = false;
-        var pScroll = false;
-        cm.on("scroll", function (v) {
-            if (cScroll) {
-                cScroll = false;
-                return;
-            }
-            pScroll = true;
-            var height = v.getScrollInfo().height - v.getScrollInfo().clientHeight;
-            var ratio = parseFloat(v.getScrollInfo().top) / height;
-            var move = (preview.scrollHeight - preview.clientHeight) * ratio;
-            preview.scrollTop = move;
-        });
+        // var cScroll = false;
+        // var pScroll = false;
+        // cm.on("scroll", function (v) {
+        //     if (cScroll) {
+        //         cScroll = false;
+        //         return;
+        //     }
+        //     pScroll = true;
+        //     var height = v.getScrollInfo().height - v.getScrollInfo().clientHeight;
+        //     var ratio = parseFloat(v.getScrollInfo().top) / height;
+        //     var move = (preview.scrollHeight - preview.clientHeight) * ratio;
+        //     preview.scrollTop = move;
+        // });
 
-        // Syncs scroll  preview -> editor
-        preview.onscroll = function () {
-            if (pScroll) {
-                pScroll = false;
-                return;
-            }
-            cScroll = true;
-            var height = preview.scrollHeight - preview.clientHeight;
-            var ratio = parseFloat(preview.scrollTop) / height;
-            var move = (cm.getScrollInfo().height - cm.getScrollInfo().clientHeight) * ratio;
-            cm.scrollTo(0, move);
-        };
+        // // Syncs scroll  preview -> editor
+        // preview.onscroll = function () {
+        //     if (pScroll) {
+        //         pScroll = false;
+        //         return;
+        //     }
+        //     cScroll = true;
+        //     var height = preview.scrollHeight - preview.clientHeight;
+        //     var ratio = parseFloat(preview.scrollTop) / height;
+        //     var move = (cm.getScrollInfo().height - cm.getScrollInfo().clientHeight) * ratio;
+        //     cm.scrollTo(0, move);
+        // };
         return preview;
     };
 
