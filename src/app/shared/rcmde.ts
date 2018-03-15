@@ -763,7 +763,7 @@ function drawFootnote(editor) {
     var cm = editor.codemirror;
     var stat = getState(cm, undefined);
     var options = editor.options;
-    var fnumber = String(editor.nextFootnoteId());
+    var fnumber = editor.nextFootnoteId();
     _replaceSelection(cm, stat.link, options.insertTexts.footnote, fnumber);
     cm.replaceRange("\n\n[^" + fnumber + "]:", CodeMirror.Pos(cm.lastLine()));
     cm.setCursor(CodeMirror.Pos(cm.lastLine()))
@@ -2079,7 +2079,22 @@ export class RCMDE {
     // }();
 
     nextFootnoteId() {
-        return this.exposition.footnoteCounter++;
+        //        return this.exposition.footnoteCounter++;
+        //        let reg = /\[\^(.*)\][^:]/g;
+        let reg = /\[\^([^\]]*)\][^:]/g;
+        let footnotes = this.value().match(reg).map(e => e.replace(reg, '$1'));
+        let nextId = footnotes.length + 1;
+        let testNextId;
+        let testNextIdN = 1;
+        if (footnotes.includes(String(nextId))) {
+            testNextId = String(nextId) + "-" + String(testNextIdN);
+            while (footnotes.includes(testNextId)) {
+                testNextIdN++;
+                testNextId = String(nextId) + "-" + String(testNextIdN);
+            };
+            return testNextId;
+        };
+        return String(nextId);
     }
 
 
