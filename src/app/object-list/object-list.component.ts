@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { SortablejsOptions } from 'angular-sortablejs';
 
 import { RCExpoModel } from '../shared/RCExpoModel';
@@ -14,6 +14,7 @@ import { RCObject, RCImage, RCAudio, RCSvg, RCPdf, RCVideo } from '../shared/rce
 export class ObjectListComponent implements OnInit {
     imageUri: string = null;
     selectedObject: RCObject = null;
+
     // member object to deal with single vs double click
     dblClickCtrl = {
         timer: <number>2,
@@ -87,6 +88,16 @@ export class ObjectListComponent implements OnInit {
         if (!this.rcExpoModel.exposition.getObjectWithID(this.selectedObject.id)) {
             this.selectedObject = this.rcExpoModel.exposition.media[0];
         }
+    }
+
+    whenOpened() {
+        if (this.rcExpoModel.exposition.media.length > 0) {
+            this.selectedObject = this.rcExpoModel.exposition.media[0];
+        }
+    }
+
+    onChangedObject(identity) {
+        this.selectedObject = this.rcExpoModel.exposition.getObjectWithID(identity);
     }
 
     objectWasRemoved(removedObjectId: number) {

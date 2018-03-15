@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { RCExpoModel } from './shared/RCExpoModel';
 import { RCImage, RCAudio, RCSvg, RCPdf, RCVideo } from './shared/rcexposition';
+import { ObjectListComponent } from './object-list/object-list.component';
 
 
 
@@ -16,8 +17,15 @@ export class AppComponent implements OnInit {
     showImport: boolean = false;
     editStyle: boolean = false;
 
+    @ViewChild(ObjectListComponent) child: ObjectListComponent;
+
     constructor(private rcExpoModel: RCExpoModel) {
 
+    }
+
+    onMediaButton() {
+        this.showMedia = !this.showMedia;
+        this.child.whenOpened();
     }
 
     ngOnInit() {

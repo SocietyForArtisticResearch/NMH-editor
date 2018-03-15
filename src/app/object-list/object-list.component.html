@@ -54,17 +54,20 @@
 					    [id]="'editor'+selectedObject.id" 
 						[rcobject]="selectedObject"
 						(onRemoveObject)="objectWasRemoved($event)"
+						(onChangedObject)="onChangedObject($event)"
 						>		
 					</app-basic-tool>
 					<app-audio-tool *ngSwitchCase="'RCAudio'"
 					    [id]="'editor'+selectedObject.id" 
 						[rcobject]="selectedObject"
 						(onRemoveObject)="objectWasRemoved($event)"
+						(onChangedObject)="onChangedObject($event)"
 						>		
 					</app-audio-tool>
-					<app-drag-and-drop></app-drag-and-drop>
 				</div>
 			</div>
+			<app-drag-and-drop
+			(onChangedObject)=onChangedObject($event)></app-drag-and-drop>
 		</div>
 	</div>
 	<div class="row">
