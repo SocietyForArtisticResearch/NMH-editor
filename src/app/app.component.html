@@ -3,14 +3,14 @@
 
 <!--   <div [ngClass]="{ 'shifted' : showMedia }">
  -->
- <div>
-    <input class="editableTitle" type='text' value="{{this.rcExpoModel.exposition.title}}" [(ngModel)]="this.rcExpoModel.exposition.title">
-    <hr>
-    <button type="button" [class.active]="showMedia" class="btn btn-primary" (click)="showMedia = ! showMedia" data-toggle="tooltip" data-placement="top" title="Upload and inspect media">Media list</button>
-    <button type="button" [disabled]="showImport" class="btn btn-primary" (click)="showImport = true" data-toggle="tooltip" data-placement="top" title="Import a Word file and export the exposition">Import/Export</button>
-    <button type="button" [disabled]="editStyle" class="btn btn-primary" (click)="editStyle = true" data-toggle="tooltip" data-placement="top" title="Edit the CSS styling">Edit style</button>
-    <app-markdown-tool></app-markdown-tool>
-  </div>
+      <div>
+	  <input class="editableTitle" type='text' value="{{this.rcExpoModel.exposition.title}}" [(ngModel)]="this.rcExpoModel.exposition.title" data-toggle="tooltip" data-placement="top" title="Edit title">
+	  <hr>
+	  <button type="button" [class.active]="showMedia" class="btn btn-primary" (click)="showMedia = ! showMedia" data-toggle="tooltip" data-placement="top" title="Upload and inspect media">Media list</button>
+	  <button type="button" [disabled]="showImport" class="btn btn-primary" (click)="showImport = true" data-toggle="tooltip" data-placement="top" title="Import a Word file and export the exposition">Import/Export</button>
+	  <button type="button" [disabled]="editStyle" class="btn btn-primary" (click)="editStyle = true" data-toggle="tooltip" data-placement="top" title="Edit the CSS styling">Edit style</button>
+	  <app-markdown-tool></app-markdown-tool>
+      </div>
 
 
   <div *ngIf="showMedia" id="mediaPanel" class="modal">
