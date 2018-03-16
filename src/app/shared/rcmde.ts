@@ -220,6 +220,7 @@ interface State {
     orderedlist?: boolean;
     unorderedlist?: boolean;
     quote?: boolean;
+    center?: boolean;
     italic?: boolean;
     strikethrough?: boolean;
     code?: boolean;
@@ -243,6 +244,7 @@ function getState(cm, pos) {
     };
     var stat = cm.getTokenAt(pos);
     if (!stat.type) return {};
+    //    console.log(stat);
 
     var types = stat.type.split(" ");
 
@@ -658,6 +660,8 @@ function toggleBlockquote(editor) {
     _toggleLine(cm, "quote");
 }
 
+
+
 /**
  * Action for toggling heading size: normal -> h1 -> h2 -> h3 -> h4 -> h5 -> h6 -> normal
  */
@@ -1066,6 +1070,7 @@ function _toggleLine(cm, name) {
     var endPoint = cm.getCursor("end");
     var repl = {
         "quote": /^(\s*)\>\s+/,
+        "center": /^(\s*)->([\s\w]*)<-/,
         "unordered-list": /^(\s*)(\*|\-|\+)\s+/,
         "ordered-list": /^(\s*)\d+\.\s+/
     };
@@ -1077,6 +1082,7 @@ function _toggleLine(cm, name) {
     for (var i = startPoint.line; i <= endPoint.line; i++) {
         (function (i) {
             var text = cm.getLine(i);
+
             if (stat[name]) {
                 text = text.replace(repl[name], "$1");
             } else {
@@ -1109,7 +1115,6 @@ function _toggleBlock(editor, type, start_chars, end_chars) {
     var startPoint = cm.getCursor("start");
     var endPoint = cm.getCursor("end");
 
-    // TODO center!
     if (stat[type]) {
         text = cm.getLine(startPoint.line);
         start = text.slice(0, startPoint.ch);
@@ -1153,7 +1158,21 @@ function _toggleBlock(editor, type, start_chars, end_chars) {
             text = text.split("_").join("");
         } else if (type == "strikethrough") {
             text = text.split("~~").join("");
+        } else if (type == "center") {
+            //            console.log(text);
+            if (/->([\w\s\S]*)<-/.test(text)) {
+                //     text = text.replace(/^(\s*)->([\s\w]*)<-/, "$2");
+                start = "";
+                end = "";
+                //   } else {
+                text = text.split(/->|<-/).join("");
+                // startPoint.ch -= 2;
+                // if (startPoint !== endPoint) {
+                //     endPoint.ch -= 2;
+                // }
+            }
         }
+
         cm.replaceSelection(start + text + end);
 
         startPoint.ch += start_chars.length;
