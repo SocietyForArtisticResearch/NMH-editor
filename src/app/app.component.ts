@@ -26,7 +26,7 @@ export class AppComponent implements AfterViewInit {
 
     onMediaButton() {
         this.showMedia = !this.showMedia;
-        if(this.child) {
+        if (this.child) {
             this.child.whenOpened();
         }
     }
@@ -34,7 +34,7 @@ export class AppComponent implements AfterViewInit {
     onChangedObject(identity) {
         let rcobject = this.rcExpoModel.exposition.getObjectWithID(identity);
         let editor: RCMDE = this.rcExpoModel.mde;
-        insertMedia(editor,rcobject.name);
+        insertMedia(editor, rcobject.name);
     }
 
     ngAfterViewInit() {
