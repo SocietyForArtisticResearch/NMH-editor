@@ -20,7 +20,7 @@ export class AppComponent implements AfterViewInit {
 
     @ViewChild(ObjectListComponent) child: ObjectListComponent;
 
-    constructor(private rcExpoModel: RCExpoModel) {
+    constructor(public rcExpoModel: RCExpoModel) {
 
     }
 

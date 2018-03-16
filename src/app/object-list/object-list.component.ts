@@ -28,7 +28,7 @@ export class ObjectListComponent implements OnInit {
         }
     }
 
-    constructor(private rcExpoModel: RCExpoModel) { }
+    constructor(public rcExpoModel: RCExpoModel) { }
 
     createImageTool() {
         let imageName = 'image' + this.rcExpoModel.exposition.media.length;

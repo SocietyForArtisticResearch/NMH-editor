@@ -1,8 +1,7 @@
 <angular-tinymce 
 [(ngModel)]="textContent"
 [settings]="customTinyMCESettings"
-(change)="onChange()"
-(keyup)="onKeyUp()"
+(change)="onChange($event)"
 cols="43" 
 rows="40">
 </angular-tinymce>

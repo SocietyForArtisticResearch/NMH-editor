@@ -12,6 +12,7 @@ export class StyleEditComponent implements AfterViewInit {
  	@ViewChild('styleEditBox') textarea: ElementRef;
 
  	editor :any;
+  stylesheet: string;
 
   @Output() closeWindow = new EventEmitter();
 
