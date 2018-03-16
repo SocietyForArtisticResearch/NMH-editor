@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # build the angular app, specify root path
-ng build --prod --build-optimizer --base-href /mnh-test/
+ng build --prod --base-href /mnh-test/
 
 # remove old build
 rm -r ~/public_html/mnh-test
