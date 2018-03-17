@@ -683,7 +683,7 @@ function toggleHeadingBigger(editor) {
  */
 function toggleHeading1(editor) {
     var cm = editor.codemirror;
-    _toggleHeading(cm, undefined, 1);
+    _toggleHeading(cm, undefined, 2);
 }
 
 /**
@@ -691,7 +691,7 @@ function toggleHeading1(editor) {
  */
 function toggleHeading2(editor) {
     var cm = editor.codemirror;
-    _toggleHeading(cm, undefined, 2);
+    _toggleHeading(cm, undefined, 3);
 }
 
 /**
@@ -699,7 +699,7 @@ function toggleHeading2(editor) {
  */
 function toggleHeading3(editor) {
     var cm = editor.codemirror;
-    _toggleHeading(cm, undefined, 3);
+    _toggleHeading(cm, undefined, 4);
 }
 
 
@@ -1007,7 +1007,7 @@ function _toggleHeading(cm, direction, size) {
                     if (direction == "bigger") {
                         text = "###### " + text;
                     } else {
-                        text = "# " + text;
+                        text = "## " + text;
                     }
                 } else if (currHeadingLevel == 6 && direction == "smaller") {
                     text = text.substr(7);
@@ -1664,7 +1664,9 @@ export class RCMDE {
             css.innerHTML = this.exposition.style;
             newEl = true;
         };
-        css.innerHTML = this.exposition.style;
+        if (css.innerHTML !== this.exposition.style) {
+            css.innerHTML = this.exposition.style;
+        }
         if (newEl) {
             document.body.appendChild(css);
         }
@@ -1699,8 +1701,9 @@ export class RCMDE {
         let renderedHTML = "<div class=\"exposition\">" + "<div class=\"exposition-content\">" + basicHTML + "</div>" + "</div>";
         self.exposition.markdownInput = text;
         self.exposition.renderedHTML = renderedHTML;
+        self.exposition.getTOC();
         this.updateStyling();
-        return renderedHTML;
+        return self.exposition.renderedHTML;
     }
 
 

@@ -59,6 +59,7 @@ export class RCExposition {
     markdownInput: string;
     //    markdownOutput: string;
     renderedHTML: string;
+    toc: any;
     media: RCObject[];
 
     constructor(title, authors, style, breakpoint = 1200) {
@@ -90,16 +91,33 @@ export class RCExposition {
         return this.replaceToolsWithImages(this.markdownInput);
     }
 
-    // getTOC() {
-    //     let toc = [];
-    //     for (let i = 0; i < this.weaves.length; i++) {
-    //         let wtoc = this.weaves[i].getTOC(i);
-    //         if (wtoc.length > 0) {
-    //             toc = toc.concat(wtoc);
-    //         };
-    //     }
-    //     return toc;
-    // }
+    /**
+     * Generates an array of TOC objects from the html content of 
+     * exposition
+     * @param {number} weave - weave index
+     */
+    getTOC() {
+        let toc = [];
+        let html = document.createElement('div');
+        //        let html = new Element();
+        html.innerHTML = this.renderedHTML;
+        let headers = html.querySelectorAll("h2, h3");
+        for (let i = 0; i < headers.length; i++) {
+            if (!headers[i].id) {
+                headers[i].id = stringToId((<HTMLHeadingElement>headers[i]).innerText);
+            };
+            toc.push({
+                level: Number(headers[i].nodeName[1]),
+                id: headers[i].id,
+            });
+        }
+
+        this.renderedHTML = html.innerHTML;
+        this.toc = toc;
+        return toc;
+    }
+
+
 
     /** Removes all weaves and renders the exposition
      * 
@@ -233,25 +251,6 @@ export class RCObject {
     }
 
 
-    // /**
-    //  * Generates an array of TOC objects from the html content of the
-    //  * text object
-    //  * @param {number} weave - weave index
-    //  */
-    // getTOC(weave) {
-    //     let toc = [];
-    //     for (let i = 1; i < 7; i++) {
-    //         let headers = this.html.getElementsByTagName('h' + i);
-    //         for (let j = 0; j < headers.length; j++) {
-    //             toc.push({
-    //                 level: i,
-    //                 id: headers[j].id,
-    //                 weaveIdx: weave
-    //             });
-    //         }
-    //     }
-    //     return toc;
-    // }
 
 }
 

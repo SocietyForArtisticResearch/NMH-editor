@@ -76,7 +76,7 @@ Paragraphs must be separated by a blank line. Basic formatting of *italics* and 
 * Yet another item
 * And there's more...
 
-# Footnotes
+## Footnotes
 This is a footnote[^1]. It's content is specified at the bottom of this page.
 
 ## Paragraph modifiers
