@@ -1702,6 +1702,7 @@ export class RCMDE {
         self.exposition.markdownInput = text;
         self.exposition.renderedHTML = renderedHTML;
         self.exposition.getTOC();
+        //        console.log(self.exposition.toc);
         this.updateStyling();
         return self.exposition.renderedHTML;
     }

@@ -101,7 +101,7 @@ export class RCExposition {
         let html = document.createElement('div');
         //        let html = new Element();
         html.innerHTML = this.renderedHTML;
-        let headers = html.querySelectorAll("h2, h3");
+        let headers = html.querySelectorAll("h1, h2, h3");
         for (let i = 0; i < headers.length; i++) {
             if (!headers[i].id) {
                 headers[i].id = stringToId((<HTMLHeadingElement>headers[i]).innerText);
