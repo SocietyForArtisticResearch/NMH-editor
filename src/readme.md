@@ -23,14 +23,9 @@ __I've updated *mnh-backend* with an extra uploadAngular option, that returns js
 
 
 ## Casper
-* used server in rcexposition/tools etc should be configurable and somewhere else
-* basic-tool and audio-tool almost identical (what is basic/what is image tool?)
-* media list update of name doesn't update in table
 
 Note to self:
 Changed tsconfig.app.json,  "module": "esnext", to resolve conflict with use of javascript "import" in rcmde.ts
-1. Update image tool immediately
-2. Only show other fields, after image is chosen.
 
 3. Fix CSS problems, make sure  exposition css doesn't affect editor styling.
 4. is editor responsive?

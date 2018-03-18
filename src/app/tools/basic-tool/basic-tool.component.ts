@@ -119,7 +119,7 @@ export class BasicToolComponent implements OnInit {
     }
 
     onImageSelect(event) {
-        
+
         this.selectedImage = <File>event.target.files[0];
         const fd = new FormData();
         fd.append('uploadFile', this.selectedImage, this.selectedImage.name);
@@ -138,6 +138,7 @@ export class BasicToolComponent implements OnInit {
             this.fileUploadStatus = 'done';
             window.setTimeout( ( ) => { this.fileUploadStatus = null }, 1000 );
             this.onResult(event.body);
+          }
         });
  
         this.rcExpoModel.mde.render();

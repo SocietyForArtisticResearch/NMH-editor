@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpEventType, HttpResponse, HttpRequest } from '@angular/common/http';
 import { RCExpoModel } from '../shared/RCExpoModel';
 import { RCExpositionDeserializer } from '../shared/rcexposition';
 import * as FileSaver from 'file-saver';
@@ -17,6 +17,7 @@ export class DocUploaderComponent implements OnInit {
     selectedFile: File = null;
     selectedJson: File = null;
     selectedExportFormat: string = "docx";
+    fileUploadStatus: string = null;
 
     constructor(
         private http: HttpClient,
@@ -40,10 +41,25 @@ export class DocUploaderComponent implements OnInit {
 
         const fd = new FormData();
         fd.append('convertFile', this.selectedFile, this.selectedFile.name);
-        this.http.post(Backend.import, fd).subscribe(result => {
-            this.onDocImportResult(result);
+        
+        const req = new HttpRequest('POST', Backend.import, fd, {
+          reportProgress: true,
         });
 
+        this.http.request(req).subscribe(event => {
+          // Via this API, you get access to the raw event stream.
+          // Look for upload progress events.
+          if (event.type === HttpEventType.UploadProgress) {
+            // This is an upload progress event. Compute and show the % done:
+            this.fileUploadStatus = Math.round(100 * event.loaded / event.total) + '%';
+          } else if (event instanceof HttpResponse) {
+            this.fileUploadStatus = 'done';
+            window.setTimeout( ( ) => { this.fileUploadStatus = null }, 1000 );
+            this.onDocImportResult(event.body);
+            }
+        });
+ 
+        this.rcExpoModel.mde.render();
     }
 
     onDocImportResult(result) {
