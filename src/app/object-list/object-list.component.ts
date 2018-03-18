@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { SortablejsOptions } from 'angular-sortablejs';
 
 import { RCExpoModel } from '../shared/RCExpoModel';
@@ -14,6 +14,8 @@ import { RCObject, RCImage, RCAudio, RCSvg, RCPdf, RCVideo } from '../shared/rce
 export class ObjectListComponent implements OnInit {
     imageUri: string = null;
     selectedObject: RCObject = null;
+
+    @Output() onObjectWasChosen = new EventEmitter();
 
     // member object to deal with single vs double click
     dblClickCtrl = {
@@ -69,6 +71,7 @@ export class ObjectListComponent implements OnInit {
         this.selectedObject = rcobject;
         let editor: RCMDE = this.rcExpoModel.mde;
         insertMedia(editor,rcobject.name);
+        this.onObjectWasChosen.emit();
     }
 
     getCurrentSelection() {

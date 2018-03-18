@@ -3,7 +3,7 @@ import { NgSwitch } from '@angular/common';
 import { RCExpoModel } from '../../shared/RCExpoModel';
 import { RCMedia, RCImage } from '../../shared/rcexposition';
 import { FormControl, AbstractControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
+import { HttpEventType, HttpRequest, HttpResponse, HttpClient } from '@angular/common/http';
 import { Backend } from '../../shared/Backend';
 
 
@@ -31,6 +31,8 @@ export class BasicToolComponent implements OnInit {
     toolType: string;
     selectedImage: File = null;
     formattedMessage: string;
+
+    fileUploadStatus: string = null;
 
     identifier: number;
     @Input() rcobject: RCMedia;
@@ -117,18 +119,31 @@ export class BasicToolComponent implements OnInit {
     }
 
     onImageSelect(event) {
-
+        
         this.selectedImage = <File>event.target.files[0];
         const fd = new FormData();
         fd.append('uploadFile', this.selectedImage, this.selectedImage.name);
-        this.http.post(Backend.uploadAddress, fd).subscribe(result => {
-            this.onResult(result);
+
+        const req = new HttpRequest('POST', Backend.uploadAddress, fd, {
+          reportProgress: true,
         });
+
+        this.http.request(req).subscribe(event => {
+          // Via this API, you get access to the raw event stream.
+          // Look for upload progress events.
+          if (event.type === HttpEventType.UploadProgress) {
+            // This is an upload progress event. Compute and show the % done:
+            this.fileUploadStatus = Math.round(100 * event.loaded / event.total) + '%';
+          } else if (event instanceof HttpResponse) {
+            this.fileUploadStatus = 'done';
+            window.setTimeout( ( ) => { this.fileUploadStatus = null }, 1000 );
+            this.onResult(event.body);
+        });
+ 
         this.rcExpoModel.mde.render();
     }
 
     onResult(result) {
-
         if (this.toolForm) {
             this.toolForm.patchValue({
                 imageUrl: Backend.baseAddress + result.url,
