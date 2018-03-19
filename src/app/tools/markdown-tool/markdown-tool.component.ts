@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild, AfterViewInit, ElementRef } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, AfterViewInit, ElementRef, Output, EventEmitter } from '@angular/core';
 import { RCExpoModel } from '../../shared/RCExpoModel';
 import * as Editor from '../../shared/rcmde';
 //declare var SimpleMDE : any;
@@ -13,6 +13,8 @@ export class MarkdownToolComponent implements AfterViewInit {
 
     @Input() text: string;
     @Input() identifier: number;
+
+    @Output() openObjectListRequest = new EventEmitter();
 
     content: string;
     mde: any;
@@ -34,6 +36,10 @@ export class MarkdownToolComponent implements AfterViewInit {
 
         this.mde.value(this.testString());
 
+        this.mde.drawMediaCallback = ( ) => {
+            this.openObjectList();
+        };
+
         //        this.mde.toggleSideBySide();
 
         // this.mde.markdown = function (text) {
@@ -46,6 +52,10 @@ export class MarkdownToolComponent implements AfterViewInit {
         // console.log(this.mde.togglePreview);
         //        this.mde.codemirror.on("keyHandled", () => { console.log('hallo') });
     };
+
+    openObjectList() {
+        this.openObjectListRequest.emit();
+    }
 
     testString() {
         return `This note demonstrates some of what [Markdown](http://daringfireball.net/projects/markdown/) is capable of doing.
