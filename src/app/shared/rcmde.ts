@@ -772,13 +772,21 @@ function drawMedia(editor) {
     // var options = editor.options;
     // //    var url = "http://";
     // _replaceSelection(cm, stat.link, options.insertTexts.media, undefined);
-    editor.drawMediaCallback(editor);
+    editor.drawMediaCallback();
+    var cm = editor.codemirror;
+    var startPoint = cm.getCursor("start");
+    var endPoint = cm.getCursor("end");
+    cm.setSelection(startPoint, endPoint);
+    cm.focus();
 }
 
 export function insertMedia(editor, name) {
     var cm = editor.codemirror;
     //    var doc = editor.getDoc();
     var cursor = cm.getCursor();
+    var startPoint = cm.getCursor("start");
+    var endPoint = cm.getCursor("end");
+
 
     var pos = {
         line: cursor.line,
@@ -786,6 +794,8 @@ export function insertMedia(editor, name) {
     }
 
     cm.replaceRange("!{" + name + "}", pos);
+    cm.setSelection(startPoint, endPoint);
+    cm.focus();
 }
 
 
@@ -1482,7 +1492,7 @@ export class RCMDE {
     _rendered: HTMLElement;
     codemirror: CodeMirror;
     gui: any;
-    public drawMediaCallback: (editor: RCMDE) => void;
+    public drawMediaCallback: () => void;
     autosaveTimeoutId: number;
     toolbar: any[];
     toolbarElements: any;
