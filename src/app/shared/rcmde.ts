@@ -767,11 +767,12 @@ function drawImage(editor) {
  * Action for drawing an img.
  */
 function drawMedia(editor) {
-    var cm = editor.codemirror;
-    var stat = getState(cm, undefined);
-    var options = editor.options;
-    //    var url = "http://";
-    _replaceSelection(cm, stat.link, options.insertTexts.media, undefined);
+    // var cm = editor.codemirror;
+    // var stat = getState(cm, undefined);
+    // var options = editor.options;
+    // //    var url = "http://";
+    // _replaceSelection(cm, stat.link, options.insertTexts.media, undefined);
+    editor.drawMediaCallback(editor);
 }
 
 export function insertMedia(editor, name) {
@@ -1481,6 +1482,7 @@ export class RCMDE {
     _rendered: HTMLElement;
     codemirror: CodeMirror;
     gui: any;
+    drawMediaCallback: (editor: RCMDE) => void;
     autosaveTimeoutId: number;
     toolbar: any[];
     toolbarElements: any;
