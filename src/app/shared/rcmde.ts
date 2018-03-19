@@ -1482,7 +1482,7 @@ export class RCMDE {
     _rendered: HTMLElement;
     codemirror: CodeMirror;
     gui: any;
-    drawMediaCallback: (editor: RCMDE) => void;
+    public drawMediaCallback: (editor: RCMDE) => void;
     autosaveTimeoutId: number;
     toolbar: any[];
     toolbarElements: any;
