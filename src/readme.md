@@ -24,8 +24,7 @@ __I've updated *mnh-backend* with an extra uploadAngular option, that returns js
 
 ## Casper
 
-Note to self:
-Changed tsconfig.app.json,  "module": "esnext", to resolve conflict with use of javascript "import" in rcmde.ts
+Fixed the refocus issue !
 
 3. Fix CSS problems, make sure  exposition css doesn't affect editor styling.
 4. is editor responsive?

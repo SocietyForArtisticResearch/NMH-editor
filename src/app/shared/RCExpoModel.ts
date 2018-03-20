@@ -36,7 +36,7 @@ export class RCExpoModel {
 }
 `;
 
-        this.exposition = new RCExposition('My First Exposition', ['authors'], defaultStyle, 1200);
+        this.exposition = new RCExposition('How to use this editor', ['authors'], defaultStyle, 1200);
     }
 
 }

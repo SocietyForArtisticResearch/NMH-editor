@@ -62,79 +62,63 @@ export class MarkdownToolComponent implements AfterViewInit {
     }
 
     testString() {
-        return `This note demonstrates some of what [Markdown](http://daringfireball.net/projects/markdown/) is capable of doing.
+        return `
 
-*Note: Feel free to play with this page.*
+## 1 Import a Word document
 
-## Basic formatting
+You can import a Word (.docx) document (including the illustrations) using the __import/export__ button.
 
-Paragraphs can be written like this. A paragraph is the basic block of Markdown. A paragraph is what text will turn into when there is no reason it should become anything else.
+## 2 Write directly in the online editor
 
-Paragraphs must be separated by a blank line. Basic formatting of *italics* and **bold** is supported. This *can be **nested** like* so.
+The editor is using [Markdown](https://daringfireball.net/projects/markdown/). 
+If you are not familiar with Markdown, below is a brief introduction.
 
-## Lists
+## Markdown 
 
-### Ordered list
+Markdown is a way of writing HTML webpages without using code. 
+Markdown is written as plain text (like you would write on a typewriter), 
+that is translated into HTML for you. In this editor you see the markdown 
+on the left and the resulting HTML on the right. 
 
-1. Item 1
-2. A second item
-3. Number 3
-4. Ⅳ
+There are a few special characters (\`# * __ [^1] \`) 
+that allow you to inform the translator to use a certain style 
+(for example *italic*, __bold__, __headers__ etc..). Instead of typing these characters, 
+you can also select a piece of text and push the desired style button on top of the editor.
+This will insert the Markdown characters for you.
 
-*Note: the fourth item uses the Unicode character for [Roman numeral four](http://www.fileformat.info/info/unicode/char/2163/index.htm).*
+## Paragraphs 
+Paragraphs can be written like this. 
+Markdown recognizes a paragraph by looking for whitelines in your text.
 
-### Unordered list
+Thus, now that I've skipped a line, this is a second paragraph.
+Alternatively, you can leave two spaces at the end of a line.
 
-* An item
-* Another item
-* Yet another item
-* And there's more...
+## Headers \`#\` 
+Headers are defined by using \`#\`. There are six levels. 
+The first three levels are automatically included in the table of contents. 
+If you want smaller headers, use more ##. 
+
+## Lists & bulletpoints
+
+To get bullet points:
+
+* my first point
+* another throught
+* yet another thought
+
+To get ordered lists, write a number and a point, 1. , 2. , 3. 
+1. one
+2. two
+3. three
+
+## Links
+Hyperlinks are written \`[text](http://example.com)\`
 
 ## Footnotes
-This is a footnote[^1]. It's content is specified at the bottom of this page.
+This is a footnote [^1], and another [^2]. To creat one, you can also press the footnote button [x²]
 
-## Paragraph modifiers
-
-### Code block
-
-    Code blocks are very useful for developers and other people who look at code or other things that are written in plain text. As you can see, it uses a fixed-width font.
-
-You can also make \`inline code\` to add code into other things.
-
-### Quote
-
-> Here is a quote. What this is should be self explanatory. Quotes are automatically indented when they are used.
-
-## Headings
-
-There are six levels of headings. They correspond with the six levels of HTML headings. You've probably noticed them already in the page. Each level down uses one more hash character.
-
-## URLs
-
-URLs can be made in a handful of ways:
-
-* A named link to [MarkItDown](http://www.markitdown.net/). The easiest way to do these is to select what you want to make a link and hit 'ctrl+K' & 'cmd+K'
-* Another named link to [MarkItDown](http://www.markitdown.net/)
-* Sometimes you just want a URL like <http://www.markitdown.net/>.
-
-## Horizontal rule
-
-A horizontal rule is a line that goes across the middle of the page.
-
----
-
-It's sometimes handy for breaking things up.
-
-## Images
-
-Markdown can also contain images. I'll need to add something here sometime.
-
-## Finally
-
-There's actually a lot more to Markdown than this. See the official [introduction](http://daringfireball.net/projects/markdown/basics) and [syntax](http://daringfireball.net/projects/markdown/syntax) for more information. However, be aware that this is not using the official implementation, and this might work subtly differently in some of the little things.
-
-
-[^1]: The footnote text
+[^1]: this is the footnote text.
+[^2]: another footnote.
 `;
     }
 
