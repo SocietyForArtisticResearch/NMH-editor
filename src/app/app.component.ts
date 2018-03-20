@@ -3,6 +3,7 @@ import { RCExpoModel } from './shared/RCExpoModel';
 import { RCMDE, insertMediaToken, insertMedia } from './shared/rcmde';
 import { RCImage, RCAudio, RCSvg, RCPdf, RCVideo } from './shared/rcexposition';
 import { ObjectListComponent } from './object-list/object-list.component';
+import { MarkdownToolComponent } from './tools/markdown-tool/markdown-tool.component';
 
 
 
@@ -18,7 +19,8 @@ export class AppComponent implements AfterViewInit {
     showImport: boolean = false;
     editStyle: boolean = false;
 
-    @ViewChild(ObjectListComponent) child: ObjectListComponent;
+    @ViewChild(ObjectListComponent) objectList: ObjectListComponent;
+    @ViewChild(MarkdownToolComponent) markdownEditor: MarkdownToolComponent;
 
     constructor(public rcExpoModel: RCExpoModel) {
 
@@ -26,8 +28,8 @@ export class AppComponent implements AfterViewInit {
 
     onMediaButton() {
         this.showMedia = !this.showMedia;
-        if (this.child) {
-            this.child.whenOpened();
+        if (this.objectList) {
+            this.objectList.whenOpened();
         }
     }
 
@@ -35,6 +37,11 @@ export class AppComponent implements AfterViewInit {
         let rcobject = this.rcExpoModel.exposition.getObjectWithID(identity);
         let editor: RCMDE = this.rcExpoModel.mde;
         insertMedia(editor, rcobject.name);
+    }
+
+    closeMedia() {
+        this.showMedia = false;
+        this.markdownEditor.refocus();
     }
 
     ngAfterViewInit() {

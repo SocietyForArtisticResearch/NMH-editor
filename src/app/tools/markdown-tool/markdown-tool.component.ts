@@ -57,6 +57,10 @@ export class MarkdownToolComponent implements AfterViewInit {
         this.openObjectListRequest.emit();
     }
 
+    refocus() {
+        this.mde.codemirror.focus();
+    }
+
     testString() {
         return `This note demonstrates some of what [Markdown](http://daringfireball.net/projects/markdown/) is capable of doing.
 
