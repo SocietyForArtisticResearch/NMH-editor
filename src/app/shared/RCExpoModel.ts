@@ -1,4 +1,4 @@
-import { RCExposition } from './rcexposition';
+import { RCExposition, RCExpositionDeserializer } from './rcexposition';
 import { RCMDE } from './rcmde';
 
 
@@ -16,46 +16,28 @@ export class RCExpoModel {
     constructor() {
         // number of Y cells should be updated by number of tools).
 
-        let defaultStyle = `.exposition {
-    background-color: #FFFFFF;
-    font-family: \"Helvetica\", sans-serif;
-    font-size: 100%; 
-    line-height: 125%; 
-} 
-
-.exposition-content {
-    margin: 40px;
-}
-
-.rcimage {
-    margin:10px 0px;
-}
-
-.rcimage img {
-	max-width: 100%;
-}
-
-h2, h3, h4 ,h5 ,h6 {
-    font-size:14px;
-    font-weight: bold;
-}
-`;
+        let defaultStyle = '';
  
-        this.exposition = new RCExposition('How to use this editor', ['authors'], defaultStyle, 1200);
+        this.exposition = new RCExposition('', ['authors'], defaultStyle, 1200);
     }
 
     loadExpositionFromURL = function (expositionJSONUrl: string) {
         console.log('this will load the exposition from: '+ expositionJSONUrl);
         var xhttp = new XMLHttpRequest();
-        var that = this;
+        var that = this; // the wonderfully messed up way scoping works
         xhttp.onreadystatechange = function ( ) {
         if (this.readyState == 4 && this.status == 200) {
-                console.log(that,'that');
-            // Typical action to be performed when the document is ready:
-                console.log("response has arrived!",xhttp.responseText);
-                var mde = that.rcExpoModel.mde;
-                mde.importDocJSON(xhttp.responseText);
-                console.log(that.rcExpoModel);
+            var mde = that.mde;
+            let expositionJSON = JSON.parse(xhttp.responseText);
+            //  console.log(expositionJSON);
+            let exposition = RCExpositionDeserializer.restoreObject(expositionJSON);
+            //  console.log(exposition);
+            exposition.media.forEach(m => m.html = undefined);
+            that.exposition = exposition;
+            mde.exposition = exposition;
+            //          console.log(exposition.markdownInput);
+            that.mde.value(exposition.markdownInput);
+            that.mde.render();
             }
         };
         console.log("starting request, with url:", expositionJSONUrl);

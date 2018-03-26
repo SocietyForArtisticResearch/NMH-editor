@@ -1,0 +1,50 @@
+﻿{
+    "__className": "RCExposition",
+    "style": ".exposition {\n    background-color: #FFFFFF;\n    font-family: \"Helvetica\", sans-serif;\n    font-size: 100%; \n    line-height: 125%; \n} \n\n.exposition-content {\n    margin: 40px;\n}\n\n.rcimage {\n    margin:10px 0px;\n}\n\n.rcimage img {\n\tmax-width: 100%;\n}\n\nh2, h3, h4 ,h5 ,h6 {\n    font-size:14px;\n    font-weight: bold;\n}\n",
+    "title": "How to use this editor",
+    "authors": [
+        "authors"
+    ],
+    "breakpoint": 1200,
+    "renderedHTML": "<div class=\"exposition\"><div class=\"exposition-content\"><h1 id=\"How-to-use-this-editor\">How to use this editor</h1>\n<h2 id=\"Import-a-Word-document\">Import a Word document</h2>\n<p>You can import a Word (.docx) document (including the illustrations) using the <strong>import/export</strong> button.</p>\n<h2 id=\"Write-directly-in-the-online-editor\">Write directly in the online editor</h2>\n<p>The editor is using <a href=\"https://daringfireball.net/projects/markdown/\" target=\"_blank\">Markdown</a>.\nIf you are not familiar with Markdown, below is a brief introduction.</p>\n<h2 id=\"Markdown\">Markdown</h2>\n<p>Markdown is a way of writing HTML webpages without using code.\nMarkdown is written as plain text (like you would write on a typewriter),\nthat is translated into HTML for you. In this editor you see the markdown\non the left and the resulting HTML on the right.</p>\n<p>There are a few special characters (<code># * __ [^1]</code>)\nthat allow you to inform the translator to use a certain style\n(for example <em>italic</em>, <strong>bold</strong>, <strong>headers</strong> etc…). Instead of typing these characters,\nyou can also select a piece of text and push the desired style button on top of the editor.\nThis will insert the Markdown characters for you.</p>\n<h2 id=\"Paragraphs\">Paragraphs</h2>\n<p>Paragraphs can be written like this.\nMarkdown recognizes a paragraph by looking for whitelines in your text.</p>\n<p>Thus, now that I’ve skipped a line, this is a second paragraph.\nAlternatively, you can leave two spaces at the end of a line.</p>\n<h2 id=\"Headers-\">Headers <code>#</code></h2>\n<p>Headers are defined by using <code>#</code>. There are six levels.\nThe first three levels are automatically included in the table of contents.\nIf you want smaller headers, use more ##.</p>\n<h2 id=\"Lists-bulletpoints\">Lists &amp; bulletpoints</h2>\n<p>To get bullet points:</p>\n<ul>\n<li>my first point</li>\n<li>another throught</li>\n<li>yet another thought</li>\n</ul>\n<p>To get ordered lists, write a number and a point, 1. , 2. , 3.</p>\n<ol>\n<li>one</li>\n<li>two</li>\n<li>three</li>\n</ol>\n<h2 id=\"Links\">Links</h2>\n<p>Hyperlinks are written <code>[text](http://example.com)</code></p>\n<h2 id=\"Footnotes\">Footnotes</h2>\n<p>This is a footnote <sup class=\"footnote-ref\"><a href=\"#fn1\" id=\"fnref1\">[1]</a></sup>, and another <sup class=\"footnote-ref\"><a href=\"#fn2\" id=\"fnref2\">[2]</a></sup>. To creat one, you can also press the footnote button [x²]</p>\n<hr class=\"footnotes-sep\">\n<section class=\"footnotes\">\n<ol class=\"footnotes-list\">\n<li id=\"fn1\" class=\"footnote-item\"><p>this is the footnote text. <a href=\"#fnref1\" class=\"footnote-backref\">↩︎</a></p>\n</li>\n<li id=\"fn2\" class=\"footnote-item\"><p>another footnote. <a href=\"#fnref2\" class=\"footnote-backref\">↩︎</a></p>\n</li>\n</ol>\n</section>\n</div></div>",
+    "media": [],
+    "markdownInput": "# How to use this editor\n## Import a Word document\n\nYou can import a Word (.docx) document (including the illustrations) using the __import/export__ button.\n\n## Write directly in the online editor\n\nThe editor is using [Markdown](https://daringfireball.net/projects/markdown/). \nIf you are not familiar with Markdown, below is a brief introduction.\n\n## Markdown \n\nMarkdown is a way of writing HTML webpages without using code. \nMarkdown is written as plain text (like you would write on a typewriter), \nthat is translated into HTML for you. In this editor you see the markdown \non the left and the resulting HTML on the right. \n\nThere are a few special characters (`# * __ [^1] `) \nthat allow you to inform the translator to use a certain style \n(for example *italic*, __bold__, __headers__ etc..). Instead of typing these characters, \nyou can also select a piece of text and push the desired style button on top of the editor.\nThis will insert the Markdown characters for you.\n\n## Paragraphs \nParagraphs can be written like this. \nMarkdown recognizes a paragraph by looking for whitelines in your text.\n\nThus, now that I've skipped a line, this is a second paragraph.\nAlternatively, you can leave two spaces at the end of a line.\n\n## Headers `#` \nHeaders are defined by using `#`. There are six levels. \nThe first three levels are automatically included in the table of contents. \nIf you want smaller headers, use more ##. \n\n## Lists & bulletpoints\n\nTo get bullet points:\n\n* my first point\n* another throught\n* yet another thought\n\nTo get ordered lists, write a number and a point, 1. , 2. , 3. \n1. one\n2. two\n3. three\n\n## Links\nHyperlinks are written `[text](http://example.com)`\n\n## Footnotes\nThis is a footnote [^1], and another [^2]. To creat one, you can also press the footnote button [x²]\n\n[^1]: this is the footnote text.\n[^2]: another footnote.\n",
+    "toc": [
+        {
+            "level": 1,
+            "id": "How-to-use-this-editor"
+        },
+        {
+            "level": 2,
+            "id": "Import-a-Word-document"
+        },
+        {
+            "level": 2,
+            "id": "Write-directly-in-the-online-editor"
+        },
+        {
+            "level": 2,
+            "id": "Markdown"
+        },
+        {
+            "level": 2,
+            "id": "Paragraphs"
+        },
+        {
+            "level": 2,
+            "id": "Headers-"
+        },
+        {
+            "level": 2,
+            "id": "Lists-bulletpoints"
+        },
+        {
+            "level": 2,
+            "id": "Links"
+        },
+        {
+            "level": 2,
+            "id": "Footnotes"
+        }
+    ]
+}

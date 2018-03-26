@@ -62,7 +62,7 @@ export class MarkdownToolComponent implements AfterViewInit {
     }
 
     testString() {
-        return `## Import a Word document
+        return '';/*//`## Import a Word document
 
 You can import a Word (.docx) document (including the illustrations) using the __import/export__ button.
 
@@ -117,7 +117,7 @@ This is a footnote [^1], and another [^2]. To creat one, you can also press the 
 
 [^1]: this is the footnote text.
 [^2]: another footnote.
-`;
+`;*/
     }
 
 }
