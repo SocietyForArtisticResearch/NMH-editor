@@ -48,7 +48,7 @@ h2, h3, h4 ,h5 ,h6 {
         console.log('this will load the exposition from: '+ expositionJSONUrl);
         var xhttp = new XMLHttpRequest();
         var that = this;
-        xhttp.onreadystatechange = ( ) => {
+        xhttp.onreadystatechange = function ( ) {
         if (this.readyState == 4 && this.status == 200) {
             // Typical action to be performed when the document is ready:
                 that.rcExpoModel.mde.importDocJSON(xhttp.responseText);
@@ -56,6 +56,7 @@ h2, h3, h4 ,h5 ,h6 {
         };
         xhttp.open("GET", expositionJSONUrl, true);
         xhttp.send();    
+
     }
 
 }

@@ -100,9 +100,7 @@ export class ObjectListComponent implements OnInit {
     }
 
     onChangedObject(identity) {
-        console.log('identity');
         this.selectedObject = this.rcExpoModel.exposition.getObjectWithID(identity);
-        console.log(this.selectedObject);
     }
 
     objectWasRemoved(removedObjectId: number) {

@@ -30,7 +30,6 @@ export class StyleEditComponent implements AfterViewInit {
   }
 
   updateStyle() {
-    console.log('update style');
     this.rcExpoModel.exposition.style = this.editor.getValue();
     this.rcExpoModel.mde.updateStyling();
     this.closeWindow.emit();
