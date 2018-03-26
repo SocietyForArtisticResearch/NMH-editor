@@ -59,7 +59,7 @@ export class AppComponent implements OnInit {
          if(params[0] == param)
           return params[1];
       }
-      return false;
+      return '';
     }
 
     ngOnInit() {
@@ -72,11 +72,12 @@ export class AppComponent implements OnInit {
                  rcExpoModel.loadExpositionFromURL(url)
              })); */
         let url = this.getParam('expositionUrl');
+        console.log(url);
+
         if (url) {
           url = decodeURIComponent(url);
           this.rcExpoModel.loadExpositionFromURL(url);
         }
-        console.log(url);
     }
 
     

@@ -50,9 +50,12 @@ h2, h3, h4 ,h5 ,h6 {
         var that = this;
         xhttp.onreadystatechange = function ( ) {
         if (this.readyState == 4 && this.status == 200) {
+                console.log(that,'that');
             // Typical action to be performed when the document is ready:
                 console.log("response has arrived!",xhttp.responseText);
-                that.rcExpoModel.mde.importDocJSON(xhttp.responseText);
+                var mde = that.rcExpoModel.mde;
+                mde.importDocJSON(xhttp.responseText);
+                console.log(that.rcExpoModel);
             }
         };
         console.log("starting request, with url:", expositionJSONUrl);
