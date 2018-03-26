@@ -12,15 +12,17 @@
       data-toggle="tooltip" 
       data-placement="top" 
       title="Edit title">
-    <app-drag-and-drop class="dropZone" (onChangedObject)=onChangedObject($event)></app-drag-and-drop>
+    
 	  <hr>
 	  <button type="button" [class.active]="showMedia" class="btn btn-primary" (click)="onMediaButton()" data-toggle="tooltip" data-placement="top" title="Upload and inspect media">Media list</button>
 	  <button type="button" [disabled]="showImport" class="btn btn-primary" (click)="showImport = true" data-toggle="tooltip" data-placement="top" title="Import a Word file and export the exposition">Import/Export</button>
 	  <button type="button" [disabled]="editStyle" class="btn btn-primary" (click)="editStyle = true" data-toggle="tooltip" data-placement="top" title="Edit the CSS styling">Edit style</button>
+    <app-drag-and-drop class="dropZone" (onChangedObject)=onChangedObject($event)></app-drag-and-drop>   
 	  <app-markdown-tool #markdownEditor 
         (openObjectListRequest)="showMedia=true"></app-markdown-tool>
       </div>
 
+  <!-- Media object list -->
 
   <div [style.display]="showMedia ? 'block' : 'none'" id="mediaPanel" class="modal">
     <div class="modal-content modal-media-content">
@@ -31,7 +33,7 @@
 
 
 
-  <!-- The Modal 2 -->
+  <!-- Import / export modal view -->
   <div *ngIf="showImport" id="importPanel" class="modal">
 
     <!-- Modal content -->
@@ -41,7 +43,7 @@
     </div>
   </div>
 
-  <!-- The Modal 3 -->
+  <!-- Style editor -->
   <div *ngIf="editStyle" id="editStyle" class="modal">
 
     <!-- Modal content -->

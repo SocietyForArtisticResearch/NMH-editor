@@ -24,6 +24,15 @@ __I've updated *mnh-backend* with an extra uploadAngular option, that returns js
 
 ## Casper
 
+1. Make the editor load a prepared exposition from URL (JSON).
+2. Navigation.
+3. Import media area should be below the thing.
+4. WHy does media library scroll ?
+5. Insert tool button.
+
+6. create mockup of new exposition format dialog (radio button Graphical Editor/Text Editor)
+7. Dialog of template management.
+
 Fixed the refocus issue !
 
 3. Fix CSS problems, make sure  exposition css doesn't affect editor styling.

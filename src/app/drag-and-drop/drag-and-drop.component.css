@@ -1,15 +1,14 @@
-.dropzone {
-  display: table;
+.dropzone-inner {
   width: 100%;
   background-color: #eee;
   border: dotted 1px #aaa;
   font-size:12px;
-  margin-top:20px;
+  margin-top:0px;
+  height:30px;
 }
 
 .text-wrapper {
-  display: table-cell;
-  vertical-align: middle;
+
 }
 
 .centered {

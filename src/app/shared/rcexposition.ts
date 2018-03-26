@@ -20,8 +20,9 @@
 //import * as MarkdownIt from "markdown-it";
 
 //const md = new MarkdownIt('commonmark');
+import { Backend } from "./Backend"
 
-var server = "https://sar-announcements.com:3000";
+var server = Backend.baseAddress;
 
 let uniqueID = function () {
     var i = 1;

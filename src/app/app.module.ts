@@ -26,6 +26,7 @@ import { DragDropDirective } from './drag-and-drop/drag-drop.directive';
 const appRoutes: Routes = [
   { path: '', component: MarkdownToolComponent },
   { path: 'objectList', component: ObjectListComponent },
+  { path: 'editor', component: MarkdownToolComponent }
  ];
 
 @NgModule({

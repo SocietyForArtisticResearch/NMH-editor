@@ -18,8 +18,8 @@ export class RCExpoModel {
 
         let defaultStyle = `.exposition {
     background-color: #FFFFFF;
-    font-family: \"Georgia\", serif;
-    font-size: 120%; 
+    font-family: \"Helvetica\", sans-serif;
+    font-size: 100%; 
     line-height: 125%; 
 } 
 
@@ -34,9 +34,28 @@ export class RCExpoModel {
 .rcimage img {
 	max-width: 100%;
 }
-`;
 
+h2, h3, h4 ,h5 ,h6 {
+    font-size:14px;
+    font-weight: bold;
+}
+`;
+ 
         this.exposition = new RCExposition('How to use this editor', ['authors'], defaultStyle, 1200);
+    }
+
+    loadExpositionFromURL = function (expositionJSONUrl: string) {
+        console.log('this will load the exposition from: '+ expositionJSONUrl);
+        var xhttp = new XMLHttpRequest();
+        var that = this;
+        xhttp.onreadystatechange = function( ) => {
+        if (this.readyState == 4 && this.status == 200) {
+            // Typical action to be performed when the document is ready:
+                that.rcExpoModel.mde.importDocJSON(xhttp.responseText);
+            }
+        };
+        xhttp.open("GET", expositionJSONUrl, true);
+        xhttp.send();    
     }
 
 }

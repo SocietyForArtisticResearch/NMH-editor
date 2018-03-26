@@ -62,13 +62,11 @@ export class MarkdownToolComponent implements AfterViewInit {
     }
 
     testString() {
-        return `
-
-## 1 Import a Word document
+        return `## Import a Word document
 
 You can import a Word (.docx) document (including the illustrations) using the __import/export__ button.
 
-## 2 Write directly in the online editor
+## Write directly in the online editor
 
 The editor is using [Markdown](https://daringfireball.net/projects/markdown/). 
 If you are not familiar with Markdown, below is a brief introduction.
