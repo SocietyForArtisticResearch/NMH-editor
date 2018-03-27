@@ -12,7 +12,7 @@ import * as MarkdownIt from "markdown-it";
 import * as  MarkdownItFootnote from "markdown-it-footnote";
 import * as  MarkdownItCenter from "markdown-it-center-text";
 const md = new MarkdownIt({ html: true, typographer: true }).use(MarkdownItFootnote).use(MarkdownItCenter);
-import { RCImage, RCAudio, RCSvg, RCPdf, RCVideo, RCExposition } from '../shared/rcexposition';
+import { RCImage, RCAudio, RCSvg, RCPdf, RCVideo, RCExposition, stringToId } from '../shared/rcexposition';
 
 //import * as CodeMirrorSpellChecker from 'codemirror-spell-checker'
 // var CodeMirrorSpellChecker = require("codemirror-spell-checker");
@@ -1707,10 +1707,11 @@ export class RCMDE {
             }
         };
         self.changed = true;
-        text = "# " + this.exposition.title + "\n" + text;
+        //        text = "# " + this.exposition.title + "\n" + text;
         let insertedTools = text.replace(re, function (m, p1) { return self.mediaHTML(p1) });
         let basicHTML = md.render(insertedTools);
-        let renderedHTML = "<div class=\"exposition\">" + "<div class=\"exposition-content\">" + basicHTML + "</div>" + "</div>";
+        let renderedHTML = "<div class=\"exposition\">" + "<div class=\"exposition-content\">" +
+            "<h1 id=\"" + stringToId(this.exposition.title) + "\">" + this.exposition.title + "<h1>" + basicHTML + "</div>" + "</div>";
         self.exposition.markdownInput = text;
         self.exposition.renderedHTML = renderedHTML;
         self.exposition.getTOC();

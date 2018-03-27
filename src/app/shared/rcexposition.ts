@@ -33,7 +33,7 @@ let uniqueID = function () {
 }();
 
 
-function stringToId(str) {
+export function stringToId(str) {
     return str.replace(/[^A-Z0-9]+/ig, "-");
 }
 
