@@ -65,7 +65,6 @@ export class BasicToolComponent implements OnInit {
     }
 
     ngOnChanges() {
-        console.log('this.obect.url',this.rcobject.url);
         if (this.toolForm) {
             this.toolForm.setValue({
                 'name': this.rcobject.name,

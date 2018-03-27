@@ -15,13 +15,14 @@
 			<!-- 						<th><span class="object-list-id">ID</span></th>
 			-->
 			<th width="45%"><span class="object-list-name">Name</span></th>
-			<th width="10%">&nbsp;</th>
+			<th width="5%">&nbsp;</th>
+			<th width="5%">&nbsp;</th>
 					</tr>
 				</thead>
 				<tbody>
 				<tr 
 						*ngFor="let rcObject of rcExpoModel.exposition.media" 
-						[class.selected]="selectedObject === rcObject"
+						[class.selected]="selectedObject.id === rcObject.id"
 					    (click)="onSelect(rcObject.id,rcObject)"
 					    (dblclick)="onDoubleClick(rcObject.id,rcObject)">
 					<td>
@@ -44,6 +45,7 @@
 <!-- 					<td><strong class="object-list-id">{{rcObject.id}}</strong></td>
  -->				    <td><span class="object-list-name">{{rcObject.name}}</span></td>
 					<td><button class="align-right" (click)="trashObject(rcObject)">&times;</button></td>
+					<td><button class="align-right" (click)="onDoubleClick(rcObject.id,rcObject)">insert</button></td>
 				</tr>
 			</table>
 		</div>
