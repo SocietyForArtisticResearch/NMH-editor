@@ -25,18 +25,13 @@ __I've updated *mnh-backend* with an extra uploadAngular option, that returns js
 ## Casper
 
 0. When you have 2+ objects in list, first selecting an object seems to break double click selection.
-1. Make the editor load a prepared exposition from URL (JSON).
+
 2. Navigation.
-3. Import media area should be below the thing.
 4. WHy does media library scroll ?
-5. Insert tool button.
 
 6. create mockup of new exposition format dialog (radio button Graphical Editor/Text Editor)
 7. Dialog of template management.
 
-Fixed the refocus issue !
-
-3. Fix CSS problems, make sure  exposition css doesn't affect editor styling.
 4. is editor responsive?
 5. add export as other types of documents
 7. make media list more responsive (perhaps should be full screen on small screens ?).

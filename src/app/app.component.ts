@@ -39,6 +39,10 @@ export class AppComponent implements OnInit {
         if (this.objectList) {
             this.objectList.whenOpened();
         }
+        if (this.showMedia) {
+          var element = window.document.getElementById('mediaPanel');
+          element.focus();
+        }
     }
 
     onChangedObject(identity) {

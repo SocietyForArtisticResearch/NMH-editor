@@ -21,7 +21,7 @@ export class ObjectListComponent implements OnInit {
     dblClickCtrl = {
         timer: <number>2,
         prevent: <boolean>false,
-        delay: <number>100
+        delay: <number>60
     };
 
     eventOptions = {
@@ -56,8 +56,9 @@ export class ObjectListComponent implements OnInit {
         this.dblClickCtrl.timer = setTimeout(() => {
             if (!this.dblClickCtrl.prevent) {
                 this.selectedObject = rcobject;
+            } else {
+                this.dblClickCtrl.prevent = false;
             }
-           this.dblClickCtrl.prevent = false;
         }, this.dblClickCtrl.delay);
 
     }
@@ -67,7 +68,6 @@ export class ObjectListComponent implements OnInit {
         clearTimeout(this.dblClickCtrl.timer);
         this.dblClickCtrl.prevent = true;
         // insert rcobject in mde
-        this.selectedObject = rcobject;
         let editor: RCMDE = this.rcExpoModel.mde;
         insertMedia(editor,rcobject.name);
         this.onObjectWasChosen.emit();
