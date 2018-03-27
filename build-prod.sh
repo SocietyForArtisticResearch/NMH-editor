@@ -8,3 +8,4 @@ rm -r ~/public_html/mnh-test
 
 # copy new to html folder
 cp -r -v ./dist ~/public_html/mnh-test 
+

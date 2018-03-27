@@ -24,6 +24,7 @@ __I've updated *mnh-backend* with an extra uploadAngular option, that returns js
 
 ## Casper
 
+0. When you have 2+ objects in list, first selecting an object seems to break double click selection.
 1. Make the editor load a prepared exposition from URL (JSON).
 2. Navigation.
 3. Import media area should be below the thing.
