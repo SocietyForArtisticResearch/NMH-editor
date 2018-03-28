@@ -51,26 +51,33 @@ export class ObjectListComponent implements OnInit {
         this.selectedObject = audioObject;    
     }
 
-    onSelect(id: number, rcobject: RCObject) {
-        // only process click, if there was not a single click
-        this.dblClickCtrl.timer = setTimeout(() => {
-            if (!this.dblClickCtrl.prevent) {
-                this.selectedObject = rcobject;
-            } else {
-                this.dblClickCtrl.prevent = false;
-            }
-        }, this.dblClickCtrl.delay);
+    onSelect(rcobject: RCObject) {
+        if (rcobject) {
+            let id = rcobject.id;
+            // only process click, if there was not a single click
+            this.dblClickCtrl.timer = setTimeout(() => {
+                if (!this.dblClickCtrl.prevent) {
+                    this.selectedObject = rcobject;
+                } else {
+                    this.dblClickCtrl.prevent = false;
+                }
+            }, this.dblClickCtrl.delay);
+        }
+
 
     }
 
-    onDoubleClick(id: number,rcobject: RCObject) {
-        // detected double click, don't process single click;
-        clearTimeout(this.dblClickCtrl.timer);
-        this.dblClickCtrl.prevent = true;
-        // insert rcobject in mde
-        let editor: RCMDE = this.rcExpoModel.mde;
-        insertMedia(editor,rcobject.name);
-        this.onObjectWasChosen.emit();
+    onDoubleClick(rcobject: RCObject) {
+        if (rcobject) {
+            let id = rcobject.id;
+            // detected double click, don't process single click;
+            clearTimeout(this.dblClickCtrl.timer);
+            this.dblClickCtrl.prevent = true;
+            // insert rcobject in mde
+            let editor: RCMDE = this.rcExpoModel.mde;
+            insertMedia(editor,rcobject.name);
+            this.onObjectWasChosen.emit();
+        }
     }
 
     isObjectSelected(rcobject: RCObject) {
@@ -106,7 +113,10 @@ export class ObjectListComponent implements OnInit {
     }
 
     onChangedObject(identity) {
-        this.selectedObject = this.rcExpoModel.exposition.getObjectWithID(identity);
+        let newObject = this.rcExpoModel.exposition.getObjectWithID(identity);
+        if (newObject) {
+            this.selectedObject = this.rcExpoModel.exposition.getObjectWithID(identity);
+        }
     }
 
     objectWasRemoved(removedObjectId: number) {
