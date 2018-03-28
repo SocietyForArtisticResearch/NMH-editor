@@ -22,9 +22,9 @@
 				<tbody>
 				<tr 
 						*ngFor="let rcObject of rcExpoModel.exposition.media" 
-						[class.selected]="selectedObject.id === rcObject.id"
-					    (click)="onSelect(rcObject.id,rcObject)"
-					    (dblclick)="onDoubleClick(rcObject.id,rcObject)">
+						[class.selected]="isObjectSelected(rcObject)"
+					    (click)="onSelect(rcObject)"
+					    (dblclick)="onDoubleClick(rcObject)">
 					<td>
 						<div [ngSwitch]="rcObject.__className">
 							
@@ -34,23 +34,25 @@
 								height="66" 
 								width="66" 
 								alt={{rcObject.url}}>
-
-							<audio *ngSwitchCase="'RCAudio'">
+							
+							<div *ngSwitchCase="'RCAudio'">
+								<p class="playSymbol">▶</p>
+								<audio>
 								<source src={{rcObject.url}}>
-								Browser error
-							</audio>
+								Browser does not support audio.
+								</audio>
+							</div>
 						</div>
 
 					</td>
-<!-- 					<td><strong class="object-list-id">{{rcObject.id}}</strong></td>
- -->				    <td><span class="object-list-name">{{rcObject.name}}</span></td>
+				    <td><span class="object-list-name">{{rcObject.name}}</span></td>
 					<td><button class="align-right" (click)="trashObject(rcObject)">&times;</button></td>
 					<td><button class="align-right" (click)="onDoubleClick(rcObject.id,rcObject)">insert</button></td>
 				</tr>
 			</table>
 		</div>
 		<div class="col-md-6">	
-			<div *ngIf="selectedObject != undefined">
+			<div *ngIf="(selectedObject != undefined) || (selectedObject !== null)">
 				<div [ngSwitch]="selectedObject.__className">
 					<app-basic-tool *ngSwitchCase="'RCImage'"
 					    [id]="'editor'+selectedObject.id" 
@@ -72,8 +74,8 @@
 		</div>
 	</div>
 	<div class="row">
-		<button (click)="createImageTool()" class="btn btn-primary">Add image</button>
-		<button (click)="createAudioTool()" class="btn btn-primary">Add audio</button>
+		<!-- <button (click)="createImageTool()" class="btn btn-primary">Add image</button>
+		<button (click)="createAudioTool()" class="btn btn-primary">Add audio</button> -->
 		<button (click)="removeAll()" class="btn btn-danger">Remove all</button>
 	</div>
 </div>

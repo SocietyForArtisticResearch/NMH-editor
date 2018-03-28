@@ -27,7 +27,7 @@
   <div [style.display]="showMedia ? 'block' : 'none'" id="mediaPanel" class="modal">
     <div class="modal-content modal-media-content">
       <button class="close" (click)="closeMedia();">&times;</button>
-      <app-object-list #objectList (onObjectWasChosen)="showMedia=false"></app-object-list>
+      <app-object-list id="appObjectList" #objectList (onObjectWasChosen)="showMedia=false"></app-object-list>
     </div>
   </div>
 

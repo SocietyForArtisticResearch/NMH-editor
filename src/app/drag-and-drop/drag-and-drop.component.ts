@@ -2,7 +2,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { DragDropDirective } from './drag-drop.directive';
 import { Backend } from '../shared/Backend';
 import { RCExpoModel } from '../shared/RCExpoModel';
-import { RCImage } from '../shared/rcexposition';
+import { RCImage, RCObject, RCAudio, RCVideo } from '../shared/rcexposition';
 import { HttpClient } from '@angular/common/http';
 //import { BlobMimeDetect } from '../shared/BlobMimeDetect';
 
@@ -37,19 +37,30 @@ export class DragAndDropComponent implements OnInit {
   }
 
   onResult(result) {
-      let mimeType = result.mimeType;
-      console.log('mimetype=',mimeType)
-
-      let imageName = 'image' + this.rcExpoModel.exposition.media.length;
+      let mimeType = result.mime;
       
+      if (mimeType.includes('image')) {
 
-      let imageUri = Backend.baseAddress + result.url;
-      let imageObject = new RCImage(imageName, imageUri, 'myClass', null, null);
+        let imageName = 'image' + this.rcExpoModel.exposition.media.length;
+        
+
+        let imageUri = Backend.baseAddress + result.url;
+        let imageObject = new RCImage(imageName, imageUri, 'myClass', null, null);
 
 
-      this.rcExpoModel.exposition.addObject(imageObject);
+        this.rcExpoModel.exposition.addObject(imageObject);
 
-      this.onChangedObject.emit(imageObject.id);
+        this.onChangedObject.emit(imageObject.id);
+      } else if (mimeType.includes('audio')) {
+        let audioName = 'audio' + this.rcExpoModel.exposition.media.length;
+
+        let audioUri = Backend.baseAddress + result.url;
+        //(name: string, url: string, autoplay, loop, userClass, pxWidth?: number, pxHeight?: number) {
+        // super(name, url, "rcaudio", userClass, pxWidth, pxHeight);
+        let audioObject = new RCAudio(audioName,audioUri, false, false, 'myClass', null,null);
+        this.rcExpoModel.exposition.addObject(audioObject);
+        this.onChangedObject.emit(audioObject.id);
+      }
   }
 
   onClick() {
