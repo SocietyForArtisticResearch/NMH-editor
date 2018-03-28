@@ -73,6 +73,13 @@ export class ObjectListComponent implements OnInit {
         this.onObjectWasChosen.emit();
     }
 
+    isObjectSelected(rcobject: RCObject) {
+        if (this.selectedObject) {
+            return this.selectedObject.id === rcobject.id;
+        }
+        return false;
+    }
+
     getCurrentSelection() {
         return this.selectedObject;
     }

@@ -28,10 +28,6 @@ export class DragAndDropComponent implements OnInit {
       
       let selectedImage = fileList[0];
 
-      let typeCallback = ( type ) => { console.log('callback: ',type); };
-
-      //BlobMemeDetect.detect(selectedImage,this.detectedFileType);
-
       const fd = new FormData();
       fd.append('uploadFile', selectedImage, selectedImage.name);
       this.http.post(Backend.uploadAddress, fd).subscribe(result => {
@@ -41,13 +37,27 @@ export class DragAndDropComponent implements OnInit {
   }
 
   onResult(result) {
+      let mimeType = result.mimeType;
+      console.log('mimetype=',mimeType)
 
       let imageName = 'image' + this.rcExpoModel.exposition.media.length;
+      
+
       let imageUri = Backend.baseAddress + result.url;
       let imageObject = new RCImage(imageName, imageUri, 'myClass', null, null);
+
+
       this.rcExpoModel.exposition.addObject(imageObject);
 
       this.onChangedObject.emit(imageObject.id);
+  }
+
+  onClick() {
+    window.document.getElementById('dropzone-manual-input').click();
+  }
+
+  onFileSelected($event) {
+    this.onFilesChange($event.target.files);
   }
  
 }
