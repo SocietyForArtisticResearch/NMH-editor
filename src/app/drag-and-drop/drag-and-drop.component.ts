@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
 import { DragDropDirective } from './drag-drop.directive';
 import { Backend } from '../shared/Backend';
 import { RCExpoModel } from '../shared/RCExpoModel';
@@ -15,6 +15,7 @@ import { HttpClient, HttpRequest, HttpEventType, HttpResponse  } from '@angular/
 })
 export class DragAndDropComponent implements OnInit {
   @Output() onChangedObject = new EventEmitter();
+  @Input() isBigger: boolean;
 
   fileUploadStatus: string = null;
 
@@ -29,16 +30,13 @@ export class DragAndDropComponent implements OnInit {
 
   onFilesChange(fileList : FileList) {
     this.fileUploadStatus = 'upload in progress';
-    // image dropped (should add check !)
+    
     if (fileList.length > 0) {
       
       let selectedFile = fileList[0];
 
       const fd = new FormData();
       fd.append('uploadFile', selectedFile, selectedFile.name);
-      // this.http.post(Backend.uploadAddress, fd).subscribe(result => {
-      //   this.onResult(result);
-      // });
 
       const req = new HttpRequest('POST', Backend.uploadAddress, fd, {
         reportProgress: true,

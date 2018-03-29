@@ -1,10 +1,14 @@
 .dropzone-inner {
   width: 100%;
-  background-color: #eee;
-  border: dotted 1px #aaa;
+  background-color: #aaa;
+  border: dotted 1px #000;
   font-size:12px;
   margin-top:0px;
   height:30px;
+}
+
+.dropzone-bigger {
+  height:125px;
 }
 
 .text-wrapper {
