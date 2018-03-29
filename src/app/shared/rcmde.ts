@@ -8,6 +8,7 @@ import "codemirror/addon/display/placeholder.js";
 import "codemirror/addon/selection/mark-selection.js";
 import "codemirror/mode/gfm/gfm.js";
 import "codemirror/mode/xml/xml.js";
+import * as morphdom from "morphdom";
 import * as MarkdownIt from "markdown-it";
 import * as  MarkdownItFootnote from "markdown-it-footnote";
 import * as  MarkdownItCenter from "markdown-it-center-text";
@@ -907,7 +908,10 @@ export function toggleSideBySide(editor) {
     }
 
     var sideBySideRenderingFunction = function () {
-        preview.innerHTML = editor.options.previewRender(editor.value(), preview);
+        //        preview.innerHTML = editor.options.previewRender(editor.value(), preview);
+        morphdom(preview, editor.options.previewRender(editor.value(), preview), {
+            childrenOnly: true
+        });
     };
 
     if (!cm.sideBySideRenderingFunction) {
@@ -915,7 +919,10 @@ export function toggleSideBySide(editor) {
     }
 
     if (useSideBySideListener) {
-        preview.innerHTML = editor.options.previewRender(editor.value(), preview);
+        //	preview.innerHTML = editor.options.previewRender(editor.value(), preview);
+        morphdom(preview, editor.options.previewRender(editor.value(), preview), {
+            childrenOnly: true
+        });
         cm.on("update", cm.sideBySideRenderingFunction);
     } else {
         cm.off("update", cm.sideBySideRenderingFunction);
@@ -960,7 +967,10 @@ function togglePreview(editor) {
             toolbar_div.className += " disabled-for-preview";
         }
     }
-    preview.innerHTML = editor.options.previewRender(editor.value(), preview);
+    morphdom(preview, editor.options.previewRender(editor.value(), preview), {
+        childrenOnly: true
+    });
+    //    preview.innerHTML = editor.options.previewRender(editor.value(), preview);
 
     // Turn off side by side if needed
     var sidebyside = cm.getWrapperElement().nextSibling;
@@ -1573,7 +1583,9 @@ export class RCMDE {
         if (!options.previewRender) {
             options.previewRender = function (plainText) {
                 // Note: "this" refers to the options object
-                return this.parent.markdown(plainText);
+                let div = document.createElement("div");
+                div.innerHTML = this.parent.markdown(plainText);
+                return div;
             };
         }
 
@@ -1836,7 +1848,10 @@ export class RCMDE {
         var cm = this.codemirror;
         var wrapper = cm.getWrapperElement();
         var preview = wrapper.nextSibling;
-        preview.innerHTML = this.options.previewRender(this.value(), preview);
+        morphdom(preview, this.options.previewRender(this.value(), preview), {
+            childrenOnly: true
+        });
+        //        preview.innerHTML = this.options.previewRender(this.value(), preview);
         this.render();
     }
 
