@@ -153,4 +153,11 @@ export class BasicToolComponent implements OnInit {
         this.rcExpoModel.exposition.replaceObjectWithID(this.rcobject.id, deepCopy);
         this.onChangedObject.emit(this.rcobject.id);
     }
+
+    rcobjectGetUrl() {
+        let parts = this.rcobject.url.split('/');
+        let lastSegment = parts.pop() || parts.pop();  // handle potential trailing slash
+
+        return lastSegment;
+    }
 }

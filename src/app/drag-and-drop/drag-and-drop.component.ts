@@ -14,7 +14,7 @@ import { HttpClient, HttpRequest, HttpEventType, HttpResponse  } from '@angular/
   styleUrls: ['./drag-and-drop.component.css'],
 })
 export class DragAndDropComponent implements OnInit {
-  @Output() onChangedObject = new EventEmitter();
+  @Output() onChangedObject = new EventEmitter<number>();
   @Input() isBigger: boolean;
 
   fileUploadStatus: string = null;
@@ -47,8 +47,7 @@ export class DragAndDropComponent implements OnInit {
         // Look for upload progress events.
         if (event.type === HttpEventType.UploadProgress) {
           // This is an upload progress event. Compute and show the % done:
-          this.fileUploadStatus = Math.round(100 * event.loaded / event.total) + '%';
-          console.log('this.fileUploadStatus',this.fileUploadStatus)
+          this.fileUploadStatus = 'uploading '+Math.round(100 * event.loaded / event.total) + '%';
         } else if (event instanceof HttpResponse) {
           this.fileUploadStatus = 'done';
           window.setTimeout( ( ) => { this.fileUploadStatus = null }, 1000 );

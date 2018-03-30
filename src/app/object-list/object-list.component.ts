@@ -112,7 +112,7 @@ export class ObjectListComponent implements OnInit {
         }
     }
 
-    onChangedObject(identity) {
+    onChangedObject(identity: number) {
         let newObject = this.rcExpoModel.exposition.getObjectWithID(identity);
         if (newObject) {
             this.selectedObject = this.rcExpoModel.exposition.getObjectWithID(identity);

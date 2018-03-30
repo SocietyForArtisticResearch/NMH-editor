@@ -48,6 +48,7 @@ export class AppComponent implements OnInit {
     onChangedObject(identity) {
         let rcobject = this.rcExpoModel.exposition.getObjectWithID(identity);
         let editor: RCMDE = this.rcExpoModel.mde;
+        this.objectList.onChangedObject(identity); // to update selected tool to newest in the object list.
         insertMedia(editor, rcobject.name);
     }
 
