@@ -60,6 +60,9 @@ export class BasicToolComponent implements OnInit {
             'imagePickerButton' : new FormControl(null)
         });
 
+        this.toolForm.valueChanges.subscribe(val => {
+            this.onSubmit();
+        });
 
         this.toolType = this.rcobject.constructor.name;
     }

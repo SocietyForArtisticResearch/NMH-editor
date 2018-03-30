@@ -68,6 +68,8 @@ export class ObjectListComponent implements OnInit {
     }
 
     onDoubleClick(rcobject: RCObject) {
+        console.log('rcobject',rcobject);
+
         if (rcobject) {
             let id = rcobject.id;
             // detected double click, don't process single click;
@@ -114,7 +116,9 @@ export class ObjectListComponent implements OnInit {
 
     onChangedObject(identity: number) {
         let newObject = this.rcExpoModel.exposition.getObjectWithID(identity);
+        console.log('newobject id',identity);
         if (newObject) {
+            console.log('the object',newObject);
             this.selectedObject = this.rcExpoModel.exposition.getObjectWithID(identity);
         }
     }
