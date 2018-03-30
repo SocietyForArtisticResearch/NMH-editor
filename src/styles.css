@@ -7,7 +7,7 @@
 }
 
 app-markdown-tool .CodeMirror { 
-	width: calc(50% - 18px); 
+	width: calc(49% - 18px); 
 	height: calc(100% - 220px); 
 	overflow-y: hidden; 
 	position:absolute; 
@@ -24,4 +24,30 @@ app-markdown-tool .editor-preview-side {
 
 .cm-formatting {
 	color:rgba(0,0,80,.28);
+}
+
+
+@media only screen and (max-width: 800px) {
+    app-markdown-tool .editor-preview-side {
+	display: none;
+    }
+
+    app-markdown-tool .CodeMirror { 
+	width: calc(100% - 15px); 
+	height: 800px; 
+	overflow-y: hidden; 
+	position:absolute;
+
+	/* border-right: none  */
+    }
+
+    app-markdown-tool .editor-toolbar {
+	width:100%;
+	border-left: none;
+	border-right: none;
+    }
+
+    app-markdown-tool .editor-statusbar { display: none;}
+
+    
 }
