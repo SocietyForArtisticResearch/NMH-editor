@@ -1723,11 +1723,11 @@ export class RCMDE {
         let insertedTools = text.replace(re, function (m, p1) { return self.mediaHTML(p1) });
         let basicHTML = md.render(insertedTools);
         let renderedHTML = "<div class=\"exposition\">" + "<div class=\"exposition-content\">" +
-            "<h1 id=\"" + stringToId(this.exposition.title) + "\">" + this.exposition.title + "<h1>" + basicHTML + "</div>" + "</div>";
+            "<h1 id=\"" + stringToId(this.exposition.title) + "\">" + this.exposition.title + "</h1>" + basicHTML + "</div>" + "</div>";
         self.exposition.markdownInput = text;
         self.exposition.renderedHTML = renderedHTML;
         self.exposition.getTOC();
-        //        console.log(self.exposition.toc);
+        console.log(self.exposition.toc);
         this.updateStyling();
         return self.exposition.renderedHTML;
     }
@@ -2227,7 +2227,13 @@ export class RCMDE {
         //        return this.exposition.footnoteCounter++;
         //        let reg = /\[\^(.*)\][^:]/g;
         let reg = /\[\^([^\]]*)\][^:]/g;
-        let footnotes = this.value().match(reg).map(e => e.replace(reg, '$1'));
+        let result = this.value().match(reg);
+        let footnotes = [];
+        if (result !== null) {
+            footnotes = result.map(e => e.replace(reg, '$1'));
+        }
+//        let footnotes = this.value().match(reg).map(e => e.replace(reg, '$1'));
+
         let nextId = footnotes.length + 1;
         let testNextId;
         let testNextIdN = 1;

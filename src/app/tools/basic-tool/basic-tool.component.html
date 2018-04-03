@@ -17,7 +17,6 @@
         <label for="imageFileSelect">Pick an image:</label>
         <input formControlName="imagePickerButton" id="imageFileSelect" class="form-control-file" type="file" (change)="onImageSelect($event)" name="imageSelect">
         <p *ngIf="fileUploadStatus">{{fileUploadStatus}}</p>
-        <label>filename:</label>
         <p class="fileName">{{rcobjectGetUrl()}}</p>
         <div class="imageUrlElements">
         <label for="'imageUrlField'+{{id}}">Image url:</label>

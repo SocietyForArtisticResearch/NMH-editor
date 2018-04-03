@@ -33,6 +33,7 @@ export class ObjectListComponent implements OnInit {
     constructor(public rcExpoModel: RCExpoModel) { }
 
     createImageTool() {
+        // obsolete
         let imageName = 'image' + this.rcExpoModel.exposition.media.length;
         let imageObject = new RCImage(imageName, this.imageUri, 'myClass', null, null);
 
@@ -41,6 +42,7 @@ export class ObjectListComponent implements OnInit {
         // this.rcExpoModel.exposition.addObject(imageObject, 0);
     }
 
+        // obsolete
     createAudioTool() {
         let imageName = 'audio' + this.rcExpoModel.exposition.media.length;
         // name: string, url: string, autoplay, loop, userClass, pxWidth?: number, pxHeight?: number
@@ -68,7 +70,6 @@ export class ObjectListComponent implements OnInit {
     }
 
     onDoubleClick(rcobject: RCObject) {
-        console.log('rcobject',rcobject);
 
         if (rcobject) {
             let id = rcobject.id;
@@ -116,9 +117,7 @@ export class ObjectListComponent implements OnInit {
 
     onChangedObject(identity: number) {
         let newObject = this.rcExpoModel.exposition.getObjectWithID(identity);
-        console.log('newobject id',identity);
         if (newObject) {
-            console.log('the object',newObject);
             this.selectedObject = this.rcExpoModel.exposition.getObjectWithID(identity);
         }
     }

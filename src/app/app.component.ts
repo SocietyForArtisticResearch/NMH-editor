@@ -77,7 +77,6 @@ export class AppComponent implements OnInit {
                  rcExpoModel.loadExpositionFromURL(url)
              })); */
         let url = this.getParam('expositionUrl');
-        console.log(url);
 
         if (url) {
           url = decodeURIComponent(url);
