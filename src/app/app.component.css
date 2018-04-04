@@ -4,6 +4,7 @@
 
 .container.main-app {
     width:97%;
+    height:100%;
 }
 
 .left-hand-collumn {
@@ -112,6 +113,10 @@ hr {
 }
 
 @media only screen and (max-width: 800px) {
+    .main-app {
+        height: 100vw;
+        overflow: hidden;
+    }
     /* responsive media box */
     .modal-content {
         position: fixed;
@@ -119,7 +124,7 @@ hr {
         left:0px;
         background-color: #fefefe;
         padding: 20px;
-        width: 100%; /* Could be more or less, depending on screen size */
+        width: 100%; 
         height: 100%;
         margin:0;
         border-radius:0;
