@@ -5,9 +5,19 @@
      [sortablejsOptions]="eventOptions"> -->
 
 <div class="container-fluid">
-    <span *ngIf="rcExpoModel.exposition.media.length > 1" class="glyphicon glyphicon-info-sign"></span><span>&nbsp;Double click an image to insert</span>
+    
     <div class="row">
 	<div class="col-md-6 rc-object-list">
+	
+	<app-drag-and-drop 
+		class="drag-and-drop-box" 
+		[isBigger]="true" 
+		(onChangedObject)="onChangedObject($event)">
+	</app-drag-and-drop>
+	
+	<div *ngIf="mediaHasObjects()">
+    <span class="glyphicon glyphicon-info-sign"></span><span>&nbsp;Double click an image to insert</span>
+    </div>
 	    <table width="100%" style="margin: 0px;">
 		<thead>
 		    <tr>
@@ -70,7 +80,6 @@
 					</app-audio-tool>
 				</div>
 			</div>
-			<app-drag-and-drop [isBigger]="true" (onChangedObject)="onChangedObject($event)"></app-drag-and-drop>
 		</div>
 	</div>
 	<div class="row">

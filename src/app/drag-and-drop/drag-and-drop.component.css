@@ -8,7 +8,9 @@
 }
 
 .dropzone-bigger {
-  height:125px;
+  margin:10px 10px;
+  width:97%;
+  height:70px;
 }
 
 .text-wrapper {

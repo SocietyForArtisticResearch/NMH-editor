@@ -3,6 +3,12 @@
 	overflow-y:scroll;
 }
 
+.dropzone-inner[_ngcontent-c1] {
+	width:300px;
+	margin:7px;
+	overflow:hidden;
+}
+
 
 .image-preview {
 	object-fit: cover;

@@ -138,5 +138,9 @@ export class ObjectListComponent implements OnInit {
         }
     }
 
+    mediaHasObjects() {
+        return this.rcExpoModel.exposition.media.length > 0;
+    }
+
 
 }
