@@ -6,6 +6,10 @@
     width:97%;
 }
 
+.noScroll {
+    overflow-y: hidden;
+}
+
 .left-hand-collumn {
     position: fixed;
     left:0;
@@ -37,12 +41,12 @@
 
 .importPanel {
     z-index: 1050;
-    height: 300px;
+    /*height: 300px;*/
 }
 
 /* The Modal (background) */
 .modal {
-    display: block;  Hidden by default 
+    display: block;  /*Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 1050; /* Sit on top */
     left: 0;
@@ -111,6 +115,19 @@ hr {
     margin: 0 0;
 }
 
+@media only screen and (max-width: 800px) {
+    /* responsive media box */
+    .modal-content {
+        position: fixed;
+        top:0px;
+        left:0px;
+        background-color: #fefefe;
+        padding: 20px;
+        width: 100%; /* Could be more or less, depending on screen size */
+        height: 100%;
+        margin:0;
+    }
+}
 
 
 

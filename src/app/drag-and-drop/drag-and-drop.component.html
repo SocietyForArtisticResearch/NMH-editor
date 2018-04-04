@@ -1,7 +1,6 @@
 <div [ngClass]='{ "dropzone-inner" : true , "dropzone-bigger" : isBigger }'  appDragDrop (filesChangeEmitter)="onFilesChange($event)" (click)="onClick()">
   <div class="text-wrapper">
-    <div *ngIf="fileUploadStatus === null" class="centered">Click here to add media (or drop a file)
-    </div>
+    <div *ngIf="fileUploadStatus === null" class="centered">click or drop to add media</div>
     <div *ngIf="fileUploadStatus !== null" class="centered">{{fileUploadStatus}}</div>
 	<input type="file" id="dropzone-manual-input" (change)="onFileSelected($event)">
   </div>
