@@ -35,6 +35,7 @@ app-markdown-tool .editor-preview-side {
     app-markdown-tool .CodeMirror { 
 	width: calc(100% - 15px); 
 	height: auto; 
+	top:145px;
 	bottom: 0px;
 	overflow-y: hidden; 
 	position:absolute;
