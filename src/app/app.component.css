@@ -6,10 +6,6 @@
     width:97%;
 }
 
-.noScroll {
-    overflow-y: hidden;
-}
-
 .left-hand-collumn {
     position: fixed;
     left:0;
@@ -126,6 +122,7 @@ hr {
         width: 100%; /* Could be more or less, depending on screen size */
         height: 100%;
         margin:0;
+        border-radius:0;
     }
 }
 

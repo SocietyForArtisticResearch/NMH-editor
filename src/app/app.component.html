@@ -19,8 +19,7 @@
 	  <button type="button" [disabled]="editStyle" class="btn btn-primary" (click)="editStyle = true" data-toggle="tooltip" data-placement="top" title="Edit the CSS styling">Edit style</button>
     <app-drag-and-drop *ngIf="!showMedia" class="dropZone" (onChangedObject)=onChangedObject($event)></app-drag-and-drop>   
 	  <app-markdown-tool #markdownEditor 
-        (openObjectListRequest)="showMedia=true"
-        [ngClass]="{ 'noScroll' : showMedia }">
+        (openObjectListRequest)="showMedia=true">
     </app-markdown-tool>
       </div>
 

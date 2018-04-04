@@ -15,6 +15,8 @@ __I've updated *mnh-backend* with an extra uploadAngular option, that returns js
 
 
 ## Luc
+* if exposition preview is open already, clicking preview again will append the new version to the old render. This results in two expositions in one body. Should replace ?
+
 * !{} why only with space
 * TOC 2 levels h2, h3
 
@@ -24,18 +26,12 @@ __I've updated *mnh-backend* with an extra uploadAngular option, that returns js
 
 ## Casper
 
-0. When you have 2+ objects in list, first selecting an object seems to break double click selection.
+* video tool is missing editor
 
-2. Navigation.
-4. WHy does media library scroll ?
+### responsiveness issues:
 
-6. create mockup of new exposition format dialog (radio button Graphical Editor/Text Editor)
-7. Dialog of template management.
-
-4. is editor responsive?
-5. add export as other types of documents
-7. make media list more responsive (perhaps should be full screen on small screens ?).
-
+* object list needs to relocate drag and dropzone.
+* object list should not scroll
 
 ## Possible but will cost them
 * less compiler
