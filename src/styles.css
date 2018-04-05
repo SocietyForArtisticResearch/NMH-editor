@@ -16,7 +16,7 @@ app-markdown-tool .CodeMirror {
 
 app-markdown-tool .editor-toolbar { width:80.0%; }
 
-app-markdown-tool .editor-statusbar { position: absolute; bottom: 0; z-index:1000;}
+app-markdown-tool .editor-statusbar { position: absolute; bottom: 0; z-index:1000; background-color:white;}
 
 app-markdown-tool .editor-preview-side {
 	width:50%; 
@@ -53,5 +53,8 @@ app-markdown-tool .editor-preview-side {
 
     app-markdown-tool .editor-statusbar { display: none;}
 
-    
+   .css-edit-screen .CodeMirror {
+    	height:calc(100vh - 100px);
+    	min-height:unset;
+    }
 }

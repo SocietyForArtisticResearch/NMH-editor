@@ -84,5 +84,12 @@ export class AppComponent implements OnInit {
         }
     }
 
+    shouldHideBecauseModalIsVisible() {
+      if (this.showMedia || this.showImport || this.editStyle) {
+        return true;
+      }
+      return false;
+    }
+
     
 }

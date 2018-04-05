@@ -56,13 +56,13 @@
 
 /* Modal Content/Box */
 .modal-content {
-	position: relative;
-	top:-100px;
+	position: fixed;
+	/*top:-100px;*/
     background-color: #fefefe;
-    margin: 15% auto; /* 15% from the top and centered */
+    margin: 5vh 5vw; /* 15% from the top and centered */
     padding: 20px;
     border: 1px solid #888;
-    width: 70%; /* Could be more or less, depending on screen size */
+    width: 70%;  /*Could be more or less, depending on screen size */
 }
 
 /* The Close Button */
@@ -81,7 +81,7 @@
 }
 
 .modal-media-content {
-    margin:10% auto;
+    /*margin:10% auto;*/
 }
 
 .import-content {
@@ -113,6 +113,15 @@ hr {
 }
 
 @media only screen and (max-width: 800px) {
+    .style-modal-window {
+        max-width: 100vw;
+        max-height: 100vh;
+    }
+
+    .hideBecauseModalIsVisible {
+        display:none;
+    }
+
     .main-app {
         height: 100vw;
         overflow: hidden;

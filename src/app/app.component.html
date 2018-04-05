@@ -3,7 +3,7 @@
 
 <!--   <div [ngClass]="{ 'shifted' : showMedia }">
  -->
-      <div>
+  <div [ngClass]="{ 'hideBecauseModalIsVisible' : shouldHideBecauseModalIsVisible() }">
 	  <input class="editableTitle" 
       type='text' 
       value="{{this.rcExpoModel.exposition.title}}" 
@@ -22,7 +22,7 @@
 	  <app-markdown-tool #markdownEditor 
         (openObjectListRequest)="showMedia=true">
     </app-markdown-tool>
-      </div>
+  </div>
 
   <!-- Media object list -->
 
@@ -49,7 +49,7 @@
   <div *ngIf="editStyle" id="editStyle" class="modal">
 
     <!-- Modal content -->
-    <div class="modal-content">
+    <div class="modal-content style-modal-window">
       <button class="close" (click)="editStyle=false">&times;</button>
       <app-style-edit (closeWindow)="editStyle=false"></app-style-edit>
     </div>
