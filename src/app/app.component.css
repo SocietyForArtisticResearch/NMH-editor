@@ -71,6 +71,8 @@
     float: right;
     font-size: 28px;
     font-weight: bold;
+    z-index:1051;
+    position:relative;
 }
 
 .close:hover,
