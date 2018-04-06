@@ -36,6 +36,7 @@ __I've updated *mnh-backend* with an extra uploadAngular option, that returns js
 ## Possible but will cost them
 * less compiler
 * paragraph a la git doc
+* import export LaTeX.
 
 
 
