@@ -52,6 +52,14 @@
 								Browser does not support audio.
 								</audio>
 							</div>
+
+							<div *ngSwitchCase="'RCVideo'">
+								<p class="playSymbol">▶</p>
+								<video class="video-preview">
+								<source src={{rcObject.url}}>
+								Browser does not support audio.
+								</video>
+							</div>
 						</div>
 
 					</td>
@@ -78,6 +86,13 @@
 						(onChangedObject)="onChangedObject($event)"
 						>		
 					</app-audio-tool>
+					<app-video-tool *ngSwitchCase="'RCVideo'"
+					    [id]="'editor'+selectedObject.id" 
+						[rcobject]="selectedObject"
+						(onRemoveObject)="objectWasRemoved($event)"
+						(onChangedObject)="onChangedObject($event)"
+						>		
+					</app-video-tool>
 				</div>
 			</div>
 		</div>

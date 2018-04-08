@@ -1,3 +1,7 @@
+.video-preview {
+	width:30px;
+}
+
 .rc-object-list {
 	height:500px;
 	overflow-y:scroll;
