@@ -5,6 +5,7 @@ import { RCMedia, RCAudio } from '../../shared/rcexposition';
 import { FormControl, AbstractControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Backend } from '../../shared/Backend'
+import * as Utils from '../../shared/utils'
 
 
 
@@ -80,7 +81,9 @@ export class AudioToolComponent implements OnInit {
 
     prepareSaveObject(): RCAudio {
         const formModel = this.toolForm.value;
-        const newObject: RCAudio = new RCAudio(formModel.name, formModel.audioUrl, false, false, 'userClass', null , null);
+        let id = Utils.uniqueID();
+        const newObject: RCAudio = new RCAudio(id, formModel.name);
+        newObject.url = formModel.audioUrl;
         return newObject;
     }
 

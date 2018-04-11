@@ -40,8 +40,8 @@ export class AppComponent implements OnInit {
             this.objectList.whenOpened();
         }
         if (this.showMedia) {
-          var element = window.document.getElementById('mediaPanel');
-          element.focus();
+            var element = window.document.getElementById('mediaPanel');
+            element.focus();
         }
     }
 
@@ -58,38 +58,42 @@ export class AppComponent implements OnInit {
     }
 
     getParam(param) {
-      var url = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
-      for (var i=0;i<url.length;i++) {
-         var params = url[i].split("=");
-         if(params[0] == param)
-          return params[1];
-      }
-      return '';
+        var url = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+        for (var i = 0; i < url.length; i++) {
+            var params = url[i].split("=");
+            if (params[0] == param)
+                return params[1];
+        }
+        return '';
     }
 
     ngOnInit() {
-    /* this was an attempt to use the angular router to grab an ExpositionURL 
-      this.loadedExpositionURL$ = this.route.params
-      .pipe(switchMap((params: Params) =>
-            {
-                console.log("these are the params :",params);
-                let url = params.get('expositionUrl')
-                 rcExpoModel.loadExpositionFromURL(url)
-             })); */
+        /* this was an attempt to use the angular router to grab an ExpositionURL 
+          this.loadedExpositionURL$ = this.route.params
+          .pipe(switchMap((params: Params) =>
+                {
+                    console.log("these are the params :",params);
+                    let url = params.get('expositionUrl')
+                     rcExpoModel.loadExpositionFromURL(url)
+                 })); */
         let url = this.getParam('expositionUrl');
+        let rcId = this.getParam('research');
 
-        if (url) {
-          url = decodeURIComponent(url);
-          this.rcExpoModel.loadExpositionFromURL(url);
+        if (rcId) {
+            let rcIdNumber = Number(decodeURIComponent(rcId));
+            this.rcExpoModel.loadExpositionFromRC(rcIdNumber);
+        } else if (url) {
+            url = decodeURIComponent(url);
+            this.rcExpoModel.loadExpositionFromURL(url);
         }
     }
 
     shouldHideBecauseModalIsVisible() {
-      if (this.showMedia || this.showImport || this.editStyle) {
-        return true;
-      }
-      return false;
+        if (this.showMedia || this.showImport || this.editStyle) {
+            return true;
+        }
+        return false;
     }
 
-    
+
 }

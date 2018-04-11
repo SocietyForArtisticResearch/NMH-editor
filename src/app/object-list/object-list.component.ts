@@ -5,6 +5,7 @@ import { RCExpoModel } from '../shared/RCExpoModel';
 import { RCMDE, insertMediaToken, insertMedia } from '../shared/rcmde';
 import { RCObject, RCImage, RCAudio, RCSvg, RCPdf, RCVideo } from '../shared/rcexposition';
 
+import * as Utils from '../shared/utils';
 
 @Component({
     selector: 'app-object-list',
@@ -26,7 +27,7 @@ export class ObjectListComponent implements OnInit {
 
     eventOptions = {
         onUpdate: (event) => {
-            
+
         }
     }
 
@@ -35,22 +36,22 @@ export class ObjectListComponent implements OnInit {
     createImageTool() {
         // obsolete
         let imageName = 'image' + this.rcExpoModel.exposition.media.length;
-        let imageObject = new RCImage(imageName, this.imageUri, 'myClass', null, null);
-
+        let imageObject = new RCImage(Utils.uniqueID(), imageName);
+        imageObject.url = this.imageUri;
         this.rcExpoModel.exposition.addObject(imageObject);
         this.selectedObject = imageObject;
         // this.rcExpoModel.exposition.addObject(imageObject, 0);
     }
 
-        // obsolete
+    // obsolete
     createAudioTool() {
-        let imageName = 'audio' + this.rcExpoModel.exposition.media.length;
-        // name: string, url: string, autoplay, loop, userClass, pxWidth?: number, pxHeight?: number
+        let audioName = 'audio' + this.rcExpoModel.exposition.media.length;
 
-        let audioObject = new RCAudio(imageName, this.imageUri, false, false, 'myClass', null, null);
-
+        let audioObject = new RCAudio(Utils.uniqueID(), audioName);
+        // Luc: audioUri is the same as imageUri? should perhaps be called mediaUri
+        audioObject.url = this.imageUri;
         this.rcExpoModel.exposition.addObject(audioObject);
-        this.selectedObject = audioObject;    
+        this.selectedObject = audioObject;
     }
 
     onSelect(rcobject: RCObject) {
@@ -78,7 +79,7 @@ export class ObjectListComponent implements OnInit {
             this.dblClickCtrl.prevent = true;
             // insert rcobject in mde
             let editor: RCMDE = this.rcExpoModel.mde;
-            insertMedia(editor,rcobject.name);
+            insertMedia(editor, rcobject.name);
             this.onObjectWasChosen.emit();
         }
     }
