@@ -26,7 +26,9 @@ __I've updated *mnh-backend* with an extra uploadAngular option, that returns js
 
 ## Casper
 
-* video tool is missing editor
+* I will add copyright, userclass & description fields
+* Change the upload to use the RC (make a switch)
+* 
 
 ### responsiveness issues:
 
