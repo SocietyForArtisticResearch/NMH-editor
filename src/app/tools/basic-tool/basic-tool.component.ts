@@ -6,6 +6,8 @@ import { FormControl, AbstractControl, FormGroup, ValidatorFn, Validators } from
 import { HttpEventType, HttpRequest, HttpResponse, HttpClient } from '@angular/common/http';
 import { Backend } from '../../shared/Backend';
 
+import * as Utils from '../../shared/utils';
+
 
 
 function forbiddenNameValidator(rcModel: RCExpoModel, oldName: string): ValidatorFn {
@@ -57,7 +59,7 @@ export class BasicToolComponent implements OnInit {
             'imageUrl': new FormControl(this.rcobject.url, [Validators.required]),
             'widthInPixels': new FormControl(this.rcobject.pxWidth),
             'heightInPixels': new FormControl(this.rcobject.pxHeight),
-            'imagePickerButton' : new FormControl(null)
+            'imagePickerButton': new FormControl(null)
         });
 
         this.toolForm.valueChanges.subscribe(val => {
@@ -74,7 +76,7 @@ export class BasicToolComponent implements OnInit {
                 'imageUrl': this.rcobject.url,
                 'widthInPixels': this.rcobject.pxWidth,
                 'heightInPixels': this.rcobject.pxHeight,
-                'imagePickerButton' : null
+                'imagePickerButton': null
             });
             //(<HTMLInputElement>document.getElementById('imageFileSelect')).value = null;
 
@@ -96,7 +98,7 @@ export class BasicToolComponent implements OnInit {
         }
         return true;
     }
-    
+
 
     onSubmit() {
         // Angular protects its values of the model very strictly, so we have to update rcexposition through a deepcopy of the tool.
@@ -108,7 +110,11 @@ export class BasicToolComponent implements OnInit {
 
     prepareSaveObject(): RCImage {
         const formModel = this.toolForm.value;
-        const newObject: RCImage = new RCImage(formModel.name, formModel.imageUrl, 'userClass', formModel.widthInPixels, formModel.heightInPixels);
+        let id = Utils.uniqueID();
+        const newObject: RCImage = new RCImage(id, formModel.name);
+        newObject.url = formModel.imageUrl;
+        newObject.pxWidth = formModel.widthInPixels;
+        newObject.pxHeight = formModel.heightInPixels;
         return newObject;
     }
 
@@ -127,22 +133,22 @@ export class BasicToolComponent implements OnInit {
         fd.append('uploadFile', this.selectedImage, this.selectedImage.name);
 
         const req = new HttpRequest('POST', Backend.uploadAddress, fd, {
-          reportProgress: true,
+            reportProgress: true,
         });
 
         this.http.request(req).subscribe(event => {
-          // Via this API, you get access to the raw event stream.
-          // Look for upload progress events.
-          if (event.type === HttpEventType.UploadProgress) {
-            // This is an upload progress event. Compute and show the % done:
-            this.fileUploadStatus = Math.round(100 * event.loaded / event.total) + '%';
-          } else if (event instanceof HttpResponse) {
-            this.fileUploadStatus = 'done';
-            window.setTimeout( ( ) => { this.fileUploadStatus = null }, 1000 );
-            this.onResult(event.body);
-          }
+            // Via this API, you get access to the raw event stream.
+            // Look for upload progress events.
+            if (event.type === HttpEventType.UploadProgress) {
+                // This is an upload progress event. Compute and show the % done:
+                this.fileUploadStatus = Math.round(100 * event.loaded / event.total) + '%';
+            } else if (event instanceof HttpResponse) {
+                this.fileUploadStatus = 'done';
+                window.setTimeout(() => { this.fileUploadStatus = null }, 1000);
+                this.onResult(event.body);
+            }
         });
- 
+
         this.rcExpoModel.mde.render();
     }
 

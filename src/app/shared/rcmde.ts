@@ -13,7 +13,8 @@ import * as MarkdownIt from "markdown-it";
 import * as  MarkdownItFootnote from "markdown-it-footnote";
 import * as  MarkdownItCenter from "markdown-it-center-text";
 const md = new MarkdownIt({ html: true, typographer: true }).use(MarkdownItFootnote).use(MarkdownItCenter);
-import { RCImage, RCAudio, RCSvg, RCPdf, RCVideo, RCExposition, stringToId } from '../shared/rcexposition';
+import { RCImage, RCAudio, RCSvg, RCPdf, RCVideo, RCExposition } from '../shared/rcexposition';
+import { stringToId } from './utils'
 
 //import * as CodeMirrorSpellChecker from 'codemirror-spell-checker'
 // var CodeMirrorSpellChecker = require("codemirror-spell-checker");
@@ -2232,7 +2233,7 @@ export class RCMDE {
         if (result !== null) {
             footnotes = result.map(e => e.replace(reg, '$1'));
         }
-//        let footnotes = this.value().match(reg).map(e => e.replace(reg, '$1'));
+        //        let footnotes = this.value().match(reg).map(e => e.replace(reg, '$1'));
 
         let nextId = footnotes.length + 1;
         let testNextId;

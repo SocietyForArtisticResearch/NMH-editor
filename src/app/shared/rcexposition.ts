@@ -17,31 +17,17 @@
 // along with this program; if not, write to the Free Software Foundation,
 // Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
 
-//import * as MarkdownIt from "markdown-it";
+// TODO
+// from RC API media create media list
+// mediaurl with RC url
 
-//const md = new MarkdownIt('commonmark');
+
+// DONE
+// constructors same paramters
+
 import { Backend } from "./Backend"
+import * as Utils from "./utils";
 
-var server = Backend.baseAddress;
-
-let uniqueID = function () {
-    var i = 1;
-
-    return function () {
-        return i++;
-    };
-}();
-
-
-export function stringToId(str) {
-    return str.replace(/[^A-Z0-9]+/ig, "-");
-}
-
-function flatten(arr) {
-    return arr.reduce(function (flat, toFlatten) {
-        return flat.concat(Array.isArray(toFlatten) ? flatten(toFlatten) : toFlatten);
-    }, []);
-}
 
 /**
 
@@ -55,20 +41,22 @@ export class RCExposition {
     __className: string;
     style: string;
     title: string;
+    urlRenderRC: boolean;
     authors: string[];
     breakpoint: number;
     markdownInput: string;
+    id: number
     //    markdownOutput: string;
     renderedHTML: string;
     toc: any;
     media: RCObject[];
 
-    constructor(title, authors, style, breakpoint = 1200) {
+    constructor(title: string, authors: string[], style) {
         this.__className = "RCExposition";
         this.style = style;
         this.title = title;
         this.authors = authors;
-        this.breakpoint = breakpoint;
+        this.urlRenderRC = false;
         this.renderedHTML = "";
         this.media = [];
     }
@@ -76,7 +64,12 @@ export class RCExposition {
     replaceToolsWithImages(text) {
         let self = this;
         let re = /!{(\w+)}/g;
-        let insertedTools = text.replace(re, function (m, p1) { return "![" + name + "](" + self.media.find(obj => obj.name == p1).url + ")"; });
+        let insertedTools;
+        if (Backend.useRC) {
+            insertedTools = text.replace(re, function (m, p1) { return "![" + name + "](" + self.media.find(obj => obj.name == p1).rcURL(this.id) + ")"; });
+        } else {
+            insertedTools = text.replace(re, function (m, p1) { return "![" + name + "](" + self.media.find(obj => obj.name == p1).url + ")"; });
+        }
         return insertedTools;
     }
 
@@ -105,7 +98,7 @@ export class RCExposition {
         let headers = html.querySelectorAll("h1, h2, h3");
         for (let i = 0; i < headers.length; i++) {
             if (!headers[i].id) {
-                headers[i].id = stringToId((<HTMLHeadingElement>headers[i]).innerText);
+                headers[i].id = Utils.stringToId((<HTMLHeadingElement>headers[i]).innerText);
             };
             toc.push({
                 level: Number(headers[i].nodeName[1]),
@@ -137,6 +130,7 @@ export class RCExposition {
     }
 
     addObject(obj: RCObject) {
+        // TODO check that there is no object with the same ID
         this.media.push(obj);
     }
 
@@ -150,11 +144,61 @@ export class RCExposition {
         }
     }
 
+    // used for doc import
     addImageList(list) {
         let self = this;
-        let obj = list.map(url => new RCImage("image" + String(uniqueID()), server + "/" + url, "myClass", null, null));
-        obj.forEach(o => self.addObject(o));
+        let obj = list.map(spec => {
+            if (Backend.useRC) {
+                self.updateOrCreateObject(spec);
+            } else {
+                let id = Utils.uniqueID();
+                let o = new RCImage(id, "image" + id);
+                o.url = Backend.baseAddress + "/" + spec; // spec for non-RC is url of media/image
+                self.addObject(o);
+                return o;
+            }
+        });
         return obj.map(o => o.name);
+    }
+
+    // chek if exists then update otherwise create object
+    private updateOrCreateObject(rcmedia) {
+        let ob = this.getObjectWithID(rcmedia.id);
+        if (ob == undefined) {
+            if (rcmedia.media != undefined) {
+                let objectType = rcmedia.type;
+                switch (objectType) {
+                    case "image": {
+                        ob = new RCImage(rcmedia.id, rcmedia.name);
+                        break;
+                    }
+                    case "audio": {
+                        ob = new RCAudio(rcmedia.id, rcmedia.name);
+                        break;
+                    }
+                    case "video": {
+                        ob = new RCVideo(rcmedia.id, rcmedia.name);
+                        break;
+                    }
+                    case "pdf": {
+                        ob = new RCPdf(rcmedia.id, rcmedia.name);
+                        break;
+                    }
+                }
+                this.addObject(ob);
+            }
+        }
+        ob.description = rcmedia.description;
+        ob.copyright = rcmedia.copyright;
+        ob.name = rcmedia.name;
+        return ob;
+    }
+
+
+    integrateRCMediaList(RCMediaList: Array<any>) {
+        let self = this;
+        RCMediaList.forEach(m => self.updateOrCreateObject(m));
+
     }
 
 
@@ -175,6 +219,8 @@ export class RCExposition {
 export class RCObject {
     __className: string;
     name: string;
+    description: string;
+    copyright: string;
     objectClass: string;
     userClass: string;
     tocDepth: number;
@@ -194,17 +240,27 @@ export class RCObject {
      * @param {string} userClass - CSS class specified by user
      * @param {number} tocDepth - depth for table of content entry
      */
-    constructor(name, objectClass, userClass) {
+    constructor(id: number, name: string) {
         this.__className = "RCObject";
         this.name = name;
-        this.objectClass = objectClass;
-        this.userClass = userClass;
-        this.id = uniqueID();
-        this.htmlId = stringToId(name + "-" + String(this.id));
+        this.id = id;
+        this.htmlId = Utils.stringToId(name + "-" + String(this.id));
         if (new.target === RCObject) {
             throw new TypeError("Cannot create an instance of an abstract class");
         }
     }
+
+    //     constructor(name, objectClass, userClass) {
+    //     this.__className = "RCObject";
+    //     this.name = name;
+    //     this.objectClass = objectClass;
+    //     this.userClass = userClass;
+    //     this.id = uniqueID();
+    //     this.htmlId = stringToId(name + "-" + String(this.id));
+    //     if (new.target === RCObject) {
+    //         throw new TypeError("Cannot create an instance of an abstract class");
+    //     }
+    // }
 
     /** Cannot be called directly, if defined only updates grid style
      * option */
@@ -238,6 +294,10 @@ export class RCObject {
         return "";
     }
 
+    rcURL(expositionId: number) {
+        return `${Backend.rcBaseAddress}text-editor/simple-media-resource?research=${expositionId}&simple-media=${this.id}`;
+    }
+
 
     getTOC(weave) {
         if (this.tocDepth !== undefined) {
@@ -258,30 +318,49 @@ export class RCObject {
 // generic prototype media class for image, svg, pdf, video, audio
 /** Abstract class for media subclasses for image, svg, pdf, video, audio */
 export class RCMedia extends RCObject {
-    url: string;
     pxWidth: number;
     pxHeight: number;
 
-    constructor(name: string, url: string, rcClass, userClass, pxWidth?: number, pxHeight?: number) {
-        super(name, rcClass, userClass);
-        this.url = url;
-        this.pxWidth = pxWidth;
-        this.pxHeight = pxHeight;
+    constructor(id: number, name: string, objectClass: string) {
+        super(id, name);
+        // this.url = url;
+        // this.pxWidth = pxWidth;
+        // this.pxHeight = pxHeight;
         this.__className = "RCMedia";
+        this.objectClass = objectClass;
         if (new.target === RCMedia) {
             throw new TypeError("Cannot create an instance of an abstract class")
         }
     }
+
+
+
+    // constructor(name: string, url: string, rcClass, userClass, pxWidth?: number, pxHeight?: number) {
+    //     super(name, rcClass, userClass);
+    //     this.url = url;
+    //     this.pxWidth = pxWidth;
+    //     this.pxHeight = pxHeight;
+    //     this.__className = "RCMedia";
+    //     if (new.target === RCMedia) {
+    //         throw new TypeError("Cannot create an instance of an abstract class")
+    //     }
+    // }
+
 
 }
 
 /** Class representing an image */
 export class RCImage extends RCMedia {
 
-    constructor(name: string, url: string, userClass, pxWidth?: number, pxHeight?: number) {
-        super(name, url, "rcimage", userClass, pxWidth, pxHeight);
+    constructor(id: number, name: string) {
+        super(id, name, "rcimage");
         this.__className = "RCImage";
     }
+
+    // constructor(name: string, url: string, userClass, pxWidth?: number, pxHeight?: number) {
+    //     super(name, url, "rcimage", userClass, pxWidth, pxHeight);
+    //     this.__className = "RCImage";
+    // }
 
     createHTML() {
         if (this.html === undefined) {
@@ -310,10 +389,15 @@ export class RCImage extends RCMedia {
 /** Class representing a PDF, which will be displayed as an object */
 export class RCPdf extends RCMedia {
 
-    constructor(name: string, url: string, userClass, pxWidth?: number, pxHeight?: number) {
-        super(name, url, "rcpdf", userClass, pxWidth, pxHeight);
+    constructor(id: number, name: string) {
+        super(id, name, "rcpdf");
         this.__className = "RCPdf";
     }
+
+    // constructor(name: string, url: string, userClass, pxWidth?: number, pxHeight?: number) {
+    //     super(name, url, "rcpdf", userClass, pxWidth, pxHeight);
+    //     this.__className = "RCPdf";
+    // }
 
     createHTML() {
         if (this.html === undefined) {
@@ -345,10 +429,15 @@ export class RCPdf extends RCMedia {
 /** Class representing a SVG, which will be displayed as an object */
 export class RCSvg extends RCMedia {
 
-    constructor(name: string, url: string, userClass, pxWidth?: number, pxHeight?: number) {
-        super(name, url, "rcsvg", userClass, pxWidth, pxHeight);
+    constructor(id: number, name: string) {
+        super(id, name, "rcsvg");
         this.__className = "RCSvg";
     }
+
+    // constructor(name: string, url: string, userClass, pxWidth?: number, pxHeight?: number) {
+    //     super(name, url, "rcsvg", userClass, pxWidth, pxHeight);
+    //     this.__className = "RCSvg";
+    // }
 
     createHTML() {
         if (this.html === undefined) {
@@ -381,12 +470,17 @@ export class RCAudio extends RCMedia {
     autoplay: boolean;
     loop: boolean;
 
-    constructor(name: string, url: string, autoplay, loop, userClass, pxWidth?: number, pxHeight?: number) {
-        super(name, url, "rcaudio", userClass, pxWidth, pxHeight);
-        this.autoplay = autoplay;
-        this.loop = loop;
+    constructor(id: number, name: string) {
+        super(id, name, "rcaudio");
         this.__className = "RCAudio";
     }
+
+    // constructor(name: string, url: string, autoplay, loop, userClass, pxWidth?: number, pxHeight?: number) {
+    //     super(name, url, "rcaudio", userClass, pxWidth, pxHeight);
+    //     this.autoplay = autoplay;
+    //     this.loop = loop;
+    //     this.__className = "RCAudio";
+    // }
 
     createHTML() {
         if (this.html === undefined) {
@@ -426,12 +520,18 @@ export class RCVideo extends RCMedia {
     autoplay: boolean;
     loop: boolean;
 
-    constructor(name, url, autoplay, loop, userClass, pxWidth?: number, pxHeight?: number) {
-        super(name, url, "rcvideo", userClass, pxWidth, pxHeight);
-        this.autoplay = autoplay;
-        this.loop = loop;
+    constructor(id: number, name: string) {
+        super(id, name, "rcvideo");
         this.__className = "RCVideo";
     }
+
+
+    // constructor(name, url, autoplay, loop, userClass, pxWidth?: number, pxHeight?: number) {
+    //     super(name, url, "rcvideo", userClass, pxWidth, pxHeight);
+    //     this.autoplay = autoplay;
+    //     this.loop = loop;
+    //     this.__className = "RCVideo";
+    // }
 
     createHTML() {
         if (this.html === undefined) {

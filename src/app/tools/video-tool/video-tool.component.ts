@@ -6,6 +6,8 @@ import { FormControl, AbstractControl, FormGroup, ValidatorFn, Validators } from
 import { HttpClient } from '@angular/common/http';
 import { Backend } from '../../shared/Backend'
 
+import * as Utils from '../../shared/utils'
+
 
 
 function forbiddenNameValidator(rcModel: RCExpoModel, oldName: string): ValidatorFn {
@@ -80,7 +82,12 @@ export class VideoToolComponent implements OnInit {
 
     prepareSaveObject(): RCVideo {
         const formModel = this.toolForm.value;
-        const newObject: RCVideo = new RCVideo(formModel.name, formModel.videoUrl, false, false, 'userClass', null , null);
+
+        let id = Utils.uniqueID();
+        const newObject: RCVideo = new RCVideo(id, formModel.name);
+        newObject.url = formModel.videoUrl;
+        newObject.pxWidth = formModel.widthInPixels;
+        newObject.pxHeight = formModel.heightInPixels;
         return newObject;
     }
 

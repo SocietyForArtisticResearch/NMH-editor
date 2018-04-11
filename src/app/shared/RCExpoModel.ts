@@ -1,4 +1,5 @@
 import { RCExposition, RCExpositionDeserializer } from './rcexposition';
+import { Backend } from "./Backend"
 import { RCMDE } from './rcmde';
 
 
@@ -17,33 +18,53 @@ export class RCExpoModel {
         // number of Y cells should be updated by number of tools).
 
         let defaultStyle = '';
- 
-        this.exposition = new RCExposition('', ['authors'], defaultStyle, 1200);
+
+        this.exposition = new RCExposition('', ['authors'], defaultStyle);
     }
 
+    // Luc: why not simply method?
     loadExpositionFromURL = function (expositionJSONUrl: string) {
-        console.log('this will load the exposition from: '+ expositionJSONUrl);
+        Backend.useRC = false;
+        console.log('this will load the exposition from: ' + expositionJSONUrl);
         var xhttp = new XMLHttpRequest();
         var that = this; // the wonderfully messed up way scoping works
-        xhttp.onreadystatechange = function ( ) {
-        if (this.readyState == 4 && this.status == 200) {
-            var mde = that.mde;
-            let expositionJSON = JSON.parse(xhttp.responseText);
-            //  console.log(expositionJSON);
-            let exposition = RCExpositionDeserializer.restoreObject(expositionJSON);
-            //  console.log(exposition);
-            exposition.media.forEach(m => m.html = undefined);
-            that.exposition = exposition;
-            mde.exposition = exposition;
-            //          console.log(exposition.markdownInput);
-            that.mde.value(exposition.markdownInput);
-            that.mde.render();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                var mde = that.mde;
+                let expositionJSON = JSON.parse(xhttp.responseText);
+                //  console.log(expositionJSON);
+                let exposition = RCExpositionDeserializer.restoreObject(expositionJSON);
+                //  console.log(exposition);
+                exposition.media.forEach(m => m.html = undefined);
+                that.exposition = exposition;
+                mde.exposition = exposition;
+                //          console.log(exposition.markdownInput);
+                that.mde.value(exposition.markdownInput);
+                that.mde.render();
             }
         };
         console.log("starting request, with url:", expositionJSONUrl);
         xhttp.open("GET", expositionJSONUrl, true);
-        xhttp.send();    
+        xhttp.send();
+    }
 
+    loadExpositionFromRC(id: number) {
+        Backend.useRC = true;
+        // TODO get json from RC!
+        // get media-list
+        var xhttp = new XMLHttpRequest();
+        var that = this;
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                var mde = that.mde;
+                let medialist = JSON.parse(xhttp.responseText);
+                that.exposition.id = id;
+                that.exposition.integrateRCMediaList(medialist);
+                console.log(that.exposition.media);
+            }
+        };
+        xhttp.open("GET", `${Backend.rcBaseAddress}text-editor/simple-media-list?research=${id}`, true);
+        xhttp.send();
     }
 
 }
