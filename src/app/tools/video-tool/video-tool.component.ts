@@ -1,14 +1,10 @@
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
-import { NgSwitch } from '@angular/common';
-import { RCExpoModel } from '../../shared/RCExpoModel';
-import { RCMedia, RCVideo } from '../../shared/rcexposition';
-import { FormControl, AbstractControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
-import { Backend } from '../../shared/Backend'
-
-import * as Utils from '../../shared/utils'
-
+import { Component } from '@angular/core';
 import { BasicToolComponent } from '../basic-tool/basic-tool.component';
+import { RCVideo } from '../../shared/rcexposition';
+import { RCExpoModel } from '../../shared/RCExpoModel';
+import { HttpClient } from '@angular/common/http';
+import * as Utils from '../../shared/utils';
+
 
 @Component({
     selector: 'app-video-tool',
@@ -16,8 +12,8 @@ import { BasicToolComponent } from '../basic-tool/basic-tool.component';
     styleUrls: ['./video-tool.component.css']
 })
 export class VideoToolComponent extends BasicToolComponent {
-    constructor(private http: HttpClient, private rcExpoModel: RCExpoModel) { 
-        super();
+    constructor(http: HttpClient,rcExpoModel: RCExpoModel) { 
+        super(http,rcExpoModel);
     }
 
     prepareSaveObject(): RCVideo {

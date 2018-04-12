@@ -47,7 +47,7 @@ export class BasicToolComponent implements OnInit {
 
 
 
-    constructor(private http: HttpClient, private rcExpoModel: RCExpoModel) { }
+    constructor(private http: HttpClient,private rcExpoModel: RCExpoModel) { }
 
     ngOnInit() {
         this.identifier = this.rcobject.id;
