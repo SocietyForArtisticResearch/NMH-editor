@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TextToolComponent } from './text-tool.component';
+import { ImageToolComponent } from './image-tool.component';
 
-describe('TextToolComponent', () => {
-  let component: TextToolComponent;
-  let fixture: ComponentFixture<TextToolComponent>;
+describe('ImageToolComponent', () => {
+  let component: ImageToolComponent;
+  let fixture: ComponentFixture<ImageToolComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TextToolComponent ]
+      declarations: [ ImageToolComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TextToolComponent);
+    fixture = TestBed.createComponent(ImageToolComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

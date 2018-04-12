@@ -72,13 +72,13 @@
 		<div class="col-md-6">	
 			<div *ngIf="(selectedObject != undefined) || (selectedObject !== null)">
 				<div [ngSwitch]="selectedObject.__className">
-					<app-basic-tool *ngSwitchCase="'RCImage'"
+					<app-image-tool *ngSwitchCase="'RCImage'"
 					    [id]="'editor'+selectedObject.id" 
 						[rcobject]="selectedObject"
 						(onRemoveObject)="objectWasRemoved($event)"
 						(onChangedObject)="onChangedObject($event)"
 						>		
-					</app-basic-tool>
+					</app-image-tool>
 					<app-audio-tool *ngSwitchCase="'RCAudio'"
 					    [id]="'editor'+selectedObject.id" 
 						[rcobject]="selectedObject"

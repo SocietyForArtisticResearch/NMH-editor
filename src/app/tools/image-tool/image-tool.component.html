@@ -14,7 +14,7 @@
       </div>
     </div>
     <div class="form-group">
-        <label for="fileSelect">Replace with another audio file:</label>
+        <label for="fileSelect">Replace with another image:</label>
         <input formControlName="filePickerButton" id="fileSelect" class="form-control-file" type="file" (change)="onFileSelect($event)" name="fileSelect">
         <p *ngIf="fileUploadStatus">{{fileUploadStatus}}</p>
         <p class="fileName">{{rcobjectGetUrl()}}</p>
@@ -37,4 +37,4 @@
 </div>
 
 
-    
+	

@@ -1,8 +1,8 @@
 import { Component, OnInit, Input, ViewChild, AfterViewInit, ElementRef, Output, EventEmitter } from '@angular/core';
 import { RCExpoModel } from '../../shared/RCExpoModel';
 import * as Editor from '../../shared/rcmde';
-//declare var SimpleMDE : any;
 
+// This is the actual markdown text editor, (so not a media tool in the object list)
 @Component({
     selector: 'app-markdown-tool',
     templateUrl: './markdown-tool.component.html',

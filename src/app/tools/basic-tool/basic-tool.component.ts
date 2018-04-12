@@ -8,8 +8,10 @@ import { Backend } from '../../shared/Backend';
 
 import * as Utils from '../../shared/utils';
 
+/* this is the basic tool, from which image, video and audio derive */
 
 
+/* checks if name is unique */
 function forbiddenNameValidator(rcModel: RCExpoModel, oldName: string): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } => {
         if (control.value === oldName) {
@@ -31,9 +33,9 @@ export class BasicToolComponent implements OnInit {
     collapsed: boolean = false;
     toolForm: FormGroup;
     toolType: string;
-    selectedImage: File = null;
+    selectedFile: File = null;
+    
     formattedMessage: string;
-
     fileUploadStatus: string = null;
 
     identifier: number;
@@ -56,10 +58,10 @@ export class BasicToolComponent implements OnInit {
                     forbiddenNameValidator(this.rcExpoModel, this.rcobject.name), // <-- Here's how you pass in the custom validator.
                     Validators.required
                 ]),
-            'imageUrl': new FormControl(this.rcobject.url, [Validators.required]),
+            'fileUrl': new FormControl(this.rcobject.url, [Validators.required]),
             'widthInPixels': new FormControl(this.rcobject.pxWidth),
             'heightInPixels': new FormControl(this.rcobject.pxHeight),
-            'imagePickerButton': new FormControl(null)
+            'filePickerButton': new FormControl(null)
         });
 
         this.toolForm.valueChanges.subscribe(val => {
@@ -73,12 +75,11 @@ export class BasicToolComponent implements OnInit {
         if (this.toolForm) {
             this.toolForm.setValue({
                 'name': this.rcobject.name,
-                'imageUrl': this.rcobject.url,
+                'fileUrl': this.rcobject.url,
                 'widthInPixels': this.rcobject.pxWidth,
                 'heightInPixels': this.rcobject.pxHeight,
-                'imagePickerButton': null
+                'filePickerButton': null
             });
-            //(<HTMLInputElement>document.getElementById('imageFileSelect')).value = null;
 
             this.toolForm.controls['name'].setValidators(
                 [forbiddenNameValidator(this.rcExpoModel, this.rcobject.name), // <-- Here's how you pass in the custom validator.
@@ -112,7 +113,7 @@ export class BasicToolComponent implements OnInit {
         const formModel = this.toolForm.value;
         let id = Utils.uniqueID();
         const newObject: RCImage = new RCImage(id, formModel.name);
-        newObject.url = formModel.imageUrl;
+        newObject.url = formModel.fileUrl;
         newObject.pxWidth = formModel.widthInPixels;
         newObject.pxHeight = formModel.heightInPixels;
         return newObject;
@@ -126,11 +127,11 @@ export class BasicToolComponent implements OnInit {
         this.onRemoveObject.emit(this.rcobject.id);
     }
 
-    onImageSelect(event) {
+    onFileSelect(event) {
 
-        this.selectedImage = <File>event.target.files[0];
+        this.selectedFile = <File>event.target.files[0];
         const fd = new FormData();
-        fd.append('uploadFile', this.selectedImage, this.selectedImage.name);
+        fd.append('uploadFile', this.selectedFile, this.selectedFile.name);
 
         const req = new HttpRequest('POST', Backend.uploadAddress, fd, {
             reportProgress: true,
@@ -155,7 +156,7 @@ export class BasicToolComponent implements OnInit {
     onResult(result) {
         if (this.toolForm) {
             this.toolForm.patchValue({
-                imageUrl: Backend.baseAddress + result.url,
+                fileUrl: Backend.baseAddress + result.url,
             });
         }
         let deepCopy = this.prepareSaveObject();

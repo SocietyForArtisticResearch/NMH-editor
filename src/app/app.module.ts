@@ -12,7 +12,6 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { ObjectListComponent } from './object-list/object-list.component';
-import { TextToolComponent } from './tools/text-tool/text-tool.component';
 import { ExpoPreviewComponent } from './expo-preview/expo-preview.component';
 import { BasicToolComponent } from './tools/basic-tool/basic-tool.component';
 import { MarkdownToolComponent } from './tools/markdown-tool/markdown-tool.component';
@@ -22,6 +21,7 @@ import { AudioToolComponent } from './tools/audio-tool/audio-tool.component';
 import { DragAndDropComponent } from './drag-and-drop/drag-and-drop.component';
 import { DragDropDirective } from './drag-and-drop/drag-drop.directive';
 import { VideoToolComponent } from './tools/video-tool/video-tool.component';
+import { ImageToolComponent } from './tools/image-tool/image-tool.component';
 
 // url routing
 const appRoutes: Routes = [
@@ -34,7 +34,6 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     ObjectListComponent,
-    TextToolComponent,
     ExpoPreviewComponent,
     BasicToolComponent,
     MarkdownToolComponent,
@@ -43,7 +42,8 @@ const appRoutes: Routes = [
     AudioToolComponent,
     DragAndDropComponent,
     DragDropDirective,
-    VideoToolComponent
+    VideoToolComponent,
+    ImageToolComponent
   ],
   imports: [
     SortablejsModule.forRoot({ animation: 150 }),
