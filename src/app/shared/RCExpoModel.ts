@@ -63,10 +63,14 @@ export class RCExpoModel {
                 that.exposition.id = id;
                 that.exposition.integrateRCMediaList(medialist);
                 console.log(that.exposition.media);
+            } else {
+                console.log("fail response: " + xhttp.response);
             }
         };
+        console.log(`${Backend.rcBaseAddress}text-editor/simple-media-list?research=${id}`);
         xhttp.open("GET", `${Backend.rcBaseAddress}text-editor/simple-media-list?research=${id}`, true);
         xhttp.send();
+        console.log("sent request");
     }
 
 }
