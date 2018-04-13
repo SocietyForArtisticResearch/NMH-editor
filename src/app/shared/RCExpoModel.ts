@@ -50,6 +50,7 @@ export class RCExpoModel {
 
     loadExpositionFromRC(id: number) {
         Backend.useRC = true;
+        console.log("getting rc media");
         // TODO get json from RC!
         // get media-list
         var xhttp = new XMLHttpRequest();
@@ -57,14 +58,19 @@ export class RCExpoModel {
         xhttp.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
                 var mde = that.mde;
+                console.log("response: " + xhttp.response);
                 let medialist = JSON.parse(xhttp.responseText);
                 that.exposition.id = id;
                 that.exposition.integrateRCMediaList(medialist);
                 console.log(that.exposition.media);
+            } else {
+                console.log("fail response: " + xhttp.response);
             }
         };
+        console.log(`${Backend.rcBaseAddress}text-editor/simple-media-list?research=${id}`);
         xhttp.open("GET", `${Backend.rcBaseAddress}text-editor/simple-media-list?research=${id}`, true);
         xhttp.send();
+        console.log("sent request");
     }
 
 }
