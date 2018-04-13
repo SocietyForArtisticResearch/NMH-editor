@@ -22,7 +22,7 @@ export class AudioToolComponent extends BasicToolComponent {
         const formModel = this.toolForm.value;
         let id = Utils.uniqueID();
         const newObject: RCAudio = new RCAudio(id, formModel.name);
-        newObject.url = formModel.audioUrl;
+        newObject.url = formModel.fileUrl;
         return newObject;
     }
 }

@@ -21,7 +21,7 @@ export class VideoToolComponent extends BasicToolComponent {
 
         let id = Utils.uniqueID();
         const newObject: RCVideo = new RCVideo(id, formModel.name);
-        newObject.url = formModel.videoUrl;
+        newObject.url = formModel.fileUrl;
         newObject.pxWidth = formModel.widthInPixels;
         newObject.pxHeight = formModel.heightInPixels;
         return newObject;

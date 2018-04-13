@@ -29,6 +29,17 @@ export class DragAndDropComponent implements OnInit {
 
     }
 
+/*
+    uploadFileRC(fileList: FileList) {
+        this.fileUploadStatus = 'upload in progress';
+
+        if (fileList.length > 0) {
+            let mime = Mime.
+            let name = 
+        }
+    }
+    */
+
     onFilesChange(fileList: FileList) {
         this.fileUploadStatus = 'upload in progress';
 
