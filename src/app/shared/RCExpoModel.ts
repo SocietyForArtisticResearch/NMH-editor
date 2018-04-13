@@ -50,6 +50,7 @@ export class RCExpoModel {
 
     loadExpositionFromRC(id: number) {
         Backend.useRC = true;
+        console.log("getting rc media");
         // TODO get json from RC!
         // get media-list
         var xhttp = new XMLHttpRequest();
