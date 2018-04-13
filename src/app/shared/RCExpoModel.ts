@@ -58,6 +58,7 @@ export class RCExpoModel {
         xhttp.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
                 var mde = that.mde;
+                console.log("response: " + xhttp.response);
                 let medialist = JSON.parse(xhttp.responseText);
                 that.exposition.id = id;
                 that.exposition.integrateRCMediaList(medialist);
