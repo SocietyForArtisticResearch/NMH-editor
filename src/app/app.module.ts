@@ -26,6 +26,7 @@ import { ImageToolComponent } from './tools/image-tool/image-tool.component';
 // url routing
 const appRoutes: Routes = [
   { path: '', component: MarkdownToolComponent },
+  { path: 'index.html', component: MarkdownToolComponent },
   { path: 'objectList', component: ObjectListComponent },
   { path: 'editor', component: MarkdownToolComponent }
  ];
