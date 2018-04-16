@@ -34,10 +34,12 @@ export class RCBackendMediaUpload {
 	        fd.append('description','');
 
 	        let uploadApiUrl = Backend.rcMediaUpload;
-	        console.log('uploadbackednrc is using this url: ',uploadApiUrl);
+
 	        const req = new HttpRequest('POST', uploadApiUrl, fd, {
 	            reportProgress: true,
 	        });
+
+	        console.log('request',req);
 
 	        this.http.request(req).subscribe(event => {
 	            // Via this API, you get access to the raw event stream.
