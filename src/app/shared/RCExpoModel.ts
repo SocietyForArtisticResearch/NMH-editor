@@ -59,6 +59,7 @@ export class RCExpoModel {
                 var mde = that.mde;
                 console.log("response: " + xhttp.response);
                 let medialist = JSON.parse(xhttp.responseText);
+                console.log(medialist);
                 let new_exposition = new RCExposition('', ['authors'], '');
                 new_exposition.id = id;
                 new_exposition.integrateRCMediaList(medialist);
