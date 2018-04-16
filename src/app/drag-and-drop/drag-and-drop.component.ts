@@ -34,10 +34,22 @@ export class DragAndDropComponent implements OnInit {
 
         if (fileList.length > 0) {
             let selectedFile = fileList[0];
+            let fileType = selectedFile.type;
+            console.log(selectedFile.type);
+
+            if (fileType.includes('image')) {
+                fileType = 'image';
+            } else if (fileType.includes('audio')) {
+                fileType = 'audio';
+            } else if (fileType.includes('video')) {
+                fileType = 'video';
+            } else if (fileType.includes('pdf')) {
+                fileType = 'pdf';
+            }
 
             let onResult = ( evt :any ) => { this.onResult(evt) };
             let onProgress = ( progress: string ) => { this.fileUploadStatus = progress };
-            this.backendUpload.uploadFile(fileList,'image',onResult,onProgress);
+            this.backendUpload.uploadFile(fileList,fileType,onResult,onProgress);
 
         }
     }
@@ -46,34 +58,34 @@ export class DragAndDropComponent implements OnInit {
     onFilesChange(fileList: FileList) {
         this.fileUploadStatus = 'upload in progress';
 
-        if (Backend.useRC) {
+        if (Backend.useRC) { // TODO detect BACKEND setting !!!
             this.uploadFileRC(fileList);
-            return;
-        } 
+        } else {
 
-        if (fileList.length > 0) {
+            if (fileList.length > 0) {
 
-            let selectedFile = fileList[0];
+                let selectedFile = fileList[0];
 
-            const fd = new FormData();
-            fd.append('uploadFile', selectedFile, selectedFile.name);
+                const fd = new FormData();
+                fd.append('uploadFile', selectedFile, selectedFile.name);
 
-            const req = new HttpRequest('POST', Backend.uploadAddress, fd, {
-                reportProgress: true,
-            });
+                const req = new HttpRequest('POST', Backend.uploadAddress, fd, {
+                    reportProgress: true,
+                });
 
-            this.http.request(req).subscribe(event => {
-                // Via this API, you get access to the raw event stream.
-                // Look for upload progress events.
-                if (event.type === HttpEventType.UploadProgress) {
-                    // This is an upload progress event. Compute and show the % done:
-                    this.fileUploadStatus = 'uploading ' + Math.round(100 * event.loaded / event.total) + '%';
-                } else if (event instanceof HttpResponse) {
-                    this.fileUploadStatus = 'done';
-                    window.setTimeout(() => { this.fileUploadStatus = null }, 1000);
-                    this.onResult(event.body);
-                }
-            });
+                this.http.request(req).subscribe(event => {
+                    // Via this API, you get access to the raw event stream.
+                    // Look for upload progress events.
+                    if (event.type === HttpEventType.UploadProgress) {
+                        // This is an upload progress event. Compute and show the % done:
+                        this.fileUploadStatus = 'uploading ' + Math.round(100 * event.loaded / event.total) + '%';
+                    } else if (event instanceof HttpResponse) {
+                        this.fileUploadStatus = 'done';
+                        window.setTimeout(() => { this.fileUploadStatus = null }, 1000);
+                        this.onResult(event.body);
+                    }
+                });
+            }
         }
     }
 

@@ -8,6 +8,7 @@ export class Backend {
     static import: string = "https://sar-announcements.com:3000/import";
 
     static rcBaseAddress: string = "https://guest:rc!@dev.researchcatalogue.net/";
+    static rcMediaUpload: string = "https://dev.researchcatalogue.net/text-editor/simple-media-add";
 
     // set if RC is to be used as backend
     static useRC: boolean = false;
