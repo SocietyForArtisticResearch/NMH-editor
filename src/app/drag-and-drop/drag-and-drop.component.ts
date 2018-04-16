@@ -93,6 +93,9 @@ export class DragAndDropComponent implements OnInit {
 
     onResult(result) {
         let mimeType = result.mime;
+        if (!mimeType) { 
+            mimeType = '';
+        }
 
         let newRCObject: RCObject = null;
 
