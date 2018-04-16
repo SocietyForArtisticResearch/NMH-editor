@@ -57,7 +57,7 @@ export class RCExpoModel {
         xhttp.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
                 var mde = that.mde;
-                //                console.log("response: " + xhttp.response);
+                console.log("response: " + xhttp.response);
                 let medialist = JSON.parse(xhttp.responseText);
                 console.log(medialist);
                 let new_exposition = new RCExposition('', ['authors'], '');

@@ -167,6 +167,7 @@ export class RCExposition {
         if (ob == undefined) {
             if (rcmedia.media != undefined) {
                 let objectType = rcmedia.media.type;
+                console.log(objectType);
                 switch (objectType) {
                     case "image": {
                         ob = new RCImage(rcmedia.id, rcmedia.name);
