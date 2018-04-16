@@ -169,7 +169,7 @@ export class RCExposition {
     }
 
     // chek if exists then update otherwise create object
-    private updateOrCreateObject(rcmedia) {
+    updateOrCreateObject(rcmedia) {
         let ob = this.getObjectWithID(rcmedia.id);
         if (ob == undefined) {
             if (rcmedia.media != undefined) {
