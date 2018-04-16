@@ -178,18 +178,26 @@ export class RCExposition {
                 switch (objectType) {
                     case "image": {
                         ob = new RCImage(rcmedia.id, rcmedia.name);
+                        ob.pxWidth = rcmedia.media.width;
+                        ob.pxHeight = rcmedia.media.height;
                         break;
                     }
                     case "audio": {
                         ob = new RCAudio(rcmedia.id, rcmedia.name);
+                        ob.pxWidth = null;
+                        ob.pxHeight = null;
                         break;
                     }
                     case "video": {
                         ob = new RCVideo(rcmedia.id, rcmedia.name);
+                        ob.pxWidth = rcmedia.media.width;
+                        ob.pxHeight = rcmedia.media.height;
                         break;
                     }
                     case "pdf": {
                         ob = new RCPdf(rcmedia.id, rcmedia.name);
+                        ob.pxWidth = rcmedia.media.width;
+                        ob.pxHeight = rcmedia.media.height;
                         break;
                     }
                 }
@@ -227,6 +235,8 @@ export class RCExposition {
 export class RCObject {
     __className: string;
     name: string;
+    pxWidth: number;
+    pxHeight: number;
     description: string;
     copyright: string;
     objectClass: string;
@@ -328,8 +338,6 @@ export class RCObject {
 // generic prototype media class for image, svg, pdf, video, audio
 /** Abstract class for media subclasses for image, svg, pdf, video, audio */
 export class RCMedia extends RCObject {
-    pxWidth: number;
-    pxHeight: number;
 
     constructor(id: number, name: string, objectClass: string) {
         super(id, name);
