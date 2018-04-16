@@ -163,11 +163,13 @@ export class RCExposition {
 
     // chek if exists then update otherwise create object
     private updateOrCreateObject(rcmedia) {
-        console.log("rcmedia: " + rcmedia);
+        console.log(rcmedia);
         let ob = this.getObjectWithID(rcmedia.id);
         if (ob == undefined) {
             if (rcmedia.media != undefined) {
-                let objectType = rcmedia.type;
+                let objectType = rcmedia.media.type;
+                console.log("type:");
+                console.log(objectType);
                 switch (objectType) {
                     case "image": {
                         ob = new RCImage(rcmedia.id, rcmedia.name);
