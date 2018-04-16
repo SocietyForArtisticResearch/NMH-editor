@@ -1702,7 +1702,8 @@ export class RCMDE {
      */
     markdown(text: string) {
         let self = this;
-        let re = /!{(\w+)}/g;
+        let re = /!{[^\}]*}/g;
+        //        let re = /!{(\w+)}/g;
         if (this.codemirror.hasFocus()) {
             //            let cursorAnchor = "<a href=\"#\" id=\"_cursorPosition\" style=\"display: none\"></a>";
             let cursorAnchor = "<a href=\"#\" id=\"_cursorPosition\"></a>";

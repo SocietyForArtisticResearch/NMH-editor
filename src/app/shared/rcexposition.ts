@@ -63,7 +63,8 @@ export class RCExposition {
 
     replaceToolsWithImages(text) {
         let self = this;
-        let re = /!{(\w+)}/g;
+        let re = /!{[^\}]*}/g;
+        //        let re = /!{(\w+)}/g;
         let insertedTools;
         if (Backend.useRC) {
             insertedTools = text.replace(re, function (m, p1) { return "![" + name + "](" + self.media.find(obj => obj.name == p1).rcURL(self.id) + ")"; });
