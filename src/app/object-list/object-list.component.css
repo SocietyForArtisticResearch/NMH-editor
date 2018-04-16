@@ -1,9 +1,10 @@
 .video-preview {
-	width:30px;
+    	object-fit: cover;
+	/* width:30px; */
 }
 
 .rc-object-list {
-	height:500px;
+	height:700px;
 	overflow-y:scroll;
 }
 
@@ -90,4 +91,16 @@ li {
 	.rc-object-list {
 		height:calc(100vh - 122px);
 	}
+}
+
+
+/* table sytling */
+
+tr:nth-child(even) {
+    background-color: #f4f4f4
+}
+
+th, td {
+    text-align: left;
+    padding: 16px;
 }
