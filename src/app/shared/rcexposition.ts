@@ -62,11 +62,13 @@ export class RCExposition {
     }
 
     replaceToolsWithImages(text) {
+        console.log("inserting images");
         let self = this;
         let re = /!{(\w+)}/g;
         let insertedTools;
         if (Backend.useRC) {
-            insertedTools = text.replace(re, function (m, p1) { return "![" + name + "](" + self.media.find(obj => obj.name == p1).rcURL(this.id) + ")"; });
+            console.log("inserting images for backend");
+            insertedTools = text.replace(re, function (m, p1) { return "![" + name + "](" + self.media.find(obj => obj.name == p1).rcURL(self.id) + ")"; });
         } else {
             insertedTools = text.replace(re, function (m, p1) { return "![" + name + "](" + self.media.find(obj => obj.name == p1).url + ")"; });
         }
