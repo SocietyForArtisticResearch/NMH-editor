@@ -57,18 +57,18 @@ export class RCExpoModel {
         xhttp.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
                 var mde = that.mde;
-                console.log("response: " + xhttp.response);
+                //                console.log("response: " + xhttp.response);
                 let medialist = JSON.parse(xhttp.responseText);
                 console.log(medialist);
                 let new_exposition = new RCExposition('', ['authors'], '');
                 new_exposition.id = id;
                 new_exposition.integrateRCMediaList(medialist);
-                console.log(new_exposition.media);
+                //              console.log(new_exposition.media);
 
-                //               that.exposition = new_exposition;
-                //                mde.exposition = new_exposition;
-                //                that.mde.value(exposition.markdownInput);
-                //                that.mde.render();
+                that.exposition = new_exposition;
+                mde.exposition = new_exposition;
+                that.mde.value(new_exposition.markdownInput);
+                that.mde.render();
 
             }
         };

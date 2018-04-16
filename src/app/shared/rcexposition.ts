@@ -163,13 +163,10 @@ export class RCExposition {
 
     // chek if exists then update otherwise create object
     private updateOrCreateObject(rcmedia) {
-        console.log(rcmedia);
         let ob = this.getObjectWithID(rcmedia.id);
         if (ob == undefined) {
             if (rcmedia.media != undefined) {
                 let objectType = rcmedia.media.type;
-                console.log("type:");
-                console.log(objectType);
                 switch (objectType) {
                     case "image": {
                         ob = new RCImage(rcmedia.id, rcmedia.name);
@@ -194,7 +191,6 @@ export class RCExposition {
         ob.description = rcmedia.description;
         ob.copyright = rcmedia.copyright;
         ob.name = rcmedia.name;
-        console.log(ob);
         return ob;
     }
 
@@ -203,7 +199,6 @@ export class RCExposition {
         /* gets the list from the RC Server json list */
         let self = this;
         RCMediaList.forEach(m => self.updateOrCreateObject(m));
-        console.log(this.media);
     }
 
 
