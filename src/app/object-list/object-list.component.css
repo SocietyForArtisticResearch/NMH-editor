@@ -1,6 +1,5 @@
 .video-preview {
-    	object-fit: cover;
-	/* width:30px; */
+    width:75px;
 }
 
 .rc-object-list {
@@ -38,7 +37,7 @@ li {
 }
 
 .selected {
-	background: #ddd;
+	background: #ccc;
 }
 
 .imageUrl {
