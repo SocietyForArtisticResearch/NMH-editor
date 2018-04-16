@@ -47,9 +47,9 @@ export class DragAndDropComponent implements OnInit {
                 fileType = 'pdf';
             }
 
-            let onResult = ( evt :any ) => { this.onResult(evt) };
+            let onRCResult = ( evt :any ) => { this.onRCResult(evt) };
             let onProgress = ( progress: string ) => { this.fileUploadStatus = progress };
-            this.backendUpload.uploadFile(fileList,fileType,onResult,onProgress);
+            this.backendUpload.uploadFile(fileList,fileType,onRCResult,onProgress);
 
         }
     }
@@ -57,8 +57,6 @@ export class DragAndDropComponent implements OnInit {
 
     onFilesChange(fileList: FileList) {
         this.fileUploadStatus = 'upload in progress';
-
-        Backend.useRC = true;
 
         if (Backend.useRC) { // TODO detect BACKEND setting !!!
             this.uploadFileRC(fileList);
@@ -91,10 +89,13 @@ export class DragAndDropComponent implements OnInit {
         }
     }
 
-    onResult(result) {
-        console.log('result',result);
+    onRCResult(result) {
+        let parsedJson = JSON.parse(result);
+        let rcobject = this.rcExpoModel.exposition.updateOrCreateObject(parsedJson);
+        this.onChangedObject.emit(rcobject.id);
+    }
 
-        /*
+    onResult(result) {
         let mimeType = result.mime;
         if (!mimeType) { 
             mimeType = '';
@@ -104,39 +105,31 @@ export class DragAndDropComponent implements OnInit {
 
         if (mimeType.includes('image')) {
             let imageName = 'image' + this.rcExpoModel.exposition.media.length;
-            if (Backend.useRC) {
-                // TODO upload to RC, get ID and make rc object
-            } else {
-                let imageUri = Backend.baseAddress + result.url;
-                newRCObject = new RCImage(Utils.uniqueID(), imageName);
-                newRCObject.url = imageUri;
-            }
+            let imageUri = Backend.baseAddress + result.url;
+            newRCObject = new RCImage(Utils.uniqueID(), imageName);
+            newRCObject.url = imageUri;
         } else if (mimeType.includes('audio')) {
             let audioName = 'audio' + this.rcExpoModel.exposition.media.length;
-            if (Backend.useRC) {
-                // TODO upload to RC, get ID and make rc object
-            } else {
-                let audioUri = Backend.baseAddress + result.url;
-                newRCObject = new RCAudio(Utils.uniqueID(), audioName);
-                newRCObject.url = audioUri;
-            }
+            let audioUri = Backend.baseAddress + result.url;
+            newRCObject = new RCAudio(Utils.uniqueID(), audioName);
+            newRCObject.url = audioUri;
         } else if (mimeType.includes('video')) {
             let videoName = 'video' + this.rcExpoModel.exposition.media.length;
             let videoUri = Backend.baseAddress + result.url;
-            if (Backend.useRC) {
-                // TODO upload to RC, get ID and make rc object
-            } else {
-                let audioUri = Backend.baseAddress + result.url;
-                newRCObject = new RCVideo(Utils.uniqueID(), videoName);
-                newRCObject.url = videoUri;
-            }
-
-
+            newRCObject = new RCVideo(Utils.uniqueID(),videoName);
+            newRCObject.url = videoUri;
+        } else if (mimeType.includes('pdf')) {
+            let pdfName = 'pdf' + this.rcExpoModel.exposition.media.length;
+            let pdfUri = Backend.baseAddress + result.url;
+            newRCObject = new RCVideo(Utils.uniqueID(),pdfName);
+            newRCObject.url = pdfUri;
+        } else {
+            console.log('do not know what to do with mimeType: ', mimeType);
         }
 
         this.rcExpoModel.exposition.addObject(newRCObject);
         this.onChangedObject.emit(newRCObject.id);
-        */
+        
     }
 
     onClick() {
