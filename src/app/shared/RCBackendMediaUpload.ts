@@ -26,12 +26,14 @@ export class RCBackendMediaUpload {
 		if (fileList.length > 0) {
 	        let selectedFile = fileList[0];
 
-	        const fd = new FormData();
+	        var fd = new FormData();
 	        fd.append('research','266367');
 	        fd.append('mediatype', mediaType);
 	        fd.append('media', selectedFile);
 	        fd.append('copyrightholder', 'author name');
 	        fd.append('description','');
+
+	        console.log('formdata',fd);
 
 	        let uploadApiUrl = Backend.rcMediaUpload;
 
