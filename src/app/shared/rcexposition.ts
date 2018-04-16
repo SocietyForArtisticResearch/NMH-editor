@@ -62,12 +62,10 @@ export class RCExposition {
     }
 
     replaceToolsWithImages(text) {
-        console.log("inserting images");
         let self = this;
         let re = /!{(\w+)}/g;
         let insertedTools;
         if (Backend.useRC) {
-            console.log("inserting images for backend");
             insertedTools = text.replace(re, function (m, p1) { return "![" + name + "](" + self.media.find(obj => obj.name == p1).rcURL(self.id) + ")"; });
         } else {
             insertedTools = text.replace(re, function (m, p1) { return "![" + name + "](" + self.media.find(obj => obj.name == p1).url + ")"; });
@@ -133,6 +131,11 @@ export class RCExposition {
 
     addObject(obj: RCObject) {
         // TODO check that there is no object with the same ID
+        // add url and expo id
+        obj.expositionID = this.id;
+        if (Backend.useRC) {
+            obj.url = `${Backend.rcBaseAddress}text-editor/simple-media-resource?research=${obj.expositionID}&simple-media=${obj.id}`;
+        }
         this.media.push(obj);
     }
 
@@ -169,7 +172,7 @@ export class RCExposition {
         if (ob == undefined) {
             if (rcmedia.media != undefined) {
                 let objectType = rcmedia.media.type;
-                console.log(objectType);
+                //                console.log(objectType);
                 switch (objectType) {
                     case "image": {
                         ob = new RCImage(rcmedia.id, rcmedia.name);
@@ -230,6 +233,7 @@ export class RCObject {
     id: number;
     htmlId: string;
     url: string;
+    expositionID: number;
     html: HTMLElement;
 
     /** Creates an RCObject. Cannot be called directly, but only by
@@ -298,7 +302,6 @@ export class RCObject {
     }
 
     rcURL(expositionId: number) {
-        console.log(`${Backend.rcBaseAddress}text-editor/simple-media-resource?research=${expositionId}&simple-media=${this.id}`);
         return `${Backend.rcBaseAddress}text-editor/simple-media-resource?research=${expositionId}&simple-media=${this.id}`;
     }
 
