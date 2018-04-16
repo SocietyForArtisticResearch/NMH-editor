@@ -1,4 +1,4 @@
-/*
+
 
 import { Backend } from './Backend';
 import { Injectable } from '@angular/core';
@@ -15,14 +15,14 @@ export class RCBackend {
 
 	constructor(private http: HttpClient) { }
 
-	uploadFile(fileList, mediaType, onResult : ( httpEvent:  any ) => void, onProgress: ( ) => string) {
+	uploadFile(fileList, mediaType, onResult : ( httpEvent:  any ) => void, onProgress: (httpEvent:  any  ) => string) {
 
 		/*
 		 * uploads a file to RC, and takes a callback to return the result.
 		 * add media: https://dev.researchcatalogue.net/text-editor/simple-media-add?research=32350 
 		 * (POST) mit {mediatype=video|image|audio|pdf, media=FILE, name=XXX, copyrightholder=XXX, description=XXX}
 		 */ 
-/*
+
 		if (fileList.length > 0) {
 	        let selectedFile = fileList[0];
 
@@ -46,7 +46,7 @@ export class RCBackend {
 	                // This is an upload progress event. Compute and show the % done:
 	                onProgress('uploading ' + Math.round(100 * event.loaded / event.total) + '%');
 	            } else if (event instanceof HttpResponse) {
-	                this.fileUploadStatus = 'done';
+	                onProgress('done');
 	                window.setTimeout(() => { onProgress(''); }, 1000);
 	                onResult(event.body);
 	            }
@@ -54,4 +54,3 @@ export class RCBackend {
 	    }
     }
 }
-*/

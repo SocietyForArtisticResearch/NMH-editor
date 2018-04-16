@@ -196,6 +196,7 @@ export class RCExposition {
 
 
     integrateRCMediaList(RCMediaList: Array<any>) {
+        /* gets the list from the RC Server json list */
         let self = this;
         RCMediaList.forEach(m => self.updateOrCreateObject(m));
 
