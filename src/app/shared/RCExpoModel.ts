@@ -59,11 +59,16 @@ export class RCExpoModel {
                 var mde = that.mde;
                 console.log("response: " + xhttp.response);
                 let medialist = JSON.parse(xhttp.responseText);
-                that.exposition.id = id;
-                that.exposition.integrateRCMediaList(medialist);
-                console.log(that.exposition.media);
-            } else {
-                console.log("fail response: " + xhttp.response);
+                let new_exposition = new RCExposition('', ['authors'], '');
+                new_exposition.id = id;
+                new_exposition.integrateRCMediaList(medialist);
+                console.log(new_exposition.media);
+
+                //               that.exposition = new_exposition;
+                //                mde.exposition = new_exposition;
+                //                that.mde.value(exposition.markdownInput);
+                //                that.mde.render();
+
             }
         };
         console.log(`${Backend.rcBaseAddress}text-editor/simple-media-list?research=${id}`);
