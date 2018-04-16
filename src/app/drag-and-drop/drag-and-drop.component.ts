@@ -92,6 +92,9 @@ export class DragAndDropComponent implements OnInit {
     }
 
     onResult(result) {
+        console.log('result',result);
+
+        /*
         let mimeType = result.mime;
         if (!mimeType) { 
             mimeType = '';
@@ -133,6 +136,7 @@ export class DragAndDropComponent implements OnInit {
 
         this.rcExpoModel.exposition.addObject(newRCObject);
         this.onChangedObject.emit(newRCObject.id);
+        */
     }
 
     onClick() {
@@ -140,7 +144,7 @@ export class DragAndDropComponent implements OnInit {
     }
 
     onFileSelected($event) {
-        this.uploadFileRC($event.target.files);
+        //this.uploadFileRC($event.target.files);
         this.onFilesChange($event.target.files);
     }
 
