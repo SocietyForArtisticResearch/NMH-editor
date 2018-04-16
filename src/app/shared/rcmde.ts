@@ -1670,7 +1670,6 @@ export class RCMDE {
 
     mediaHTML(name: string) {
         let tool = this.exposition.getObjectWithName(name);
-        console.log(name);
         let str = name.big();
         if (tool !== undefined) {
             tool.createHTML();
@@ -1703,7 +1702,7 @@ export class RCMDE {
      */
     markdown(text: string) {
         let self = this;
-        let re = /!{[^\}]*}/g;
+        let re = /!{([^\}]*)}/g;
         //        let re = /!{(\w+)}/g;
         if (this.codemirror.hasFocus()) {
             //            let cursorAnchor = "<a href=\"#\" id=\"_cursorPosition\" style=\"display: none\"></a>";

@@ -63,7 +63,7 @@ export class RCExposition {
 
     replaceToolsWithImages(text) {
         let self = this;
-        let re = /!{[^\}]*}/g;
+        let re = /!{([^\}]*)}/g;
         //        let re = /!{(\w+)}/g;
         let insertedTools;
         if (Backend.useRC) {
