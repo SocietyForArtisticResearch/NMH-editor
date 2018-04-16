@@ -296,6 +296,7 @@ export class RCObject {
     }
 
     rcURL(expositionId: number) {
+        console.log(`${Backend.rcBaseAddress}text-editor/simple-media-resource?research=${expositionId}&simple-media=${this.id}`);
         return `${Backend.rcBaseAddress}text-editor/simple-media-resource?research=${expositionId}&simple-media=${this.id}`;
     }
 

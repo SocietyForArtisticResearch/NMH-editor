@@ -22,6 +22,24 @@ export class RCExpoModel {
         this.exposition = new RCExposition('', ['authors'], defaultStyle);
     }
 
+    syncModelWithRC() {
+        let id = this.exposition.id;
+        var xhttp = new XMLHttpRequest();
+        var that = this;
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                var mde = that.mde;
+                let medialist = JSON.parse(xhttp.responseText);
+                that.exposition.integrateRCMediaList(medialist);
+                console.log(that.exposition.media);
+            }
+        };
+        //        console.log(`${Backend.rcBaseAddress}text-editor/simple-media-list?research=${id}`);
+        xhttp.open("GET", `${Backend.rcBaseAddress}text-editor/simple-media-list?research=${id}`, true);
+        xhttp.send();
+        //      console.log("sent request");
+    }
+
     loadExpositionFromURL(expositionJSONUrl: string) {
         Backend.useRC = false;
         console.log('this will load the exposition from: ' + expositionJSONUrl);
@@ -49,33 +67,18 @@ export class RCExpoModel {
 
     loadExpositionFromRC(id: number) {
         Backend.useRC = true;
-        console.log("getting rc media");
         // TODO get json from RC!
         // get media-list
-        var xhttp = new XMLHttpRequest();
-        var that = this;
-        xhttp.onreadystatechange = function () {
-            if (this.readyState == 4 && this.status == 200) {
-                var mde = that.mde;
-                console.log("response: " + xhttp.response);
-                let medialist = JSON.parse(xhttp.responseText);
-                console.log(medialist);
-                let new_exposition = new RCExposition('', ['authors'], '');
-                new_exposition.id = id;
-                new_exposition.integrateRCMediaList(medialist);
-                //              console.log(new_exposition.media);
+        let new_exposition = new RCExposition('', ['authors'], '');
+        new_exposition.id = id;
+        this.exposition = new_exposition;
 
-                that.exposition = new_exposition;
-                mde.exposition = new_exposition;
-                that.mde.value(new_exposition.markdownInput);
-                that.mde.render();
+        this.syncModelWithRC();
 
-            }
-        };
-        console.log(`${Backend.rcBaseAddress}text-editor/simple-media-list?research=${id}`);
-        xhttp.open("GET", `${Backend.rcBaseAddress}text-editor/simple-media-list?research=${id}`, true);
-        xhttp.send();
-        console.log("sent request");
+        this.mde.exposition = new_exposition;
+        this.mde.value(new_exposition.markdownInput);
+        this.mde.render();
+
     }
 
 }
