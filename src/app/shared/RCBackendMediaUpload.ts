@@ -36,6 +36,7 @@ export class RCBackendMediaUpload {
 
 	        var fd = new FormData();
 	        fd.append('mediatype', mediaType);
+	        fd.append('name',selectedFile.name);
 	        fd.append('media', selectedFile);
 	        fd.append('copyrightholder', author );
 	        fd.append('description','');
