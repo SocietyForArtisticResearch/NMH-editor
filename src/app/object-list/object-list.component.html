@@ -36,14 +36,14 @@
 					    (click)="onSelect(rcObject)"
 					    (dblclick)="onDoubleClick(rcObject)">
 					<td>
-						<div [ngSwitch]="rcObject.__className">
-							
-							<img *ngSwitchCase="'RCImage'" 
-								class="image-preview" 
-								src={{rcObject.thumb}} 
-								height="66" 
-								width="66" 
-								alt={{rcObject.thumb}}>
+					    <div [ngSwitch]="rcObject.__className">
+						
+						<img *ngSwitchCase="'RCImage'" 
+								    class="image-preview" 
+								    src={{rcObject.thumb}} 
+								    height="66" 
+								    width="66" 
+								    alt={{rcObject.thumb}}>
 							
 							<div *ngSwitchCase="'RCAudio'">
 								<p class="playSymbol">▶</p>
@@ -56,16 +56,18 @@
 							<div *ngSwitchCase="'RCVideo'">
 								<p class="image-preview">▶</p>
 								<video class="video-preview">
-								<source src={{rcObject.url}}>
+								    <source src={{rcObject.thumb}}
+ 										height="66" 
+										width="66">
 								Browser does not support audio.
 								</video>
 							</div>
 						</div>
 
 					</td>
-				    <td><span class="object-list-name">{{rcObject.name}}</span></td>
-					<td><button class="align-right" (click)="trashObject(rcObject)">&times;</button></td>
-					<td><button class="align-right" (click)="onDoubleClick(rcObject)">insert</button></td>
+					<td><span class="object-list-name">{{rcObject.name}}</span></td>
+					<td><button class="align-right btn btn-danger btn-sm" (click)="trashObject(rcObject)">&times;</button></td>
+					<td><button class="align-right btn btn-primary btn-sm" (click)="onDoubleClick(rcObject)">insert</button></td>
 				</tr>
 			</table>
 		</div>
