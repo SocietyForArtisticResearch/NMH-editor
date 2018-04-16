@@ -4,7 +4,7 @@ import { Backend } from './Backend';
 import { Injectable } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClient, HttpRequest, HttpEventType, HttpResponse } from '@angular/common/http';
-
+import { RCExpoModel } from './RCExpoModel';
 
 @Injectable()
 export class RCBackendMediaUpload {
@@ -13,7 +13,10 @@ export class RCBackendMediaUpload {
 	description: string = 'none';
 	research: string = '266367'; // TODO remove this testvalue
 
-	constructor(private http: HttpClient) { }
+	constructor(
+		private http: HttpClient,
+		private rcExpoModel: RCExpoModel
+	) { }
 
 	uploadFile(fileList, mediaType, onResult : ( httpEvent:  any ) => void, onProgress: ( progress: string  ) => void) {
 
@@ -26,19 +29,22 @@ export class RCBackendMediaUpload {
 		if (fileList.length > 0) {
 	        let selectedFile = fileList[0];
 
+	        let uploadApiUrl = Backend.rcMediaUpload;
+	        let expositionId = this.rcExpoModel.exposition.id;
+	        let author = this.rcExpoModel.exposition.authors[0];
+
+
 	        var fd = new FormData();
-	        fd.append('research','266367');
 	        fd.append('mediatype', mediaType);
 	        fd.append('media', selectedFile);
-	        fd.append('copyrightholder', 'author name');
+	        fd.append('copyrightholder', author );
 	        fd.append('description','');
 
 	        console.log('formdata',fd);
 
-	        let uploadApiUrl = Backend.rcMediaUpload;
 
-	        const req = new HttpRequest('POST', uploadApiUrl, fd, {
-	            reportProgress: true,
+	        var req = new HttpRequest('POST', uploadApiUrl + '?research='+String(expositionId), fd, {
+	            reportProgress: true
 	        });
 
 	        console.log('request',req);
