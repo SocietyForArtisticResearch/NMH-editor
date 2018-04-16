@@ -136,6 +136,7 @@ export class RCExposition {
         obj.expositionID = this.id;
         if (Backend.useRC) {
             obj.url = `${Backend.rcBaseAddress}text-editor/simple-media-resource?research=${obj.expositionID}&simple-media=${obj.id}`;
+            obj.thumb = `${Backend.rcBaseAddress}text-editor/simple-media-thumb?research=${obj.expositionID}&simple-media=${obj.id}&width=132&height=132`;
         }
         this.media.push(obj);
     }
@@ -234,6 +235,7 @@ export class RCObject {
     id: number;
     htmlId: string;
     url: string;
+    thumb: string;
     expositionID: number;
     html: HTMLElement;
 
