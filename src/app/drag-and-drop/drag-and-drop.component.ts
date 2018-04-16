@@ -7,8 +7,6 @@ import * as Utils from '../shared/utils';
 import { HttpClient, HttpRequest, HttpEventType, HttpResponse } from '@angular/common/http';
 //import { BlobMimeDetect } from '../shared/BlobMimeDetect';
 
-
-
 @Component({
     selector: 'app-drag-and-drop',
     templateUrl: './drag-and-drop.component.html',
@@ -29,16 +27,15 @@ export class DragAndDropComponent implements OnInit {
 
     }
 
-/*
     uploadFileRC(fileList: FileList) {
         this.fileUploadStatus = 'upload in progress';
 
         if (fileList.length > 0) {
-            let mime = Mime.
-            let name = 
+            let selectedFile = fileList[0];
+            console.log(selectedFile.type)
         }
     }
-    */
+
 
     onFilesChange(fileList: FileList) {
         this.fileUploadStatus = 'upload in progress';
@@ -115,6 +112,7 @@ export class DragAndDropComponent implements OnInit {
     }
 
     onFileSelected($event) {
+        this.uploadFileRC($event.target.files);
         this.onFilesChange($event.target.files);
     }
 

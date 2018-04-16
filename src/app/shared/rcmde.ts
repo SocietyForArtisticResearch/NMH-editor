@@ -1280,7 +1280,7 @@ function openPreview(editor) {
     boot.type = "text/css";
     boot.rel = "stylesheet";
     // TODO Make local
-    boot.href = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"; //https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css";
+    boot.href = "assets/bootstrap/bootstrap.min.css"; //https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css";
     //    let head = w.document.getElementById("head");
     let css: HTMLStyleElement = w.document.createElement("style");
     css.type = "text/css";
@@ -1728,7 +1728,6 @@ export class RCMDE {
         self.exposition.markdownInput = text;
         self.exposition.renderedHTML = renderedHTML;
         self.exposition.getTOC();
-        //console.log(self.exposition.toc);
         this.updateStyling();
         return self.exposition.renderedHTML;
     }

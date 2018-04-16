@@ -1,5 +1,5 @@
 import { RCExposition, RCExpositionDeserializer } from './rcexposition';
-import { Backend } from "./Backend"
+import { Backend } from "./Backend";
 import { RCMDE } from './rcmde';
 
 
@@ -22,8 +22,7 @@ export class RCExpoModel {
         this.exposition = new RCExposition('', ['authors'], defaultStyle);
     }
 
-    // Luc: why not simply method?
-    loadExpositionFromURL = function (expositionJSONUrl: string) {
+    loadExpositionFromURL(expositionJSONUrl: string) {
         Backend.useRC = false;
         console.log('this will load the exposition from: ' + expositionJSONUrl);
         var xhttp = new XMLHttpRequest();
