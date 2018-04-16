@@ -33,8 +33,8 @@ export class RCBackendMediaUpload {
 	        fd.append('copyrightholder', 'author name');
 	        fd.append('description','');
 
-	        let uploadApiUrl = Backend.rcBaseAddress + 'text-editor/simple-media-add';
-
+	        let uploadApiUrl = Backend.rcMediaUpload;
+	        console.log('uploadbackednrc is using this url: ',uploadApiUrl);
 	        const req = new HttpRequest('POST', uploadApiUrl, fd, {
 	            reportProgress: true,
 	        });

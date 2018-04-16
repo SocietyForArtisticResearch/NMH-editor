@@ -40,10 +40,10 @@
 							
 							<img *ngSwitchCase="'RCImage'" 
 								class="image-preview" 
-								src={{rcObject.url}} 
+								src={{rcObject.thumb}} 
 								height="66" 
 								width="66" 
-								alt={{rcObject.url}}>
+								alt={{rcObject.thumb}}>
 							
 							<div *ngSwitchCase="'RCAudio'">
 								<p class="playSymbol">▶</p>
@@ -100,7 +100,7 @@
 	<div class="row">
 		<!-- <button (click)="createImageTool()" class="btn btn-primary">Add image</button>
 		<button (click)="createAudioTool()" class="btn btn-primary">Add audio</button> -->
-		<button (click)="removeAll()" class="btn btn-danger">Remove all</button>
+		<!-- <button (click)="removeAll()" class="btn btn-danger">Remove all</button> -->
 	</div>
 </div>
 
