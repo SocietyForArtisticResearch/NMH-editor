@@ -5,6 +5,7 @@ import { RCExpoModel } from '../shared/RCExpoModel';
 import { RCImage, RCObject, RCAudio, RCVideo } from '../shared/rcexposition';
 import * as Utils from '../shared/utils';
 import { HttpClient, HttpRequest, HttpEventType, HttpResponse } from '@angular/common/http';
+import { RCBackendMediaUpload } from '../shared/RCBackendMediaUpload';
 //import { BlobMimeDetect } from '../shared/BlobMimeDetect';
 
 @Component({
@@ -20,7 +21,8 @@ export class DragAndDropComponent implements OnInit {
 
     constructor(
         private http: HttpClient,
-        private rcExpoModel: RCExpoModel
+        private rcExpoModel: RCExpoModel,
+        private backendUpload: RCBackendMediaUpload
     ) { }
 
     ngOnInit() {
@@ -32,13 +34,22 @@ export class DragAndDropComponent implements OnInit {
 
         if (fileList.length > 0) {
             let selectedFile = fileList[0];
-            console.log(selectedFile.type)
+
+            let onResult = ( evt :any ) => { this.onResult(evt) };
+            let onProgress = ( progress: string ) => { this.fileUploadStatus = progress };
+            this.backendUpload.uploadFile(fileList,'image',onResult,onProgress);
+
         }
     }
 
 
     onFilesChange(fileList: FileList) {
         this.fileUploadStatus = 'upload in progress';
+
+        if (Backend.useRC) {
+            this.uploadFileRC(fileList);
+            return;
+        } 
 
         if (fileList.length > 0) {
 

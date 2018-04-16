@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { RCExpoModel } from './shared/RCExpoModel';
+import { RCBackendMediaUpload } from './shared/RCBackendMediaUpload';
 import { RCMDE, insertMediaToken, insertMedia } from './shared/rcmde';
 import { RCImage, RCAudio, RCSvg, RCPdf, RCVideo } from './shared/rcexposition';
 import { ObjectListComponent } from './object-list/object-list.component';
@@ -16,7 +17,7 @@ import { switchMap } from 'rxjs/operators';
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.css'],
-    providers: [RCExpoModel]
+    providers: [RCExpoModel, RCBackendMediaUpload]
 })
 export class AppComponent implements OnInit {
     // rcExpoModel is injected into this compenent (and all its children through their constructors !)

@@ -7,7 +7,7 @@ import { HttpClient, HttpRequest, HttpEventType, HttpResponse } from '@angular/c
 
 
 @Injectable()
-export class RCBackend {
+export class RCBackendMediaUpload {
 	// default arguments:
 	copyrightholder: string = 'not defined';
 	description: string = 'none';
@@ -15,7 +15,7 @@ export class RCBackend {
 
 	constructor(private http: HttpClient) { }
 
-	uploadFile(fileList, mediaType, onResult : ( httpEvent:  any ) => void, onProgress: (httpEvent:  any  ) => string) {
+	uploadFile(fileList, mediaType, onResult : ( httpEvent:  any ) => void, onProgress: ( progress: string  ) => void) {
 
 		/*
 		 * uploads a file to RC, and takes a callback to return the result.
