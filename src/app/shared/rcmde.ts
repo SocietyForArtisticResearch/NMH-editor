@@ -1670,6 +1670,7 @@ export class RCMDE {
 
     mediaHTML(name: string) {
         let tool = this.exposition.getObjectWithName(name);
+        console.log(name);
         let str = name.big();
         if (tool !== undefined) {
             tool.createHTML();
