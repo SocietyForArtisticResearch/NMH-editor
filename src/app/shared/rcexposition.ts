@@ -191,6 +191,7 @@ export class RCExposition {
         ob.description = rcmedia.description;
         ob.copyright = rcmedia.copyright;
         ob.name = rcmedia.name;
+        console.log(ob);
         return ob;
     }
 
@@ -199,7 +200,7 @@ export class RCExposition {
         /* gets the list from the RC Server json list */
         let self = this;
         RCMediaList.forEach(m => self.updateOrCreateObject(m));
-
+        console.log(this.media);
     }
 
 
