@@ -75,9 +75,9 @@ export class RCExpoModel {
 
         this.syncModelWithRC();
 
-        this.mde.exposition = new_exposition;
-        this.mde.value(new_exposition.markdownInput);
-        this.mde.render();
+        //        this.mde.exposition = new_exposition;
+        //      this.mde.value(new_exposition.markdownInput);
+        //    this.mde.render();
 
     }
 
