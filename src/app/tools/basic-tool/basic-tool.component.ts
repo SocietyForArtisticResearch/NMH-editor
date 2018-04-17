@@ -92,8 +92,8 @@ export class BasicToolComponent implements OnInit {
     }
 
     onLocalPropertyChange(val) {
-        this.rcObject.pxWidth = this.toolForm.get('widthInPixels');
-        this.rcObject.pxHeight = this.toolForm.get('heightInPixels');
+        this.rcobject.pxWidth = this.toolForm.get('widthInPixels');
+        this.rcobject.pxHeight = this.toolForm.get('heightInPixels');
     }
 
     onRCMetaDataChange(val) {
