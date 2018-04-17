@@ -92,6 +92,7 @@ export class BasicToolComponent implements OnInit {
     }
 
     onLocalPropertyChange(val) {
+        console.log('change in size detected');
         let formWidthControl = this.toolForm.get('widthInPixels');
         if (formWidthControl.valid) {
             this.rcobject.pxWidth = formWidthControl.value;
