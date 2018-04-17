@@ -44,8 +44,11 @@ export class DragAndDropComponent implements OnInit {
     onFilesChange(fileList: FileList) {
         this.fileUploadStatus = 'upload in progress';
 
-        if (Backend.useRC) { // TODO detect BACKEND setting !!!
-            console.log('nothing yet');
+        if (Backend.useRC) { /
+            let onResult = ( ) => { console.log('a result') };
+            let onProgress = ( progress ) => { this.fileUploadStatus = progress; };
+
+            this.backendUpload.uploadFile(fileList, onResult, onProgress);
         } else {
 
             if (fileList.length > 0) {
