@@ -3,6 +3,7 @@ import { DragDropDirective } from './drag-drop.directive';
 import { Backend } from '../shared/Backend';
 import { RCExpoModel } from '../shared/RCExpoModel';
 import { RCImage, RCObject, RCAudio, RCVideo } from '../shared/rcexposition';
+import { RCMDE, insertMedia } from '../shared/rcmde';
 import * as Utils from '../shared/utils';
 import { HttpClient, HttpRequest, HttpEventType, HttpResponse } from '@angular/common/http';
 import { RCBackendMediaUpload } from '../shared/RCBackendMediaUpload';
@@ -80,6 +81,10 @@ export class DragAndDropComponent implements OnInit {
     onRCResult(result) {
         let parsedJson = JSON.parse(result);
         let rcobject = this.rcExpoModel.exposition.updateOrCreateObject(parsedJson);
+        
+        let editor: RCMDE = this.rcExpoModel.mde;
+        insertMedia(editor, rcobject.name);
+
         this.onChangedObject.emit(rcobject.id);
     }
 
