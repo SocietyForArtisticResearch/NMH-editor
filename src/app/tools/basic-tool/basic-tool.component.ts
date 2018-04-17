@@ -107,11 +107,16 @@ export class BasicToolComponent implements OnInit {
     }
 
     onRCMetaDataChange(val) {
+        console.log('change detected');
+        let newCopyright = this.toolForm.get('copyright').value;
+        let newDescription = this.toolForm.get('description').value;
+        let newName = this.toolForm.get('name').value;
+
         // this should call edit meta data in RCBackendMediaUpload.ts;
         let metadata :RCMetaData = {
-            copyrightholder : this.rcobject.copyright,
-            description : this.rcobject.description ,
-            name : this.rcobject.name 
+            copyrightholder : newCopyright,
+            description : newDescription ,
+            name : newName
         }
 
         this.rcBackendMediaUpload.editObjectFromRC(this.rcobject.id,metadata);
