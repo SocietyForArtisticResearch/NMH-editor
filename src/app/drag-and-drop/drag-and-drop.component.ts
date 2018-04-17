@@ -90,6 +90,7 @@ export class DragAndDropComponent implements OnInit {
     }
 
     onResult(result) {
+        // note: this is old server.js response handling, not RC Simple Media (see onRCResult)
         let mimeType = result.mime;
         if (!mimeType) {
             mimeType = '';
@@ -123,6 +124,9 @@ export class DragAndDropComponent implements OnInit {
 
         this.rcExpoModel.exposition.addObject(newRCObject);
         this.onChangedObject.emit(newRCObject.id);
+
+        let editor: RCMDE = this.rcExpoModel.mde;
+        insertMedia(editor, newRCObject.name);
 
     }
 
