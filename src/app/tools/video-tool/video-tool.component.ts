@@ -10,12 +10,13 @@ import { RCBackendMediaUpload } from '../../shared/RCBackendMediaUpload';
 
 @Component({
     selector: 'app-video-tool',
-    templateUrl: './video-tool.component.html',
-    styleUrls: ['./video-tool.component.css']
+    templateUrl: '../basic-tool/basic-tool.component.html',
+    styleUrls: ['../basic-tool/basic-tool.component.css']
 })
 export class VideoToolComponent extends BasicToolComponent {
     constructor(http: HttpClient,rcExpoModel: RCExpoModel,rcBackendMediaUpload: RCBackendMediaUpload) { 
         super(http,rcExpoModel,rcBackendMediaUpload);
+        this.usermessage = "upload another video";
     }
 
     prepareSaveObject(): RCVideo {

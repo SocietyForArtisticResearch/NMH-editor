@@ -12,12 +12,13 @@ import { RCBackendMediaUpload } from '../../shared/RCBackendMediaUpload';
 
 @Component({
   selector: 'app-image-tool',
-  templateUrl: './image-tool.component.html',
-  styleUrls: ['./image-tool.component.css']
+    templateUrl: '../basic-tool/basic-tool.component.html',
+    styleUrls: ['../basic-tool/basic-tool.component.css']
 })
 export class ImageToolComponent extends BasicToolComponent {
     constructor(http: HttpClient,rcExpoModel: RCExpoModel,rcBackendMediaUpload: RCBackendMediaUpload) { 
         super(http,rcExpoModel,rcBackendMediaUpload);
+        this.usermessage = "upload another image";
     }
 	
     prepareSaveObject(): RCImage {

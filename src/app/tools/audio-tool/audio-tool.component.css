@@ -46,3 +46,11 @@ label {
 	color:#888;
 }
 
+.rc-object-meta-properties input {
+	clear: right;
+}
+
+.rc-object-meta-properties label {
+	clear: right;
+}
+

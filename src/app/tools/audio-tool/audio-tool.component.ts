@@ -11,12 +11,13 @@ import { RCBackendMediaUpload } from '../../shared/RCBackendMediaUpload' ;
 
 @Component({
     selector: 'app-audio-tool',
-    templateUrl: './audio-tool.component.html',
-    styleUrls: ['./audio-tool.component.css']
+    templateUrl: '../basic-tool/basic-tool.component.html',
+    styleUrls: ['../basic-tool/basic-tool.component.css']
 })
 export class AudioToolComponent extends BasicToolComponent {
     constructor(http: HttpClient,rcExpoModel: RCExpoModel,rcBackendMediaUpload: RCBackendMediaUpload) { 
         super(http,rcExpoModel,rcBackendMediaUpload);
+        this.usermessage = "upload another audiofile";
     }
 
     prepareSaveObject(): RCAudio {
