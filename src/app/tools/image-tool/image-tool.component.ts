@@ -5,6 +5,8 @@ import { RCImage } from '../../shared/rcexposition';
 
 import { HttpClient } from '@angular/common/http';
 import * as Utils from '../../shared/utils';
+import { RCBackendMediaUpload } from '../../shared/RCBackendMediaUpload';
+
 
 
 
@@ -14,8 +16,8 @@ import * as Utils from '../../shared/utils';
   styleUrls: ['./image-tool.component.css']
 })
 export class ImageToolComponent extends BasicToolComponent {
-    constructor(http: HttpClient,rcExpoModel: RCExpoModel) { 
-        super(http,rcExpoModel);
+    constructor(http: HttpClient,rcExpoModel: RCExpoModel,rcBackendMediaUpload: RCBackendMediaUpload) { 
+        super(http,rcExpoModel,rcBackendMediaUpload);
     }
 	
     prepareSaveObject(): RCImage {

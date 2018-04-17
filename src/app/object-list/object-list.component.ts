@@ -7,6 +7,9 @@ import { RCObject, RCImage, RCAudio, RCSvg, RCPdf, RCVideo } from '../shared/rce
 
 import * as Utils from '../shared/utils';
 
+import { RCBackendMediaUpload } from '../shared/RCBackendMediaUpload';
+import { Backend } from '../shared/Backend'
+
 @Component({
     selector: 'app-object-list',
     templateUrl: './object-list.component.html',
@@ -25,13 +28,10 @@ export class ObjectListComponent implements OnInit {
         delay: <number>60
     };
 
-    eventOptions = {
-        onUpdate: (event) => {
-
-        }
-    }
-
-    constructor(public rcExpoModel: RCExpoModel) { }
+    constructor(
+        public rcExpoModel: RCExpoModel,
+        public rcBackendMediaUpload: RCBackendMediaUpload
+    ) { }
 
     createImageTool() {
         // obsolete
@@ -99,9 +99,10 @@ export class ObjectListComponent implements OnInit {
         return obj.constructor.name;
     }
 
+    /*
     removeAll() {
         this.rcExpoModel.exposition.media = [];
-    }
+    }*/
 
     ngOnChanges() {
         // check if rcobject was removed
@@ -130,6 +131,10 @@ export class ObjectListComponent implements OnInit {
     }
 
     trashObject(rcObject) {
+        if (Backend.useRC) {
+            this.rcBackendMediaUpload.removeObjectFromRC(rcObject.id);
+            // will resync
+        }
         this.rcExpoModel.exposition.removeObjectWithID(rcObject.id);
     }
 

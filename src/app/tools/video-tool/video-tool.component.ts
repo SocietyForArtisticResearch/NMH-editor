@@ -4,6 +4,8 @@ import { RCVideo } from '../../shared/rcexposition';
 import { RCExpoModel } from '../../shared/RCExpoModel';
 import { HttpClient } from '@angular/common/http';
 import * as Utils from '../../shared/utils';
+import { RCBackendMediaUpload } from '../../shared/RCBackendMediaUpload';
+
 
 
 @Component({
@@ -12,8 +14,8 @@ import * as Utils from '../../shared/utils';
     styleUrls: ['./video-tool.component.css']
 })
 export class VideoToolComponent extends BasicToolComponent {
-    constructor(http: HttpClient,rcExpoModel: RCExpoModel) { 
-        super(http,rcExpoModel);
+    constructor(http: HttpClient,rcExpoModel: RCExpoModel,rcBackendMediaUpload: RCBackendMediaUpload) { 
+        super(http,rcExpoModel,rcBackendMediaUpload);
     }
 
     prepareSaveObject(): RCVideo {

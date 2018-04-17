@@ -4,6 +4,7 @@ import { Component } from '@angular/core';
 import { RCExpoModel } from '../../shared/RCExpoModel';
 import { HttpClient } from '@angular/common/http';
 import * as Utils from '../../shared/utils';
+import { RCBackendMediaUpload } from '../../shared/RCBackendMediaUpload' ;
 
 
 
@@ -14,8 +15,8 @@ import * as Utils from '../../shared/utils';
     styleUrls: ['./audio-tool.component.css']
 })
 export class AudioToolComponent extends BasicToolComponent {
-    constructor(http: HttpClient,rcExpoModel: RCExpoModel) { 
-        super(http,rcExpoModel);
+    constructor(http: HttpClient,rcExpoModel: RCExpoModel,rcBackendMediaUpload: RCBackendMediaUpload) { 
+        super(http,rcExpoModel,rcBackendMediaUpload);
     }
 
     prepareSaveObject(): RCAudio {
