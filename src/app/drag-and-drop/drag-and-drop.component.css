@@ -8,10 +8,12 @@
 }
 
 .dropzone-bigger {
-  margin:10px 10px;
-  width:97%;
-  height:70px;
+    margin:0px 0px;
+    margin-bottom: 15px;
+    width:100%;
+    height:70px;
 }
+
 
 .text-wrapper {
 

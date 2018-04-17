@@ -137,6 +137,9 @@ export class RCExposition {
         if (Backend.useRC) {
             obj.url = `${Backend.rcBaseAddress}text-editor/simple-media-resource?research=${obj.expositionID}&simple-media=${obj.id}`;
             obj.thumb = `${Backend.rcBaseAddress}text-editor/simple-media-thumb?research=${obj.expositionID}&simple-media=${obj.id}&width=132&height=132`;
+        } else {
+            // we assume url has been set
+            obj.thumb = obj.url;
         }
         this.media.push(obj);
     }

@@ -1,11 +1,12 @@
 .video-preview {
-    	object-fit: cover;
-	/* width:30px; */
+    width:75px;
 }
 
 .rc-object-list {
-	height:700px;
-	overflow-y:scroll;
+    /* height:600px; */
+    /* height:100%; */
+    height:calc(90vh - 110px);
+    overflow-y:scroll;
 }
 
 .dropzone-inner[_ngcontent-c1] {
@@ -38,7 +39,7 @@ li {
 }
 
 .selected {
-	background: #ddd;
+	background: #ccc;
 }
 
 .imageUrl {
@@ -89,18 +90,24 @@ li {
 
 @media only screen and (max-width: 800px) {
 	.rc-object-list {
-		height:calc(100vh - 122px);
+	    /* height:calc(100vh - 150px); */
+	    height:400px;
+	}
+
+	
+	[class*="col-"] {
+	    margin-bottom: 15px;
 	}
 }
 
 
 /* table sytling */
 
-tr:nth-child(even) {
+.object-table tr:nth-child(even) {
     background-color: #f4f4f4
 }
 
-th, td {
+.object-table th, td {
     text-align: left;
     padding: 16px;
 }
