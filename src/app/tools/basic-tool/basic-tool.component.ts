@@ -5,6 +5,7 @@ import { RCMedia, RCImage } from '../../shared/rcexposition';
 import { FormControl, AbstractControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { HttpEventType, HttpRequest, HttpResponse, HttpClient } from '@angular/common/http';
 import { Backend } from '../../shared/Backend';
+import { RCBackendMediaUpload } from '../../shared/RCBackendMediaUpload';
 
 import * as Utils from '../../shared/utils';
 
@@ -47,7 +48,10 @@ export class BasicToolComponent implements OnInit {
 
 
 
-    constructor(private http: HttpClient,private rcExpoModel: RCExpoModel) { }
+    constructor(
+        private http: HttpClient,
+        private rcExpoModel: RCExpoModel,
+        private rcBackendMediaUpload: RCBackendMediaUpload) { }
 
     ngOnInit() {
         this.identifier = this.rcobject.id;
@@ -61,17 +65,46 @@ export class BasicToolComponent implements OnInit {
             'fileUrl': new FormControl(this.rcobject.url, [Validators.required]),
             'widthInPixels': new FormControl(this.rcobject.pxWidth),
             'heightInPixels': new FormControl(this.rcobject.pxHeight),
-            'filePickerButton': new FormControl(null)
+            'filePickerButton': new FormControl(null),
+            'copyright' : new FormControl(this.rcobject.copyright),
+            'description' : new FormControl(this.rcobject.description),
         });
 
+        this.toolForm.get('name').valueChanges.subscribe( val => { this.onNameChange(val); } );
+        this.toolForm.get('widthInPixels').valueChanges.subscribe( val => { this.onLocalPropertyChange(val); });
+        this.toolForm.get('heightInPixels').valueChanges.subscribe( val => { this.onLocalPropertyChange(val); });
+        this.toolForm.get('copyright').valueChanges.subscribe( val =>  { this.onRCMetaDataChange(val); });
+        this.toolForm.get('description').valueChanges.subscribe( val =>  { this.onRCMetaDataChange(val); });
+
+
+        /*
         this.toolForm.valueChanges.subscribe(val => {
             this.onSubmit();
         });
+        */
 
         this.toolType = this.rcobject.constructor.name;
     }
 
+    onLocalPropertyChange(val) {
+        console.log('a local property was touched:',val);
+    }
+
+    onRCMetaDataChange(val) {
+        // this should call edit meta data in RCBackendMediaUpload.ts;
+        console.log('edit rc meta data', val);
+    }
+
+    onNameChange(val) {
+        let field = this.toolForm.get('name');
+        if (field.valid) {
+            let rcobject = this.rcExpoModel.exposition.getObjectWithID(this.rcobject.id);
+            rcobject.name = field.value;
+        }
+    }
+
     ngOnChanges() {
+        /*
         if (this.toolForm) {
             this.toolForm.setValue({
                 'name': this.rcobject.name,
@@ -91,6 +124,7 @@ export class BasicToolComponent implements OnInit {
             });
 
         }
+        */
     }
 
     allowEditName() {
@@ -120,35 +154,51 @@ export class BasicToolComponent implements OnInit {
     }
 
     onTrash() {
+        if(Backend.useRC) {
+            // remove through rc, will automatically resync
+            this.rcBackendMediaUpload.removeObjectFromRC(this.rcobject.id);
+        } else {
         /*
-         * Directly remove this on the model, model change will automatically result in view update.
+         * Directly remove this on the (local) model.
          */
-        this.rcExpoModel.exposition.removeObjectWithID(this.rcobject.id);
-        this.onRemoveObject.emit(this.rcobject.id);
+            this.rcExpoModel.exposition.removeObjectWithID(this.rcobject.id);
+            this.onRemoveObject.emit(this.rcobject.id);
+        }
     }
 
     onFileSelect(event) {
+        if (Backend.useRC) {
+            let onRCResult = ( evt :any ) => { console.log('file updated, should have resynced?', evt); };
+            let onProgress = ( progress: string ) => { this.fileUploadStatus = progress };
 
-        this.selectedFile = <File>event.target.files[0];
-        const fd = new FormData();
-        fd.append('uploadFile', this.selectedFile, this.selectedFile.name);
+            this.rcBackendMediaUpload.replaceFileRC(
+                this.rcobject.id,
+                event.target.files,
+                onRCResult,
+                onProgress);
 
-        const req = new HttpRequest('POST', Backend.uploadAddress, fd, {
-            reportProgress: true,
-        });
+        } else {
+            this.selectedFile = <File>event.target.files[0];
+            const fd = new FormData();
+            fd.append('uploadFile', this.selectedFile, this.selectedFile.name);
 
-        this.http.request(req).subscribe(event => {
-            // Via this API, you get access to the raw event stream.
-            // Look for upload progress events.
-            if (event.type === HttpEventType.UploadProgress) {
-                // This is an upload progress event. Compute and show the % done:
-                this.fileUploadStatus = Math.round(100 * event.loaded / event.total) + '%';
-            } else if (event instanceof HttpResponse) {
-                this.fileUploadStatus = 'done';
-                window.setTimeout(() => { this.fileUploadStatus = null }, 1000);
-                this.onResult(event.body);
-            }
-        });
+            const req = new HttpRequest('POST', Backend.uploadAddress, fd, {
+                reportProgress: true,
+            });
+
+            this.http.request(req).subscribe(event => {
+                // Via this API, you get access to the raw event stream.
+                // Look for upload progress events.
+                if (event.type === HttpEventType.UploadProgress) {
+                    // This is an upload progress event. Compute and show the % done:
+                    this.fileUploadStatus = Math.round(100 * event.loaded / event.total) + '%';
+                } else if (event instanceof HttpResponse) {
+                    this.fileUploadStatus = 'done';
+                    window.setTimeout(() => { this.fileUploadStatus = null }, 1000);
+                    this.onResult(event.body);
+                }
+            });
+        }
 
         this.rcExpoModel.mde.render();
     }

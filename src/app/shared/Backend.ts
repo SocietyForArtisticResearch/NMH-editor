@@ -8,6 +8,8 @@ export class Backend {
     static import: string = "https://sar-announcements.com:3000/import";
 
     static rcMediaUpload: string = "https://dev.researchcatalogue.net/text-editor/simple-media-add";
+    static rcMediaRemove: string = "https://dev.researchcatalogue.net/text-editor/simple-media-remove";
+    static rcMediaEdit: string = "https://dev.researchcatalogue.net/text-editor/simple-media-edit";
     static rcBaseAddress: string = "https://dev.researchcatalogue.net/";
 
 

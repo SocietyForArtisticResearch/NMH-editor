@@ -33,23 +33,9 @@ export class DragAndDropComponent implements OnInit {
         this.fileUploadStatus = 'upload in progress';
 
         if (fileList.length > 0) {
-            let selectedFile = fileList[0];
-            let fileType = selectedFile.type;
-            console.log(selectedFile.type);
-
-            if (fileType.includes('image')) {
-                fileType = 'image';
-            } else if (fileType.includes('audio')) {
-                fileType = 'audio';
-            } else if (fileType.includes('video')) {
-                fileType = 'video';
-            } else if (fileType.includes('pdf')) {
-                fileType = 'pdf';
-            }
-
             let onRCResult = ( evt :any ) => { this.onRCResult(evt) };
             let onProgress = ( progress: string ) => { this.fileUploadStatus = progress };
-            this.backendUpload.uploadFile(fileList,fileType,onRCResult,onProgress);
+            this.backendUpload.uploadFile(fileList,onRCResult,onProgress);
 
         }
     }
@@ -58,8 +44,11 @@ export class DragAndDropComponent implements OnInit {
     onFilesChange(fileList: FileList) {
         this.fileUploadStatus = 'upload in progress';
 
-        if (Backend.useRC) { // TODO detect BACKEND setting !!!
-            this.uploadFileRC(fileList);
+        if (Backend.useRC) { 
+            let onResult = ( result ) => { console.log('a result',result); };
+            let onProgress = ( progress ) => { this.fileUploadStatus = progress; };
+
+            this.backendUpload.uploadFile(fileList, onResult, onProgress);
         } else {
 
             if (fileList.length > 0) {
