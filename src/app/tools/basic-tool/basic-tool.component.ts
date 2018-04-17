@@ -31,7 +31,7 @@ function forbiddenNameValidator(rcModel: RCExpoModel, oldName: string): Validato
 })
 export class BasicToolComponent implements OnInit {
     // name: string = '';
-    usermessage:string = "upload a file";
+    userMessage:string = "upload a file";
 
     collapsed: boolean = false;
     toolForm: FormGroup;

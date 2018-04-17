@@ -16,7 +16,7 @@ import { RCBackendMediaUpload } from '../../shared/RCBackendMediaUpload';
 export class VideoToolComponent extends BasicToolComponent {
     constructor(http: HttpClient,rcExpoModel: RCExpoModel,rcBackendMediaUpload: RCBackendMediaUpload) { 
         super(http,rcExpoModel,rcBackendMediaUpload);
-        this.usermessage = "upload another video";
+        this.userMessage = "upload another video";
     }
 
     prepareSaveObject(): RCVideo {

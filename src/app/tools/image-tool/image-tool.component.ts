@@ -18,7 +18,7 @@ import { RCBackendMediaUpload } from '../../shared/RCBackendMediaUpload';
 export class ImageToolComponent extends BasicToolComponent {
     constructor(http: HttpClient,rcExpoModel: RCExpoModel,rcBackendMediaUpload: RCBackendMediaUpload) { 
         super(http,rcExpoModel,rcBackendMediaUpload);
-        this.usermessage = "upload another image";
+        this.userMessage = "upload another image";
     }
 	
     prepareSaveObject(): RCImage {

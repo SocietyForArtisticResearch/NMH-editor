@@ -17,7 +17,8 @@ import { RCBackendMediaUpload } from '../../shared/RCBackendMediaUpload' ;
 export class AudioToolComponent extends BasicToolComponent {
     constructor(http: HttpClient,rcExpoModel: RCExpoModel,rcBackendMediaUpload: RCBackendMediaUpload) { 
         super(http,rcExpoModel,rcBackendMediaUpload);
-        this.usermessage = "upload another audiofile";
+        this.userMessage = "upload another audiofile";
+        console.log('called');
     }
 
     prepareSaveObject(): RCAudio {
