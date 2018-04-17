@@ -124,10 +124,6 @@ export class DragAndDropComponent implements OnInit {
 
         this.rcExpoModel.exposition.addObject(newRCObject);
         this.onChangedObject.emit(newRCObject.id);
-
-        let editor: RCMDE = this.rcExpoModel.mde;
-        insertMedia(editor, newRCObject.name);
-
     }
 
     onClick() {
