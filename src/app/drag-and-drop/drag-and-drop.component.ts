@@ -36,7 +36,6 @@ export class DragAndDropComponent implements OnInit {
             let onRCResult = ( evt :any ) => { this.onRCResult(evt) };
             let onProgress = ( progress: string ) => { this.fileUploadStatus = progress };
             this.backendUpload.uploadFile(fileList,onRCResult,onProgress);
-
         }
     }
 
@@ -86,7 +85,7 @@ export class DragAndDropComponent implements OnInit {
 
     onResult(result) {
         let mimeType = result.mime;
-        if (!mimeType) { 
+        if (!mimeType) {
             mimeType = '';
         }
 
@@ -105,12 +104,12 @@ export class DragAndDropComponent implements OnInit {
         } else if (mimeType.includes('video')) {
             let videoName = 'video' + this.rcExpoModel.exposition.media.length;
             let videoUri = Backend.baseAddress + result.url;
-            newRCObject = new RCVideo(Utils.uniqueID(),videoName);
+            newRCObject = new RCVideo(Utils.uniqueID(), videoName);
             newRCObject.url = videoUri;
         } else if (mimeType.includes('pdf')) {
             let pdfName = 'pdf' + this.rcExpoModel.exposition.media.length;
             let pdfUri = Backend.baseAddress + result.url;
-            newRCObject = new RCVideo(Utils.uniqueID(),pdfName);
+            newRCObject = new RCVideo(Utils.uniqueID(), pdfName);
             newRCObject.url = pdfUri;
         } else {
             console.log('do not know what to do with mimeType: ', mimeType);
@@ -118,7 +117,7 @@ export class DragAndDropComponent implements OnInit {
 
         this.rcExpoModel.exposition.addObject(newRCObject);
         this.onChangedObject.emit(newRCObject.id);
-        
+
     }
 
     onClick() {

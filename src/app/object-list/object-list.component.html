@@ -6,18 +6,19 @@
 
 <div class="container-fluid">
     
-    <div class="row">
-	<div class="col-md-6 rc-object-list">
-	
-	<app-drag-and-drop 
+    <div class="row" >
+	<div class="col-sm-6 rc-object-list">
+	    
+	    <app-drag-and-drop 
 		class="drag-and-drop-box" 
-		[isBigger]="true" 
-		(onChangedObject)="onChangedObject($event)">
-	</app-drag-and-drop>
-	
-	<div *ngIf="mediaHasObjects()">
-    <span class="glyphicon glyphicon-info-sign"></span><span>&nbsp;Double click an image to insert</span>
-    </div>
+		       [isBigger]="true"
+		       (onChangedObject)="onChangedObject($event)">
+	    </app-drag-and-drop>
+	    
+	    <div *ngIf="mediaHasObjects()">
+
+	    </div>
+	    <span class="glyphicon glyphicon-info-sign"></span><span>&nbsp;Double click an image to insert</span>
 	    <table width="100%" style="margin: 0px;" class="object-table">
 		<thead>
 		    <tr>
@@ -27,82 +28,82 @@
 			<th width="65%"><span class="object-list-name">Name</span></th>
 			<th width="5%"><span class="object-list-name">Action</span></th>
 			<th width="5%">&nbsp;</th>
-					</tr>
-				</thead>
-				<tbody>
-				<tr 
-						*ngFor="let rcObject of rcExpoModel.exposition.media" 
-						[class.selected]="isObjectSelected(rcObject)"
-					    (click)="onSelect(rcObject)"
-					    (dblclick)="onDoubleClick(rcObject)">
-					<td>
-					    <div [ngSwitch]="rcObject.__className">
-						
-						<img *ngSwitchCase="'RCImage'" 
-								    class="image-preview" 
-								    src={{rcObject.thumb}} 
-								    height="66" 
-								    width="66" 
-								    alt={{rcObject.thumb}}>
-							
-							<div *ngSwitchCase="'RCAudio'">
-								<p class="playSymbol">▶</p>
-								<audio>
-								<source src={{rcObject.url}}>
-								Browser does not support audio.
-								</audio>
-							</div>
-
-							<div *ngSwitchCase="'RCVideo'">
-								<p class="image-preview">▶</p>
-								<video class="video-preview">
-								    <source src={{rcObject.thumb}}
- 										height="66" 
-										width="66">
-								Browser does not support audio.
-								</video>
-							</div>
-						</div>
-
-					</td>
-					<td><span class="object-list-name">{{rcObject.name}}</span></td>
-					<td><button class="align-right btn btn-danger btn-sm" (click)="trashObject(rcObject)">&times;</button></td>
-					<td><button class="align-right btn btn-primary btn-sm" (click)="onDoubleClick(rcObject)">insert</button></td>
-				</tr>
-			</table>
-		</div>
-		<div class="col-md-6">	
-			<div *ngIf="(selectedObject != undefined) || (selectedObject !== null)">
-				<div [ngSwitch]="selectedObject.__className">
-					<app-image-tool *ngSwitchCase="'RCImage'"
-					    [id]="'editor'+selectedObject.id" 
-						[rcobject]="selectedObject"
-						(onRemoveObject)="objectWasRemoved($event)"
-						(onChangedObject)="onChangedObject($event)"
-						>		
-					</app-image-tool>
-					<app-audio-tool *ngSwitchCase="'RCAudio'"
-					    [id]="'editor'+selectedObject.id" 
-						[rcobject]="selectedObject"
-						(onRemoveObject)="objectWasRemoved($event)"
-						(onChangedObject)="onChangedObject($event)"
-						>		
-					</app-audio-tool>
-					<app-video-tool *ngSwitchCase="'RCVideo'"
-					    [id]="'editor'+selectedObject.id" 
-						[rcobject]="selectedObject"
-						(onRemoveObject)="objectWasRemoved($event)"
-						(onChangedObject)="onChangedObject($event)"
-						>		
-					</app-video-tool>
+		    </tr>
+		</thead>
+		<tbody>
+		    <tr 
+			*ngFor="let rcObject of rcExpoModel.exposition.media" 
+				[class.selected]="isObjectSelected(rcObject)"
+			(click)="onSelect(rcObject)"
+			(dblclick)="onDoubleClick(rcObject)">
+			<td>
+			    <div [ngSwitch]="rcObject.__className">
+				
+				<img *ngSwitchCase="'RCImage'" 
+				     class="image-preview" 
+				     src={{rcObject.thumb}} 
+				     height="66" 
+				     width="66" 
+				     alt={{rcObject.thumb}}>
+				
+				<div *ngSwitchCase="'RCAudio'">
+				    <p class="playSymbol">▶</p>
+				    <audio>
+					<source src={{rcObject.url}}>
+					Browser does not support audio.
+				    </audio>
 				</div>
-			</div>
+
+				<div *ngSwitchCase="'RCVideo'">
+				    <p class="image-preview">▶</p>
+				    <video class="video-preview">
+					<source src={{rcObject.thumb}}
+ 						    height="66" 
+						    width="66">
+					Browser does not support audio.
+				    </video>
+				</div>
+			    </div>
+
+			</td>
+			<td><span class="object-list-name">{{rcObject.name}}</span></td>
+			<td><button class="align-right btn btn-danger btn-sm" (click)="trashObject(rcObject)">&times;</button></td>
+			<td><button class="align-right btn btn-primary btn-sm" (click)="onDoubleClick(rcObject)">insert</button></td>
+		    </tr>
+	    </table>
+	</div>
+	<div class="col-sm-6">	
+	    <div *ngIf="(selectedObject != undefined) || (selectedObject !== null)">
+		<div [ngSwitch]="selectedObject.__className">
+		    <app-image-tool *ngSwitchCase="'RCImage'"
+				    [id]="'editor'+selectedObject.id" 
+						   [rcobject]="selectedObject"
+						   (onRemoveObject)="objectWasRemoved($event)"
+						   (onChangedObject)="onChangedObject($event)"
+		    >		
+		    </app-image-tool>
+		    <app-audio-tool *ngSwitchCase="'RCAudio'"
+				    [id]="'editor'+selectedObject.id" 
+						   [rcobject]="selectedObject"
+						   (onRemoveObject)="objectWasRemoved($event)"
+						   (onChangedObject)="onChangedObject($event)"
+		    >		
+		    </app-audio-tool>
+		    <app-video-tool *ngSwitchCase="'RCVideo'"
+				    [id]="'editor'+selectedObject.id" 
+						   [rcobject]="selectedObject"
+						   (onRemoveObject)="objectWasRemoved($event)"
+						   (onChangedObject)="onChangedObject($event)"
+		    >		
+		    </app-video-tool>
 		</div>
+	    </div>
 	</div>
-	<div class="row">
-		<!-- <button (click)="createImageTool()" class="btn btn-primary">Add image</button>
-		<button (click)="createAudioTool()" class="btn btn-primary">Add audio</button> -->
-		<!-- <button (click)="removeAll()" class="btn btn-danger">Remove all</button> -->
-	</div>
+    </div>
+    <div class="row">
+	<!-- <button (click)="createImageTool()" class="btn btn-primary">Add image</button>
+	     <button (click)="createAudioTool()" class="btn btn-primary">Add audio</button> -->
+	<!-- <button (click)="removeAll()" class="btn btn-danger">Remove all</button> -->
+    </div>
 </div>
 
