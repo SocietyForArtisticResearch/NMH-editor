@@ -5,7 +5,7 @@ import { RCMedia, RCImage } from '../../shared/rcexposition';
 import { FormControl, AbstractControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { HttpEventType, HttpRequest, HttpResponse, HttpClient } from '@angular/common/http';
 import { Backend } from '../../shared/Backend';
-import { RCBackendMediaUpload } from '../../shared/RCBackendMediaUpload';
+import { RCBackendMediaUpload, RCMetaData } from '../../shared/RCBackendMediaUpload';
 
 import * as Utils from '../../shared/utils';
 
@@ -75,15 +75,18 @@ export class BasicToolComponent implements OnInit {
         this.toolForm.get('name').valueChanges.subscribe( val => { this.onNameChange(val); } );
         this.toolForm.get('widthInPixels').valueChanges.subscribe( val => { this.onLocalPropertyChange(val); });
         this.toolForm.get('heightInPixels').valueChanges.subscribe( val => { this.onLocalPropertyChange(val); });
-        this.toolForm.get('copyright').valueChanges.subscribe( val =>  { this.onRCMetaDataChange(val); });
-        this.toolForm.get('description').valueChanges.subscribe( val =>  { this.onRCMetaDataChange(val); });
+        
+        if(Backend.useRC) { // these properties should be updated through RC API
+            this.toolForm.get('copyright').valueChanges.subscribe( val =>  { this.onRCMetaDataChange(val); });
+            this.toolForm.get('description').valueChanges.subscribe( val =>  { this.onRCMetaDataChange(val); });
+        }
 
-
-        /*
-        this.toolForm.valueChanges.subscribe(val => {
-            this.onSubmit();
-        });
-        */
+        if (!Backend.useRC) { // if not on RC, update the model using old methods:
+            // old situation
+            this.toolForm.valueChanges.subscribe(val => {
+                this.onSubmit();
+            });
+        }
 
         this.toolType = this.rcobject.constructor.name;
     }
@@ -94,7 +97,13 @@ export class BasicToolComponent implements OnInit {
 
     onRCMetaDataChange(val) {
         // this should call edit meta data in RCBackendMediaUpload.ts;
-        console.log('edit rc meta data', val);
+        let metadata :RCMetaData = {
+            copyrightholder : this.rcobject.copyright,
+            description : this.rcobject.description ,
+            name : this.rcobject.name 
+        }
+
+        this.rcBackendMediaUpload.editObjectFromRC(this.rcobject.id,metadata);
     }
 
     onNameChange(val) {
@@ -106,27 +115,30 @@ export class BasicToolComponent implements OnInit {
     }
 
     ngOnChanges() {
-        /*
-        if (this.toolForm) {
-            this.toolForm.setValue({
-                'name': this.rcobject.name,
-                'fileUrl': this.rcobject.url,
-                'widthInPixels': this.rcobject.pxWidth,
-                'heightInPixels': this.rcobject.pxHeight,
-                'filePickerButton': null
-            });
+        if (!Backend.useRC) {
+            if (this.toolForm) {
+                this.toolForm.setValue({
+                    'name': this.rcobject.name,
+                    'fileUrl': this.rcobject.url,
+                    'widthInPixels': this.rcobject.pxWidth,
+                    'heightInPixels': this.rcobject.pxHeight,
+                    'filePickerButton': null,
+                    'copyright': this.rcobject.copyright,
+                    'description' : this.rcobject.description
+                });
 
-            this.toolForm.controls['name'].setValidators(
-                [forbiddenNameValidator(this.rcExpoModel, this.rcobject.name), // <-- Here's how you pass in the custom validator.
-                Validators.required]);
-            this.toolForm.controls['name'].updateValueAndValidity();
+                this.toolForm.controls['name'].setValidators(
+                    [forbiddenNameValidator(this.rcExpoModel, this.rcobject.name), // <-- Here's how you pass in the custom validator.
+                    Validators.required]);
+                this.toolForm.controls['name'].updateValueAndValidity();
 
-            this.toolForm.valueChanges.subscribe(val => {
-                this.onSubmit();
-            });
+                this.toolForm.valueChanges.subscribe(val => {
+                    this.onSubmit();
+                });
 
+            }
         }
-        */
+        
     }
 
     allowEditName() {
@@ -152,6 +164,8 @@ export class BasicToolComponent implements OnInit {
         newObject.url = formModel.fileUrl;
         newObject.pxWidth = formModel.widthInPixels;
         newObject.pxHeight = formModel.heightInPixels;
+        newObject.description = formModel.description;
+        newObject.copyright = formModel.copyright;
         return newObject;
     }
 
