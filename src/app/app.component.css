@@ -56,13 +56,14 @@
 
 /* Modal Content/Box */
 .modal-content {
-	position: fixed;
+    position: fixed;
 	/*top:-100px;*/
     background-color: #fefefe;
     margin: 5vh 5vw; /* 15% from the top and centered */
     padding: 20px;
     border: 1px solid #888;
-    width: 70%;  /*Could be more or less, depending on screen size */
+    width: 90%;  /*Could be more or less, depending on screen size */
+    height: 90%;
 }
 
 /* The Close Button */
@@ -111,7 +112,7 @@ hr {
     min-width: unset;
     min-height: unset;
     width:300px;
-    margin: 0 0;
+    margin:0 0;
 }
 
 @media only screen and (max-width: 800px) {

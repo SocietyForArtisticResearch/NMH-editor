@@ -3,8 +3,10 @@
 }
 
 .rc-object-list {
-	height:600px;
-	overflow-y:scroll;
+    /* height:600px; */
+    /* height:100%; */
+    height:calc(90vh - 110px);
+    overflow-y:scroll;
 }
 
 .dropzone-inner[_ngcontent-c1] {
@@ -88,7 +90,13 @@ li {
 
 @media only screen and (max-width: 800px) {
 	.rc-object-list {
-		height:calc(100vh - 122px);
+	    /* height:calc(100vh - 150px); */
+	    height:400px;
+	}
+
+	
+	[class*="col-"] {
+	    margin-bottom: 15px;
 	}
 }
 

@@ -1,7 +1,9 @@
 .css-edit-screen {
-    max-height:80vh;
-    max-width:80vw;
-    max-height:80vh;
-    min-height:unset;
-    min-width:unset;
+    max-width:100%;
+    min-width:100%;
+}
+
+/* doesn't seem to affect anything?? */
+textareacm {
+    height: 90vh;
 }
