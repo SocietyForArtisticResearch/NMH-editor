@@ -145,17 +145,17 @@ export class RCBackendMediaUpload {
         fd.append('name',metadata.name);
         fd.append('copyrightholder', metadata.copyrightholder );
         fd.append('description',metadata.description);
-        console.log('formdata',fd);
+        //console.log('formdata',fd);
 
         var xhttp = new XMLHttpRequest();
         var that = this;
         xhttp.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
                 let body = this.response;
-                console.log('edit tool, response body',body);
+                //console.log('edit tool, response body',body);
                 that.rcExpoModel.syncModelWithRC();
             } else {
-                console.log('RC Simple Media API error, edit (status, response):  ',this.status,this.response);
+                console.log('RC Simple Media API error, edit (status, response):  ',this.status);
             }
         };
         xhttp.open("POST", `${Backend.rcBaseAddress}text-editor/simple-media-edit?research=${expositionid}&simple-media=${rcobjectid}`, true);
