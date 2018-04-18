@@ -104,8 +104,12 @@ export class RCBackendMediaUpload {
         xhttp.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
                 if(reSync) {
+                    let body = this.response;
+                    console.log('deleted tool, response body',body);
                     that.rcExpoModel.syncModelWithRC();
                 }
+            } else {
+                console.log('remove tool error (status, response):  ',this.status,this.response);
             }
         };
         //        console.log(`${Backend.rcBaseAddress}text-editor/simple-media-list?research=${id}`);
