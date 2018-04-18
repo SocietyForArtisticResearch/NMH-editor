@@ -58,6 +58,8 @@ export class BasicToolComponent implements OnInit {
     ngOnInit() {
         this.identifier = this.rcobject.id;
 
+        let copyrightValue = this.rcobject.copyright ? this.rcobject.copyright : '© 2018';
+
         this.toolForm = new FormGroup({
             'name': new FormControl(this.rcobject.name,
                 [
@@ -68,7 +70,7 @@ export class BasicToolComponent implements OnInit {
             'widthInPixels': new FormControl(this.rcobject.pxWidth),
             'heightInPixels': new FormControl(this.rcobject.pxHeight),
             'filePickerButton': new FormControl(null),
-            'copyright' : new FormControl(this.rcobject.copyright),
+            'copyright' : new FormControl(copyrightValue),
             'description' : new FormControl(this.rcobject.description),
         });
 
@@ -94,16 +96,14 @@ export class BasicToolComponent implements OnInit {
     }
 
     onLocalPropertyChange(val) {
-        console.log('change in size detected');
-        let formWidthControl = this.toolForm.get('widthInPixels');
-        if (formWidthControl.valid) {
-            this.rcobject.pxWidth = formWidthControl.value;
-        } 
+        // console.log('change in size detected');
+        // let formWidthControl = this.toolForm.get('widthInPixels');
+        // this.rcobject.pxWidth = formWidthControl.value;
 
-        let formHeightControl = this.toolForm.get('heightInPixels');
-        if (formHeightControl.valid) {
-            this.rcobject.pxHeight = formHeightControl.value;
-        }
+        // let formHeightControl = this.toolForm.get('heightInPixels');
+        // this.rcobject.pxHeight = formHeightControl.value;
+        
+        this.onSubmit();
     }
 
     onRCMetaDataChange(val) {
@@ -111,6 +111,8 @@ export class BasicToolComponent implements OnInit {
         let newCopyright = this.toolForm.get('copyright').value;
         let newDescription = this.toolForm.get('description').value;
         let newName = this.toolForm.get('name').value;
+
+        // todo test this!
 
         // this should call edit meta data in RCBackendMediaUpload.ts;
         let metadata :RCMetaData = {
@@ -189,6 +191,7 @@ export class BasicToolComponent implements OnInit {
         if(Backend.useRC) {
             // remove through rc, will automatically resync
             this.rcBackendMediaUpload.removeObjectFromRC(this.rcobject.id);
+
         } else {
         /*
          * Directly remove this on the (local) model.

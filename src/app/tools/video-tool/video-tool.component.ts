@@ -27,6 +27,8 @@ export class VideoToolComponent extends BasicToolComponent {
         newObject.url = formModel.fileUrl;
         newObject.pxWidth = formModel.widthInPixels;
         newObject.pxHeight = formModel.heightInPixels;
+        newObject.description = formModel.description;
+        newObject.copyright = formModel.copyright;
         return newObject;
     }
 }
