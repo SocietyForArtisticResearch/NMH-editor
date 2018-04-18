@@ -48,6 +48,8 @@ export class BasicToolComponent implements OnInit {
     @Output() onRemoveObject = new EventEmitter();
     @Output() onChangedObject = new EventEmitter();
 
+    editInQueue: boolean = false;
+
 
 
     constructor(
@@ -107,7 +109,20 @@ export class BasicToolComponent implements OnInit {
     }
 
     onRCMetaDataChange(val) {
-        console.log('change detected');
+        if (this.editInQueue) {
+            // call is already made, wait
+            return;
+        } else {
+            // put update in que
+            this.editInQueue = true;
+            setTimeout(( ) => {
+                this.commitRCMetaDataEdit();
+            },4000);
+        }
+    }
+
+    commitRCMetaDataEdit() {
+        console.log('commit changes');
         let newCopyright = this.toolForm.get('copyright').value;
         let newDescription = this.toolForm.get('description').value;
         let newName = this.toolForm.get('name').value;
@@ -122,6 +137,7 @@ export class BasicToolComponent implements OnInit {
         }
 
         this.rcBackendMediaUpload.editObjectFromRC(this.rcobject.id,metadata);
+        this.editInQueue = false;
     }
 
     onNameChange(val) {
