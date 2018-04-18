@@ -49,6 +49,7 @@ export class BasicToolComponent implements OnInit {
     @Output() onChangedObject = new EventEmitter();
 
     editInQueue: boolean = false;
+    editRequestTimer: number;
 
 
 
@@ -110,14 +111,17 @@ export class BasicToolComponent implements OnInit {
 
     onRCMetaDataChange(val) {
         if (this.editInQueue) {
-            // call is already made, wait
-            return;
+            // another change was made, reset timer
+            clearTimeout(this.editRequestTimer);
+            this.editRequestTimer = setTimeout(( ) => {
+                this.commitRCMetaDataEdit();
+            },4000);
         } else {
             // put update in que
             this.editInQueue = true;
-            setTimeout(( ) => {
+            this.editRequestTimer = setTimeout(( ) => {
                 this.commitRCMetaDataEdit();
-            },4000);
+            },2000); // 2 seconds ?
         }
     }
 
