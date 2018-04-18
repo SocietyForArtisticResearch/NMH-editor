@@ -113,7 +113,7 @@ export class RCBackendMediaUpload {
             }
         };
         //        console.log(`${Backend.rcBaseAddress}text-editor/simple-media-list?research=${id}`);
-        xhttp.open("POST", `${Backend.rcBaseAddress}text-editor/simple-media-remove?research=${id}simple-media=${rcobjectid}`, true);
+        xhttp.open("POST", `${Backend.rcBaseAddress}text-editor/simple-media-remove?research=${id}&simple-media=${rcobjectid}`, true);
         xhttp.send();     
     }
 
