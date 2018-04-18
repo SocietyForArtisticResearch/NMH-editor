@@ -151,11 +151,9 @@ export class RCBackendMediaUpload {
         var that = this;
         xhttp.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
-                if(reSync) {
-                    let body = this.response;
-                    //console.log('deleted tool, response body',body);
-                    that.rcExpoModel.syncModelWithRC();
-                }
+                let body = this.response;
+                console.log('edit tool, response body',body);
+                that.rcExpoModel.syncModelWithRC();
             } else {
                 console.log('RC Simple Media API error, edit (status, response):  ',this.status,this.response);
             }
