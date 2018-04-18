@@ -147,12 +147,12 @@ export class RCBackendMediaUpload {
         fd.append('description',metadata.description);
         //console.log('formdata',fd);
 
-        var xhttp = new XMLHttpRequest();
+        let xhttp = new XMLHttpRequest();
         var that = this;
         xhttp.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
                 let body = this.response;
-                //console.log('edit tool, response body',body);
+                console.log('edit tool, response body',body);
                 that.rcExpoModel.syncModelWithRC();
             } else {
                 console.log('RC Simple Media API error, edit (status, response):  ',this.status);
