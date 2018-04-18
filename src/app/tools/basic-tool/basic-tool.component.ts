@@ -176,6 +176,7 @@ export class BasicToolComponent implements OnInit {
     }
 
     prepareSaveObject(): RCImage {
+        // Copy and create new object
         const formModel = this.toolForm.value;
         let id = Utils.uniqueID();
         const newObject: RCImage = new RCImage(id, formModel.name);
@@ -239,6 +240,7 @@ export class BasicToolComponent implements OnInit {
     }
 
     onResult(result) {
+        // Server.js backend 
         if (this.toolForm) {
             this.toolForm.patchValue({
                 fileUrl: Backend.baseAddress + result.url,

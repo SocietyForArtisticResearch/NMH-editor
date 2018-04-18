@@ -29,6 +29,7 @@ export class VideoToolComponent extends BasicToolComponent {
         newObject.pxHeight = formModel.heightInPixels;
         newObject.description = formModel.description;
         newObject.copyright = formModel.copyright;
+        newObject.thumb = this.rcobject.thumb;
         return newObject;
     }
 }
