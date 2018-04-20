@@ -91,221 +91,300 @@ app-markdown-tool .editor-preview-side {
 }
 
 
-
-app-markdown-tool .exposition {
-align-content: unset;
-align-items: unset;
-align-self: unset;
-animation: unset;
-appearance: unset;
-backface-visibility: unset;
-background-blend-mode: unset;
-background: unset;
-binding: unset;
-block-size: unset;
-border-block-end: unset;
-border-block-start: unset;
-border-collapse: unset;
-border-inline-end: unset;
-border-inline-start: unset;
-border-radius: unset;
-border-spacing: unset;
-border: unset;
-bottom: unset;
-box-align: unset;
-box-decoration-break: unset;
-box-direction: unset;
-box-flex: unset;
-box-ordinal-group: unset;
-box-orient: unset;
-box-pack: unset;
-box-shadow: unset;
-box-sizing: unset;
-caption-side: unset;
-clear: unset;
-clip-path: unset;
-clip-rule: unset;
-clip: unset;
-color-adjust: unset;
-color-interpolation-filters: unset;
-color-interpolation: unset;
-color: unset;
-column-fill: unset;
-column-gap: unset;
-column-rule: unset;
-columns: unset;
-content: unset;
-control-character-visibility: unset;
-counter-increment: unset;
-counter-reset: unset;
-cursor: unset;
-display: unset;
-dominant-baseline: unset;
-empty-cells: unset;
-fill-opacity: unset;
-fill-rule: unset;
-fill: unset;
-filter: unset;
-flex-flow: unset;
-flex: unset;
-float-edge: unset;
-float: unset;
-flood-color: unset;
-flood-opacity: unset;
-font-family: unset;
-font-feature-settings: unset;
-font-kerning: unset;
-font-language-override: unset;
-font-size-adjust: unset;
-font-size: unset;
-font-stretch: unset;
-font-style: oblique;
-font-synthesis: unset;
-font-variant: unset;
-font-weight: unset;
-font: unset;
-force-broken-image-icon: unset;
-height: unset;
-hyphens: unset;
-image-orientation: unset;
-image-region: unset;
-image-rendering: unset;
-ime-mode: unset;
-inline-size: unset;
-isolation: unset;
-justify-content: unset;
-justify-items: unset;
-justify-self: unset;
-left: unset;
-letter-spacing: unset;
-lighting-color: unset;
-line-height: unset;
-list-style: unset;
-margin-block-end: unset;
-margin-block-start: unset;
-margin-inline-end: unset;
-margin-inline-start: unset;
-margin: unset;
-marker-offset: unset;
-marker: unset;
-mask-type: unset;
-mask: unset;
-max-block-size: unset;
-max-height: unset;
-max-inline-size: unset;
-max-width: unset;
-min-block-size: unset;
-min-height: unset;
-min-inline-size: unset;
-min-width: unset;
-mix-blend-mode: unset;
-object-fit: unset;
-object-position: unset;
-offset-block-end: unset;
-offset-block-start: unset;
-offset-inline-end: unset;
-offset-inline-start: unset;
-opacity: unset;
-order: unset;
-orient: unset;
-outline-offset: unset;
-outline-radius: unset;
-outline: unset;
-overflow: unset;
-padding-block-end: unset;
-padding-block-start: unset;
-padding-inline-end: unset;
-padding-inline-start: unset;
-padding: unset;
-page-break-after: unset;
-page-break-before: unset;
-page-break-inside: unset;
-paint-order: unset;
-perspective-origin: unset;
-perspective: unset;
-pointer-events: unset;
-position: unset;
-quotes: unset;
-resize: unset;
-right: unset;
-ruby-align: unset;
-ruby-position: unset;
-scroll-behavior: unset;
-scroll-snap-coordinate: unset;
-scroll-snap-destination: unset;
-scroll-snap-points-x: unset;
-scroll-snap-points-y: unset;
-scroll-snap-type: unset;
-shape-rendering: unset;
-stack-sizing: unset;
-stop-color: unset;
-stop-opacity: unset;
-stroke-dasharray: unset;
-stroke-dashoffset: unset;
-stroke-linecap: unset;
-stroke-linejoin: unset;
-stroke-miterlimit: unset;
-stroke-opacity: unset;
-stroke-width: unset;
-stroke: unset;
-tab-size: unset;
-table-layout: unset;
-text-align-last: unset;
-text-align: unset;
-text-anchor: unset;
-text-combine-upright: unset;
-text-decoration: unset;
-text-emphasis-position: unset;
-text-emphasis: unset;
-text-indent: unset;
-text-orientation: unset;
-text-overflow: unset;
-text-rendering: unset;
-text-shadow: unset;
-text-size-adjust: unset;
-text-transform: unset;
-top: unset;
-transform-origin: unset;
-transform-style: unset;
-transform: unset;
-transition: unset;
-user-focus: unset;
-user-input: unset;
-user-modify: unset;
-user-select: unset;
-vector-effect: unset;
-vertical-align: unset;
-visibility: unset;
-white-space: unset;
-width: unset;
-will-change: unset;
-window-dragging: unset;
-word-break: unset;
-word-spacing: unset;
-word-wrap: unset;
-writing-mode: unset;
-z-index: unset;
-}
+/* app-markdown-tool .exposition * { */
+/*   all: initial; */
+/* } */
 
 
-html.exposition, body.exposition, div.exposition, span.exposition, applet.exposition, object.exposition, iframe.exposition,
-h1.exposition, h2.exposition, h3.exposition, h4.exposition, h5.exposition, h6.exposition, p.exposition, blockquote.exposition, pre.exposition,
-a.exposition, abbr.exposition, acronym.exposition, address.exposition, big.exposition, cite.exposition, code.exposition,
-del.exposition, dfn.exposition, em.exposition, img.exposition, ins.exposition, kbd.exposition, q.exposition, s.exposition, samp.exposition,
-small.exposition, strike.exposition, strong.exposition, sub.exposition, sup.exposition, tt.exposition, var.exposition,
-b.exposition, u.exposition, i.exposition, center.exposition,
-dl.exposition, dt.exposition, dd.exposition, ol.exposition, ul.exposition, li.exposition,
-fieldset.exposition, form.exposition, label.exposition, legend.exposition,
-table.exposition, caption.exposition, tbody.exposition, tfoot.exposition, thead.exposition, tr.exposition, th.exposition, td.exposition,
-article.exposition, aside.exposition, canvas.exposition, details.exposition, embed.exposition, 
-figure.exposition, figcaption.exposition, footer.exposition, header.exposition, hgroup.exposition, 
-menu.exposition, nav.exposition, output.exposition, ruby.exposition, section.exposition, summary.exposition,
-time.exposition, mark.exposition, audio.exposition, video.exposition {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: unset;
-	font: unset;
-	vertical-align: baseline;
-}
+
+/* app-markdown-tool .exposition * { */
+
+/*   /\* CSS2 Spec defaults for older browsers *\/ */
+/*   background-attachment: scroll; */
+/*   background-color: transparent; */
+/*   background-image: none; */
+/*   background-position: 0% 0%; */
+/*   background-repeat: repeat; */
+/*   border-collapse: separate; */
+/*   border-spacing: 0; */
+/*   border-style: none; */
+/*   border-width: medium; */
+/*   bottom: auto; */
+/*   caption-side: top; */
+/*   clear: none; */
+/*   clip: auto; */
+/*   content: normal; */
+/*   counter-increment: none; */
+/*   counter-reset: none; */
+/*   cursor: auto; */
+/*   direction: ltr; */
+/*   display: inline; */
+/*   empty-cells: show; */
+/*   float: none; */
+/*   font-size: medium; */
+/*   font-style: normal; */
+/*   font-variant: normal; */
+/*   font-weight: normal; */
+/*   height: auto; */
+/*   left: auto; */
+/*   letter-spacing: normal; */
+/*   line-height: normal; */
+/*   list-style-image: none; */
+/*   list-style-position: outside; */
+/*   list-style-type: disc; */
+/*   margin: 0; */
+/*   max-height: none; */
+/*   max-width: none; */
+/*   min-height: 0; */
+/*   min-width: 0; */
+/*   opacity: 1; */
+/*   orphans: 2; */
+/*   outline-color: invert; */
+/*   outline-style: none; */
+/*   outline-width: medium; */
+/*   overflow: visible; */
+/*   padding: 0; */
+/*   page-break-after: auto; */
+/*   page-break-before: auto; */
+/*   page-break-inside: auto; */
+/*   position: static; */
+/*   right: auto; */
+/*   table-layout: auto; */
+/*   text-align: left; */
+/*   text-decoration: none; */
+/*   text-indent: 0; */
+/*   text-transform: none; */
+/*   top: auto; */
+/*   unicode-bidi: normal; */
+/*   vertical-align: baseline; */
+/*   visibility: visible; */
+/*   white-space: normal; */
+/*   widows: 2; */
+/*   width: auto; */
+/*   word-spacing: normal; */
+/*   z-index: auto; */
+
+/*   /\* Initial for newer browsers *\/ */
+/*   /\* http://dev.w3.org/csswg/css-cascade/#all-shorthand *\/ */
+/*   all: initial; */
+
+/* } */
+    
+
+/* app-markdown-tool .exposition { */
+/* align-content: unset; */
+/* align-items: unset; */
+/* align-self: unset; */
+/* animation: unset; */
+/* appearance: unset; */
+/* backface-visibility: unset; */
+/* background-blend-mode: unset; */
+/* background: unset; */
+/* binding: unset; */
+/* block-size: unset; */
+/* border-block-end: unset; */
+/* border-block-start: unset; */
+/* border-collapse: unset; */
+/* border-inline-end: unset; */
+/* border-inline-start: unset; */
+/* border-radius: unset; */
+/* border-spacing: unset; */
+/* border: unset; */
+/* bottom: unset; */
+/* box-align: unset; */
+/* box-decoration-break: unset; */
+/* box-direction: unset; */
+/* box-flex: unset; */
+/* box-ordinal-group: unset; */
+/* box-orient: unset; */
+/* box-pack: unset; */
+/* box-shadow: unset; */
+/* box-sizing: unset; */
+/* caption-side: unset; */
+/* clear: unset; */
+/* clip-path: unset; */
+/* clip-rule: unset; */
+/* clip: unset; */
+/* color-adjust: unset; */
+/* color-interpolation-filters: unset; */
+/* color-interpolation: unset; */
+/* color: unset; */
+/* column-fill: unset; */
+/* column-gap: unset; */
+/* column-rule: unset; */
+/* columns: unset; */
+/* content: unset; */
+/* control-character-visibility: unset; */
+/* counter-increment: unset; */
+/* counter-reset: unset; */
+/* cursor: unset; */
+/* display: unset; */
+/* dominant-baseline: unset; */
+/* empty-cells: unset; */
+/* fill-opacity: unset; */
+/* fill-rule: unset; */
+/* fill: unset; */
+/* filter: unset; */
+/* flex-flow: unset; */
+/* flex: unset; */
+/* float-edge: unset; */
+/* float: unset; */
+/* flood-color: unset; */
+/* flood-opacity: unset; */
+/* font-family: unset; */
+/* font-feature-settings: unset; */
+/* font-kerning: unset; */
+/* font-language-override: unset; */
+/* font-size-adjust: unset; */
+/* font-size: unset; */
+/* font-stretch: unset; */
+/* font-style: oblique; */
+/* font-synthesis: unset; */
+/* font-variant: unset; */
+/* font-weight: unset; */
+/* font: unset; */
+/* force-broken-image-icon: unset; */
+/* height: unset; */
+/* hyphens: unset; */
+/* image-orientation: unset; */
+/* image-region: unset; */
+/* image-rendering: unset; */
+/* ime-mode: unset; */
+/* inline-size: unset; */
+/* isolation: unset; */
+/* justify-content: unset; */
+/* justify-items: unset; */
+/* justify-self: unset; */
+/* left: unset; */
+/* letter-spacing: unset; */
+/* lighting-color: unset; */
+/* line-height: unset; */
+/* list-style: unset; */
+/* margin-block-end: unset; */
+/* margin-block-start: unset; */
+/* margin-inline-end: unset; */
+/* margin-inline-start: unset; */
+/* margin: unset; */
+/* marker-offset: unset; */
+/* marker: unset; */
+/* mask-type: unset; */
+/* mask: unset; */
+/* max-block-size: unset; */
+/* max-height: unset; */
+/* max-inline-size: unset; */
+/* max-width: unset; */
+/* min-block-size: unset; */
+/* min-height: unset; */
+/* min-inline-size: unset; */
+/* min-width: unset; */
+/* mix-blend-mode: unset; */
+/* object-fit: unset; */
+/* object-position: unset; */
+/* offset-block-end: unset; */
+/* offset-block-start: unset; */
+/* offset-inline-end: unset; */
+/* offset-inline-start: unset; */
+/* opacity: unset; */
+/* order: unset; */
+/* orient: unset; */
+/* outline-offset: unset; */
+/* outline-radius: unset; */
+/* outline: unset; */
+/* overflow: unset; */
+/* padding-block-end: unset; */
+/* padding-block-start: unset; */
+/* padding-inline-end: unset; */
+/* padding-inline-start: unset; */
+/* padding: unset; */
+/* page-break-after: unset; */
+/* page-break-before: unset; */
+/* page-break-inside: unset; */
+/* paint-order: unset; */
+/* perspective-origin: unset; */
+/* perspective: unset; */
+/* pointer-events: unset; */
+/* position: unset; */
+/* quotes: unset; */
+/* resize: unset; */
+/* right: unset; */
+/* ruby-align: unset; */
+/* ruby-position: unset; */
+/* scroll-behavior: unset; */
+/* scroll-snap-coordinate: unset; */
+/* scroll-snap-destination: unset; */
+/* scroll-snap-points-x: unset; */
+/* scroll-snap-points-y: unset; */
+/* scroll-snap-type: unset; */
+/* shape-rendering: unset; */
+/* stack-sizing: unset; */
+/* stop-color: unset; */
+/* stop-opacity: unset; */
+/* stroke-dasharray: unset; */
+/* stroke-dashoffset: unset; */
+/* stroke-linecap: unset; */
+/* stroke-linejoin: unset; */
+/* stroke-miterlimit: unset; */
+/* stroke-opacity: unset; */
+/* stroke-width: unset; */
+/* stroke: unset; */
+/* tab-size: unset; */
+/* table-layout: unset; */
+/* text-align-last: unset; */
+/* text-align: unset; */
+/* text-anchor: unset; */
+/* text-combine-upright: unset; */
+/* text-decoration: unset; */
+/* text-emphasis-position: unset; */
+/* text-emphasis: unset; */
+/* text-indent: unset; */
+/* text-orientation: unset; */
+/* text-overflow: unset; */
+/* text-rendering: unset; */
+/* text-shadow: unset; */
+/* text-size-adjust: unset; */
+/* text-transform: unset; */
+/* top: unset; */
+/* transform-origin: unset; */
+/* transform-style: unset; */
+/* transform: unset; */
+/* transition: unset; */
+/* user-focus: unset; */
+/* user-input: unset; */
+/* user-modify: unset; */
+/* user-select: unset; */
+/* vector-effect: unset; */
+/* vertical-align: unset; */
+/* visibility: unset; */
+/* white-space: unset; */
+/* width: unset; */
+/* will-change: unset; */
+/* window-dragging: unset; */
+/* word-break: unset; */
+/* word-spacing: unset; */
+/* word-wrap: unset; */
+/* writing-mode: unset; */
+/* z-index: unset; */
+/* } */
+
+
+/* .exposition html,.exposition  body,.exposition  div,.exposition  span,.exposition  applet,.exposition  object,.exposition  iframe, */
+/* .exposition h1,.exposition  h2,.exposition  h3,.exposition  h4,.exposition  h5,.exposition  h6,.exposition  p,.exposition  blockquote,.exposition  pre, */
+/* .exposition a,.exposition  abbr,.exposition  acronym,.exposition  address,.exposition  big,.exposition  cite,.exposition  code, */
+/* .exposition del,.exposition  dfn,.exposition  em,.exposition  img,.exposition  ins,.exposition  kbd,.exposition  q,.exposition  s,.exposition  samp, */
+/* .exposition small,.exposition  strike,.exposition  strong,.exposition  sub,.exposition  sup,.exposition  tt,.exposition  var, */
+/* .exposition b,.exposition  u,.exposition  i,.exposition  center, */
+/* .exposition dl,.exposition  dt,.exposition  dd,.exposition  ol,.exposition  ul,.exposition  li, */
+/* .exposition fieldset,.exposition  form,.exposition  label,.exposition  legend, */
+/* .exposition table,.exposition  caption,.exposition  tbody,.exposition  tfoot,.exposition  thead,.exposition  tr,.exposition  th,.exposition  td, */
+/* .exposition article,.exposition  aside,.exposition  canvas,.exposition  details,.exposition  embed,  */
+/* .exposition figure,.exposition  figcaption,.exposition  footer,.exposition  header,.exposition  hgroup,  */
+/* .exposition menu,.exposition  nav,.exposition  output,.exposition  ruby,.exposition  section,.exposition  summary, */
+/* .exposition time,.exposition  mark,.exposition  audio,.exposition  video { */
+/* 	margin: 0; */
+/* 	padding: 0; */
+/* 	border: 0; */
+/* 	font-size: default;  */
+/* 	font: default; */
+/* 	vertical-align: baseline; */
+/* } */
 
