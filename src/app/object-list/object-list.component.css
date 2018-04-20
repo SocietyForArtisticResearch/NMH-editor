@@ -5,7 +5,7 @@
 .rc-object-list {
     /* height:600px; */
     /* height:100%; */
-    height:calc(90vh - 80px);
+    height:calc(90vh - 20px);
     overflow-y:scroll;
 }
 
