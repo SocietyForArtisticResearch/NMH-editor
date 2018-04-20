@@ -7,16 +7,27 @@
 }
 
 app-markdown-tool .CodeMirror { 
-	width: calc(49% - 18px); 
-	height: calc(100% - 220px); 
-	overflow-y: hidden; 
-	position:absolute; 
+    width: 50%;
+    height: 78vh;
+    overflow-y: hidden; 
+    position:relative;
+    border-right: none;
 	/* border-right: none  */
 }
 
-app-markdown-tool .editor-toolbar { width:80.0%; }
+app-markdown-tool .editor-toolbar {
+    width:50.0%;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+}
 
-app-markdown-tool .editor-statusbar { position: absolute; bottom: 0; z-index:1000; background-color:white;}
+app-markdown-tool .editor-statusbar {
+    position: absolute;
+    bottom: 0;
+    z-index:1000;
+    background-color:white;
+}
 
 app-markdown-tool .editor-preview-side {
 	width:50%; 

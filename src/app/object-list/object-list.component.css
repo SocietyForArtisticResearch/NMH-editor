@@ -104,14 +104,15 @@ li {
 /* table sytling */
 
 .object-table tr:nth-child(even) {
-    background-color: #f4f4f4
-}
-
-.selected .object-table tr:nth-child(even) {
 	background: #aaa;
 }
 
 .object-table th, td {
     text-align: left;
     padding: 16px;
+}
+
+
+.object-table .selected  {
+    background: #ccc;
 }
