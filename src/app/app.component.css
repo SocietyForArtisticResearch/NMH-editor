@@ -70,6 +70,7 @@
 .close {
     color: #aaa;
     float: right;
+    padding-right: 3px;
     font-size: 28px;
     font-weight: bold;
     z-index:1051;
