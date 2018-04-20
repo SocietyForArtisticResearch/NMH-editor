@@ -6,6 +6,16 @@
 	margin-bottom:5px;
 }
 
+
+.css-edit-screen  .CodeMirror {
+    height: calc(78vh + 18px);
+    /* height: 75vh; */
+    overflow-y: hidden; 
+    position:relative;
+    border-right: none;
+}
+
+
 app-markdown-tool .CodeMirror { 
     width: 50%;
     height: 78vh;

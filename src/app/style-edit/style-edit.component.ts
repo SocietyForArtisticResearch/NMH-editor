@@ -4,34 +4,40 @@ import { RCExpoModel } from "../shared/RCExpoModel";
 declare var CodeMirror;
 
 @Component({
-  selector: 'app-style-edit',
-  templateUrl: './style-edit.component.html',
-  styleUrls: ['./style-edit.component.css']
+    selector: 'app-style-edit',
+    templateUrl: './style-edit.component.html',
+    styleUrls: ['./style-edit.component.css']
 })
 export class StyleEditComponent implements AfterViewInit {
- 	@ViewChild('styleEditBox') textarea: ElementRef;
+    @ViewChild('styleEditBox') textarea: ElementRef;
 
- 	editor :any;
-  stylesheet: string;
+    editor: any;
+    stylesheet: string;
 
-  @Output() closeWindow = new EventEmitter();
+    @Output() closeWindow = new EventEmitter();
 
-  constructor(private rcExpoModel: RCExpoModel) { }
+    constructor(private rcExpoModel: RCExpoModel) { }
 
 
-  ngAfterViewInit() {
-  	this.editor = new CodeMirror.fromTextArea(this.textarea.nativeElement, {
-    	mode: "text/css",
-  	});
-    // puts curser in box
-    this.editor.focus();
-    // note that codemirror does not use textarea for value exchange
-    this.editor.setValue(this.rcExpoModel.exposition.style.replace(';',';\n'));
-  }
+    ngAfterViewInit() {
+        let self = this;
+        this.editor = new CodeMirror.fromTextArea(this.textarea.nativeElement, {
+            mode: "text/css",
+        });
+        // puts curser in box
+        this.editor.focus();
+        // note that codemirror does not use textarea for value exchange
+        this.editor.setValue(this.rcExpoModel.exposition.style.replace(';', ';\n'));
 
-  updateStyle() {
-    this.rcExpoModel.exposition.style = this.editor.getValue();
-    this.rcExpoModel.mde.updateStyling();
-    this.closeWindow.emit();
-  }
+        this.editor.on('change', function (cMirror) {
+            // get value right from instance
+            self.updateStyle();
+        });
+    }
+
+    updateStyle() {
+        this.rcExpoModel.exposition.style = this.editor.getValue();
+        this.rcExpoModel.mde.updateStyling();
+        //   this.closeWindow.emit();
+    }
 }
