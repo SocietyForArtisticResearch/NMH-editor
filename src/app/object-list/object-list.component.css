@@ -105,7 +105,7 @@ li {
 /* table sytling */
 
 .object-table tr:nth-child(even) {
-	background: #aaa;
+	background: #ddd;
 }
 
 .object-table th, td {
@@ -115,5 +115,7 @@ li {
 
 
 .object-table .selected  {
-    background: #ccc;
+    background: #aaa;
 }
+
+
