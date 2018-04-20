@@ -86,8 +86,21 @@
 }
 
 .import-content {
+    margin: 5vw 5vh;
+    position:fixed;
+    top:0;
+    left:0;
     width:90%;
     height: 25vh;
+}
+
+@media only screen and (max-width: 995px) {
+    .import-content {
+        height:380px;
+        border-radius:6px;
+    }
+
+
 }
 
 
@@ -159,6 +172,8 @@ hr {
         border-radius:0;
     }
 }
+
+
 
 
 
