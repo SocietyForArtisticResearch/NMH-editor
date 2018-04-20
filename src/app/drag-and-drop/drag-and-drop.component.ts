@@ -121,6 +121,10 @@ export class DragAndDropComponent implements OnInit {
         } else {
             console.log('do not know what to do with mimeType: ', mimeType);
         }
+
+        newRCObject.pxWidth = null;
+        newRCObject.pxHeight = null;
+
         newRCObject.copyright = '';
         newRCObject.description = '';
 
