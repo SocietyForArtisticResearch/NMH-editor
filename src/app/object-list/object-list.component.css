@@ -115,7 +115,7 @@ li {
 
 
 .object-table .selected  {
-    background: #aaa;
+    background: #aaa !important;
 }
 
 
