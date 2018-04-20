@@ -115,6 +115,14 @@ hr {
     margin:0 0;
 }
 
+.hideMarkDownEditor {
+    display:none;
+}
+
+.style-edit-screen {
+    width:50%;
+}
+
 @media only screen and (max-width: 800px) {
     .style-modal-window {
         max-width: 100vw;

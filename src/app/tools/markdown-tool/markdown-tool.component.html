@@ -1,5 +1,7 @@
+<div [ngClass]="{ 'hideEditor' : !displayMarkdownEditor }">
 <textarea 
 height="600"
 [(ngModel)]="content" 
 #simplemde>
 </textarea>
+</div>

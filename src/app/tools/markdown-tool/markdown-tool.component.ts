@@ -13,6 +13,7 @@ export class MarkdownToolComponent implements AfterViewInit {
 
     @Input() text: string;
     @Input() identifier: number;
+    @Input() displayMarkdownEditor: boolean = true; // this enables hiding the markdown editor when showing the style
 
     @Output() openObjectListRequest = new EventEmitter();
 

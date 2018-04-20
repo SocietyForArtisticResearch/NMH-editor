@@ -62,7 +62,7 @@ export class BasicToolComponent implements OnInit {
         this.identifier = this.rcobject.id;
 
         let copyrightValue = this.rcobject.copyright ? this.rcobject.copyright : '© 2018';
-
+        // initialize fields with data from object:
         this.toolForm = new FormGroup({
             'name': new FormControl(this.rcobject.name,
                 [
@@ -77,9 +77,11 @@ export class BasicToolComponent implements OnInit {
             'description' : new FormControl(this.rcobject.description),
         });
 
-        
+        // if using RC, use different callbacks on changing the fields
+        // width and height are updated locally
+        // copyright, description name are updated in the RC Simple Media and synced back.
         if(Backend.useRC) { // these properties should be updated through RC API
-            this.toolForm.get('name').valueChanges.subscribe( val => { this.onNameChange(val); } );
+            this.toolForm.get('name').valueChanges.subscribe( val => { this.onRCMetaDataChange(val); } );
             this.toolForm.get('widthInPixels').valueChanges.subscribe( val => { this.onLocalPropertyChange(val); });
             this.toolForm.get('heightInPixels').valueChanges.subscribe( val => { this.onLocalPropertyChange(val); });
         
@@ -89,7 +91,6 @@ export class BasicToolComponent implements OnInit {
         }
 
         if (!Backend.useRC) { // if not on RC, update the model using old methods:
-            // old situation
             this.toolForm.valueChanges.subscribe(val => {
                 this.onSubmit();
             });
@@ -99,25 +100,20 @@ export class BasicToolComponent implements OnInit {
     }
 
     onLocalPropertyChange(val) {
-        // console.log('change in size detected');
-        // let formWidthControl = this.toolForm.get('widthInPixels');
-        // this.rcobject.pxWidth = formWidthControl.value;
-
-        // let formHeightControl = this.toolForm.get('heightInPixels');
-        // this.rcobject.pxHeight = formHeightControl.value;
-        
+        // local change, use local method:
         this.onSubmit();
     }
 
     onRCMetaDataChange(val) {
+        // only update after 2 seconds of inactivity (to avoid tsunami of update calls)
         if (this.editInQueue) {
-            // another change was made, reset timer
+            // reset timer
             clearTimeout(this.editRequestTimer);
             this.editRequestTimer = setTimeout(( ) => {
                 this.commitRCMetaDataEdit();
-            },4000);
+            },2000);
         } else {
-            // put update in que
+            // put update in queue
             this.editInQueue = true;
             this.editRequestTimer = setTimeout(( ) => {
                 this.commitRCMetaDataEdit();
@@ -127,13 +123,11 @@ export class BasicToolComponent implements OnInit {
 
     commitRCMetaDataEdit() {
         console.log('commit changes');
+        // commit changes to RC backend
         let newCopyright = this.toolForm.get('copyright').value;
         let newDescription = this.toolForm.get('description').value;
         let newName = this.toolForm.get('name').value;
 
-        // todo test this!
-
-        // this should call edit meta data in RCBackendMediaUpload.ts;
         let metadata :RCMetaData = {
             copyrightholder : newCopyright,
             description : newDescription ,
@@ -145,6 +139,7 @@ export class BasicToolComponent implements OnInit {
     }
 
     onNameChange(val) {
+        // no longer used ?
         let field = this.toolForm.get('name');
         if (field.valid) {
             let rcobject = this.rcExpoModel.exposition.getObjectWithID(this.rcobject.id);
@@ -153,6 +148,7 @@ export class BasicToolComponent implements OnInit {
     }
 
     ngOnChanges() {
+        // if the object was changed in model (through resync for example), fill fields with data from model
         if (!Backend.useRC) {
             if (this.toolForm) {
                 this.toolForm.setValue({
@@ -164,7 +160,7 @@ export class BasicToolComponent implements OnInit {
                     'copyright': this.rcobject.copyright,
                     'description' : this.rcobject.description
                 });
-
+                // update name validator with new name.
                 this.toolForm.controls['name'].setValidators(
                     [forbiddenNameValidator(this.rcExpoModel, this.rcobject.name), // <-- Here's how you pass in the custom validator.
                     Validators.required]);
@@ -179,6 +175,7 @@ export class BasicToolComponent implements OnInit {
         
     }
 
+    // only allow to edit name, if object actually has file url attached
     allowEditName() {
         if (this.rcobject.url == null) {
             return false;
@@ -188,6 +185,7 @@ export class BasicToolComponent implements OnInit {
 
 
     onSubmit() {
+        // local model update
         // Angular protects its values of the model very strictly, so we have to update rcexposition through a deepcopy of the tool.
         let deepCopy = this.prepareSaveObject();
         this.rcExpoModel.exposition.replaceObjectWithID(this.rcobject.id, deepCopy);
@@ -196,7 +194,7 @@ export class BasicToolComponent implements OnInit {
     }
 
     prepareSaveObject(): RCImage {
-        // Copy and create new object
+        // Deep copy and create new object
         const formModel = this.toolForm.value;
         let id = Utils.uniqueID();
         const newObject: RCImage = new RCImage(id, formModel.name);
@@ -210,6 +208,7 @@ export class BasicToolComponent implements OnInit {
     }
 
     onTrash() {
+        // remove object
         if(Backend.useRC) {
             // remove through rc, will automatically resync
             this.rcBackendMediaUpload.removeObjectFromRC(this.rcobject.id);
@@ -261,7 +260,7 @@ export class BasicToolComponent implements OnInit {
     }
 
     onResult(result) {
-        // Server.js backend 
+        // Server.js backend returns
         if (this.toolForm) {
             this.toolForm.patchValue({
                 fileUrl: Backend.baseAddress + result.url,

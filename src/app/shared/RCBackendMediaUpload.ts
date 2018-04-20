@@ -15,7 +15,6 @@ export interface RCMetaData {
 
 @Injectable()
 export class RCBackendMediaUpload {
-	// default arguments
 	constructor(
 		private http: HttpClient,
 		private rcExpoModel: RCExpoModel
@@ -34,9 +33,10 @@ export class RCBackendMediaUpload {
 		 */ 
 
 	    let selectedFile = fileList[0];
+        // using Javascript file api, may not work everywhere ?
         let fileType = selectedFile.type;
 
-        // grab some values for metadata (for drag and drop convenience)
+        // fetch some values for metadata (for drag and drop convenience)
         let rcMetaData : RCMetaData = {
         	// default values:
         	copyrightholder : this.rcExpoModel.exposition.authors[0],
@@ -72,13 +72,13 @@ export class RCBackendMediaUpload {
 	        fd.append('copyrightholder', rcMetaData.copyrightholder );
 	        fd.append('description',rcMetaData.description);
 
-	        console.log('formdata',fd);
+	        //console.log('formdata',fd);
 
 	        var req = new HttpRequest('POST', uploadApiUrl + '?research='+String(expositionId), fd, {
 	            reportProgress: true
 	        });
 
-	        console.log('request',req);
+	        //console.log('request',req);
 
 	        this.http.request(req).subscribe(event => {
 	            // Via this API, you get access to the raw event stream.
