@@ -38,8 +38,8 @@
 
 .importPanel {
     z-index: 1050;
-    /*height: 300px;*/
 }
+
 
 /* The Modal (background) */
 .modal {
@@ -89,6 +89,7 @@
 
 .import-content {
     width:90%;
+    height: 25vh;
 }
 
 
