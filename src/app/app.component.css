@@ -97,7 +97,6 @@
 input.editableTitle:focus, input.editableTitle {
     font-size: 18px;
     outline:none;
-    background-color: transparent;
     border: 1px dashed #dedede;
     margin-top:20px;
     margin-bottom:10px;
@@ -111,10 +110,12 @@ hr {
 
 .dropZone {
     display:inline-block;
-    min-width: unset;
+    min-width: 250px;
     min-height: unset;
-    width:300px;
-    margin:0 0;
+    text-align: center;
+    padding: unset;
+    /* width:300px; */
+    /* margin:0 0; */
 }
 
 .hideMarkDownEditor {
