@@ -1,4 +1,4 @@
-<div class="panel">
+<div class="panel doc-panel">
 	<div class="row">
 		<div class="col-md-4">
 			<h5>Import external format</h5>
@@ -16,8 +16,8 @@
 			<button class="btn btn-xs" (click)="jsonDownload()">Export RC format</button>
 		</div>
 		<div class="col-md-3">
-			<h5>Export other formats</h5>
-			<label for="exportType">select a type:</label>
+			<h5>Export to other formats</h5>
+			<label for="exportType">Type:</label>
 			<select (change)="onDocTypeChange($event.target.value)" id="exportType" name="exportTypeSelect">
 			    <!-- <option selected="selected" value="pdf">PDF</option> -->
 			    <option selected="selected" value="docx">Word (.docx)</option>
@@ -25,7 +25,7 @@
 			    <option value="md">Markdown (.md)</option>
 			    <option value="epub">EPUB (.epub)</option>
 			</select> 
-			<button class="btn btn-xs" (click)="otherFormatDownload()">export {{selectedExportFormat}}</button>
+			<button class="btn btn-xs" (click)="otherFormatDownload()">Export {{selectedExportFormat}}</button>
 
 		</div>
 	</div>
