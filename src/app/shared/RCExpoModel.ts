@@ -17,7 +17,66 @@ export class RCExpoModel {
     constructor() {
         // number of Y cells should be updated by number of tools).
 
-        let defaultStyle = '';
+        let defaultStyle = `.exposition {
+        background - color: #FFFFFF;
+
+        font-family: "Helvetica", sans-serif;
+        font-size: 100 %; 
+        line-height: 125 %; 
+    } 
+
+.exposition-content {
+    margin: 40px;
+}
+
+.exposition h1 {
+    display: block;
+    line-height: 1.1;
+    font-size: 3em;
+    font-weight: bold;
+}	
+
+.rcimage {
+    margin: 10px 0px;
+}
+
+.rcimage img {
+    max-width: 100 %;
+}
+
+.exposition h2, h3, h4, h5, h6 {
+    display: block;
+    line-height: 1.1;
+    font-size:1.5em;
+    font-weight: bold;
+}
+
+.exposition code {
+    padding: 2px 4px;
+    font-size: 90 %;
+    color: #c7254e;
+    background-color: #f9f2f4;
+    border-radius: 4px;
+    font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+
+.exposition a {
+    color: #337ab7;
+    text-decoration: none;
+}
+
+.exposition li {
+    display: list-item;
+    text-align: -webkit-match-parent;
+} 
+
+.exposition ul {
+    list-style-type: disc;
+}
+
+.exposition ol {
+    list-style-type: decimal;
+} `;
 
         this.exposition = new RCExposition('', ['authors'], defaultStyle);
     }
