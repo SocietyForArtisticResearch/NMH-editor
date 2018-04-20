@@ -22,8 +22,7 @@ import { switchMap } from 'rxjs/operators';
 export class AppComponent implements OnInit {
     @HostListener('window:beforeunload', ['$event'])
     respondToUnload($event) {
-        alert("don't do it !");
-        $event.returnValue='Your data will be lost!';
+        $event.returnValue='are you sure you want to leave';
     }
     // rcExpoModel is injected into this compenent (and all its children through their constructors !)
     showMedia: boolean = false;
@@ -54,7 +53,7 @@ export class AppComponent implements OnInit {
 
     toggleStyle() {
         this.editStyle = !this.editStyle;
-        this.styleButtonMessage = "Edit text";
+        this.styleButtonMessage = this.editStyle ? "Edit text" : "Edit style";
     }
 
     onChangedObject(identity) {

@@ -125,6 +125,15 @@ hr {
     width:50%;
 }
 
+.edit-style-button.active {
+    background-color:white;
+    color:#333;
+}
+
+.edit-style-button {
+    width:90px;
+}
+
 @media only screen and (max-width: 800px) {
     .style-modal-window {
         max-width: 100vw;
