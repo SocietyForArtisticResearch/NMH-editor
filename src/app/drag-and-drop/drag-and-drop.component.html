@@ -2,7 +2,7 @@
     <div class="text-wrapper">
 	<!-- <div *ngIf="fileUploadStatus === null || fileUploadStatus === ''" class="centered">Click or drop to add media</div> -->
 	<div *ngIf="fileUploadStatus === null || fileUploadStatus === ''" >Click or drop to add media</div>
-    <div *ngIf="fileUploadStatus !== null" class="centered">{{fileUploadStatus}}</div>
+    <div *ngIf="fileUploadStatus !== null">{{fileUploadStatus}}</div>
 	<input type="file" id="dropzone-manual-input" (change)="onFileSelected($event)">
   </div>
 </div>
