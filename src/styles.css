@@ -288,3 +288,24 @@ z-index: unset;
 }
 
 
+html.exposition, body.exposition, div.exposition, span.exposition, applet.exposition, object.exposition, iframe.exposition,
+h1.exposition, h2.exposition, h3.exposition, h4.exposition, h5.exposition, h6.exposition, p.exposition, blockquote.exposition, pre.exposition,
+a.exposition, abbr.exposition, acronym.exposition, address.exposition, big.exposition, cite.exposition, code.exposition,
+del.exposition, dfn.exposition, em.exposition, img.exposition, ins.exposition, kbd.exposition, q.exposition, s.exposition, samp.exposition,
+small.exposition, strike.exposition, strong.exposition, sub.exposition, sup.exposition, tt.exposition, var.exposition,
+b.exposition, u.exposition, i.exposition, center.exposition,
+dl.exposition, dt.exposition, dd.exposition, ol.exposition, ul.exposition, li.exposition,
+fieldset.exposition, form.exposition, label.exposition, legend.exposition,
+table.exposition, caption.exposition, tbody.exposition, tfoot.exposition, thead.exposition, tr.exposition, th.exposition, td.exposition,
+article.exposition, aside.exposition, canvas.exposition, details.exposition, embed.exposition, 
+figure.exposition, figcaption.exposition, footer.exposition, header.exposition, hgroup.exposition, 
+menu.exposition, nav.exposition, output.exposition, ruby.exposition, section.exposition, summary.exposition,
+time.exposition, mark.exposition, audio.exposition, video.exposition {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: unset;
+	font: unset;
+	vertical-align: baseline;
+}
+
