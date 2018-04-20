@@ -17,7 +17,7 @@
 	  <hr>
 	  <button type="button" [class.active]="showMedia" class="btn btn-primary" (click)="onMediaButton()" data-toggle="tooltip" data-placement="top" title="Upload and inspect media">Media list</button>
 	  <button type="button" [disabled]="showImport" class="btn btn-primary" (click)="showImport = true" data-toggle="tooltip" data-placement="top" title="Import a Word file and export the exposition">Import/Export</button>
-	  <button type="button" [disabled]="editStyle" class="btn btn-primary" (click)="editStyle = true" data-toggle="tooltip" data-placement="top" title="Edit the CSS styling">Edit style</button>
+	  <button type="button" [class.active]="editStyle" class="btn btn-primary" (click)="toggleStyle()" data-toggle="tooltip" data-placement="top" title="Edit the CSS styling">{{styleButtonMessage}}</button>
     <app-drag-and-drop *ngIf="!showMedia" class="dropZone" (onChangedObject)=onChangedObject($event)></app-drag-and-drop>  
 	  
 
@@ -60,8 +60,6 @@
 
 
 <!--   <div *ngIf="editStyle" id="editStyle" class="modal">
-
-
     <div class="modal-content style-modal-window">
       <button class="close" (click)="editStyle=false">&times;</button>
       <app-style-edit (closeWindow)="editStyle=false"></app-style-edit>
@@ -69,11 +67,5 @@
     </div> -->
   </div>
 </div>
-
-<!-- <div *ngIf="showMedia" class="left-hand-collumn">
-      <button class="close" (click)="showMedia=false">&times;</button>
-      <app-object-list></app-object-list>
-</div>
- -->
 
 

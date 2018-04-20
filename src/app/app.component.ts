@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit, HostListener } from '@angular/core';
 import { RCExpoModel } from './shared/RCExpoModel';
 import { RCBackendMediaUpload } from './shared/RCBackendMediaUpload';
 import { RCMDE, insertMediaToken, insertMedia } from './shared/rcmde';
@@ -20,11 +20,17 @@ import { switchMap } from 'rxjs/operators';
     providers: [RCExpoModel, RCBackendMediaUpload]
 })
 export class AppComponent implements OnInit {
+    @HostListener('window:beforeunload', ['$event'])
+    respondToUnload($event) {
+        alert("don't do it !");
+        $event.returnValue='Your data will be lost!';
+    }
     // rcExpoModel is injected into this compenent (and all its children through their constructors !)
     showMedia: boolean = false;
     showImport: boolean = false;
     editStyle: boolean = false;
     loadedExpositionURL$: Observable<any>;
+    styleButtonMessage: string = "Edit style";
 
     @ViewChild(ObjectListComponent) objectList: ObjectListComponent;
     @ViewChild(MarkdownToolComponent) markdownEditor: MarkdownToolComponent;
@@ -44,6 +50,11 @@ export class AppComponent implements OnInit {
             var element = window.document.getElementById('mediaPanel');
             element.focus();
         }
+    }
+
+    toggleStyle() {
+        this.editStyle = !this.editStyle;
+        this.styleButtonMessage = "Edit text";
     }
 
     onChangedObject(identity) {

@@ -116,6 +116,7 @@ hr {
 }
 
 .hideMarkDownEditor {
+    /* check if this is used */
     display:none;
 }
 
