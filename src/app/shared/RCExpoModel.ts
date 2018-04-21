@@ -18,7 +18,7 @@ interface ExpositionRCLoadData {
 export class RCExpoModel {
     exposition: RCExposition;
     saveInterval: any;
-    syncInterval: number;
+    syncInterval: any;
     markdownInput: string;
     markdownProcessed: string;
     mde: any;
