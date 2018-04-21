@@ -185,9 +185,9 @@ export class RCExpoModel {
 
         this.loadExpositionData();
 
-        this.mde.exposition = new_exposition;
-        this.mde.value(this.exposition.markdownInput);
-        this.mde.render();
+        // this.mde.exposition = new_exposition;
+        // this.mde.value(this.exposition.markdownInput);
+        // this.mde.render();
 
         this.saveInterval = setInterval(() => this.saveToRC(), 5000);
 
