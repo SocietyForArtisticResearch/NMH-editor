@@ -11,6 +11,7 @@ export class Backend {
     static rcMediaRemove: string = "https://dev.researchcatalogue.net/text-editor/simple-media-remove";
     static rcMediaEdit: string = "https://dev.researchcatalogue.net/text-editor/simple-media-edit";
     static rcBaseAddress: string = "https://dev.researchcatalogue.net/";
+    static rcMediaList: string = "https://dev.researchcatalogue.net/text-editor/simple-media-list";
 
 
     // set if RC is to be used as backend

@@ -114,8 +114,8 @@ export class RCExposition {
 
 
 
-    /** Removes all weaves and renders the exposition
-     * 
+    /** 
+     * Removes all weaves and renders the exposition
      */
 
     getObjectWithID(id: number) {
@@ -210,6 +210,10 @@ export class RCExposition {
         ob.description = rcmedia.description;
         ob.copyright = rcmedia.copyright;
         ob.name = rcmedia.name;
+
+        if (rcmedia.status) {
+            ob.transcodingStatus = rcmedia.status;
+        } 
         return ob;
     }
 
