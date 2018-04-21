@@ -256,6 +256,7 @@ export class RCObject {
     thumb: string;
     expositionID: number;
     html: HTMLElement;
+    transcodingStatus: string; // For RC Backend API 
 
     /** Creates an RCObject. Cannot be called directly, but only by
      * constructors of subclasses.

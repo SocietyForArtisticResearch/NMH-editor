@@ -38,13 +38,14 @@
 			(dblclick)="onDoubleClick(rcObject)">
 			<td>
 			    <div [ngSwitch]="rcObject.__className">
-				
-				<img *ngSwitchCase="'RCImage'" 
-				     class="image-preview" 
-				     src={{rcObject.thumb}} 
-				     height="66" 
-				     width="66" 
-				     alt={{rcObject.thumb}}>
+				<div *ngSwitchCase="'RCImage'">
+					<img  
+					     class="image-preview" 
+					     src={{rcObject.thumb}} 
+					     height="66" 
+					     width="66" 
+					     alt={{rcObject.thumb}}>
+				 </div>
 				
 				<div *ngSwitchCase="'RCAudio'">
 				    <p class="playSymbol">▶</p>
@@ -66,7 +67,12 @@
 			    </div>
 
 			</td>
-			<td><span class="object-list-name">{{rcObject.name}}</span></td>
+			<td>
+				<span class="object-list-name">{{rcObject.name}}</span>
+				<span>Status: {{rcObject.transcodingStatus}}</span>
+			</td>
+
+
 			<td><button class="align-right btn btn-danger btn-sm" (click)="trashObject(rcObject)">&times;</button></td>
 			<td><button class="align-right btn btn-primary btn-sm" (click)="onDoubleClick(rcObject)">insert</button></td>
 		    </tr>
