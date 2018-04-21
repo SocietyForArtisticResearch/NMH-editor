@@ -37,9 +37,12 @@ export class RCBackendMediaUpload {
         let fileType = selectedFile.type;
 
         // fetch some values for metadata (for drag and drop convenience)
+    
+        let authors = "test value";//this.rcExpoModel.exposition.authors[0] ? this.rcExpoModel.exposition.authors[0] : 'no author';
+
         let rcMetaData : RCMetaData = {
         	// default values:
-        	copyrightholder : this.rcExpoModel.exposition.authors[0],
+        	copyrightholder : authors,
         	description : '',
         	name : selectedFile.name
         };
@@ -145,6 +148,8 @@ export class RCBackendMediaUpload {
         fd.append('name',metadata.name);
         fd.append('copyrightholder', metadata.copyrightholder );
         fd.append('description',metadata.description);
+        fd.append('media',null);
+        fd.append('thumb',null);
         //console.log('formdata',fd);
 
         let xhttp = new XMLHttpRequest();

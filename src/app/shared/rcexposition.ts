@@ -115,8 +115,8 @@ export class RCExposition {
 
 
 
-    /** Removes all weaves and renders the exposition
-     * 
+    /** 
+     * Removes all weaves and renders the exposition
      */
 
     getObjectWithID(id: number) {
@@ -211,6 +211,10 @@ export class RCExposition {
         ob.description = rcmedia.description;
         ob.copyright = rcmedia.copyright;
         ob.name = rcmedia.name;
+
+        if (rcmedia.media.status) {
+            ob.transcodingStatus = rcmedia.media.status;
+        } 
         return ob;
     }
 
@@ -252,6 +256,7 @@ export class RCObject {
     thumb: string;
     expositionID: number;
     html: HTMLElement;
+    transcodingStatus: string; // For RC Backend API 
 
     /** Creates an RCObject. Cannot be called directly, but only by
      * constructors of subclasses.
