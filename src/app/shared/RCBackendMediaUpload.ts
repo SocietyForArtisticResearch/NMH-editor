@@ -148,6 +148,8 @@ export class RCBackendMediaUpload {
         fd.append('name',metadata.name);
         fd.append('copyrightholder', metadata.copyrightholder );
         fd.append('description',metadata.description);
+        fd.append('media',null);
+        fd.append('thumb',null);
         //console.log('formdata',fd);
 
         let xhttp = new XMLHttpRequest();
