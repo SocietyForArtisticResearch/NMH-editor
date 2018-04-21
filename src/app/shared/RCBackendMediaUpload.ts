@@ -37,6 +37,9 @@ export class RCBackendMediaUpload {
         let fileType = selectedFile.type;
 
         // fetch some values for metadata (for drag and drop convenience)
+    
+        let authors = this.rcExpoModel.exposition.authors[0] ? this.rcExpoModel.exposition.authors[0] : 'no author';
+
         let rcMetaData : RCMetaData = {
         	// default values:
         	copyrightholder : this.rcExpoModel.exposition.authors[0],
