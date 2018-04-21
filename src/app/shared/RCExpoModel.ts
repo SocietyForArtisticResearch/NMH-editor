@@ -18,6 +18,7 @@ interface ExpositionRCLoadData {
 export class RCExpoModel {
     exposition: RCExposition;
     saveInterval: any;
+    syncInterval: number;
     markdownInput: string;
     markdownProcessed: string;
     mde: any;
@@ -88,6 +89,8 @@ export class RCExpoModel {
 
         this.exposition = new RCExposition('');
         this.exposition.style = defaultStyle;
+
+
     }
 
     syncModelWithRC() {
@@ -195,6 +198,8 @@ export class RCExpoModel {
         // this.mde.render();
 
         this.saveInterval = setInterval(() => this.saveToRC(), 5000);
+
+        this.syncInterval = setInterval(() => this.syncModelWithRC(), 8000);
 
         //        this.mde.exposition = new_exposition;
         //      this.mde.value(new_exposition.markdownInput);
