@@ -156,7 +156,7 @@ export class RCExpoModel {
             // set autosave status
         };
         //        xhttp.open("GET", `${Backend.rcBaseAddress}text-editor/save?research=${id}&weave=${weave}`, true);
-        xhttp.open("GET", `${Backend.rcBaseAddress}text-editor/save?research=${id}&weave=${weave}`, true);
+        xhttp.open("POST", `${Backend.rcBaseAddress}text-editor/save?research=${id}&weave=${weave}`, true);
         xhttp.send(fd);
     }
 
