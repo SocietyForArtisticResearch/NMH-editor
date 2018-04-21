@@ -123,6 +123,8 @@ export class RCExpoModel {
                 self.exposition.markdownInput = expositionJSON.markdown;
                 self.exposition.renderedHTML = expositionJSON.html;
                 self.exposition.style = expositionJSON.style;
+                console.log("mde");
+                console.log(self.mde);
             }
         };
         //        console.log(`${Backend.rcBaseAddress}text-editor/simple-media-list?research=${id}`);
@@ -192,8 +194,6 @@ export class RCExpoModel {
 
         this.loadExpositionData();
 
-        console.log("mde");
-        console.log(this.mde);
         // this.mde.exposition = new_exposition;
         // this.mde.value(this.exposition.markdownInput);
         // this.mde.render();
