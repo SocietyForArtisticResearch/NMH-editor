@@ -116,6 +116,7 @@ export class RCExpoModel {
         xhttp.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
                 let expositionJSON = JSON.parse(xhttp.responseText);
+                console.log(expositionJSON);
                 self.exposition.markdownInput = expositionJSON.markdown;
                 self.exposition.renderedHTML = expositionJSON.html;
             }
@@ -189,7 +190,7 @@ export class RCExpoModel {
         // this.mde.value(this.exposition.markdownInput);
         // this.mde.render();
 
-        this.saveInterval = setInterval(() => this.saveToRC(), 5000);
+        //        this.saveInterval = setInterval(() => this.saveToRC(), 5000);
 
         //        this.mde.exposition = new_exposition;
         //      this.mde.value(new_exposition.markdownInput);
