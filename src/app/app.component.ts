@@ -22,7 +22,7 @@ import { switchMap } from 'rxjs/operators';
 export class AppComponent implements OnInit {
     @HostListener('window:beforeunload', ['$event'])
     respondToUnload($event) {
-        $event.returnValue='are you sure you want to leave';
+        $event.returnValue = 'are you sure you want to leave';
     }
     // rcExpoModel is injected into this compenent (and all its children through their constructors !)
     showMedia: boolean = false;
@@ -89,10 +89,12 @@ export class AppComponent implements OnInit {
                  })); */
         let url = this.getParam('expositionUrl');
         let rcId = this.getParam('research');
+        let weave = this.getParam('weave');
 
         if (rcId) {
             let rcIdNumber = Number(decodeURIComponent(rcId));
-            this.rcExpoModel.loadExpositionFromRC(rcIdNumber);
+            let weaveNumber = Number(decodeURIComponent(weave));
+            this.rcExpoModel.loadExpositionFromRC(rcIdNumber, weaveNumber);
         } else if (url) {
             url = decodeURIComponent(url);
             this.rcExpoModel.loadExpositionFromURL(url);

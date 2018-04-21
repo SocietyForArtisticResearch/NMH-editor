@@ -41,6 +41,7 @@ export class RCExposition {
     __className: string;
     style: string;
     title: string;
+    currentWeave: number;
     urlRenderRC: boolean;
     authors: string[];
     breakpoint: number;
@@ -51,11 +52,11 @@ export class RCExposition {
     toc: any;
     media: RCObject[];
 
-    constructor(title: string, authors: string[], style) {
+    constructor(title: string) {
         this.__className = "RCExposition";
-        this.style = style;
         this.title = title;
-        this.authors = authors;
+        this.style = '';
+        this.currentWeave;
         this.urlRenderRC = false;
         this.renderedHTML = "";
         this.media = [];
