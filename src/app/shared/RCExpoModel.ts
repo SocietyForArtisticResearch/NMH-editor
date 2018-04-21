@@ -102,7 +102,7 @@ export class RCExpoModel {
                 var mde = that.mde;
                 let medialist = JSON.parse(xhttp.responseText);
                 that.exposition.integrateRCMediaList(medialist);
-                console.log(that.exposition.media);
+                //                console.log(that.exposition.media);
             }
         };
         //        console.log(`${Backend.rcBaseAddress}text-editor/simple-media-list?research=${id}`);
@@ -123,8 +123,11 @@ export class RCExpoModel {
                 self.exposition.markdownInput = expositionJSON.markdown;
                 self.exposition.renderedHTML = expositionJSON.html;
                 self.exposition.style = expositionJSON.style;
-                console.log("mde");
-                console.log(self.mde);
+                //                console.log("mde");
+                //              console.log(self.mde);
+                self.mde.exposition = self.exposition;
+                self.mde.value(self.exposition.markdownInput);
+                self.mde.render();
             }
         };
         //        console.log(`${Backend.rcBaseAddress}text-editor/simple-media-list?research=${id}`);
@@ -148,11 +151,12 @@ export class RCExpoModel {
         fd.append("style", this.exposition.style);
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
-            console.log("saving..");
-            console.log(xhttp.response);
+            //            console.log("saving..");
+            //          console.log(xhttp.response);
             // set autosave status
         };
-        xhttp.open("GET", `${Backend.rcBaseAddress}text-editor/save?research=${id}&weave=${weave}`, true);
+        //        xhttp.open("GET", `${Backend.rcBaseAddress}text-editor/save?research=${id}&weave=${weave}`, true);
+        xhttp.open("GET", `${Backend.rcBaseAddress}text-editor/save?research=${id}`, true);
         xhttp.send(fd);
     }
 
@@ -194,13 +198,9 @@ export class RCExpoModel {
 
         this.loadExpositionData();
 
-        // this.mde.exposition = new_exposition;
-        // this.mde.value(this.exposition.markdownInput);
-        // this.mde.render();
+        this.saveInterval = setInterval(() => this.saveToRC(), 6000);
 
-        this.saveInterval = setInterval(() => this.saveToRC(), 5000);
-
-        this.syncInterval = setInterval(() => this.syncModelWithRC(), 8000);
+        this.syncInterval = setInterval(() => this.syncModelWithRC(), 12500);
 
         //        this.mde.exposition = new_exposition;
         //      this.mde.value(new_exposition.markdownInput);
