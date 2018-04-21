@@ -119,6 +119,7 @@ export class RCExpoModel {
                 console.log(expositionJSON);
                 self.exposition.markdownInput = expositionJSON.markdown;
                 self.exposition.renderedHTML = expositionJSON.html;
+                self.exposition.style = expositionJSON.style;
             }
         };
         //        console.log(`${Backend.rcBaseAddress}text-editor/simple-media-list?research=${id}`);
@@ -138,6 +139,8 @@ export class RCExpoModel {
         let fd = new FormData();
         fd.append("html", this.exposition.renderedHTML);
         fd.append("markdown", this.exposition.markdownInput);
+        fd.append("media", null); // TODO send media list/see if necessary
+        fd.append("style", this.exposition.style);
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
             console.log("saving..");
@@ -186,11 +189,12 @@ export class RCExpoModel {
 
         this.loadExpositionData();
 
+        console.log(this.mde);
         // this.mde.exposition = new_exposition;
         // this.mde.value(this.exposition.markdownInput);
         // this.mde.render();
 
-        //        this.saveInterval = setInterval(() => this.saveToRC(), 5000);
+        this.saveInterval = setInterval(() => this.saveToRC(), 5000);
 
         //        this.mde.exposition = new_exposition;
         //      this.mde.value(new_exposition.markdownInput);
