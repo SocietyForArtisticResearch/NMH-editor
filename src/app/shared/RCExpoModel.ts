@@ -189,6 +189,7 @@ export class RCExpoModel {
 
         this.loadExpositionData();
 
+        console.log("mde");
         console.log(this.mde);
         // this.mde.exposition = new_exposition;
         // this.mde.value(this.exposition.markdownInput);
