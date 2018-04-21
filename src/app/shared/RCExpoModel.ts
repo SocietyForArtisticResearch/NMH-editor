@@ -151,13 +151,14 @@ export class RCExpoModel {
         fd.append("style", this.exposition.style);
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
-            //            console.log("saving..");
-            //          console.log(xhttp.response);
+            console.log("saving..");
+            console.log(xhttp.response);
             // set autosave status
         };
         //        xhttp.open("GET", `${Backend.rcBaseAddress}text-editor/save?research=${id}&weave=${weave}`, true);
         xhttp.open("POST", `${Backend.rcBaseAddress}text-editor/save?research=${id}&weave=${weave}`, true);
-        xhttp.send(fd);
+        //        xhttp.send(fd);
+        xhttp.send({ html: this.exposition.renderedHTML, markdown: this.exposition.markdownInput, media: [], style: this.exposition.style });
     }
 
     loadExpositionFromURL(expositionJSONUrl: string) {
