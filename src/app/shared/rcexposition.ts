@@ -212,9 +212,8 @@ export class RCExposition {
         ob.copyright = rcmedia.copyright;
         ob.name = rcmedia.name;
 
-        console.log('this is the object fetched:',rcmedia);
-        if (rcmedia.status) {
-            ob.transcodingStatus = rcmedia.status;
+        if (rcmedia.media.status) {
+            ob.transcodingStatus = rcmedia.media.status;
         } 
         return ob;
     }
