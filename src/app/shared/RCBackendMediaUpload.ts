@@ -13,6 +13,10 @@ export interface RCMetaData {
 	name : string
 };
 
+/*
+ * This class is only for updating and editing media entries in the RC API.
+ */
+
 @Injectable()
 export class RCBackendMediaUpload {
 	constructor(
@@ -147,8 +151,8 @@ export class RCBackendMediaUpload {
         fd.append('name',metadata.name);
         fd.append('copyrightholder', metadata.copyrightholder );
         fd.append('description',metadata.description);
-        fd.append('thumb',new Blob());
-        fd.append('media',new Blob());
+        fd.append('thumb',null);
+        fd.append('media',null);
         console.log('formdata',fd);
 
         let xhttp = new XMLHttpRequest();

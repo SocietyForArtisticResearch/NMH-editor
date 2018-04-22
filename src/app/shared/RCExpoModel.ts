@@ -168,6 +168,7 @@ export class RCExpoModel {
     }
 
     loadExpositionFromURL(expositionJSONUrl: string) {
+        // This is the older (local) backend (not using RC)
         Backend.useRC = false;
         console.log('this will load the exposition from: ' + expositionJSONUrl);
         var xhttp = new XMLHttpRequest();
