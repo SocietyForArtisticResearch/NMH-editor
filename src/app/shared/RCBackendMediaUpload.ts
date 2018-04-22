@@ -91,7 +91,6 @@ export class RCBackendMediaUpload {
 	                onProgress('uploading ' + Math.round(100 * event.loaded / event.total) + '%');
 	            } else if (event instanceof HttpResponse) {
 	                onProgress('done');
-	                console.log("upload succes, so resync medialist with RC");
 	                this.rcExpoModel.syncModelWithRC();
 	                window.setTimeout(() => { onProgress(''); }, 1000);
 	                onResult(event.body);

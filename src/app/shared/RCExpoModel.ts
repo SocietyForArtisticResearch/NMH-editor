@@ -94,20 +94,24 @@ export class RCExpoModel {
     }
 
     syncModelWithRC() {
-        let id = this.exposition.id;
-        var xhttp = new XMLHttpRequest();
-        var that = this;
-        xhttp.onreadystatechange = function () {
-            if (this.readyState == 4 && this.status == 200) {
-                var mde = that.mde;
-                let medialist = JSON.parse(xhttp.responseText);
-                that.exposition.integrateRCMediaList(medialist);
-                //                console.log(that.exposition.media);
-            }
-        };
-        //        console.log(`${Backend.rcBaseAddress}text-editor/simple-media-list?research=${id}`);
-        xhttp.open("GET", `${Backend.rcBaseAddress}text-editor/simple-media-list?research=${id}`, true);
-        xhttp.send();
+        try {
+            let id = this.exposition.id;
+            var xhttp = new XMLHttpRequest();
+            var that = this;
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    var mde = that.mde;
+                    let medialist = JSON.parse(xhttp.responseText);
+                    that.exposition.integrateRCMediaList(medialist);
+                    //                console.log(that.exposition.media);
+                }
+            };
+            //        console.log(`${Backend.rcBaseAddress}text-editor/simple-media-list?research=${id}`);
+            xhttp.open("GET", `${Backend.rcBaseAddress}text-editor/simple-media-list?research=${id}`, true);
+            xhttp.send();
+        } catch(err) {
+            console.log('an error occured trying to sync media: ',err);
+        }
         //      console.log("sent request");
     }
 
