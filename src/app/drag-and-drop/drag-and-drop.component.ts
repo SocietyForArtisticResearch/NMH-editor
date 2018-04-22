@@ -79,14 +79,19 @@ export class DragAndDropComponent implements OnInit {
     }
 
     onRCResult(result) {
-        let parsedJson = JSON.parse(result);
-        let rcobject = this.rcExpoModel.exposition.updateOrCreateObject(parsedJson);
-        
-        let editor: RCMDE = this.rcExpoModel.mde;
-        insertMedia(editor, rcobject.name);
-        console.log('inserting object',rcobject);
+        try {
+            let parsedJson = JSON.parse(result);
+            let rcobject = this.rcExpoModel.exposition.updateOrCreateObject(parsedJson);
+            
+            let editor: RCMDE = this.rcExpoModel.mde;
+            insertMedia(editor, rcobject.name);
 
-        this.onChangedObject.emit(rcobject.id);
+            this.onChangedObject.emit(rcobject.id);
+        }
+        catch (error) {
+            console.log('an error occured trying to insert the uploaded media\n',error);
+        }
+
     }
 
     onResult(result) {
