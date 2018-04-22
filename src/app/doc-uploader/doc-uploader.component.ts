@@ -77,6 +77,7 @@ export class DocUploaderComponent implements OnInit {
     }
 
     onDocImportResult(result) {
+        console.log(result);
         this.rcExpoModel.mde.importDocJSON(result);
     }
 
