@@ -55,11 +55,13 @@ export class ObjectListComponent implements OnInit {
     }
 
     onSelect(rcobject: RCObject) {
+        console.log('select',rcobject);
         if (rcobject) {
             let id = rcobject.id;
             // only process click, if there was not a single click
             this.dblClickCtrl.timer = setTimeout(() => {
                 if (!this.dblClickCtrl.prevent) {
+                    console.log('succes',rcobject);
                     this.selectedObject = rcobject;
                 } else {
                     this.dblClickCtrl.prevent = false;
