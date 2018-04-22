@@ -38,27 +38,41 @@ export class DocUploaderComponent implements OnInit {
 
     onDocUpload() {
         //TODO check weird filenames!
+        let importURL;
+        let fileField = "convertFile";
+        if (Backend.useRC) {
+            fileField = "file";
+            importURL = Backend.rcImport + "?research=" + this.rcExpoModel.exposition.id + "&weave=" + this.rcExpoModel.exposition.currentWeave;
+        } else {
+            importURL = Backend.import;
+        }
+
+        let filename = "file" + (this.selectedFile.name.split(".")[1]);
 
         const fd = new FormData();
-        fd.append('convertFile', this.selectedFile, this.selectedFile.name);
-        
-        const req = new HttpRequest('POST', Backend.import, fd, {
-          reportProgress: true,
+        //        fd.append('convertFile', this.selectedFile, this.selectedFile.name);
+        fd.append(fileField, this.selectedFile, filename);
+
+
+        const req = new HttpRequest('POST', importURL, fd, {
+            reportProgress: true,
         });
 
+        console.log(req)
+
         this.http.request(req).subscribe(event => {
-          // Via this API, you get access to the raw event stream.
-          // Look for upload progress events.
-          if (event.type === HttpEventType.UploadProgress) {
-            // This is an upload progress event. Compute and show the % done:
-            this.fileUploadStatus = Math.round(100 * event.loaded / event.total) + '%';
-          } else if (event instanceof HttpResponse) {
-            this.fileUploadStatus = 'done';
-            window.setTimeout( ( ) => { this.fileUploadStatus = null }, 1000 );
-            this.onDocImportResult(event.body);
+            // Via this API, you get access to the raw event stream.
+            // Look for upload progress events.
+            if (event.type === HttpEventType.UploadProgress) {
+                // This is an upload progress event. Compute and show the % done:
+                this.fileUploadStatus = Math.round(100 * event.loaded / event.total) + '%';
+            } else if (event instanceof HttpResponse) {
+                this.fileUploadStatus = 'done';
+                window.setTimeout(() => { this.fileUploadStatus = null }, 1000);
+                this.onDocImportResult(event.body);
             }
         });
- 
+
         this.rcExpoModel.mde.render();
     }
 

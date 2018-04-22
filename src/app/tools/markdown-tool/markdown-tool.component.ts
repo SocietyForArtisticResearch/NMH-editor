@@ -37,7 +37,7 @@ export class MarkdownToolComponent implements AfterViewInit {
 
         this.mde.value(this.testString());
 
-        this.mde.drawMediaCallback = ( ) => {
+        this.mde.drawMediaCallback = () => {
             this.openObjectList();
         };
 

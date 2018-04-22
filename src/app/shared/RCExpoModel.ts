@@ -18,7 +18,7 @@ interface ExpositionRCLoadData {
 export class RCExpoModel {
     exposition: RCExposition;
     saveInterval: any;
-    syncInterval: number;
+    syncInterval: any;
     markdownInput: string;
     markdownProcessed: string;
     mde: any;
@@ -102,7 +102,7 @@ export class RCExpoModel {
                 var mde = that.mde;
                 let medialist = JSON.parse(xhttp.responseText);
                 that.exposition.integrateRCMediaList(medialist);
-                console.log(that.exposition.media);
+                //                console.log(that.exposition.media);
             }
         };
         //        console.log(`${Backend.rcBaseAddress}text-editor/simple-media-list?research=${id}`);
@@ -120,9 +120,15 @@ export class RCExpoModel {
             if (this.readyState == 4 && this.status == 200) {
                 let expositionJSON = JSON.parse(xhttp.responseText);
                 console.log(expositionJSON);
+                self.exposition.title = expositionJSON.title;
                 self.exposition.markdownInput = expositionJSON.markdown;
                 self.exposition.renderedHTML = expositionJSON.html;
                 self.exposition.style = expositionJSON.style;
+                //                console.log("mde");
+                //              console.log(self.mde);
+                self.mde.exposition = self.exposition;
+                self.mde.value(self.exposition.markdownInput);
+                self.mde.render();
             }
         };
         //        console.log(`${Backend.rcBaseAddress}text-editor/simple-media-list?research=${id}`);
@@ -144,14 +150,17 @@ export class RCExpoModel {
         fd.append("markdown", this.exposition.markdownInput);
         fd.append("media", null); // TODO send media list/see if necessary
         fd.append("style", this.exposition.style);
+        fd.append("title", this.exposition.title);
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
             console.log("saving..");
             console.log(xhttp.response);
             // set autosave status
         };
-        xhttp.open("GET", `${Backend.rcBaseAddress}text-editor/save?research=${id}&weave=${weave}`, true);
+        //        xhttp.open("GET", `${Backend.rcBaseAddress}text-editor/save?research=${id}&weave=${weave}`, true);
+        xhttp.open("POST", `${Backend.rcBaseAddress}text-editor/save?research=${id}&weave=${weave}`, true);
         xhttp.send(fd);
+        //        xhttp.send({ html: this.exposition.renderedHTML, markdown: this.exposition.markdownInput, media: [], style: this.exposition.style });
     }
 
     loadExpositionFromURL(expositionJSONUrl: string) {
@@ -192,14 +201,9 @@ export class RCExpoModel {
 
         this.loadExpositionData();
 
-        console.log(this.mde);
-        // this.mde.exposition = new_exposition;
-        // this.mde.value(this.exposition.markdownInput);
-        // this.mde.render();
+        this.saveInterval = setInterval(() => this.saveToRC(), 12000);
 
-        this.saveInterval = setInterval(() => this.saveToRC(), 5000);
-
-        this.syncInterval = setInterval(() => this.syncModelWithRC(), 8000);
+        this.syncInterval = setInterval(() => this.syncModelWithRC(), 15000);
 
         //        this.mde.exposition = new_exposition;
         //      this.mde.value(new_exposition.markdownInput);
