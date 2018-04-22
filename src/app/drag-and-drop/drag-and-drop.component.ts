@@ -128,7 +128,6 @@ export class DragAndDropComponent implements OnInit {
         newRCObject.copyright = '';
         newRCObject.description = '';
 
-
         this.rcExpoModel.exposition.addObject(newRCObject);
         this.onChangedObject.emit(newRCObject.id);
     }
