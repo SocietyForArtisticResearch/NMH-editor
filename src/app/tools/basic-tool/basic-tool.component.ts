@@ -177,7 +177,7 @@ export class BasicToolComponent implements OnInit {
         console.log('what has changed:',changes);
 
         // if the object was changed in model (through resync for example), fill fields with data from model
-        if (!Backend.useRC) {
+        if (changes.rcboject) {
             if (this.toolForm) {
                 this.toolForm.setValue({
                     'name': this.rcobject.name,
