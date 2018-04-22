@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter, SimpleChanges } from '@angular/core';
 import { NgSwitch } from '@angular/common';
 import { RCExpoModel } from '../../shared/RCExpoModel';
 import { RCMedia, RCImage } from '../../shared/rcexposition';
@@ -42,6 +42,7 @@ export class BasicToolComponent implements OnInit {
     fileUploadStatus: string = null;
 
     identifier: number;
+    
     @Input() rcobject: RCMedia;
     
     @Input() id: number;
@@ -172,7 +173,9 @@ export class BasicToolComponent implements OnInit {
         }        
     }*/
 
-    ngOnChanges() {
+    ngOnChanges(changes: SimpleChanges) {
+        console.log('what has changed:',changes);
+
         // if the object was changed in model (through resync for example), fill fields with data from model
         if (!Backend.useRC) {
             if (this.toolForm) {
