@@ -79,8 +79,9 @@ export class DragAndDropComponent implements OnInit {
     }
 
     onRCResult(result) {
+        console.log('RCresult, json?: ',result);
+
         try {
-            console.log('RCresult, json?: ',result);
 
             let parsedJson = JSON.parse(result);
             let rcobject = this.rcExpoModel.exposition.updateOrCreateObject(parsedJson);
