@@ -1703,6 +1703,7 @@ export class RCMDE {
     markdown(text: string) {
         let self = this;
         let re = /!{([^\}]*)}/g;
+        let insertedCursor = text;
         //        let re = /!{(\w+)}/g;
         if (this.codemirror.hasFocus()) {
             //            let cursorAnchor = "<a href=\"#\" id=\"_cursorPosition\" style=\"display: none\"></a>";
@@ -1715,14 +1716,14 @@ export class RCMDE {
             let arrayPos = nthIndexOf(text, '\n', pos.line) + pos.ch;
             arrayPos = Math.max(0, arrayPos);
             if (arrayPos == 0) {
-                text = cursorAnchor + text;
+                insertedCursor = cursorAnchor + text;
             } else {
-                text = text.substr(0, arrayPos) + cursorAnchor + text.substr(arrayPos);
+                insertedCursor = text.substr(0, arrayPos) + cursorAnchor + text.substr(arrayPos);
             }
         };
         self.changed = true;
         //        text = "# " + this.exposition.title + "\n" + text;
-        let insertedTools = text.replace(re, function (m, p1) { return self.mediaHTML(p1) });
+        let insertedTools = insertedCursor.replace(re, function (m, p1) { return self.mediaHTML(p1) });
         let basicHTML = md.render(insertedTools);
         let renderedHTML = "<div class=\"exposition\">" + "<div class=\"exposition-content\">" +
             "<h1 id=\"" + stringToId(this.exposition.title) + "\">" + this.exposition.title + "</h1>" + basicHTML + "</div>" + "</div>";
