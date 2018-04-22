@@ -193,9 +193,11 @@ export class BasicToolComponent implements OnInit {
                 Validators.required]);
             this.toolForm.controls['name'].updateValueAndValidity();
 
-            this.toolForm.valueChanges.subscribe(val => {
-                this.onSubmit();
-            });
+            if (Backend.useRC) {
+                this.toolForm.valueChanges.subscribe(val => {
+                    this.onSubmit();
+                });
+            }
 
         } 
             
