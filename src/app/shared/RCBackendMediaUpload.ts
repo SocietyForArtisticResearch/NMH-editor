@@ -154,6 +154,8 @@ export class RCBackendMediaUpload {
         fd.append('thumb',"");
         fd.append('media',"");
         console.log('formdata',fd);
+        console.log('thumb =',fd.get('thumb'));
+        console.log('media =',fd.get('media'));
 
         let xhttp = new XMLHttpRequest();
         var that = this;
