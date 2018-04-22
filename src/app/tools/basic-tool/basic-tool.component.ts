@@ -148,7 +148,8 @@ export class BasicToolComponent implements OnInit {
         }
     }
 
-    set rcobject(rcobject: RCMedia) {
+/* doesn't work stackoverflow fail
+    set rcobject(blabla: RCMedia) {
         if (this.toolForm) {
             this.toolForm.setValue({
                 'name': this.rcobject.name,
@@ -169,7 +170,7 @@ export class BasicToolComponent implements OnInit {
                 this.onSubmit();
             });
         }        
-    }
+    }*/
 
     ngOnChanges() {
         // if the object was changed in model (through resync for example), fill fields with data from model
