@@ -148,12 +148,32 @@ export class BasicToolComponent implements OnInit {
         }
     }
 
+    set rcobject(rcobject: RCMedia) {
+        if (this.toolForm) {
+            this.toolForm.setValue({
+                'name': this.rcobject.name,
+                'fileUrl': this.rcobject.url,
+                'widthInPixels': this.rcobject.pxWidth,
+                'heightInPixels': this.rcobject.pxHeight,
+                'filePickerButton': null,
+                'copyright': this.rcobject.copyright,
+                'description' : this.rcobject.description
+            });
+            // update name validator with new name.
+            this.toolForm.controls['name'].setValidators(
+                [forbiddenNameValidator(this.rcExpoModel, this.rcobject.name), // <-- Here's how you pass in the custom validator.
+                Validators.required]);
+            this.toolForm.controls['name'].updateValueAndValidity();
+
+            this.toolForm.valueChanges.subscribe(val => {
+                this.onSubmit();
+            });
+        }        
+    }
+
     ngOnChanges() {
         // if the object was changed in model (through resync for example), fill fields with data from model
-        this.editInQueue = false;
-        clearTimeout(this.editRequestTimer);
-        
-        if (Backend.useRC) {
+        if (!Backend.useRC) {
             if (this.toolForm) {
                 this.toolForm.setValue({
                     'name': this.rcobject.name,
@@ -174,9 +194,8 @@ export class BasicToolComponent implements OnInit {
                     this.onSubmit();
                 });
 
-            }
-        }
-        
+            } 
+        }       
     }
 
     // only allow to edit name, if object actually has file url attached
