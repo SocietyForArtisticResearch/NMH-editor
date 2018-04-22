@@ -150,8 +150,10 @@ export class BasicToolComponent implements OnInit {
 
     ngOnChanges() {
         // if the object was changed in model (through resync for example), fill fields with data from model
-        console.log('object was changed',this.rcobject);
-        if (!Backend.useRC) {
+        this.editInQueue = false;
+        clearTimeout(this.editRequestTimer);
+        
+        if (Backend.useRC) {
             if (this.toolForm) {
                 this.toolForm.setValue({
                     'name': this.rcobject.name,
