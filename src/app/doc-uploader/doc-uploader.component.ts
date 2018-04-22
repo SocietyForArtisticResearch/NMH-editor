@@ -39,7 +39,9 @@ export class DocUploaderComponent implements OnInit {
     onDocUpload() {
         //TODO check weird filenames!
         let importURL;
+        let fileField = "convertFile";
         if (Backend.useRC) {
+            fileField = "file";
             importURL = Backend.rcImport;
         } else {
             importURL = Backend.import;
@@ -49,7 +51,8 @@ export class DocUploaderComponent implements OnInit {
 
         const fd = new FormData();
         //        fd.append('convertFile', this.selectedFile, this.selectedFile.name);
-        fd.append('convertFile', this.selectedFile, filename);
+        fd.append(fileField, this.selectedFile, filename);
+
 
         const req = new HttpRequest('POST', importURL, fd, {
             reportProgress: true,

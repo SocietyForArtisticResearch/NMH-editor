@@ -14,6 +14,7 @@ export class ConvertDocService {
 
     convert(markdownString: string, fileType: string) { //get file from service
         //        let url = "https://sar-announcements.com:3000/export/" + fileType;
+        console.log("CONVERTING");
         console.log(markdownString);
 
         let url;
