@@ -81,6 +81,7 @@ export class DragAndDropComponent implements OnInit {
     onRCResult(result) {
         try {
             let parsedJson = JSON.parse(result);
+            console.log('RCresult, json?: ',result);
             let rcobject = this.rcExpoModel.exposition.updateOrCreateObject(parsedJson);
             
             let editor: RCMDE = this.rcExpoModel.mde;
@@ -89,7 +90,7 @@ export class DragAndDropComponent implements OnInit {
             this.onChangedObject.emit(rcobject.id);
         }
         catch (error) {
-            console.log('an error occured trying to insert the uploaded media\n',error);
+            console.log('an error occured trying to insert the uploaded media',error);
         }
 
     }
