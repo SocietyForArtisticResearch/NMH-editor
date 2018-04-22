@@ -185,7 +185,7 @@ export class BasicToolComponent implements OnInit {
                 'heightInPixels': this.rcobject.pxHeight,
                 'filePickerButton': null,
                 'copyright': this.rcobject.copyright,
-                'description' : this.rcobject.description
+                'description' : this.rcobject.description,
             });
             // update name validator with new name.
             this.toolForm.controls['name'].setValidators(
@@ -230,6 +230,7 @@ export class BasicToolComponent implements OnInit {
         newObject.description = formModel.description;
         newObject.copyright = formModel.copyright;
         newObject.thumb = this.rcobject.thumb;
+        newObject.transcodingStatus = this.rcobject.transcodingStatus;
         return newObject;
     }
 
