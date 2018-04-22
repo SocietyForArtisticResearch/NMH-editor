@@ -55,6 +55,8 @@ export class DocUploaderComponent implements OnInit {
             reportProgress: true,
         });
 
+        console.log(req)
+
         this.http.request(req).subscribe(event => {
             // Via this API, you get access to the raw event stream.
             // Look for upload progress events.
