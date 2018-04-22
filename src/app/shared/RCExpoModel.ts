@@ -109,8 +109,8 @@ export class RCExpoModel {
             //        console.log(`${Backend.rcBaseAddress}text-editor/simple-media-list?research=${id}`);
             xhttp.open("GET", `${Backend.rcBaseAddress}text-editor/simple-media-list?research=${id}`, true);
             xhttp.send();
-        } catch(err) {
-            console.log('an error occured trying to sync media: ',err);
+        } catch (err) {
+            console.log('an error occured trying to sync media: ', err);
         }
         //      console.log("sent request");
     }
@@ -157,8 +157,7 @@ export class RCExpoModel {
         fd.append("title", this.exposition.title);
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
-            console.log("saving..");
-            console.log(xhttp.response);
+            console.log("saved");
             // set autosave status
         };
         //        xhttp.open("GET", `${Backend.rcBaseAddress}text-editor/save?research=${id}&weave=${weave}`, true);
