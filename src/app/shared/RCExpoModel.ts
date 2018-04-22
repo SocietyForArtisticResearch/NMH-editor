@@ -157,8 +157,8 @@ export class RCExpoModel {
         };
         //        xhttp.open("GET", `${Backend.rcBaseAddress}text-editor/save?research=${id}&weave=${weave}`, true);
         xhttp.open("POST", `${Backend.rcBaseAddress}text-editor/save?research=${id}&weave=${weave}`, true);
-        //        xhttp.send(fd);
-        xhttp.send({ html: this.exposition.renderedHTML, markdown: this.exposition.markdownInput, media: [], style: this.exposition.style });
+        xhttp.send(fd);
+        //        xhttp.send({ html: this.exposition.renderedHTML, markdown: this.exposition.markdownInput, media: [], style: this.exposition.style });
     }
 
     loadExpositionFromURL(expositionJSONUrl: string) {
@@ -199,9 +199,9 @@ export class RCExpoModel {
 
         this.loadExpositionData();
 
-        this.saveInterval = setInterval(() => this.saveToRC(), 6000);
+        this.saveInterval = setInterval(() => this.saveToRC(), 10000);
 
-        this.syncInterval = setInterval(() => this.syncModelWithRC(), 12500);
+        this.syncInterval = setInterval(() => this.syncModelWithRC(), 14000);
 
         //        this.mde.exposition = new_exposition;
         //      this.mde.value(new_exposition.markdownInput);
