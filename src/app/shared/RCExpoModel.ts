@@ -120,6 +120,7 @@ export class RCExpoModel {
             if (this.readyState == 4 && this.status == 200) {
                 let expositionJSON = JSON.parse(xhttp.responseText);
                 console.log(expositionJSON);
+                self.exposition.title = expositionJSON.title;
                 self.exposition.markdownInput = expositionJSON.markdown;
                 self.exposition.renderedHTML = expositionJSON.html;
                 self.exposition.style = expositionJSON.style;
@@ -149,6 +150,7 @@ export class RCExpoModel {
         fd.append("markdown", this.exposition.markdownInput);
         fd.append("media", null); // TODO send media list/see if necessary
         fd.append("style", this.exposition.style);
+        fd.append("title", this.exposition.title);
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
             console.log("saving..");

@@ -42,7 +42,7 @@ export class DocUploaderComponent implements OnInit {
         let fileField = "convertFile";
         if (Backend.useRC) {
             fileField = "file";
-            importURL = Backend.rcImport;
+            importURL = Backend.rcImport + "?research=" + this.rcExpoModel.exposition.id + "&weave=" + this.rcExpoModel.exposition.currentWeave;
         } else {
             importURL = Backend.import;
         }
