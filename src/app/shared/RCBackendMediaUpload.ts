@@ -151,9 +151,8 @@ export class RCBackendMediaUpload {
         fd.append('name',metadata.name);
         fd.append('copyrightholder', metadata.copyrightholder );
         fd.append('description',metadata.description);
-        fd.append('thumb',"","");
-        fd.append('media',"","");
-        console.log('formdata',fd);
+        fd.append('thumb',new File([""],""));
+        fd.append('media',new File([""],""));
         console.log('thumb =',fd.get('thumb'));
         console.log('media =',fd.get('media'));
 
