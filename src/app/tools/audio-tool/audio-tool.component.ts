@@ -18,7 +18,6 @@ export class AudioToolComponent extends BasicToolComponent {
     constructor(http: HttpClient,rcExpoModel: RCExpoModel,rcBackendMediaUpload: RCBackendMediaUpload) { 
         super(http,rcExpoModel,rcBackendMediaUpload);
         this.userMessage = "upload another audiofile";
-        console.log('called');
     }
 
     prepareSaveObject(): RCAudio {
