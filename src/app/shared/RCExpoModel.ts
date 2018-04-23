@@ -103,7 +103,7 @@ export class RCExpoModel {
                     var mde = that.mde;
                     let medialist = JSON.parse(xhttp.responseText);
                     that.exposition.integrateRCMediaList(medialist);
-                    //                console.log(that.exposition.media);
+                    console.log(that.exposition.media);
                     if (continueFunction != undefined) {
                         continueFunction();
                     }
