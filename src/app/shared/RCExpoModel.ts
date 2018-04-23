@@ -93,7 +93,7 @@ export class RCExpoModel {
 
     }
 
-    syncModelWithRC() {
+    syncModelWithRC(continueFunction?: () => void) {
         try {
             let id = this.exposition.id;
             var xhttp = new XMLHttpRequest();
@@ -104,6 +104,10 @@ export class RCExpoModel {
                     let medialist = JSON.parse(xhttp.responseText);
                     that.exposition.integrateRCMediaList(medialist);
                     //                console.log(that.exposition.media);
+                    if (continueFunction != undefined) {
+                        continueFunction();
+                    }
+
                 }
             };
             //        console.log(`${Backend.rcBaseAddress}text-editor/simple-media-list?research=${id}`);
