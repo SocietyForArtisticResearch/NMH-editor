@@ -149,6 +149,13 @@ hr {
     border-color:black;
 }
 
+.btn:active {
+    background:#dedede;
+    color:#333;
+    border-radius:1px;
+    border-color:black;
+}
+
 .edit-style-button {
     width:90px;
 }
