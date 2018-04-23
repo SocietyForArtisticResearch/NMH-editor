@@ -142,6 +142,13 @@ hr {
     color:#333;
 }
 
+.btn  {
+    background-color:#fbfbff;
+    color:#333;
+    border-radius:1px;
+    border-color:black;
+}
+
 .edit-style-button {
     width:90px;
 }
