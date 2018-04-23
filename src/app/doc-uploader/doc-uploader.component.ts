@@ -47,7 +47,7 @@ export class DocUploaderComponent implements OnInit {
             importURL = Backend.import;
         }
 
-        let filename = "file" + (this.selectedFile.name.split(".")[1]);
+        let filename = "file" + "." + (this.selectedFile.name.split(".")[1]);
 
         const fd = new FormData();
         //        fd.append('convertFile', this.selectedFile, this.selectedFile.name);
@@ -57,8 +57,6 @@ export class DocUploaderComponent implements OnInit {
         const req = new HttpRequest('POST', importURL, fd, {
             reportProgress: true,
         });
-
-        console.log(req)
 
         this.http.request(req).subscribe(event => {
             // Via this API, you get access to the raw event stream.
@@ -77,8 +75,11 @@ export class DocUploaderComponent implements OnInit {
     }
 
     onDocImportResult(result) {
-        console.log(result);
-        this.rcExpoModel.mde.importDocJSON(result);
+        if (Backend.useRC) {
+            this.rcExpoModel.syncModelWithRC(() => this.rcExpoModel.mde.importDocJSON(result));
+        } else {
+            this.rcExpoModel.mde.importDocJSON(result);
+        }
     }
 
     onJsonImport() {
