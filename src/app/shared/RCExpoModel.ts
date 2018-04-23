@@ -219,7 +219,7 @@ export class RCExpoModel {
 
         document.addEventListener('visibilitychange', function () {
             //	    document.title = document.hidden;
-            if (document.hasFocus()) {
+            if (!document.hidden) {
                 console.log("loading data");
                 this.loadExpositionData();
                 this.syncModelWithRC();
