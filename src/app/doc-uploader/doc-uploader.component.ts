@@ -47,7 +47,7 @@ export class DocUploaderComponent implements OnInit {
             importURL = Backend.import;
         }
 
-        let filename = "file" + (this.selectedFile.name.split(".")[1]);
+        let filename = "file" + "." + (this.selectedFile.name.split(".")[1]);
 
         const fd = new FormData();
         //        fd.append('convertFile', this.selectedFile, this.selectedFile.name);
