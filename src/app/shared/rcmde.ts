@@ -2210,6 +2210,7 @@ export class RCMDE {
         }
     };
 
+    // for importing from word etc.
     static replaceImagesWithTools(md, lst) {
         let re = /!\[.*\]\(.*\)(\{[^}]*\})?/g;
         //        let re = /!\[.*\]\(.*\){.*}/g;
@@ -2252,9 +2253,13 @@ export class RCMDE {
 
 
     importDocJSON(json) {
-        //        let names = this.exposition.addImageList(json.media);
+        let exposition = this.exposition;
+        let ids = this.exposition.addImageList(json.media);
+        let names = ids.map(id => exposition.getObjectWithID.name);
+        console.log(json.media);
         //      this.value(RCMDE.replaceImagesWithTools(json.markdown, names));
-        this.value(json.markdown);
+        //        this.value(json.markdown);
+        this.value(RCMDE.replaceImagesWithTools(json.markdown, names));
         this.render();
     }
 
