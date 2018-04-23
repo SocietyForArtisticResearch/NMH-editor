@@ -2252,8 +2252,9 @@ export class RCMDE {
 
 
     importDocJSON(json) {
-        let names = this.exposition.addImageList(json.media);
-        this.value(RCMDE.replaceImagesWithTools(json.markdown, names));
+        //        let names = this.exposition.addImageList(json.media);
+        //      this.value(RCMDE.replaceImagesWithTools(json.markdown, names));
+        this.value(json.markdown);
         this.render();
     }
 
