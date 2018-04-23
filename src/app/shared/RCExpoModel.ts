@@ -215,7 +215,17 @@ export class RCExpoModel {
 
         this.syncInterval = setInterval(() => { if (document.hasFocus()) { this.syncModelWithRC() } }, 15000);
 
-        window.onfocus = () => { console.log("loading data"); this.loadExpositionData; this.syncModelWithRC() };
+        //        window.onfocus = () => { console.log("loading data"); this.loadExpositionData; this.syncModelWithRC() };
+
+        document.addEventListener('visibilitychange', function () {
+            //	    document.title = document.hidden;
+            if (document.hasFocus()) {
+                console.log("loading data");
+                this.loadExpositionData;
+                this.syncModelWithRC();
+            }
+        })
+
         //        this.mde.exposition = new_exposition;
         //      this.mde.value(new_exposition.markdownInput);
         //    this.mde.render();
