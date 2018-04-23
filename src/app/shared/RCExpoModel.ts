@@ -221,7 +221,7 @@ export class RCExpoModel {
             //	    document.title = document.hidden;
             if (document.hasFocus()) {
                 console.log("loading data");
-                this.loadExpositionData;
+                this.loadExpositionData();
                 this.syncModelWithRC();
             }
         })
