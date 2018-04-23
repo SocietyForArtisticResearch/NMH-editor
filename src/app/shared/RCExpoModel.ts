@@ -202,6 +202,7 @@ export class RCExpoModel {
         Backend.useRC = true;
         // TODO get json from RC!
         // get media-list
+        let self = this;
         let new_exposition = new RCExposition('');
         new_exposition.id = id;
         new_exposition.currentWeave = weave;
@@ -218,11 +219,12 @@ export class RCExpoModel {
         //        window.onfocus = () => { console.log("loading data"); this.loadExpositionData; this.syncModelWithRC() };
 
         document.addEventListener('visibilitychange', function () {
+
             //	    document.title = document.hidden;
             if (!document.hidden) {
                 console.log("loading data");
-                this.loadExpositionData();
-                this.syncModelWithRC();
+                self.loadExpositionData();
+                self.syncModelWithRC();
             }
         })
 
