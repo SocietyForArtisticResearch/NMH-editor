@@ -192,7 +192,7 @@ export class RCExpoModel {
 
     loadExpositionFromRC(id: number, weave: number) {
         Backend.useRC = true;
-        // TODO get json from RC!
+
         let self = this;
         let new_exposition = new RCExposition('');
         new_exposition.id = id;
@@ -203,9 +203,14 @@ export class RCExpoModel {
 
         this.loadExpositionData();
 
-        this.saveInterval = setInterval(() => { if (document.hasFocus() && !self.mde.saved) { this.saveToRC() } }, 20000);
+        this.saveInterval = setInterval(() => {
+            if (document.hasFocus() && !self.mde.saved) {
+                self.saveToRC();
+                self.mde.displaySaveStatus();
+            }
+        }, 20000);
 
-        this.syncInterval = setInterval(() => { if (document.hasFocus()) { this.syncModelWithRC() } }, 15000);
+        this.syncInterval = setInterval(() => { if (document.hasFocus()) { self.syncModelWithRC() } }, 15000);
 
         document.addEventListener('visibilitychange', function () {
 

@@ -1877,6 +1877,19 @@ export class RCMDE {
         return true;
     }
 
+
+    displaySaveStatus() {
+        var el = document.getElementById("autosaved");
+        if (el != null && el != undefined && el.innerHTML != "") {
+            if (this.saved) {
+                el.innerHTML = "<b><u>All changes saved</u></b>";
+            } else {
+                el.innerHTML = "<i>unsaved</i>";
+            }
+        }
+    }
+
+    // old autosave, unused
     autosave() {
         if (RCMDE.isLocalStorageAvailable()) {
             var simplemde = this;
@@ -2147,7 +2160,7 @@ export class RCMDE {
                     };
                     onUpdate = function (el) {
                         if (self.saved) {
-                            el.innerHTML = "<b></u>All changes saved</u></b>";
+                            el.innerHTML = "<b><u>All changes saved</u></b>";
                         } else {
                             el.innerHTML = "<i>unsaved</i>";
                         }
