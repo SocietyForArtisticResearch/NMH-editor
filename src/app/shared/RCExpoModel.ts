@@ -206,9 +206,10 @@ export class RCExpoModel {
         this.saveInterval = setInterval(() => {
             if (document.hasFocus() && !self.mde.saved) {
                 self.saveToRC();
+                console.log("saving");
                 self.mde.displaySaveStatus();
             }
-        }, 20000);
+        }, 10000);
 
         this.syncInterval = setInterval(() => { if (document.hasFocus()) { self.syncModelWithRC() } }, 15000);
 
