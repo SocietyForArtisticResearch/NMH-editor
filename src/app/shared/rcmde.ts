@@ -1879,8 +1879,7 @@ export class RCMDE {
 
 
     displaySaveStatus() {
-        console.log("displaysavestatus: " + this.saved);
-        var el = document.getElementById("autosaved");
+        var el = document.getElementById("rcSave");
         if (el != null && el != undefined && el.innerHTML != "") {
             if (this.saved) {
                 el.innerHTML = "<b><u>All changes saved</u></b>";

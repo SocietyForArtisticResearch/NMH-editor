@@ -102,7 +102,7 @@ export class RCExpoModel {
                     var mde = that.mde;
                     let medialist = JSON.parse(xhttp.responseText);
                     that.exposition.integrateRCMediaList(medialist);
-                    console.log(that.exposition.media);
+                    //                    console.log(that.exposition.media);
                     if (continueFunction != undefined) {
                         continueFunction();
                     }
@@ -167,7 +167,7 @@ export class RCExpoModel {
     loadExpositionFromURL(expositionJSONUrl: string) {
         // This is the older (local) backend (not using RC)
         Backend.useRC = false;
-        console.log('this will load the exposition from: ' + expositionJSONUrl);
+        //        console.log('this will load the exposition from: ' + expositionJSONUrl);
         var xhttp = new XMLHttpRequest();
         var that = this; // the wonderfully messed up way scoping works
         xhttp.onreadystatechange = function () {
@@ -206,17 +206,15 @@ export class RCExpoModel {
         this.saveInterval = setInterval(() => {
             if (document.hasFocus() && !self.mde.saved) {
                 self.saveToRC();
-                console.log("saving");
                 self.mde.displaySaveStatus();
             }
-        }, 10000);
+        }, 15000);
 
         this.syncInterval = setInterval(() => { if (document.hasFocus()) { self.syncModelWithRC() } }, 15000);
 
         document.addEventListener('visibilitychange', function () {
 
             if (!document.hidden) {
-                console.log("loading data");
                 self.loadExpositionData();
                 self.syncModelWithRC();
             }
