@@ -1879,6 +1879,7 @@ export class RCMDE {
 
 
     displaySaveStatus() {
+        console.log("displaystatus" + this.saved);
         var el = document.getElementById("rcSave");
         if (el != null && el != undefined && el.innerHTML != "") {
             if (this.saved) {
