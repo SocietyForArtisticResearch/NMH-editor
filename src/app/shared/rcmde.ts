@@ -1508,12 +1508,14 @@ export class RCMDE {
     toolbar: any[];
     toolbarElements: any;
     changed: boolean;
+    saved: boolean;
     exposition: RCExposition;
 
     constructor(exposition: RCExposition, options) {
         this.exposition = exposition;
         this.options = options;
         this.changed = true;
+        this.saved = false;
         options.parent = this;
         // Check if Font Awesome needs to be auto downloaded
         var autoDownloadFA = true;
@@ -1576,7 +1578,7 @@ export class RCMDE {
         // Handle status bar
         if (!options.hasOwnProperty("status")) {
             //	    options.status = ["autosave","lines", "words", "cursor"];
-            options.status = ["lines", "words", "cursor"];
+            options.status = ["lines", "words", "cursor", "rcSave"];
         }
 
 
@@ -1722,6 +1724,7 @@ export class RCMDE {
             }
         };
         self.changed = true;
+        self.saved = false;
         //        text = "# " + this.exposition.title + "\n" + text;
         let insertedTools = insertedCursor.replace(re, function (m, p1) { return self.mediaHTML(p1) });
         let basicHTML = md.render(insertedTools);
@@ -1874,6 +1877,19 @@ export class RCMDE {
         return true;
     }
 
+
+    displaySaveStatus() {
+        var el = document.getElementById("rcSave");
+        if (el != null && el != undefined && el.innerHTML != "") {
+            if (this.saved) {
+                el.innerHTML = "<b><u>All changes saved</u></b>";
+            } else {
+                el.innerHTML = "<i>Not saved</i>";
+            }
+        }
+    }
+
+    // old autosave, unused
     autosave() {
         if (RCMDE.isLocalStorageAvailable()) {
             var simplemde = this;
@@ -2089,6 +2105,7 @@ export class RCMDE {
         var options = this.options;
         var cm = this.codemirror;
 
+        var self = this;
 
         // Make sure the status variable is valid
         if (!status || status.length === 0)
@@ -2136,6 +2153,19 @@ export class RCMDE {
                     onUpdate = function (el) {
                         var pos = cm.getCursor();
                         el.innerHTML = pos.line + ":" + pos.ch;
+                    };
+                } else if (name === "rcSave") {
+                    defaultValue = function (el) {
+                        el.setAttribute("id", "rcSave");
+                        el.innerHTML = "<i>Not saved</i>";
+                    };
+                    onUpdate = function (el) {
+                        el.setAttribute("id", "rcSave");
+                        if (self.saved) {
+                            el.innerHTML = "<b><u>All changes saved</u></b>";
+                        } else {
+                            el.innerHTML = "<i>Not saved</i>";
+                        }
                     };
                 } else if (name === "autosave") {
                     defaultValue = function (el) {

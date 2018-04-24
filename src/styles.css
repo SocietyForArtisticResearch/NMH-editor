@@ -13,16 +13,17 @@
     height: calc(78vh + 18px);
     /* height: 75vh; */
     overflow-y: hidden; 
-    position:relative;
+    position:absolute;
     border-right: none;
 }
 
 
 app-markdown-tool .CodeMirror { 
     width: 50%;
-    height: 78vh;
-    overflow-y: hidden; 
-    position:relative;
+    height: 80vh;
+    overflow-y: hidden;
+    position:absolute;
+    top: 150px;
     border-right: none;
 	/* border-right: none  */
 }
@@ -41,8 +42,11 @@ app-markdown-tool .editor-statusbar {
     background-color:white;
 }
 
-app-markdown-tool .editor-preview-side {
-	width:50%; 
+app-markdown-tool .editor-preview-side {    
+    position: absolute;
+    top:150px;
+    width:50%;
+    max-height: calc(100vh - 148px);
 }
 
 .cm-formatting {
