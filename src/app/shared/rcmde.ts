@@ -1879,13 +1879,12 @@ export class RCMDE {
 
 
     displaySaveStatus() {
-        console.log("displaystatus" + this.saved);
         var el = document.getElementById("rcSave");
         if (el != null && el != undefined && el.innerHTML != "") {
             if (this.saved) {
                 el.innerHTML = "<b><u>All changes saved</u></b>";
             } else {
-                el.innerHTML = "<i>unsaved</i>";
+                el.innerHTML = "<i>Not saved</i>";
             }
         }
     }
@@ -2158,14 +2157,14 @@ export class RCMDE {
                 } else if (name === "rcSave") {
                     defaultValue = function (el) {
                         el.setAttribute("id", "rcSave");
-                        el.innerHTML = "<i>unsaved</i>";
+                        el.innerHTML = "<i>Not saved</i>";
                     };
                     onUpdate = function (el) {
                         el.setAttribute("id", "rcSave");
                         if (self.saved) {
                             el.innerHTML = "<b><u>All changes saved</u></b>";
                         } else {
-                            el.innerHTML = "<i>unsaved</i>";
+                            el.innerHTML = "<i>Not saved</i>";
                         }
                     };
                 } else if (name === "autosave") {

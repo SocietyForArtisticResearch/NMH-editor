@@ -1,71 +1,78 @@
 <div class="container main-app">
-  <div class="row">
+    <div class="row">
 
-<!--   <div [ngClass]="{ 'shifted' : showMedia }">
- -->
-  <div [ngClass]="{ 'hideBecauseModalIsVisible' : shouldHideBecauseModalIsVisible() }">
-	  <input class="editableTitle" 
-      type='text' 
-      value="{{this.rcExpoModel.exposition.title}}" 
-      [(ngModel)]="this.rcExpoModel.exposition.title" 
-      (keyup)="this.rcExpoModel.mde.forceRender()" 
-      data-toggle="tooltip" 
-      data-placement="top" 
-      placeholder="Title"
-      title="Edit title">
-    
-	  <hr>
-	  <button type="button" [class.active]="showMedia" class="btn btn-primary" (click)="onMediaButton()" data-toggle="tooltip" data-placement="top" title="Upload and inspect media">Media list</button>
-	  <button type="button" [disabled]="showImport" class="btn btn-primary" (click)="showImport = true" data-toggle="tooltip" data-placement="top" title="Import a Word file and export the exposition">Import/Export</button>
-	  <button type="button" [class.active]="editStyle" class="btn btn-primary edit-style-button" (click)="toggleStyle()" data-toggle="tooltip" data-placement="top" title="Edit the CSS styling">{{styleButtonMessage}}</button>
-    <app-drag-and-drop *ngIf="!showMedia" class="dropZone" (onChangedObject)=onChangedObject($event)></app-drag-and-drop>  
+	<!--   <div [ngClass]="{ 'shifted' : showMedia }">
+	-->
+	<div [ngClass]="{ 'hideBecauseModalIsVisible' : shouldHideBecauseModalIsVisible() }">
+	    <input class="editableTitle" 
+		   type='text' 
+		   value="{{this.rcExpoModel.exposition.title}}" 
+		   [(ngModel)]="this.rcExpoModel.exposition.title" 
+		   (keyup)="this.rcExpoModel.mde.forceRender()" 
+		   data-toggle="tooltip" 
+		   data-placement="top" 
+		   placeholder="Title"
+		   title="Edit title">
+
+	    	    
+	    <div class="rclink"><a class href="https://www.researchcatalogue.net/profile">My Profile</a> <a href="https://www.researchcatalogue.net/session/logout">Logout</a></div>
+
+	<br>
 	  
 
-    <app-markdown-tool #markdownEditor 
-        [displayMarkdownEditor]="!editStyle"
-        (openObjectListRequest)="showMedia=true">
-    </app-markdown-tool>
+	    <button type="button" [class.active]="showMedia" class="btn btn-primary" (click)="onMediaButton()" data-toggle="tooltip" data-placement="top" title="Upload and inspect media">Media list</button>
+	    <button type="button" [disabled]="showImport" class="btn btn-primary" (click)="showImport = true" data-toggle="tooltip" data-placement="top" title="Import a Word file and export the exposition">Import/Export</button>
+	    <button type="button" [class.active]="editStyle" class="btn btn-primary edit-style-button" (click)="toggleStyle()" data-toggle="tooltip" data-placement="top" title="Edit the CSS styling">{{styleButtonMessage}}</button>
+	    <app-drag-and-drop *ngIf="!showMedia" class="dropZone" (onChangedObject)=onChangedObject($event)></app-drag-and-drop>  
+	    
+
+	    <hr>
+
+	    <app-markdown-tool #markdownEditor 
+			       [displayMarkdownEditor]="!editStyle"
+			       (openObjectListRequest)="showMedia=true">
+	    </app-markdown-tool>
 
 
-    <div *ngIf="editStyle" id="editStyle" class="style-edit-screen">
-      <button class="close" (click)="editStyle=false">&times;</button>
-      <app-style-edit (closeWindow)="editStyle=false"></app-style-edit>
+	    <div *ngIf="editStyle" id="editStyle" class="style-edit-screen">
+		<button class="close" (click)="editStyle=false">&times;</button>
+		<app-style-edit (closeWindow)="editStyle=false"></app-style-edit>
+	    </div>
+	    
+
+
+	</div>
+
+	<!-- Media object list -->
+
+	<div [style.display]="showMedia ? 'block' : 'none'" id="mediaPanel" class="modal">
+	    <div class="modal-content modal-media-content">
+		<button class="close" (click)="closeMedia();">&times;</button>
+		<app-object-list id="appObjectList" #objectList (onObjectWasChosen)="showMedia=false"></app-object-list>
+	    </div>
+	</div>
+
+
+
+	<!-- Import / export modal view -->
+	<div *ngIf="showImport" id="importPanel" class="modal">
+
+	    <!-- Modal content -->
+	    <div class="modal-content import-content">
+		<button class="close" (click)="showImport=false">&times;</button>
+		<app-doc-uploader></app-doc-uploader>
+	    </div>
+	</div>
+
+
+
+	<!--   <div *ngIf="editStyle" id="editStyle" class="modal">
+	     <div class="modal-content style-modal-window">
+	     <button class="close" (click)="editStyle=false">&times;</button>
+	     <app-style-edit (closeWindow)="editStyle=false"></app-style-edit>
+	     </div>
+	     </div> -->
     </div>
-  
-
-
-  </div>
-
-  <!-- Media object list -->
-
-  <div [style.display]="showMedia ? 'block' : 'none'" id="mediaPanel" class="modal">
-    <div class="modal-content modal-media-content">
-      <button class="close" (click)="closeMedia();">&times;</button>
-      <app-object-list id="appObjectList" #objectList (onObjectWasChosen)="showMedia=false"></app-object-list>
-    </div>
-  </div>
-
-
-
-  <!-- Import / export modal view -->
-  <div *ngIf="showImport" id="importPanel" class="modal">
-
-    <!-- Modal content -->
-    <div class="modal-content import-content">
-      <button class="close" (click)="showImport=false">&times;</button>
-    <app-doc-uploader></app-doc-uploader>
-    </div>
-  </div>
-
-
-
-<!--   <div *ngIf="editStyle" id="editStyle" class="modal">
-    <div class="modal-content style-modal-window">
-      <button class="close" (click)="editStyle=false">&times;</button>
-      <app-style-edit (closeWindow)="editStyle=false"></app-style-edit>
-    </div>
-    </div> -->
-  </div>
 </div>
 
 

@@ -108,9 +108,21 @@ input.editableTitle:focus, input.editableTitle {
     font-size: 18px;
     outline:none;
     border: 1px dashed #dedede;
-    margin-top:20px;
-    margin-bottom:10px;
+    margin-top:15px;
+    margin-bottom:2px;
     font-size:24px;
+}
+
+
+.rclink {
+    margin-top:20px;
+    float: right;
+}
+
+.rclink a {
+    margin-left: 12px;
+    font-size: 14px;
+    color: #000;
 }
 
 hr {
