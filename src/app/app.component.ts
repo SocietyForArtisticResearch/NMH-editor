@@ -17,7 +17,8 @@ import { switchMap } from 'rxjs/operators';
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.css'],
-    providers: [RCExpoModel, RCBackendMediaUpload]
+    providers: [RCExpoModel, RCBackendMediaUpload],
+    host: {'(window:keydown)': 'hotkeys($event)'},
 })
 export class AppComponent implements OnInit {
     @HostListener('window:beforeunload', ['$event'])
@@ -66,6 +67,21 @@ export class AppComponent implements OnInit {
     closeMedia() {
         this.showMedia = false;
         this.markdownEditor.refocus();
+    }
+
+    hotkeys(event) {
+        // on escape key, close windows
+        if (event.keyCode === 27) { 
+            if(this.showImport) {
+                this.showImport = false;
+            }
+            if (this.showMedia) {
+                this.showMedia = false;
+            }
+            if (this.editStyle) {
+                this.editStyle = false;
+            }
+        }
     }
 
     getParam(param) {
