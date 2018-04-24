@@ -2157,11 +2157,11 @@ export class RCMDE {
                     };
                 } else if (name === "rcSave") {
                     defaultValue = function (el) {
-                        el.setAttribute("id", "autosaved");
+                        el.setAttribute("id", "rcSave");
                         el.innerHTML = "<i>unsaved</i>";
                     };
                     onUpdate = function (el) {
-                        el.setAttribute("id", "autosaved");
+                        el.setAttribute("id", "rcSave");
                         if (self.saved) {
                             el.innerHTML = "<b><u>All changes saved</u></b>";
                         } else {
