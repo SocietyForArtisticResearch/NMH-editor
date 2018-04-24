@@ -1578,7 +1578,7 @@ export class RCMDE {
         // Handle status bar
         if (!options.hasOwnProperty("status")) {
             //	    options.status = ["autosave","lines", "words", "cursor"];
-            options.status = ["lines", "words", "cursor"];
+            options.status = ["lines", "words", "cursor", "rcSave"];
         }
 
 
