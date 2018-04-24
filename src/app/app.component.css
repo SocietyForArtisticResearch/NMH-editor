@@ -138,21 +138,21 @@ hr {
 }
 
 .edit-style-button.active {
-    background-color:#cdcdcd;
+    background-color:#cdcdcd    ;
     color:#333;
 }
 
 .btn  {
     background-color:#fbfbff;
     color:#333;
-    border-radius:1px;
+    border-radius:3px;
     border-color:black;
 }
 
 .btn:active {
     background:#dedede;
     color:#333;
-    border-radius:1px;
+    border-radius:3px;
     border-color:black;
 }
 
