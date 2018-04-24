@@ -10,10 +10,11 @@
 
 
 .css-edit-screen  .CodeMirror {
-    height: calc(78vh + 18px);
-    /* height: 75vh; */
-    overflow-y: hidden; 
+    width: 50%;
+    height: 80vh;
+    overflow-y: hidden;
     position:absolute;
+    top: 150px;
     border-right: none;
 }
 
