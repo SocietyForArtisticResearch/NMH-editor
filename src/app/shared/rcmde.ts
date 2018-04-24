@@ -1508,12 +1508,14 @@ export class RCMDE {
     toolbar: any[];
     toolbarElements: any;
     changed: boolean;
+    saved: boolean;
     exposition: RCExposition;
 
     constructor(exposition: RCExposition, options) {
         this.exposition = exposition;
         this.options = options;
         this.changed = true;
+        this.saved = false;
         options.parent = this;
         // Check if Font Awesome needs to be auto downloaded
         var autoDownloadFA = true;
@@ -1722,6 +1724,7 @@ export class RCMDE {
             }
         };
         self.changed = true;
+        self.saved = false;
         //        text = "# " + this.exposition.title + "\n" + text;
         let insertedTools = insertedCursor.replace(re, function (m, p1) { return self.mediaHTML(p1) });
         let basicHTML = md.render(insertedTools);
@@ -2089,6 +2092,7 @@ export class RCMDE {
         var options = this.options;
         var cm = this.codemirror;
 
+        var self = this;
 
         // Make sure the status variable is valid
         if (!status || status.length === 0)
@@ -2136,6 +2140,17 @@ export class RCMDE {
                     onUpdate = function (el) {
                         var pos = cm.getCursor();
                         el.innerHTML = pos.line + ":" + pos.ch;
+                    };
+                } else if (name === "rcSave") {
+                    defaultValue = function (el) {
+                        el.innerHTML = "<i>unsaved</i>";
+                    };
+                    onUpdate = function (el) {
+                        if (self.saved) {
+                            el.innerHTML = "<b></u>All changes saved</u></b>";
+                        } else {
+                            el.innerHTML = "<i>unsaved</i>";
+                        }
                     };
                 } else if (name === "autosave") {
                     defaultValue = function (el) {

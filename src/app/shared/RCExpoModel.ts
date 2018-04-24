@@ -90,7 +90,6 @@ export class RCExpoModel {
         this.exposition = new RCExposition('');
         this.exposition.style = defaultStyle;
 
-
     }
 
     syncModelWithRC(continueFunction?: () => void) {
@@ -110,13 +109,12 @@ export class RCExpoModel {
 
                 }
             };
-            //        console.log(`${Backend.rcBaseAddress}text-editor/simple-media-list?research=${id}`);
+
             xhttp.open("GET", `${Backend.rcBaseAddress}text-editor/simple-media-list?research=${id}`, true);
             xhttp.send();
         } catch (err) {
             console.log('an error occured trying to sync media: ', err);
         }
-        //      console.log("sent request");
     }
 
     loadExpositionData() {
@@ -132,14 +130,11 @@ export class RCExpoModel {
                 self.exposition.markdownInput = expositionJSON.markdown;
                 self.exposition.renderedHTML = expositionJSON.html;
                 self.exposition.style = expositionJSON.style;
-                //                console.log("mde");
-                //              console.log(self.mde);
                 self.mde.exposition = self.exposition;
                 self.mde.value(self.exposition.markdownInput);
                 self.mde.render();
             }
         };
-        //        console.log(`${Backend.rcBaseAddress}text-editor/simple-media-list?research=${id}`);
         xhttp.open("GET", `${Backend.rcBaseAddress}text-editor/load?research=${id}&weave=${weave}`, true);
         xhttp.send();
     }
@@ -154,6 +149,7 @@ export class RCExpoModel {
         let id = this.exposition.id;
         let weave = this.exposition.currentWeave;
         let fd = new FormData();
+        let self = this;
         fd.append("html", this.exposition.renderedHTML);
         fd.append("markdown", this.exposition.markdownInput);
         fd.append("media", null); // TODO send media list/see if necessary
@@ -161,13 +157,11 @@ export class RCExpoModel {
         fd.append("title", this.exposition.title);
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
-            console.log("saved");
-            // set autosave status
+            self.mde.saved = true;
+            //            console.log("saved");
         };
-        //        xhttp.open("GET", `${Backend.rcBaseAddress}text-editor/save?research=${id}&weave=${weave}`, true);
         xhttp.open("POST", `${Backend.rcBaseAddress}text-editor/save?research=${id}&weave=${weave}`, true);
         xhttp.send(fd);
-        //        xhttp.send({ html: this.exposition.renderedHTML, markdown: this.exposition.markdownInput, media: [], style: this.exposition.style });
     }
 
     loadExpositionFromURL(expositionJSONUrl: string) {
@@ -180,13 +174,11 @@ export class RCExpoModel {
             if (this.readyState == 4 && this.status == 200) {
                 var mde = that.mde;
                 let expositionJSON = JSON.parse(xhttp.responseText);
-                //  console.log(expositionJSON);
                 let exposition = RCExpositionDeserializer.restoreObject(expositionJSON);
-                //  console.log(exposition);
                 exposition.media.forEach(m => m.html = undefined);
                 that.exposition = exposition;
                 mde.exposition = exposition;
-                //          console.log(exposition.markdownInput);
+                mde.saved = true;
                 that.mde.value(exposition.markdownInput);
                 that.mde.render();
             }
@@ -201,7 +193,6 @@ export class RCExpoModel {
     loadExpositionFromRC(id: number, weave: number) {
         Backend.useRC = true;
         // TODO get json from RC!
-        // get media-list
         let self = this;
         let new_exposition = new RCExposition('');
         new_exposition.id = id;
@@ -212,15 +203,12 @@ export class RCExpoModel {
 
         this.loadExpositionData();
 
-        this.saveInterval = setInterval(() => { if (document.hasFocus()) { console.log("saving"); this.saveToRC() } }, 20000);
+        this.saveInterval = setInterval(() => { if (document.hasFocus() && !self.mde.saved) { this.saveToRC() } }, 20000);
 
         this.syncInterval = setInterval(() => { if (document.hasFocus()) { this.syncModelWithRC() } }, 15000);
 
-        //        window.onfocus = () => { console.log("loading data"); this.loadExpositionData; this.syncModelWithRC() };
-
         document.addEventListener('visibilitychange', function () {
 
-            //	    document.title = document.hidden;
             if (!document.hidden) {
                 console.log("loading data");
                 self.loadExpositionData();
@@ -228,8 +216,5 @@ export class RCExpoModel {
             }
         })
 
-        //        this.mde.exposition = new_exposition;
-        //      this.mde.value(new_exposition.markdownInput);
-        //    this.mde.render();
     }
 }
