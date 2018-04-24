@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, ViewChild, AfterViewInit, ElementRef, Output, EventEmitter } from '@angular/core';
 import { RCExpoModel } from '../../shared/RCExpoModel';
 import * as Editor from '../../shared/rcmde';
+import { Backend } from '../../shared/Backend';
 
 // This is the actual markdown text editor, (so not a media tool in the object list)
 @Component({
@@ -40,6 +41,12 @@ export class MarkdownToolComponent implements AfterViewInit {
         this.mde.drawMediaCallback = () => {
             this.openObjectList();
         };
+
+        this.mde.openPreviewCallback = () => {
+            if (Backend.useRC) {
+                this.rcExpoModel.saveToRC();
+            }
+        }
 
         //        this.mde.toggleSideBySide();
 

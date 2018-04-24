@@ -938,6 +938,8 @@ export function toggleSideBySide(editor) {
  * Preview action.
  */
 function togglePreview(editor) {
+    editor.drawMediaCallback(); // is it safe ?
+
     var cm = editor.codemirror;
     var wrapper = cm.getWrapperElement();
     var toolbar_div = wrapper.previousSibling;
@@ -1504,6 +1506,7 @@ export class RCMDE {
     codemirror: CodeMirror;
     gui: any;
     public drawMediaCallback: () => void;
+    public openPreviewCallback: () => void;
     autosaveTimeoutId: number;
     toolbar: any[];
     toolbarElements: any;
