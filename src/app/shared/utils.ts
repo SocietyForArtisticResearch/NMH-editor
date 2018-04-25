@@ -24,5 +24,5 @@ export function getExtension(fileNameStr : string) {
 export function checkTypeUsingFilename(filename:string ,allowed : string[]) {
 	var ext = filename.split('.').pop();
 	let checker = check => check !== ext // ext does not equal allowed, thus 
-	return allowed.every(checker); // if all is true (no match) = wrong type.
+	return !allowed.every(checker); // if all is true (no match) = wrong type.
 }
