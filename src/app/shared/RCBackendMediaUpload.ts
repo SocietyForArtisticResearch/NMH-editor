@@ -163,7 +163,7 @@ export class RCBackendMediaUpload {
                 console.log('edit tool call');
                 that.rcExpoModel.syncModelWithRC();
             } else {
-                console.log('RC Simple Media API error, edit (status, response):  ',this.status);
+                console.log('RC Simple Media API error, edit (status, response):  ',this.status,this.response);
             }
         };
         xhttp.open("POST", `${Backend.rcBaseAddress}text-editor/simple-media-edit?research=${expositionid}&simple-media=${rcobjectid}`, true);
