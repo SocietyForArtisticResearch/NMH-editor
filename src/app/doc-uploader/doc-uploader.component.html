@@ -2,18 +2,18 @@
 	<div class="row">
 		<div class="col-md-4">
 			<h5>Import external format</h5>
-			<label for="docFileInput"><b>.docx</b> or <b>.odt:</b></label>
+			<label for="docFileInput">{{formattedTypes()}}</label>
 			<input id="docFileInput" class="form-control-file" type="file" (change)="onFileSelected($event)" name="file">
 			<button class="btn btn-xs"type="submit" (click)="onDocUpload()">Upload</button>
 			<span *ngIf="fileUploadStatus">{{fileUploadStatus}}</span>
 		</div>
 		<div class="col-md-4">
-			<h5>Import/Export</h5>
+			<h5>Import/export to disc</h5>
 			<label for="jsonFileSelect">Select saved exposition (.json):</label>
 			<input id="jsonFileSelect" class="form-control-file" type="file" (change)="onJsonSelected($event)" name="jsonImport">
-			<button class="btn btn-xs" (click)="onJsonImport()">Import RC format</button>
+			<button class="btn btn-xs" (click)="onJsonImport()">Import in RC format (.json)</button>
 			<br><br>
-			<button class="btn btn-xs" (click)="jsonDownload()">Export RC format</button>
+			<button class="btn btn-xs" (click)="jsonDownload()">Export in RC format (.json)</button>
 		</div>
 		<div class="col-md-3">
 			<h5>Export to other formats</h5>

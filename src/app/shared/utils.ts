@@ -16,3 +16,13 @@ export function flatten(arr) {
         return flat.concat(Array.isArray(toFlatten) ? flatten(toFlatten) : toFlatten);
     }, []);
 }
+
+export function getExtension(fileNameStr : string) {
+	return fileNameStr.split('.').pop();
+}
+
+export function checkTypeUsingFilename(filename:string ,allowed : string[]) {
+	var ext = filename.split('.').pop();
+	let checker = check => check !== ext // ext does not equal allowed, thus 
+	return allowed.every(checker); // if all is true (no match) = wrong type.
+}
