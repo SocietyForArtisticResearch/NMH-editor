@@ -217,6 +217,9 @@ export class RCExpoModel {
             if (!document.hidden) {
                 self.loadExpositionData();
                 self.syncModelWithRC();
+            } else {
+                self.saveToRC();
+                self.mde.displaySaveStatus();
             }
         })
 
