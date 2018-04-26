@@ -28,8 +28,18 @@ __I've updated *mnh-backend* with an extra uploadAngular option, that returns js
 
 * I will add copyright, userclass & description fields
 * Change the upload to use the RC (make a switch)
-* 
 
+
+* Image size dealings:
+- remove the pixel boxes from basic-tool
+- replace with class
+
+.rc-image-float-left
+.rc-image-float-right
+.rc-image-float-center
+.custom 
+
+getObjectWithID () .userclass('');
 ### responsiveness issues:
 
 * object list needs to relocate drag and dropzone.
