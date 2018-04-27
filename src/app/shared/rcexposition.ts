@@ -238,7 +238,7 @@ export class RCExposition {
     }
 
     serializeMedia() {
-        return JSON.stringify(this.media, null, 4);
+        return JSON.stringify(this.media.map(el => el.getMediaInfo()), null, 4);
     }
 }
 
@@ -346,8 +346,9 @@ export class RCObject {
         }
     }
 
-
-
+    getMediaInfo() {
+        return { id: this.id, userClass: this.userClass, tocDepth: this.tocDepth }
+    }
 }
 
 // generic prototype media class for image, svg, pdf, video, audio
