@@ -18,7 +18,7 @@ import { switchMap } from 'rxjs/operators';
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.css'],
     providers: [RCExpoModel, RCBackendMediaUpload],
-    host: {'(window:keydown)': 'hotkeys($event)'},
+    host: { '(window:keydown)': 'hotkeys($event)' },
 })
 export class AppComponent implements OnInit {
     @HostListener('window:beforeunload', ['$event'])
@@ -31,6 +31,7 @@ export class AppComponent implements OnInit {
     editStyle: boolean = false;
     loadedExpositionURL$: Observable<any>;
     styleButtonMessage: string = "Edit style";
+    hostname: string = location.hostname;
 
     @ViewChild(ObjectListComponent) objectList: ObjectListComponent;
     @ViewChild(MarkdownToolComponent) markdownEditor: MarkdownToolComponent;
@@ -71,8 +72,8 @@ export class AppComponent implements OnInit {
 
     hotkeys(event) {
         // on escape key, close windows
-        if (event.keyCode === 27) { 
-            if(this.showImport) {
+        if (event.keyCode === 27) {
+            if (this.showImport) {
                 this.showImport = false;
             }
             if (this.showMedia) {
