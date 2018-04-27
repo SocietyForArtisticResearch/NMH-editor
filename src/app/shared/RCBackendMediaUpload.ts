@@ -34,7 +34,7 @@ export class RCBackendMediaUpload {
          * uploads a file to RC, and takes a callback to return the result.
          * add media: https://dev.researchcatalogue.net/text-editor/simple-media-add?research=32350 
          * (POST) mit {mediatype=video|image|audio|pdf, media=FILE, name=XXX, copyrightholder=XXX, description=XXX}
-        */ 
+        */
 
         let selectedFile = fileList[0];
         // using Javascript file api, may not work everywhere ?
@@ -42,7 +42,7 @@ export class RCBackendMediaUpload {
 
         // fetch some values for metadata (for drag and drop convenience)
 
-        let authors = "";//this.rcExpoModel.exposition.authors[0] ? this.rcExpoModel.exposition.authors[0] : 'no author';
+        let authors = " ";//this.rcExpoModel.exposition.authors[0] ? this.rcExpoModel.exposition.authors[0] : 'no author';
 
         let rcMetaData: RCMetaData = {
             // default values:

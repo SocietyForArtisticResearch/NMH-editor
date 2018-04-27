@@ -228,6 +228,19 @@ export class RCExposition {
         RCMediaList.filter(m => m.media != null).forEach(m => self.updateOrCreateObject(m));
     }
 
+    integrateSerializedMediaInfo(infoList: Array<any>) {
+        infoList.forEach(info => {
+            let ob = this.getObjectWithID(info.id);
+            if (ob != undefined) {
+                if (info.userClass != undefined) {
+                    ob.userClass = info.userClass;
+                };
+                if (info.tocDepth != undefined) {
+                    ob.tocDepth = info.toDepth;
+                };
+            }
+        })
+    }
 
 
     /**
