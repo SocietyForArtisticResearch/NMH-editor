@@ -236,6 +236,10 @@ export class RCExposition {
     serialize() {
         return JSON.stringify(this, null, 4);
     }
+
+    serializeMedia() {
+        return JSON.stringify(this.media, null, 4);
+    }
 }
 
 
