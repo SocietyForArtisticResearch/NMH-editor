@@ -130,6 +130,7 @@ export class RCExpoModel {
                 self.exposition.title = expositionJSON.title;
                 self.exposition.markdownInput = expositionJSON.markdown;
                 self.exposition.renderedHTML = expositionJSON.html;
+                self.exposition.media = RCExpositionDeserializer.restoreObject(expositionJSON.media);
                 self.exposition.style = expositionJSON.style;
                 self.mde.exposition = self.exposition;
                 self.mde.value(self.exposition.markdownInput);
@@ -200,18 +201,18 @@ export class RCExpoModel {
         new_exposition.currentWeave = weave;
         this.exposition = new_exposition;
 
-        this.syncModelWithRC();
-
         this.loadExpositionData();
+
+        this.syncModelWithRC();
 
         this.saveInterval = setInterval(() => {
             if (document.hasFocus() && !self.mde.saved) {
                 self.saveToRC();
                 self.mde.displaySaveStatus();
             }
-        }, 15000);
+        }, 12000);
 
-        this.syncInterval = setInterval(() => { if (document.hasFocus()) { self.syncModelWithRC() } }, 15000);
+        this.syncInterval = setInterval(() => { if (document.hasFocus()) { self.syncModelWithRC() } }, 30000);
 
         document.addEventListener('visibilitychange', function () {
 
