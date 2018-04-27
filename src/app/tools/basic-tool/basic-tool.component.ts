@@ -41,6 +41,14 @@ export class BasicToolComponent implements OnInit {
     formattedMessage: string;
     fileUploadStatus: string = null;
 
+    imageUserClasses: any[] = [
+        {Value: 'rcImageFullWidth', text: 'big'},
+        {Value: 'rcImageMedium', text: 'medium' },
+        {Value: 'rcImageSmall', text: 'small'},
+        {Value: 'rcImageFloatLeft', text: 'small & float left'},
+        {Value: 'rcImageFloatRight', text: 'small & float right'},
+        {Value: 'custom', text: 'custom (not available yet)' }];
+
     identifier: number;
     
     @Input() rcobject: RCMedia;
@@ -64,6 +72,7 @@ export class BasicToolComponent implements OnInit {
         this.identifier = this.rcobject.id;
 
         let copyrightValue = this.rcobject.copyright ? this.rcobject.copyright : '© 2018';
+       
         // initialize fields with data from object:
         this.toolForm = new FormGroup({
             'name': new FormControl(this.rcobject.name,
@@ -74,6 +83,7 @@ export class BasicToolComponent implements OnInit {
             'fileUrl': new FormControl(this.rcobject.url, [Validators.required]),
             'widthInPixels': new FormControl(this.rcobject.pxWidth),
             'heightInPixels': new FormControl(this.rcobject.pxHeight),
+            'imageClassSelect' : new FormControl(this.rcobject.userClass),
             'filePickerButton': new FormControl(null),
             'copyright' : new FormControl(copyrightValue),
             'description' : new FormControl(this.rcobject.description),

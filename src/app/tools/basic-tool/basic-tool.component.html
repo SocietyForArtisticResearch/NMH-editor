@@ -23,12 +23,30 @@
           <input formControlName="fileUrl" class="" id="'fileUrlField'+{{id}}" type="text">
           </div>
           
-         <fieldset class="rc-bject-meta-properties" *ngIf="toolForm.controls['fileUrl'].status === 'VALID'">
+         <fieldset class="rc-object-meta-properties" *ngIf="toolForm.controls['fileUrl'].status === 'VALID'">
+            <label for="imageClassSelect">
+              How should this image be displayed?
+            </label>
+            <select formControlName="imageClassSelect" name="imageClassSelect">
+              <option *ngFor="let imgClass of imageUserClasses" 
+                [value]="imgClass.Value"
+                [attr.selected]="rcobject.userclass == imgClass.Value ? true: null">
+                {{imgClass.text}}
+              </option>
+            </select>
+
+            <!-- 
+            <div *ngIf="toolForm.controls['imageClassSelect'].value == 'custom css'">
+            <label for="customUserClass">provide your custom class name: </label>
+            <input fromControlName="customUserClass" size="7" name="customUserClass">
+            </div>
+  
+
             <label for="{{'pxWidthField'+id}}">Width in pixels:</label>
             <input formControlName="widthInPixels" class="f" id="{{'pxWidthField'+id}}" type="number">
 
             <label for="{{'pxHeightField'+id}}">Height in pixels:</label>
-            <input formControlName="heightInPixels" class="" id="{{'pxHeightField'+id}}" type="number">
+            <input formControlName="heightInPixels" class="" id="{{'pxHeightField'+id}}" type="number"> -->
 
             <label for="'copyright'+id">Copyright:</label>
             <input formControlName="copyright" id="{{'copyrightField'+id}}">
