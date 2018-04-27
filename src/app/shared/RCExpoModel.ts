@@ -130,7 +130,7 @@ export class RCExpoModel {
                 self.exposition.title = expositionJSON.title;
                 self.exposition.markdownInput = expositionJSON.markdown;
                 self.exposition.renderedHTML = expositionJSON.html;
-                //                self.exposition.media = RCExpositionDeserializer.restoreObject(expositionJSON.media);
+                self.exposition.media = RCExpositionDeserializer.restoreObject(JSON.parse(expositionJSON.media));
                 self.exposition.style = expositionJSON.style;
                 self.mde.exposition = self.exposition;
                 self.mde.value(self.exposition.markdownInput);
