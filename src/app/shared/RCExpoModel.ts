@@ -125,7 +125,7 @@ export class RCExpoModel {
         xhttp.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
                 let expositionJSON = JSON.parse(xhttp.responseText);
-                console.log(expositionJSON.media);
+                console.log(RCExpositionDeserializer.restoreObject(expositionJSON.media));
                 //                console.log(expositionJSON);
                 self.exposition.title = expositionJSON.title;
                 self.exposition.markdownInput = expositionJSON.markdown;
