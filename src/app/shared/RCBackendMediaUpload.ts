@@ -44,9 +44,11 @@ export class RCBackendMediaUpload {
 
         let authors = " ";//this.rcExpoModel.exposition.authors[0] ? this.rcExpoModel.exposition.authors[0] : 'no author';
 
+        let copyrightholder = "Please insert copyright information";
+
         let rcMetaData: RCMetaData = {
             // default values:
-            copyrightholder: authors,
+            copyrightholder: copyrightholder,
             description: '',
             name: selectedFile.name
         };
