@@ -151,7 +151,7 @@ export class ObjectListComponent implements OnInit {
 
     getTranscodingStatus(rcObject: RCObject) {
         // catch no media selected message
-        if (rcObject.transcodingStatus.includes('<div>')) {
+        if (rcObject.transcodingStatus.includes('No media file available')) {
             return '';
         } 
         return rcObject.transcodingStatus;
