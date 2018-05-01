@@ -43,9 +43,10 @@ export class MarkdownToolComponent implements AfterViewInit {
         };
 
         this.mde.openPreviewCallback = () => {
-            if (Backend.useRC) {
-                this.rcExpoModel.saveToRC();
-            }
+            console.log('table of contents (debug):',this.rcExpoModel.exposition.getTOC());
+            // if (Backend.useRC) {
+            //     this.rcExpoModel.saveToRC();
+            // }
         }
 
         //        this.mde.toggleSideBySide();

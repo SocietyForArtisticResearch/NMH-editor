@@ -149,5 +149,13 @@ export class ObjectListComponent implements OnInit {
         return this.rcExpoModel.exposition.media.length > 0;
     }
 
+    getTranscodingStatus(rcObject: RCObject) {
+        // catch no media selected message
+        if (rcObject.transcodingStatus.includes('<div>')) {
+            return '';
+        } 
+        return rcObject.transcodingStatus;
+    }
+
 
 }

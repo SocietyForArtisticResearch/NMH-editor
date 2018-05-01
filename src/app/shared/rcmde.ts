@@ -1276,6 +1276,9 @@ function wordCount(data) {
 }
 
 function openPreview(editor) {
+    console.log('this is called');
+    console.log(editor.openPreviewCallback);
+    editor.openPreviewCallback();
     var w = window.open("", "Preview");
     w.document.write(editor.exposition.renderedHTML);
     // let boot: HTMLLinkElement = w.document.createElement("link");
