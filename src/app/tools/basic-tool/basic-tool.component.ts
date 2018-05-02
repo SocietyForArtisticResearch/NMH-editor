@@ -72,8 +72,9 @@ export class BasicToolComponent implements OnInit {
         this.identifier = this.rcobject.id;
 
         let copyrightValue = this.rcobject.copyright ? this.rcobject.copyright : '© 2018';
-        let imageClassSelect = this.rcobject.userClass ? this.rcobject.userClass : 'rcImageFullWidth';
-       
+        let imageClassSelectValue = this.rcobject.userClass ? this.rcobject.userClass : 'rcImageFullWidth';
+        //console.log('value',imageClassSelectValue,'userclass:', this.rcobject.userClass)
+
         // initialize fields with data from object:
         this.toolForm = new FormGroup({
             'name': new FormControl(this.rcobject.name,
@@ -84,7 +85,7 @@ export class BasicToolComponent implements OnInit {
             'fileUrl': new FormControl(this.rcobject.url, [Validators.required]),
             'widthInPixels': new FormControl(this.rcobject.pxWidth),
             'heightInPixels': new FormControl(this.rcobject.pxHeight),
-            'imageClassSelect' : new FormControl(imageClassSelect),
+            'imageClassSelect' : new FormControl(imageClassSelectValue),
             'filePickerButton': new FormControl(null),
             'copyright' : new FormControl(copyrightValue),
             'description' : new FormControl(this.rcobject.description),
@@ -98,7 +99,6 @@ export class BasicToolComponent implements OnInit {
             this.toolForm.get('widthInPixels').valueChanges.subscribe( val => { this.onLocalPropertyChange(val); });
             this.toolForm.get('heightInPixels').valueChanges.subscribe( val => { this.onLocalPropertyChange(val); });
             this.toolForm.get('imageClassSelect').valueChanges.subscribe (val => { this.onLocalPropertyChange(val); });
-
 
             this.toolForm.get('copyright').valueChanges.subscribe( val =>  { this.onRCMetaDataChange(val); });
             this.toolForm.get('description').valueChanges.subscribe( val =>  { this.onRCMetaDataChange(val); });
@@ -187,6 +187,7 @@ export class BasicToolComponent implements OnInit {
 
     ngOnChanges(changes: SimpleChanges) {
         console.log('what has changed:',changes);
+        let imageClassSelectValue = this.rcobject.userClass ? this.rcobject.userClass : 'rcImageFullWidth';
 
         // if the object was changed in model (through resync for example), fill fields with data from model
         if (this.toolForm) {
@@ -196,6 +197,7 @@ export class BasicToolComponent implements OnInit {
                 'widthInPixels': this.rcobject.pxWidth,
                 'heightInPixels': this.rcobject.pxHeight,
                 'filePickerButton': null,
+                'imageClassSelect': imageClassSelectValue,
                 'copyright': this.rcobject.copyright,
                 'description' : this.rcobject.description,
             });
