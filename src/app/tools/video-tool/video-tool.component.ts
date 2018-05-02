@@ -31,6 +31,7 @@ export class VideoToolComponent extends BasicToolComponent {
         newObject.copyright = formModel.copyright;
         newObject.thumb = this.rcobject.thumb;
         newObject.transcodingStatus = this.rcobject.transcodingStatus;
+        newObject.userClass = formModel.imageClassSelect;
         return newObject;
     }
 }
