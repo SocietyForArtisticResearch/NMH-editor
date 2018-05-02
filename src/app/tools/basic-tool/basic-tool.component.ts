@@ -72,6 +72,7 @@ export class BasicToolComponent implements OnInit {
         this.identifier = this.rcobject.id;
 
         let copyrightValue = this.rcobject.copyright ? this.rcobject.copyright : '© 2018';
+        let imageClassSelect = this.rcobject.userClass ? this.rcobject.userClass : 'rcImageFullWidth';
        
         // initialize fields with data from object:
         this.toolForm = new FormGroup({
@@ -83,7 +84,7 @@ export class BasicToolComponent implements OnInit {
             'fileUrl': new FormControl(this.rcobject.url, [Validators.required]),
             'widthInPixels': new FormControl(this.rcobject.pxWidth),
             'heightInPixels': new FormControl(this.rcobject.pxHeight),
-            'imageClassSelect' : new FormControl(this.rcobject.userClass),
+            'imageClassSelect' : new FormControl(imageClassSelect),
             'filePickerButton': new FormControl(null),
             'copyright' : new FormControl(copyrightValue),
             'description' : new FormControl(this.rcobject.description),
