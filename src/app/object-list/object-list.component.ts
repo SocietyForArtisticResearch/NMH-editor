@@ -153,11 +153,14 @@ export class ObjectListComponent implements OnInit {
         // catch no media selected message
         let status = rcObject.transcodingStatus;
 
-        if (status.includes('No media file available')) {
-            return '';
-        } if (status.includes('Transcoding job for media file')) {
-            return "transcoding in progress";
-        } 
+        if (status) {
+            if (status.includes('No media file available')) {
+                return '';
+            } 
+            if (status.includes('Transcoding job for media file')) {
+                return "transcoding in progress";
+            } 
+        }
         return rcObject.transcodingStatus;
     }
 

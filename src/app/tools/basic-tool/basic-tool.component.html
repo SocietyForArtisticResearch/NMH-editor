@@ -24,6 +24,7 @@
           </div>
           
          <fieldset class="rc-object-meta-properties" *ngIf="toolForm.controls['fileUrl'].status === 'VALID'">
+            <div [style.display]="rcobject.__className === 'RCImage' ? 'default' : 'none' ">
             <label for="imageClassSelect">
               How should this image be displayed?
             </label>
@@ -34,6 +35,7 @@
                 {{imgClass.text}}
               </option>
             </select>
+          </div>
 
             <!-- 
             <div *ngIf="toolForm.controls['imageClassSelect'].value == 'custom css'">
