@@ -126,7 +126,7 @@ export class RCExpoModel {
             if (this.readyState == 4 && this.status == 200) {
                 let expositionJSON = JSON.parse(xhttp.responseText);
                 //                console.log(JSON.parse(expositionJSON.media));
-                //                console.log(expositionJSON);
+                console.log(expositionJSON);
                 self.exposition.title = expositionJSON.title;
                 self.exposition.markdownInput = expositionJSON.markdown;
                 self.exposition.renderedHTML = expositionJSON.html;
@@ -153,6 +153,8 @@ export class RCExpoModel {
         let weave = this.exposition.currentWeave;
         let fd = new FormData();
         let self = this;
+        console.log("Serialize media:")
+        console.log(this.exposition.serializeMedia());
         fd.append("html", this.exposition.renderedHTML);
         fd.append("markdown", this.exposition.markdownInput);
         fd.append("media", this.exposition.serializeMedia()); // TODO send media list/see if necessary
@@ -213,7 +215,8 @@ export class RCExpoModel {
             }
         }, 12000);
 
-        this.syncInterval = setInterval(() => { if (document.hasFocus()) { self.syncModelWithRC() } }, 30000);
+        this.syncInterval = setInterval(() => { if (document.hasFocus()) { self.syncModelWithRC() } }
+            , 30000);
 
         document.addEventListener('visibilitychange', function () {
 
