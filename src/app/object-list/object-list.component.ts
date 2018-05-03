@@ -150,18 +150,27 @@ export class ObjectListComponent implements OnInit {
     }
 
     getTranscodingStatus(rcObject: RCObject) {
-        // catch no media selected message
+        if(rcObject.__className === 'RCImage') {
+            // images don't need a transcoding status.
+            return '';
+        }
+
         let status = rcObject.transcodingStatus;
+        let result = ' status : ';
 
         if (status) {
+            // catch no media selected message
             if (status.includes('No media file available')) {
-                return '';
+                return result+'';
             } 
-            if (status.includes('Transcoding job for media file')) {
-                return "transcoding in progress";
+            else if (status.includes('Transcoding job for media file')) {
+                return result+"transcoding in progress";
             } 
-        }
-        return rcObject.transcodingStatus;
+            else {
+                return result + rcObject.transcodingStatus;
+            }
+        } 
+        return '';
     }
 
 
