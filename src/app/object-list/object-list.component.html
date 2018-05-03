@@ -14,6 +14,7 @@
 		       [isBigger]="true"
 		       (onChangedObject)="onChangedObject($event)">
 	    </app-drag-and-drop>
+	    <button type="button" (click)="rcExpoModel.syncModelWithRC()" class="btn btn-primary">Sync(test)</button>
 	    
 	    <div *ngIf="mediaHasObjects()">
 
