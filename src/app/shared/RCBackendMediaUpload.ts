@@ -153,23 +153,23 @@ export class RCBackendMediaUpload {
 
         var req = new HttpRequest('POST', editApiUrl + `?research=${expositionId}&simple-media=${rcobjectid}`, fd, {
                 reportProgress: true
-            });
+        });
 
-            //console.log('request',req);
+        console.log('request',req);
 
-            this.http.request(req).subscribe(event => {
-                // Via this API, you get access to the raw event stream.
-                // Look for upload progress events.
-                if (event.type === HttpEventType.UploadProgress) {
-                    // This is an upload progress event. Compute and show the % done:
-                    onProgress('uploading ' + Math.round(100 * event.loaded / event.total) + '%');
-                } else if (event instanceof HttpResponse) {
-                    onProgress('done');
-                    this.rcExpoModel.syncModelWithRC();
-                    window.setTimeout(() => { onProgress(''); }, 1000);
-                    onResult(event.body);
-                }
-            });
+        this.http.request(req).subscribe(event => {
+            // Via this API, you get access to the raw event stream.
+            // Look for upload progress events.
+            if (event.type === HttpEventType.UploadProgress) {
+                // This is an upload progress event. Compute and show the % done:
+                onProgress('uploading ' + Math.round(100 * event.loaded / event.total) + '%');
+            } else if (event instanceof HttpResponse) {
+                onProgress('done');
+                this.rcExpoModel.syncModelWithRC();
+                window.setTimeout(() => { onProgress(''); }, 1000);
+                onResult(event.body);
+            }
+        });
         
     }
 
