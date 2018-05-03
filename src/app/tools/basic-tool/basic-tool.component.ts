@@ -156,7 +156,7 @@ export class BasicToolComponent implements OnInit {
 
         this.rcBackendMediaUpload.editObjectFromRC(this.rcobject.id,metadata);
         this.editInQueue = false;
-        
+
         this.toolForm.markAsPristine();
     }
 
@@ -284,7 +284,10 @@ export class BasicToolComponent implements OnInit {
 
     onFileSelect(event) {
         if (Backend.useRC) {
-            let onRCResult = ( evt :any ) => { console.log('file updated, should have resynced?', evt); };
+            let onRCResult = ( evt :any ) => { 
+                console.log('file updated, should have resynced?', evt); 
+                this.onChangedObject.emit(this.rcobject.id);
+            };
             let onProgress = ( progress: string ) => { this.fileUploadStatus = progress };
 
             this.rcBackendMediaUpload.replaceFileRC(
@@ -292,6 +295,8 @@ export class BasicToolComponent implements OnInit {
                 event.target.files,
                 onRCResult,
                 onProgress);
+
+
 
         } else {
             this.selectedFile = <File>event.target.files[0];
