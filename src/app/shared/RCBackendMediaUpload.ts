@@ -140,9 +140,37 @@ export class RCBackendMediaUpload {
             name: oldRCObject.name // old name, so that reference in expo doesn't break!
         }
 
-        // false, because resync after adding new object !
-        this.removeObjectFromRC(rcobjectid, false);
-        this.uploadFile(fileList, onResult, onProgress, metadata);
+         // prepare metadata
+        let fd = new FormData();
+        fd.append('name', metadata.name);
+        fd.append('copyrightholder', metadata.copyrightholder);
+        fd.append('description', metadata.description);
+        fd.append('thumb', new File([""], ""));
+        fd.append('media', fileList[0] );
+
+        let editApiUrl = Backend.rcMediaEdit;
+        let expositionId = string(this.rcExpoModel.exposition.id);
+
+        var req = new HttpRequest('POST', editApiURL + `?research=${expositionId}&simple-media=${rcobjectid}`, fd, {
+                reportProgress: true
+            });
+
+            //console.log('request',req);
+
+            this.http.request(req).subscribe(event => {
+                // Via this API, you get access to the raw event stream.
+                // Look for upload progress events.
+                if (event.type === HttpEventType.UploadProgress) {
+                    // This is an upload progress event. Compute and show the % done:
+                    onProgress('uploading ' + Math.round(100 * event.loaded / event.total) + '%');
+                } else if (event instanceof HttpResponse) {
+                    onProgress('done');
+                    this.rcExpoModel.syncModelWithRC();
+                    window.setTimeout(() => { onProgress(''); }, 1000);
+                    onResult(event.body);
+                }
+            });
+        
     }
 
     editObjectFromRC(rcobjectid: number, metadata: RCMetaData) {
