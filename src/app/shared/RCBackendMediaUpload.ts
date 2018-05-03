@@ -146,7 +146,7 @@ export class RCBackendMediaUpload {
         fd.append('copyrightholder', metadata.copyrightholder);
         fd.append('description', metadata.description);
         fd.append('thumb', fileList[0]);
-        fd.append('media', fileList[0] );
+        fd.append('media', fileList[0]);
 
         let editApiUrl = Backend.rcMediaEdit;
         let expositionId = this.rcExpoModel.exposition.id;

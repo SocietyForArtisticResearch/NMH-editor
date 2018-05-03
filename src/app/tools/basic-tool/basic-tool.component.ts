@@ -114,7 +114,7 @@ export class BasicToolComponent implements OnInit {
 
     onLocalPropertyChange(val) {
         // local change, use local method:
-        if (this.toolForm.dirty) {
+        if (this.toolForm.dirty && !(this.editInQueue)) {
             this.onSubmit();
         }
     }
