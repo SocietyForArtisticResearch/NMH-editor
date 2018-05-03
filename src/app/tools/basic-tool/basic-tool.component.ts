@@ -142,7 +142,7 @@ export class BasicToolComponent implements OnInit {
     }
 
     commitRCMetaDataEdit() {
-        console.log('commit changes');
+        console.log('commit changes in metadata');
         // commit changes to RC backend
         let newCopyright = this.toolForm.get('copyright').value;
         let newDescription = this.toolForm.get('description').value;
@@ -160,6 +160,7 @@ export class BasicToolComponent implements OnInit {
 
     onNameChange(val) {
         // no longer used ?
+        console.log('should not be called');
         let field = this.toolForm.get('name');
         if (field.valid) {
             let rcobject = this.rcExpoModel.exposition.getObjectWithID(this.rcobject.id);
@@ -236,6 +237,10 @@ export class BasicToolComponent implements OnInit {
 
     onSubmit() {
         // local model update
+        if(!this.toolForm.dirty) {
+            console.log('no changes, no submit');
+            return;
+        }
         // Angular protects its values of the model very strictly, so we have to update rcexposition through a deepcopy of the tool.
         let deepCopy = this.prepareSaveObject();
         console.log('deepcopy',deepCopy);
