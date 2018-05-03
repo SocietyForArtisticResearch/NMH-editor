@@ -120,6 +120,7 @@ export class RCExpoModel {
 
 
     loadSerializedMedia() {
+        let id = this.exposition.id;
         let weave = this.exposition.currentWeave;
         var xhttp = new XMLHttpRequest();
         var self = this;
