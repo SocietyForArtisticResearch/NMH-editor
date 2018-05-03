@@ -99,7 +99,6 @@ export class BasicToolComponent implements OnInit {
             this.toolForm.get('widthInPixels').valueChanges.subscribe( val => { this.onLocalPropertyChange(val); });
             this.toolForm.get('heightInPixels').valueChanges.subscribe( val => { this.onLocalPropertyChange(val); });
             this.toolForm.get('imageClassSelect').valueChanges.subscribe (val => { this.onLocalPropertyChange(val); });
-
             this.toolForm.get('copyright').valueChanges.subscribe( val =>  { this.onRCMetaDataChange(val); });
             this.toolForm.get('description').valueChanges.subscribe( val =>  { this.onRCMetaDataChange(val); });
         }
@@ -115,7 +114,9 @@ export class BasicToolComponent implements OnInit {
 
     onLocalPropertyChange(val) {
         // local change, use local method:
-        this.onSubmit();
+        if (this.toolForm.dirty) {
+            this.onSubmit();
+        }
     }
 
     onRCMetaDataChange(val) {
@@ -212,11 +213,13 @@ export class BasicToolComponent implements OnInit {
                 Validators.required]);
             this.toolForm.controls['name'].updateValueAndValidity();
 
+            /*
             if (Backend.useRC) {
                 this.toolForm.valueChanges.subscribe(val => {
                     this.onSubmit();
                 });
             }
+            */
 
         } 
             
