@@ -149,9 +149,9 @@ export class RCBackendMediaUpload {
         fd.append('media', fileList[0] );
 
         let editApiUrl = Backend.rcMediaEdit;
-        let expositionId = string(this.rcExpoModel.exposition.id);
+        let expositionId = this.rcExpoModel.exposition.id;
 
-        var req = new HttpRequest('POST', editApiURL + `?research=${expositionId}&simple-media=${rcobjectid}`, fd, {
+        var req = new HttpRequest('POST', editApiUrl + `?research=${expositionId}&simple-media=${rcobjectid}`, fd, {
                 reportProgress: true
             });
 
