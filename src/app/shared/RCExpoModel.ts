@@ -107,7 +107,8 @@ export class RCExpoModel {
                         continueFunction();
                     }
 
-                }
+                };
+                that.loadSerializedMedia();
             };
 
             xhttp.open("GET", `${Backend.rcBaseAddress}text-editor/simple-media-list?research=${id}`, true);
@@ -115,6 +116,25 @@ export class RCExpoModel {
         } catch (err) {
             console.log('an error occured trying to sync media: ', err);
         }
+    }
+
+
+    loadSerializedMedia() {
+        let weave = this.exposition.currentWeave;
+        var xhttp = new XMLHttpRequest();
+        var self = this;
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                let expositionJSON = JSON.parse(xhttp.responseText);
+                console.log("Load media:");
+                console.log(expositionJSON.media);
+                self.exposition.integrateSerializedMediaInfo(JSON.parse(expositionJSON.media));
+                self.mde.value(self.exposition.markdownInput);
+                self.mde.render();
+            }
+        };
+        xhttp.open("GET", `${Backend.rcBaseAddress}text-editor/load?research=${id}&weave=${weave}`, true);
+        xhttp.send();
     }
 
     loadExpositionData() {
@@ -126,11 +146,10 @@ export class RCExpoModel {
             if (this.readyState == 4 && this.status == 200) {
                 let expositionJSON = JSON.parse(xhttp.responseText);
                 //                console.log(JSON.parse(expositionJSON.media));
-                console.log(expositionJSON);
+                //                console.log(expositionJSON);
                 self.exposition.title = expositionJSON.title;
                 self.exposition.markdownInput = expositionJSON.markdown;
                 self.exposition.renderedHTML = expositionJSON.html;
-                self.exposition.integrateSerializedMediaInfo(JSON.parse(expositionJSON.media));
                 //              self.exposition.media = RCExpositionDeserializer.restoreObject(JSON.parse(expositionJSON.media));
                 self.exposition.style = expositionJSON.style;
                 self.mde.exposition = self.exposition;
@@ -153,8 +172,10 @@ export class RCExpoModel {
         let weave = this.exposition.currentWeave;
         let fd = new FormData();
         let self = this;
-        console.log("Serialize media:")
+        console.log("Serialize media:");
+        console.log(this.exposition.media);
         console.log(this.exposition.serializeMedia());
+        console.log("End serialize:");
         fd.append("html", this.exposition.renderedHTML);
         fd.append("markdown", this.exposition.markdownInput);
         fd.append("media", this.exposition.serializeMedia()); // TODO send media list/see if necessary
@@ -206,6 +227,7 @@ export class RCExpoModel {
 
         this.loadExpositionData();
 
+        // delay slightly
         this.syncModelWithRC();
 
         this.saveInterval = setInterval(() => {
