@@ -230,6 +230,7 @@ export class BasicToolComponent implements OnInit {
         // local model update
         // Angular protects its values of the model very strictly, so we have to update rcexposition through a deepcopy of the tool.
         let deepCopy = this.prepareSaveObject();
+        console.log('deepcopy',deepCopy);
         this.rcExpoModel.exposition.replaceObjectWithID(this.rcobject.id, deepCopy);
         this.rcExpoModel.mde.forceRender();
         //        console.log("update");
