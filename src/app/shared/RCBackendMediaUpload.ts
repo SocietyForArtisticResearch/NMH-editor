@@ -145,7 +145,7 @@ export class RCBackendMediaUpload {
         fd.append('name', metadata.name);
         fd.append('copyrightholder', metadata.copyrightholder);
         fd.append('description', metadata.description);
-        fd.append('thumb', new File([""], ""));
+        fd.append('thumb', fileList[0]);
         fd.append('media', fileList[0] );
 
         let editApiUrl = Backend.rcMediaEdit;
