@@ -156,6 +156,8 @@ export class BasicToolComponent implements OnInit {
 
         this.rcBackendMediaUpload.editObjectFromRC(this.rcobject.id,metadata);
         this.editInQueue = false;
+        
+        this.toolForm.markAsPristine();
     }
 
     onNameChange(val) {
