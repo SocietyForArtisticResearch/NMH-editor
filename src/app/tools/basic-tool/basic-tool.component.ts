@@ -131,13 +131,13 @@ export class BasicToolComponent implements OnInit {
             clearTimeout(this.editRequestTimer);
             this.editRequestTimer = setTimeout(( ) => {
                 this.commitRCMetaDataEdit();
-            },2000);
+            },500);
         } else {
             // put update in queue
             this.editInQueue = true;
             this.editRequestTimer = setTimeout(( ) => {
                 this.commitRCMetaDataEdit();
-            },2000); // 2 seconds ?
+            },500); // 2 seconds ?
         }
     }
 
