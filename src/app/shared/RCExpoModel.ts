@@ -127,8 +127,8 @@ export class RCExpoModel {
         xhttp.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
                 let expositionJSON = JSON.parse(xhttp.responseText);
-                console.log("Load media:");
-                console.log(expositionJSON.media);
+                // console.log("Load media:");
+                // console.log(expositionJSON.media);
                 self.exposition.integrateSerializedMediaInfo(JSON.parse(expositionJSON.media));
                 self.mde.value(self.exposition.markdownInput);
                 self.mde.render();
@@ -147,8 +147,10 @@ export class RCExpoModel {
             if (this.readyState == 4 && this.status == 200) {
                 let expositionJSON = JSON.parse(xhttp.responseText);
                 //                console.log(JSON.parse(expositionJSON.media));
-                //                console.log(expositionJSON);
+                console.log("Loading expo data:")
+                console.log(expositionJSON);
                 self.exposition.title = expositionJSON.title;
+                self.exposition.toc = JSON.parse(expositionJSON.toc);
                 self.exposition.markdownInput = expositionJSON.markdown;
                 self.exposition.renderedHTML = expositionJSON.html;
                 //              self.exposition.media = RCExpositionDeserializer.restoreObject(JSON.parse(expositionJSON.media));
@@ -173,15 +175,16 @@ export class RCExpoModel {
         let weave = this.exposition.currentWeave;
         let fd = new FormData();
         let self = this;
-        console.log("Serialize media:");
-        console.log(this.exposition.media);
-        console.log(this.exposition.serializeMedia());
-        console.log("End serialize:");
+        // console.log("Serialize media:");
+        // console.log(this.exposition.media);
+        // console.log(this.exposition.serializeMedia());
+        // console.log("End serialize:");
         fd.append("html", this.exposition.renderedHTML);
         fd.append("markdown", this.exposition.markdownInput);
         fd.append("media", this.exposition.serializeMedia()); // TODO send media list/see if necessary
         fd.append("style", this.exposition.style);
         fd.append("title", this.exposition.title);
+        fd.append("toc", JSON.stringify(this.exposition.getTOC()));
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
             self.mde.saved = true;
