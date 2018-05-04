@@ -123,6 +123,7 @@ export class BasicToolComponent implements OnInit {
 
     imageClassChange(val) {
         this.rcobject.userClass = val;
+        this.rcExpoModel.saveToRC();
         console.log('alternative method',this.rcobject);
     }
 
