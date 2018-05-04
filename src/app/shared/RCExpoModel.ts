@@ -150,7 +150,7 @@ export class RCExpoModel {
                 console.log("Loading expo data:")
                 console.log(expositionJSON);
                 self.exposition.title = expositionJSON.title;
-                self.exposition.toc = JSON.parse(expositionJSON.toc);
+                // self.exposition.toc = JSON.parse(expositionJSON.toc);
                 self.exposition.markdownInput = expositionJSON.markdown;
                 self.exposition.renderedHTML = expositionJSON.html;
                 //              self.exposition.media = RCExpositionDeserializer.restoreObject(JSON.parse(expositionJSON.media));
@@ -175,6 +175,8 @@ export class RCExpoModel {
         let weave = this.exposition.currentWeave;
         let fd = new FormData();
         let self = this;
+        console.log("toc: ");
+        console.log(this.exposition.getTOC());
         // console.log("Serialize media:");
         // console.log(this.exposition.media);
         // console.log(this.exposition.serializeMedia());
