@@ -129,7 +129,7 @@ export class BasicToolComponent implements OnInit {
         console.log(this.rcExpoModel.exposition.getObjectWithID(this.rcobject.id),'exposition->rcobject');
 
         this.rcExpoModel.saveToRC();
-        this.rcExpoModel.mde.forceRender();
+        this.rcExpoModel.mde.render();
     }
 
     onRCMetaDataChange(val) {
