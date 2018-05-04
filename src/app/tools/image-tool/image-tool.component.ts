@@ -23,6 +23,7 @@ export class ImageToolComponent extends BasicToolComponent {
 	
     prepareSaveObject(): RCImage {
         const formModel = this.toolForm.value;
+        // this id will be thrown away:
         let id = Utils.uniqueID();
         const newObject: RCImage = new RCImage(id, formModel.name);
         newObject.url = formModel.fileUrl;

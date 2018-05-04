@@ -114,9 +114,9 @@ export class BasicToolComponent implements OnInit {
 
     onLocalPropertyChange(val) {
         // local change, use local method:
-        console.log('debug local property',val);
         if (this.toolForm.dirty && !(this.editInQueue)) {
             this.onSubmit();
+            console.log('update local property',val);
         }
     }
 
@@ -132,13 +132,13 @@ export class BasicToolComponent implements OnInit {
             clearTimeout(this.editRequestTimer);
             this.editRequestTimer = setTimeout(( ) => {
                 this.commitRCMetaDataEdit();
-            },500);
+            },200);
         } else {
             // put update in queue
             this.editInQueue = true;
             this.editRequestTimer = setTimeout(( ) => {
                 this.commitRCMetaDataEdit();
-            },500); // 2 seconds ?
+            },200); // 2 seconds ?
         }
     }
 
@@ -246,7 +246,7 @@ export class BasicToolComponent implements OnInit {
         }
         // Angular protects its values of the model very strictly, so we have to update rcexposition through a deepcopy of the tool.
         let deepCopy = this.prepareSaveObject();
-        console.log('deepcopy',deepCopy);
+        //console.log('deepcopy',deepCopy);
         this.rcExpoModel.exposition.replaceObjectWithID(this.rcobject.id, deepCopy);
         this.rcExpoModel.mde.forceRender();
         //        console.log("update");
@@ -255,6 +255,7 @@ export class BasicToolComponent implements OnInit {
     prepareSaveObject(): RCImage {
         // Deep copy and create new object
         const formModel = this.toolForm.value;
+        // this id will be thrown away:
         let id = Utils.uniqueID();
         const newObject: RCImage = new RCImage(id, formModel.name);
         newObject.url = formModel.fileUrl;
