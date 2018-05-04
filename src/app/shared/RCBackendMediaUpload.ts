@@ -165,7 +165,17 @@ export class RCBackendMediaUpload {
                 onProgress('uploading ' + Math.round(100 * event.loaded / event.total) + '%');
             } else if (event instanceof HttpResponse) {
                 onProgress('done');
-                this.rcExpoModel.syncModelWithRC();
+                
+
+                let refreshImagesWhenComplete = function ( ) {
+                    // this should force the image to refresh
+                    let rcobj = this.rcExpoModel.exposition.getObjectWithID(rcobjectid);
+                    rcobj.thumb = rcobj.thumb + '?=' + new Date().getTime();  
+                    rcobj.url = rcobj.url + '?=' + new Date().getTime();
+                }; 
+
+                this.rcExpoModel.syncModelWithRC(refreshImagesWhenComplete);
+
                 window.setTimeout(() => { onProgress(''); }, 1000);
                 onResult(event.body);
             }

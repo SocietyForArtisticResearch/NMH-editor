@@ -21,6 +21,7 @@ export class ObjectListComponent implements OnInit {
 
     @Output() onObjectWasChosen = new EventEmitter();
 
+
     // member object to deal with single vs double click
     dblClickCtrl = {
         timer: <number>2,
@@ -175,3 +176,18 @@ export class ObjectListComponent implements OnInit {
 
 
 }
+
+/* 
+
+    code to hard refresh the image/thumb.
+    image should be the thumbnail img DOM object.
+
+    var new_image = new Image();
+    //set up the new image
+    new_image.id = "theText";
+    new_image.src = image.src + '?=' + new Date().getTime();           
+    // insert new image and remove old
+    image.parentNode.insertBefore(new_image,image);
+    image.parentNode.removeChild(image);
+
+    */
