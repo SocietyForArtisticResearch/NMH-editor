@@ -82,7 +82,7 @@ export class ObjectListComponent implements OnInit {
             // insert rcobject in mde
             let editor: RCMDE = this.rcExpoModel.mde;
             insertMedia(editor, rcobject.name);
-            //this.onObjectWasChosen.emit();
+            this.onObjectWasChosen.emit();
         }
     }
 
