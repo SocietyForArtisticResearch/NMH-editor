@@ -49,7 +49,6 @@ export class BasicToolComponent implements OnInit {
         {Value: 'rcImageFloatRight', text: 'small & float right'},
         {Value: 'custom', text: 'custom (not available yet)' }];
 
-    imageClassInfoMessage: string;
 
     identifier: number;
     
@@ -124,7 +123,6 @@ export class BasicToolComponent implements OnInit {
 
     imageClassChange(val) {
         console.log('alternative method');
-        this.imageClassInfoMessage = 'Use "' + val + '" in your CSS sheet';
         this.rcobject.userClass = val;
         this.rcExpoModel.saveToRC();
     }
