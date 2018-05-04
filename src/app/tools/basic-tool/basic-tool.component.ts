@@ -98,7 +98,7 @@ export class BasicToolComponent implements OnInit {
             this.toolForm.get('name').valueChanges.subscribe( val => { this.onRCMetaDataChange(val); } );
             this.toolForm.get('widthInPixels').valueChanges.subscribe( val => { this.onLocalPropertyChange(val); });
             this.toolForm.get('heightInPixels').valueChanges.subscribe( val => { this.onLocalPropertyChange(val); });
-            this.toolForm.get('imageClassSelect').valueChanges.subscribe (val => { this.onLocalPropertyChange(val); });
+            this.toolForm.get('imageClassSelect').valueChanges.subscribe (val => { this.imageClassChange(val); });
             this.toolForm.get('copyright').valueChanges.subscribe( val =>  { this.onRCMetaDataChange(val); });
             this.toolForm.get('description').valueChanges.subscribe( val =>  { this.onRCMetaDataChange(val); });
         }
@@ -118,6 +118,12 @@ export class BasicToolComponent implements OnInit {
             this.onSubmit();
             console.log('update local property',val);
         }
+    }
+
+    imageClassChange(val) {
+        console.log('alternative method');
+        this.rcobject.userClass = val;
+        this.rcExpoModel.saveToRC();
     }
 
     onRCMetaDataChange(val) {
