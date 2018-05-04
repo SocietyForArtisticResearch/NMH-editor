@@ -127,6 +127,7 @@ export class BasicToolComponent implements OnInit {
         // explicitely replace object?:
         this.rcExpoModel.exposition.replaceObjectWithID(this.rcobject.id,this.rcobject);
         this.rcExpoModel.saveToRC();
+        this.rcExpoModel.mde.forceRender();
     }
 
     onRCMetaDataChange(val) {
