@@ -125,7 +125,9 @@ export class BasicToolComponent implements OnInit {
         console.log('alternative method');
         this.rcobject.userClass = val;
         // explicitely replace object?:
-        this.rcExpoModel.exposition.replaceObjectWithID(this.rcobject.id,this.rcobject);
+        console.log(this.rcobject,'rcobject');
+        console.log(this.rcExpoModel.exposition.getObjectWithID(),'exposition->rcobject');
+
         this.rcExpoModel.saveToRC();
         this.rcExpoModel.mde.forceRender();
     }
