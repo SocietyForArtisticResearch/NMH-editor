@@ -124,6 +124,8 @@ export class BasicToolComponent implements OnInit {
     imageClassChange(val) {
         console.log('alternative method');
         this.rcobject.userClass = val;
+        // explicitely replace object?:
+        this.rcExpoModel.exposition.replaceObjectWithID(this.rcobject.id,this.rcobject);
         this.rcExpoModel.saveToRC();
     }
 
