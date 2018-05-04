@@ -122,14 +122,8 @@ export class BasicToolComponent implements OnInit {
     }
 
     imageClassChange(val) {
-        console.log('alternative method');
         this.rcobject.userClass = val;
-        // explicitely replace object?:
-        console.log(this.rcobject,'rcobject');
-        console.log(this.rcExpoModel.exposition.getObjectWithID(this.rcobject.id),'exposition->rcobject');
-
-        this.rcExpoModel.saveToRC();
-        this.rcExpoModel.mde.render();
+        console.log('alternative method',this.rcobject);
     }
 
     onRCMetaDataChange(val) {
