@@ -12,6 +12,7 @@ import * as morphdom from "morphdom";
 import * as MarkdownIt from "markdown-it";
 import * as  MarkdownItFootnote from "markdown-it-footnote";
 import * as  MarkdownItCenter from "markdown-it-center-text";
+//import * as MarkdownItMultimdTable from "markdown-it-multimd-table";
 const md = new MarkdownIt({ html: true, typographer: true }).use(MarkdownItFootnote).use(MarkdownItCenter);
 import { RCImage, RCAudio, RCSvg, RCPdf, RCVideo, RCExposition } from '../shared/rcexposition';
 import { stringToId } from './utils'

@@ -381,7 +381,10 @@ export class RCMedia extends RCObject {
         }
     }
 
-
+    updateHTML() {
+        this.html = undefined;
+        this.createHTML();
+    }
 
     // constructor(name: string, url: string, rcClass, userClass, pxWidth?: number, pxHeight?: number) {
     //     super(name, rcClass, userClass);
