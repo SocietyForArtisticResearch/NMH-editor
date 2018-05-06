@@ -124,7 +124,7 @@ export class BasicToolComponent implements OnInit {
     imageClassChange(val) {
         this.rcobject.userClass = val;
         this.rcobject.updateHTML();
-        //this.rcExpoModel.foreRender();
+        this.rcExpoModel.mde.forceRender();
         this.rcExpoModel.saveToRC();
         console.log('alternative method',this.rcobject);
     }
