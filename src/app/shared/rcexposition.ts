@@ -112,6 +112,8 @@ export class RCExposition {
 
         this.renderedHTML = html.innerHTML;
         this.toc = toc;
+        // remove title of exposition
+        this.toc = toc.filter(ob => !((ob.title == this.title) && (ob.level == 1)));
         return toc;
     }
 
