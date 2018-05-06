@@ -1277,22 +1277,23 @@ function wordCount(data) {
 }
 
 function openPreview(editor) {
-    console.log('this is called');
-    console.log(editor.openPreviewCallback);
-    editor.openPreviewCallback();
-    var w = window.open("", "Preview");
-    w.document.write(editor.exposition.renderedHTML);
-    // let boot: HTMLLinkElement = w.document.createElement("link");
-    // boot.type = "text/css";
-    // boot.rel = "stylesheet";
-    // // TODO Make local
-    // boot.href = "assets/bootstrap/bootstrap.min.css"; //https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css";
-    // //    let head = w.document.getElementById("head");
-    let css: HTMLStyleElement = w.document.createElement("style");
-    css.type = "text/css";
-    css.innerHTML = editor.exposition.style;
-    // w.document.head.appendChild(boot);
-    w.document.head.appendChild(css);
+    window.open('//' + location.hostname + "/view/" + String(editor.exposition.id) + "/" + String(editor.exposition.currentWeave), '_blank');
+    // console.log('this is called');
+    // console.log(editor.openPreviewCallback);
+    // editor.openPreviewCallback();
+    // var w = window.open("", "Preview");
+    // w.document.write(editor.exposition.renderedHTML);
+    // // let boot: HTMLLinkElement = w.document.createElement("link");
+    // // boot.type = "text/css";
+    // // boot.rel = "stylesheet";
+    // // // TODO Make local
+    // // boot.href = "assets/bootstrap/bootstrap.min.css"; //https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css";
+    // // //    let head = w.document.getElementById("head");
+    // let css: HTMLStyleElement = w.document.createElement("style");
+    // css.type = "text/css";
+    // css.innerHTML = editor.exposition.style;
+    // // w.document.head.appendChild(boot);
+    // w.document.head.appendChild(css);
 }
 
 var toolbarBuiltInButtons = {
