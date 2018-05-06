@@ -1511,6 +1511,7 @@ export class RCMDE {
     gui: any;
     public drawMediaCallback: () => void;
     public openPreviewCallback: () => void;
+    public userSaveCallback: (this: HTMLElement, ev: MouseEvent) => any;
     autosaveTimeoutId: number;
     toolbar: any[];
     toolbarElements: any;
@@ -1892,8 +1893,13 @@ export class RCMDE {
                 el.innerHTML = "<b><u>All changes saved</u></b>";
             } else {
                 el.innerHTML = "<i>Not saved</i>";
+                if (this.userSaveCallback) {
+                    el.onclick = this.userSaveCallback;
+                }
             }
         }
+
+
     }
 
     // old autosave, unused

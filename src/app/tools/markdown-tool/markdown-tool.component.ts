@@ -49,6 +49,13 @@ export class MarkdownToolComponent implements AfterViewInit {
             // }
         }
 
+        if (Backend.useRC) {
+            this.mde.userSaveCallback = (event) => {
+                this.rcExpoModel.saveToRC();
+            }
+        }
+
+
         //        this.mde.toggleSideBySide();
 
         // this.mde.markdown = function (text) {
