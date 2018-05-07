@@ -51,6 +51,7 @@ export class MarkdownToolComponent implements AfterViewInit {
 
         if (Backend.useRC) {
             this.mde.userSaveCallback = (event) => {
+                console.log('I was clicked');
                 this.rcExpoModel.saveToRC();
             }
         }
