@@ -1893,7 +1893,7 @@ export class RCMDE {
             if (this.saved) {
                 el.innerHTML = "<b><u>All changes saved</u></b>";
             } else {
-                el.innerHTML = "<i>Not saved</i>";
+                el.innerHTML = '<a href="#">Not saved</a>';
                 if (this.userSaveCallback) {
                     el.onclick = this.userSaveCallback;
                 }
