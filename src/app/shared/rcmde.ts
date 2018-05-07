@@ -2173,7 +2173,9 @@ export class RCMDE {
                         el.setAttribute("id", "rcSave");
                         el.innerHTML = '<i style="cursor:pointer">Not saved</i>';
                         if (this.userSaveCallback) {
-                                el.onclick = this.userSaveCallback;
+                           el.onclick = this.userSaveCallback;
+                        } else {
+                            console.log('function not defined',this);
                         }
                     };
                     onUpdate = function (el) {
@@ -2184,6 +2186,8 @@ export class RCMDE {
                             el.innerHTML = '<i style="cursor:pointer">Not saved</i>';
                             if (this.userSaveCallback) {
                                 el.onclick = this.userSaveCallback;
+                            } else {
+                                console.log('function not defined',this);
                             }
                         }
                     };
