@@ -191,6 +191,8 @@ export class RCExpoModel {
         xhttp.onreadystatechange = function () {
             self.mde.saved = true;
             // console.log('debug save: ', xhttp.responseText);
+            self.mde.showdisplaySaveStatus();
+
             console.log("saved");
         };
         xhttp.open("POST", `${Backend.rcBaseAddress}text-editor/save?research=${id}&weave=${weave}`, true);
