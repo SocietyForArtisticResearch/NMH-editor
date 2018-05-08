@@ -130,8 +130,8 @@ export class RCExpoModel {
                 // console.log("Load media:");
                 // console.log(expositionJSON.media);
                 self.exposition.integrateSerializedMediaInfo(JSON.parse(expositionJSON.media));
-                self.mde.value(self.exposition.markdownInput);
-                self.mde.render();
+                //                self.mde.value(self.exposition.markdownInput);
+                //              self.mde.render();
             }
         };
         xhttp.open("GET", `${Backend.rcBaseAddress}text-editor/load?research=${id}&weave=${weave}`, true);
