@@ -191,7 +191,7 @@ export class RCExpoModel {
         xhttp.onreadystatechange = function () {
             self.mde.saved = true;
             // console.log('debug save: ', xhttp.responseText);
-            self.mde.showdisplaySaveStatus();
+            self.mde.displaySaveStatus();
 
             console.log("saved");
         };
