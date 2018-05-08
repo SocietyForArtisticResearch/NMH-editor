@@ -43,7 +43,7 @@ export class MarkdownToolComponent implements AfterViewInit {
         };
 
         this.mde.openPreviewCallback = () => {
-            console.log('table of contents (debug):',this.rcExpoModel.exposition.getTOC());
+            console.log('table of contents (debug):', this.rcExpoModel.exposition.getTOC());
             // if (Backend.useRC) {
             //     this.rcExpoModel.saveToRC();
             // }
@@ -53,7 +53,7 @@ export class MarkdownToolComponent implements AfterViewInit {
             this.mde.userSaveCallback = (event) => {
                 let expoModel = this.rcExpoModel;
                 expoModel.saveToRC();
-                expoModel.mde.showdisplaySaveStatus();
+                expoModel.mde.displaySaveStatus();
             }
         }
 
