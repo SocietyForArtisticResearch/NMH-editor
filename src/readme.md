@@ -7,8 +7,9 @@ __I've updated *mnh-backend* with an extra uploadAngular option, that returns js
 ## Issues
 * when importing a js do import "filname" not import("filename")
 * bootstrap link should be to local file
-* why do tables look different in previews
 * deal with non-image media in convert/export.
+
+* the bottom status bar obfuscates text when reaching bottom
 
 # export to doc/pdf/epub
 * you get the markdown from exposition.markdownInput, send it to the server to "/convert/pdf" with json { markdown: ... }
@@ -26,18 +27,6 @@ __I've updated *mnh-backend* with an extra uploadAngular option, that returns js
 
 ## Casper
 
-* I will add copyright, userclass & description fields
-* Change the upload to use the RC (make a switch)
-
-
-* Image size dealings:
-- remove the pixel boxes from basic-tool
-- replace with class
-
-.rc-image-float-left
-.rc-image-float-right
-.rc-image-float-center
-.custom 
 
 getObjectWithID () .userclass('');
 ### responsiveness issues:
