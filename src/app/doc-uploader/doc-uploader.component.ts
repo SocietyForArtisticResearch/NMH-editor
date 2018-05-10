@@ -20,7 +20,7 @@ export class DocUploaderComponent implements OnInit {
     selectedExportFormat: string = "docx";
     fileUploadStatus: string = null;
 
-    allowedTypes : string[] = ['docx','htm','html','odt','tex','txt','md','markdown'];
+    allowedTypes: string[] = ['docx', 'htm', 'html', 'odt', 'tex', 'txt', 'md', 'markdown'];
 
     constructor(
         private http: HttpClient,
@@ -30,21 +30,21 @@ export class DocUploaderComponent implements OnInit {
     ngOnInit() {
     }
 
-    formattedTypes( ) {
+    formattedTypes() {
         return this.allowedTypes.join(', ');
     }
 
 
     onFileSelected(event) {
         this.selectedFile = <File>event.target.files[0];
-        if (!Utils.checkTypeUsingFilename(this.selectedFile.name,this.allowedTypes)) {
-            alert('Sorry, we do not support the filetype of "'+this.selectedFile.name+'"\n\nSupported filetypes are: '+this.formattedTypes());
+        if (!Utils.checkTypeUsingFilename(this.selectedFile.name, this.allowedTypes)) {
+            alert('Sorry, we do not support the filetype of "' + this.selectedFile.name + '"\n\nSupported filetypes are: ' + this.formattedTypes());
         }
     }
 
     onJsonSelected(event) {
         this.selectedJson = <File>event.target.files[0];
-        if (!Utils.checkTypeUsingFilename(this.selectedJson.name,['.json'])) {
+        if (!Utils.checkTypeUsingFilename(this.selectedJson.name, ['.json'])) {
             alert('This is not an exposition, please provide .json or use import external format');
         }
     }
@@ -91,6 +91,8 @@ export class DocUploaderComponent implements OnInit {
 
     onDocImportResult(result) {
         if (Backend.useRC) {
+            console.log("import result:");
+            console.log(result);
             this.rcExpoModel.syncModelWithRC(() => this.rcExpoModel.mde.importDocJSON(result));
         } else {
             this.rcExpoModel.mde.importDocJSON(result);
