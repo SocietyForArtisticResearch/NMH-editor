@@ -2324,6 +2324,8 @@ export class RCMDE {
         //        console.log(json.media);
         //      this.value(RCMDE.replaceImagesWithTools(json.markdown, names));
         //        this.value(json.markdown);
+        console.log("media for replacement");
+        console.log(json);
         this.value(RCMDE.replaceImagesWithTools(json.markdown, ids));
         this.render();
     }
