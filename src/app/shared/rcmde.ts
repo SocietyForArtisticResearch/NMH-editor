@@ -2278,7 +2278,7 @@ export class RCMDE {
         let re = /(!\[.*\]\(.*\)(\{[^}]*\})?)|(<embed src=.*\/>)|(<img src=.*\/>)/g;
         //        let re = /!\[.*\]\(.*\){.*}/g;
         let c = 0;
-        let insertedTools = md.replace(re, function (m, p1) { let str = `!{${lst[c]}}`; c = c + 1; return str; });
+        let insertedTools = md.replace(re, function (m, p1) { let str = `!{${lst[c]}}`; console.log(m); c = c + 1; return str; });
         return insertedTools;
     }
 
