@@ -93,9 +93,8 @@ export class DocUploaderComponent implements OnInit {
 
     onDocImportResult(result) {
         if (Backend.useRC) {
-            console.log("import result:");
-            console.log(result);
             this.rcExpoModel.syncModelWithRC(() => this.rcExpoModel.mde.importDocJSON(result));
+            this.rcExpoModel.saveToRC();
         } else {
             this.rcExpoModel.mde.importDocJSON(result);
             this.rcExpoModel.mde.saved = false;
