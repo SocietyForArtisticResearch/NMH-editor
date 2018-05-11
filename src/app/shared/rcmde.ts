@@ -1679,9 +1679,16 @@ export class RCMDE {
         return node.outerHTML || new XMLSerializer().serializeToString(node);
     }
 
-    mediaHTML(name: string) {
-        let tool = this.exposition.getObjectWithName(name);
-        let str = name.big();
+    mediaHTML(nameOrID: string) {
+        let n = parseInt(nameOrID);
+        let tool;
+        let str;
+        if (isNaN(n)) {
+            tool = this.exposition.getObjectWithName(name);
+        } else {
+            tool = this.exposition.getObjectWithID(n);
+        }
+        str = nameOrID.big();
         if (tool !== undefined) {
             tool.createHTML();
             //console.log(tool.html);
@@ -2173,9 +2180,9 @@ export class RCMDE {
                         el.setAttribute("id", "rcSave");
                         el.innerHTML = '<i style="cursor:pointer">Not saved</i>';
                         if (self.userSaveCallback) {
-                           el.onclick = self.userSaveCallback;
+                            el.onclick = self.userSaveCallback;
                         } else {
-                            console.log('function not defined',this);
+                            console.log('function not defined', this);
                         }
                     };
                     onUpdate = function (el) {
@@ -2187,7 +2194,7 @@ export class RCMDE {
                             if (self.userSaveCallback) {
                                 el.onclick = self.userSaveCallback;
                             } else {
-                                console.log('function not defined',this);
+                                console.log('function not defined', this);
                             }
                         }
                     };
@@ -2309,11 +2316,13 @@ export class RCMDE {
     importDocJSON(json) {
         let exposition = this.exposition;
         //        let ids = this.exposition.addImageList(json.media);
-        let names = json.media.map(id => exposition.getObjectWithID(id).name);
+        //        let names = json.media.map(id => exposition.getObjectWithID(id).name);
+        // ids as strings
+        let ids = json.media.map(id => String(id));
         //        console.log(json.media);
         //      this.value(RCMDE.replaceImagesWithTools(json.markdown, names));
         //        this.value(json.markdown);
-        this.value(RCMDE.replaceImagesWithTools(json.markdown, names));
+        this.value(RCMDE.replaceImagesWithTools(json.markdown, ids));
         this.render();
     }
 
