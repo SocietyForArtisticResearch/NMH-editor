@@ -106,6 +106,7 @@ export class RCExpoModel {
                     if (continueFunction != undefined) {
                         continueFunction();
                     }
+                    console.log(medialist)
 
                 };
                 that.loadSerializedMedia();
@@ -132,6 +133,8 @@ export class RCExpoModel {
                 self.exposition.integrateSerializedMediaInfo(JSON.parse(expositionJSON.media));
                 //                self.mde.value(self.exposition.markdownInput);
                 //              self.mde.render();
+                console.log(self.exposition.media);
+
             }
         };
         xhttp.open("GET", `${Backend.rcBaseAddress}text-editor/load?research=${id}&weave=${weave}`, true);
