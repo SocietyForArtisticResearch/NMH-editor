@@ -2286,8 +2286,12 @@ export class RCMDE {
             if (id == undefined) {
                 // new image
                 id = lst[c];
+                images[name] = id;
                 c = c + 1;
             }
+            console.log(images);
+            console.log(id);
+            console.log(name);
             let str = `!{${id}}`;
             return str;
         });
