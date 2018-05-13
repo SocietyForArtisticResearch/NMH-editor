@@ -1679,9 +1679,16 @@ export class RCMDE {
         return node.outerHTML || new XMLSerializer().serializeToString(node);
     }
 
-    mediaHTML(name: string) {
-        let tool = this.exposition.getObjectWithName(name);
-        let str = name.big();
+    mediaHTML(nameOrID: string) {
+        let n = parseInt(nameOrID);
+        let tool;
+        let str;
+        if (isNaN(n)) {
+            tool = this.exposition.getObjectWithName(nameOrID);
+        } else {
+            tool = this.exposition.getObjectWithID(n);
+        }
+        str = nameOrID.big();
         if (tool !== undefined) {
             tool.createHTML();
             //console.log(tool.html);
@@ -2173,9 +2180,9 @@ export class RCMDE {
                         el.setAttribute("id", "rcSave");
                         el.innerHTML = '<i style="cursor:pointer">Not saved</i>';
                         if (self.userSaveCallback) {
-                           el.onclick = self.userSaveCallback;
+                            el.onclick = self.userSaveCallback;
                         } else {
-                            console.log('function not defined',this);
+                            console.log('function not defined', this);
                         }
                     };
                     onUpdate = function (el) {
@@ -2187,7 +2194,7 @@ export class RCMDE {
                             if (self.userSaveCallback) {
                                 el.onclick = self.userSaveCallback;
                             } else {
-                                console.log('function not defined',this);
+                                console.log('function not defined', this);
                             }
                         }
                     };
@@ -2266,10 +2273,25 @@ export class RCMDE {
 
     // for importing from word etc.
     static replaceImagesWithTools(md, lst) {
-        let re = /!\[.*\]\(.*\)(\{[^}]*\})?/g;
+        //        let re = /!\[.*\]\(.*\)(\{[^}]*\})?/g;
+        //      let re2 = /<embed src=.*\/>/g;
+        let re = /(!\[.*\]\(.*\)(\{[^}]*\})?)|(<embed src=.*\/>)|(<img src=.*\/>)/g;
+        let images = {};
+        let imageNameRe = /(image[0-9]*)/g;
         //        let re = /!\[.*\]\(.*\){.*}/g;
         let c = 0;
-        let insertedTools = md.replace(re, function (m, p1) { let str = `!{${lst[c]}}`; c = c + 1; return str; });
+        let insertedTools = md.replace(re, function (m, p1) {
+            let name = m.match(imageNameRe)[0];
+            let id = images[name];
+            if (id == undefined) {
+                // new image
+                id = lst[c];
+                images[name] = id;
+                c = c + 1;
+            }
+            let str = `!{${id}}`;
+            return str;
+        });
         return insertedTools;
     }
 
@@ -2309,11 +2331,15 @@ export class RCMDE {
     importDocJSON(json) {
         let exposition = this.exposition;
         //        let ids = this.exposition.addImageList(json.media);
-        let names = json.media.map(id => exposition.getObjectWithID(id).name);
+        //        let names = json.media.map(id => exposition.getObjectWithID(id).name);
+        // ids as strings
+        let ids = json.media.map(id => String(id));
         //        console.log(json.media);
         //      this.value(RCMDE.replaceImagesWithTools(json.markdown, names));
         //        this.value(json.markdown);
-        this.value(RCMDE.replaceImagesWithTools(json.markdown, names));
+        console.log("media for replacement");
+        console.log(json);
+        this.value(RCMDE.replaceImagesWithTools(json.markdown, ids));
         this.render();
     }
 

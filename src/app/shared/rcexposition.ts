@@ -68,7 +68,16 @@ export class RCExposition {
         //        let re = /!{(\w+)}/g;
         let insertedTools;
         if (Backend.useRC) {
-            insertedTools = text.replace(re, function (m, p1) { return "![" + name + "](" + self.media.find(obj => obj.name == p1).rcURL(self.id) + ")"; });
+            insertedTools = text.replace(re, function (m, p1) {
+                return "![" + name + "](" + self.media.find(obj => {
+                    let n = parseInt(p1);
+                    if (isNaN(n)) {
+                        return obj.name == p1
+                    } else {
+                        return obj.id == n;
+                    }
+                }).rcURL(self.id) + ")";
+            });
         } else {
             insertedTools = text.replace(re, function (m, p1) { return "![" + name + "](" + self.media.find(obj => obj.name == p1).url + ")"; });
         }
