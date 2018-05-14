@@ -27,8 +27,8 @@ export class ImageToolComponent extends BasicToolComponent {
         let id = Utils.uniqueID();
         const newObject: RCImage = new RCImage(id, formModel.name);
         newObject.url = formModel.fileUrl;
-        newObject.pxWidth = null;//formModel.widthInPixels;
-        newObject.pxHeight = null;//formModel.heightInPixels;
+        newObject.pxWidth = formModel.widthInPixels;
+        newObject.pxHeight = formModel.heightInPixels;
         newObject.description = formModel.description;
         newObject.copyright = formModel.copyright;
         newObject.thumb = this.rcobject.thumb;
