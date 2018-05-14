@@ -430,12 +430,15 @@ export class RCImage extends RCMedia {
         if (this.html === undefined) {
             let img = document.createElement("img");
             img.setAttribute("src", this.url);
+            /* Casper - I remove this, since style should be defined using userClass
+            
             if ((this.pxHeight !== undefined) && (this.pxHeight)) {
                 img.setAttribute("height", String(this.pxHeight));
             };
             if ((this.pxWidth !== undefined) && (this.pxWidth)) {
                 img.setAttribute("width", String(this.pxWidth));
             };
+            */
             img.setAttribute("alt", this.name);
             this.createBasicHTML();
             this.html.appendChild(img);
