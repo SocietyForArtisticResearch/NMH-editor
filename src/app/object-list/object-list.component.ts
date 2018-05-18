@@ -18,6 +18,7 @@ import { Backend } from '../shared/Backend'
 export class ObjectListComponent implements OnInit {
     imageUri: string = null;
     selectedObject: RCObject = null;
+    busy: boolean = false;
 
     @Output() onObjectWasChosen = new EventEmitter();
 
@@ -134,7 +135,8 @@ export class ObjectListComponent implements OnInit {
 
     trashObject(rcObject) {
         if (Backend.useRC) {
-            this.rcBackendMediaUpload.removeObjectFromRC(rcObject.id,true);
+            this.busy = true;
+            this.rcBackendMediaUpload.removeObjectFromRC(rcObject.id,true, ( ) => { this.busy = false });
             // will resync
         }
         this.rcExpoModel.exposition.removeObjectWithID(rcObject.id);

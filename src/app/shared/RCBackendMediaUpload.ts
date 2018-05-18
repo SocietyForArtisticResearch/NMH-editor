@@ -105,7 +105,7 @@ export class RCBackendMediaUpload {
         }
     }
 
-    removeObjectFromRC(rcobjectid: number, reSync: boolean = true) {
+    removeObjectFromRC(rcobjectid: number, reSync: boolean = true, onSuccess? : ( ) => void ) {
         let id = this.rcExpoModel.exposition.id;
         var xhttp = new XMLHttpRequest();
         var that = this;
@@ -115,6 +115,7 @@ export class RCBackendMediaUpload {
                     let body = this.response;
                     //console.log('deleted tool, response body',body);
                     that.rcExpoModel.syncModelWithRC();
+                    onSuccess();
                 }
             } else {
                 console.log('RC Simple Media API error (status, response):  ', this.status, this.response);
