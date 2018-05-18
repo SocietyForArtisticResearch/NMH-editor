@@ -74,7 +74,7 @@
 			</td>
 
 
-			<td><button disabled="busy" class="align-right btn btn-danger btn-sm" (click)="trashObject(rcObject)">&times;</button></td>
+			<td><button [disabled]="busy" class="align-right btn btn-danger btn-sm" (click)="trashObject(rcObject)">&times;</button></td>
 			<td><button class="align-right btn btn-primary btn-sm" (click)="onDoubleClick(rcObject)">insert</button></td>
 		    </tr>
 	    </table>
