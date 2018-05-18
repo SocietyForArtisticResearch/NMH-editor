@@ -134,7 +134,7 @@ export class ObjectListComponent implements OnInit {
 
     trashObject(rcObject) {
         if (Backend.useRC) {
-            this.rcBackendMediaUpload.removeObjectFromRC(rcObject.id);
+            this.rcBackendMediaUpload.removeObjectFromRC(rcObject.id,true);
             // will resync
         }
         this.rcExpoModel.exposition.removeObjectWithID(rcObject.id);
