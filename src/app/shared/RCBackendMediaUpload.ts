@@ -114,8 +114,7 @@ export class RCBackendMediaUpload {
                 if (reSync) {
                     let body = this.response;
                     //console.log('deleted tool, response body',body);
-                    that.rcExpoModel.syncModelWithRC();
-                    onSuccess();
+                    that.rcExpoModel.syncModelWithRC(onSuccess);
                 }
             } else {
                 console.log('RC Simple Media API error (status, response):  ', this.status, this.response);
