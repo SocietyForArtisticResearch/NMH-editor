@@ -21,7 +21,7 @@
 
 app-markdown-tool .CodeMirror { 
     width: calc(50% - 29px);
-    height: 80vh;
+    height: 75vh;
     overflow-y: hidden;
     position:absolute;
     top: 150px;
@@ -41,6 +41,7 @@ app-markdown-tool .editor-statusbar {
     bottom: 0;
     z-index:1000;
     background-color:white;
+    margin:0 0 0 0;
 }
 
 app-markdown-tool .editor-preview-side {    
