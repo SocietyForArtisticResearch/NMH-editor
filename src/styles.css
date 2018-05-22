@@ -11,7 +11,10 @@
 
 .css-edit-screen  .CodeMirror {
     width: 50%;
-    height: 80vh;
+    /*height: calc(100vh - 125px);*/
+    bottom:35px;
+    height:unset;
+    min-height: unset;
     overflow-y: hidden;
     position:absolute;
     top: 150px;
@@ -21,7 +24,9 @@
 
 app-markdown-tool .CodeMirror { 
     width: calc(50% - 29px);
-    height: 75vh;
+    bottom:35px;
+    height:unset;
+    min-height: unset;
     overflow-y: hidden;
     position:absolute;
     top: 150px;
