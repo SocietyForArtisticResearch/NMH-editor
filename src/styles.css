@@ -16,13 +16,13 @@
     top: 150px;
     bottom:35px;
 
+
     height: auto;
     min-height: auto;
     overflow-y: hidden;
     position:absolute;
     
-
-    
+    border-bottom: none;
     border-right: none;
 }
 
@@ -38,7 +38,7 @@ app-markdown-tool .CodeMirror {
     overflow-y: hidden;
     position:absolute;
     
-
+    border-bottom: none;
     border-right: none;
 	/* border-right: none  */
 }
