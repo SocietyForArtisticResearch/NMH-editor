@@ -12,24 +12,33 @@
 .css-edit-screen  .CodeMirror {
     width: 50%;
     /*height: calc(100vh - 125px);*/
+    
+    top: 150px;
     bottom:35px;
-    height:unset;
-    min-height: unset;
+
+    height: auto;
+    min-height: auto;
     overflow-y: hidden;
     position:absolute;
-    top: 150px;
+    
+
+    
     border-right: none;
 }
 
 
 app-markdown-tool .CodeMirror { 
     width: calc(50% - 29px);
+   
+    top: 150px;
     bottom:35px;
+
     height:unset;
     min-height: unset;
     overflow-y: hidden;
     position:absolute;
-    top: 150px;
+    
+
     border-right: none;
 	/* border-right: none  */
 }
@@ -80,11 +89,35 @@ app-markdown-tool .editor-preview-side {
 
     app-markdown-tool .CodeMirror { 
 		width: calc(100% - 15px); 
-		height: auto; 
-		top:0px;
-		bottom: 0px;
+	
+
+		top: 260px;
+		bottom: 0; /* this is for status bar, otherwise usertext goes under it */
+
+        height: auto; 
+        min-height: auto; /* no minimum hieght, to facilitate statusbar. */
+
 		overflow-y: scroll; 
-		position:relative;
+		position: fixed;
+    }
+
+    .css-edit-screen  .CodeMirror {
+        width: calc(100% - 15px); 
+    
+
+        top: 260px;
+        bottom: 0; /* this is for status bar, otherwise usertext goes under it */
+
+        height: auto; 
+        min-height: auto; /* no minimum hieght, to facilitate statusbar. */
+
+        overflow-y: scroll; 
+        position: fixed;
+    }
+
+    .CodeMirror-scroll {
+        min-height:unset;
+        padding-bottom:unset;
     }
 
     app-markdown-tool .editor-toolbar {
