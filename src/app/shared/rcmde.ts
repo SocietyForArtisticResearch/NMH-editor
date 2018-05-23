@@ -1679,7 +1679,7 @@ export class RCMDE {
         return node.outerHTML || new XMLSerializer().serializeToString(node);
     }
 
-    mediaHTML(nameOrID: string) {
+    mediaHTML(nameOrID: string, counter: number) {
         let n = parseInt(nameOrID);
         let tool;
         let str;
@@ -1690,7 +1690,7 @@ export class RCMDE {
         }
         str = nameOrID.big();
         if (tool !== undefined) {
-            tool.createHTML();
+            tool.createHTML(counter);
             //console.log(tool.html);
             str = RCMDE.outerHTML(tool.html);
         }
@@ -1745,7 +1745,8 @@ export class RCMDE {
         self.changed = true;
         self.saved = false;
         //        text = "# " + this.exposition.title + "\n" + text;
-        let insertedTools = insertedCursor.replace(re, function (m, p1) { return self.mediaHTML(p1) });
+        let mediaCounter = 0;
+        let insertedTools = insertedCursor.replace(re, function (m, p1) { ++mediaCounter; return self.mediaHTML(p1, mediaCounter) });
         let basicHTML = md.render(insertedTools);
         let renderedHTML = "<div class=\"exposition\">" + "<div class=\"exposition-content\">" +
             "<h1 id=\"" + stringToId(this.exposition.title) + "\">" + this.exposition.title + "</h1>" + basicHTML + "</div>" + "</div>";
@@ -1873,10 +1874,10 @@ export class RCMDE {
         var cm = this.codemirror;
         var wrapper = cm.getWrapperElement();
         var preview = wrapper.nextSibling;
-        // morphdom(preview, this.options.previewRender(this.value(), preview), {
-        //     childrenOnly: true
-        // });
-        preview.innerHTML = this.options.previewRender(this.value(), preview);
+        morphdom(preview, this.options.previewRender(this.value(), preview), {
+            childrenOnly: true
+        });
+        //        preview.innerHTML = this.options.previewRender(this.value(), preview);
         this.render();
     }
 

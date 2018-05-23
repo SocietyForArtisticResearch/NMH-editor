@@ -278,6 +278,7 @@ export class RCObject {
     name: string;
     pxWidth: number;
     pxHeight: number;
+    mediaCounter: number;
     description: string;
     copyright: string;
     objectClass: string;
@@ -329,7 +330,7 @@ export class RCObject {
     createBasicHTML() {
         if (this.html === undefined) {
             let div = document.createElement("div");
-            div.id = this.htmlId;
+            div.id = this.htmlId + "-" + String(this.mediaCounter);
             div.classList.add("rcobject");
             div.classList.add(this.objectClass);
             if (this.userClass !== undefined) {
@@ -340,7 +341,8 @@ export class RCObject {
 
     }
 
-    createHTML() {
+    createHTML(counter: number = 1) {
+        this.mediaCounter = counter;
         this.createBasicHTML;
     }
 
@@ -426,7 +428,8 @@ export class RCImage extends RCMedia {
     //     this.__className = "RCImage";
     // }
 
-    createHTML() {
+    createHTML(counter: number = 1) {
+        this.mediaCounter = counter;
         if (this.html === undefined) {
             let img = document.createElement("img");
             img.setAttribute("src", this.url);
@@ -463,7 +466,8 @@ export class RCPdf extends RCMedia {
     //     this.__className = "RCPdf";
     // }
 
-    createHTML() {
+    createHTML(counter: number = 1) {
+        this.mediaCounter = counter;
         if (this.html === undefined) {
             let pdf = document.createElement("object");
             pdf.setAttribute("data", this.url);
@@ -503,7 +507,8 @@ export class RCSvg extends RCMedia {
     //     this.__className = "RCSvg";
     // }
 
-    createHTML() {
+    createHTML(counter: number = 1) {
+        this.mediaCounter = counter;
         if (this.html === undefined) {
             let svg = document.createElement("object");
             svg.setAttribute("data", this.url);
@@ -545,8 +550,8 @@ export class RCAudio extends RCMedia {
     //     this.loop = loop;
     //     this.__className = "RCAudio";
     // }
-
-    createHTML() {
+    createHTML(counter: number = 1) {
+        this.mediaCounter = counter;
         if (this.html === undefined) {
             let audio = document.createElement("audio");
             audio.setAttribute("controls", "true");
@@ -597,7 +602,8 @@ export class RCVideo extends RCMedia {
     //     this.__className = "RCVideo";
     // }
 
-    createHTML() {
+    createHTML(counter: number = 1) {
+        this.mediaCounter = counter;
         if (this.html === undefined) {
             let video = document.createElement("video");
             video.setAttribute("controls", "true");
