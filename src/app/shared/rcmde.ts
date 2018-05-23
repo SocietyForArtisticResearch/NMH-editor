@@ -910,10 +910,10 @@ export function toggleSideBySide(editor) {
     }
 
     var sideBySideRenderingFunction = function () {
-        //        preview.innerHTML = editor.options.previewRender(editor.value(), preview);
-        morphdom(preview, editor.options.previewRender(editor.value(), preview), {
-            childrenOnly: true
-        });
+        preview.innerHTML = editor.options.previewRender(editor.value(), preview);
+        // morphdom(preview, editor.options.previewRender(editor.value(), preview), {
+        //     childrenOnly: true
+        // });
     };
 
     if (!cm.sideBySideRenderingFunction) {
@@ -921,10 +921,10 @@ export function toggleSideBySide(editor) {
     }
 
     if (useSideBySideListener) {
-        //	preview.innerHTML = editor.options.previewRender(editor.value(), preview);
-        morphdom(preview, editor.options.previewRender(editor.value(), preview), {
-            childrenOnly: true
-        });
+        preview.innerHTML = editor.options.previewRender(editor.value(), preview);
+        // morphdom(preview, editor.options.previewRender(editor.value(), preview), {
+        //     childrenOnly: true
+        // });
         cm.on("update", cm.sideBySideRenderingFunction);
     } else {
         cm.off("update", cm.sideBySideRenderingFunction);
@@ -971,10 +971,10 @@ function togglePreview(editor) {
             toolbar_div.className += " disabled-for-preview";
         }
     }
-    morphdom(preview, editor.options.previewRender(editor.value(), preview), {
-        childrenOnly: true
-    });
-    //    preview.innerHTML = editor.options.previewRender(editor.value(), preview);
+    // morphdom(preview, editor.options.previewRender(editor.value(), preview), {
+    //     childrenOnly: true
+    // });
+    preview.innerHTML = editor.options.previewRender(editor.value(), preview);
 
     // Turn off side by side if needed
     var sidebyside = cm.getWrapperElement().nextSibling;
@@ -1733,7 +1733,7 @@ export class RCMDE {
             };
             let arrayPos = nthIndexOf(text, '\n', pos.line) + pos.ch;
             arrayPos = Math.max(0, arrayPos);
-            console.log(this.codemirror.getTokenAt(pos)); // see token
+            //            console.log(this.codemirror.getTokenAt(pos)); // see token
             if (!(this.codemirror.getLine(pos.line).includes("!{"))) { // check if we are not in a media entry
                 if (arrayPos == 0) {
                     insertedCursor = cursorAnchor + text;
