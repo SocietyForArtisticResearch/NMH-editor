@@ -1691,9 +1691,11 @@ export class RCMDE {
         str = nameOrID.big();
         if (tool !== undefined) {
             console.log(counter);
-            tool.createHTML(counter);
+            tool.createHTML();
+            let html = tool.html.cloneNode;
+            html.id = html.id + "-" + String(counter);
             //console.log(tool.html);
-            str = RCMDE.outerHTML(tool.html);
+            str = RCMDE.outerHTML(html);
         } else {
             console.log("didn't find media: " + nameOrID);
         }

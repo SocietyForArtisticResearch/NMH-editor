@@ -239,8 +239,12 @@ export class RCExpoModel {
 
         this.loadExpositionData();
 
-        // delay slightly
-        this.syncModelWithRC();
+        this.syncModelWithRC(() => {
+            // render againg
+            self.mde.value(self.exposition.markdownInput);
+            self.mde.render();
+        });
+
 
         this.saveInterval = setInterval(() => {
             if (document.hasFocus() && !self.mde.saved) {
