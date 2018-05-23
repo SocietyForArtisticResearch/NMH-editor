@@ -912,7 +912,7 @@ export function toggleSideBySide(editor) {
     var sideBySideRenderingFunction = function () {
         //        preview.innerHTML = editor.options.previewRender(editor.value(), preview);
         morphdom(preview, editor.options.previewRender(editor.value(), preview), {
-            childrenOnly: true
+            childrenOnly: false
         });
     };
 
@@ -923,7 +923,7 @@ export function toggleSideBySide(editor) {
     if (useSideBySideListener) {
         //        preview.innerHTML = editor.options.previewRender(editor.value(), preview);
         morphdom(preview, editor.options.previewRender(editor.value(), preview), {
-            childrenOnly: true
+            childrenOnly: false
         });
         cm.on("update", cm.sideBySideRenderingFunction);
     } else {
@@ -972,7 +972,7 @@ function togglePreview(editor) {
         }
     }
     morphdom(preview, editor.options.previewRender(editor.value(), preview), {
-        childrenOnly: true
+        childrenOnly: false
     });
     //    preview.innerHTML = editor.options.previewRender(editor.value(), preview);
 
@@ -1874,7 +1874,7 @@ export class RCMDE {
         var wrapper = cm.getWrapperElement();
         var preview = wrapper.nextSibling;
         morphdom(preview, this.options.previewRender(this.value(), preview), {
-            childrenOnly: true
+            childrenOnly: false
         });
         //        preview.innerHTML = this.options.previewRender(this.value(), preview);
         this.render();
