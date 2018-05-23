@@ -910,10 +910,10 @@ export function toggleSideBySide(editor) {
     }
 
     var sideBySideRenderingFunction = function () {
-        preview.innerHTML = editor.options.previewRender(editor.value(), preview);
-        // morphdom(preview, editor.options.previewRender(editor.value(), preview), {
-        //     childrenOnly: true
-        // });
+        //        preview.innerHTML = editor.options.previewRender(editor.value(), preview);
+        morphdom(preview, editor.options.previewRender(editor.value(), preview), {
+            childrenOnly: true
+        });
     };
 
     if (!cm.sideBySideRenderingFunction) {
@@ -921,10 +921,10 @@ export function toggleSideBySide(editor) {
     }
 
     if (useSideBySideListener) {
-        preview.innerHTML = editor.options.previewRender(editor.value(), preview);
-        // morphdom(preview, editor.options.previewRender(editor.value(), preview), {
-        //     childrenOnly: true
-        // });
+        //        preview.innerHTML = editor.options.previewRender(editor.value(), preview);
+        morphdom(preview, editor.options.previewRender(editor.value(), preview), {
+            childrenOnly: true
+        });
         cm.on("update", cm.sideBySideRenderingFunction);
     } else {
         cm.off("update", cm.sideBySideRenderingFunction);
@@ -971,10 +971,10 @@ function togglePreview(editor) {
             toolbar_div.className += " disabled-for-preview";
         }
     }
-    // morphdom(preview, editor.options.previewRender(editor.value(), preview), {
-    //     childrenOnly: true
-    // });
-    preview.innerHTML = editor.options.previewRender(editor.value(), preview);
+    morphdom(preview, editor.options.previewRender(editor.value(), preview), {
+        childrenOnly: true
+    });
+    //    preview.innerHTML = editor.options.previewRender(editor.value(), preview);
 
     // Turn off side by side if needed
     var sidebyside = cm.getWrapperElement().nextSibling;
@@ -1872,10 +1872,10 @@ export class RCMDE {
         var cm = this.codemirror;
         var wrapper = cm.getWrapperElement();
         var preview = wrapper.nextSibling;
-        // morphdom(preview, this.options.previewRender(this.value(), preview), {
-        //     childrenOnly: true
-        // });
-        preview.innerHTML = this.options.previewRender(this.value(), preview);
+        morphdom(preview, this.options.previewRender(this.value(), preview), {
+            childrenOnly: true
+        });
+        //        preview.innerHTML = this.options.previewRender(this.value(), preview);
         this.render();
     }
 
