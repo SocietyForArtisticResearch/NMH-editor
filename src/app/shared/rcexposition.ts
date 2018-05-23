@@ -398,7 +398,7 @@ export class RCMedia extends RCObject {
 
     updateHTML() {
         this.html = undefined;
-        this.createHTML();
+        this.createHTML(this.mediaCounter);
     }
 
     // constructor(name: string, url: string, rcClass, userClass, pxWidth?: number, pxHeight?: number) {

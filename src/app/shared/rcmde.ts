@@ -1690,9 +1690,12 @@ export class RCMDE {
         }
         str = nameOrID.big();
         if (tool !== undefined) {
+            console.log(counter);
             tool.createHTML(counter);
             //console.log(tool.html);
             str = RCMDE.outerHTML(tool.html);
+        } else {
+            console.log("didn't find media: " + nameOrID);
         }
         return str;
     }
