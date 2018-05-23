@@ -1692,9 +1692,9 @@ export class RCMDE {
         if (tool !== undefined) {
             console.log(counter);
             tool.createHTML();
-            let html = tool.html.cloneNode;
+            let html = tool.html.cloneNode(true);
             html.id = html.id + "-" + String(counter);
-            //console.log(tool.html);
+            console.log(html);
             str = RCMDE.outerHTML(html);
         } else {
             console.log("didn't find media: " + nameOrID);
