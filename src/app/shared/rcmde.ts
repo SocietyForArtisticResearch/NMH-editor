@@ -1671,7 +1671,7 @@ export class RCMDE {
                 preview.scrollTo({ left: 0, top: Math.max(0, el.offsetTop - 100), behavior: 'smooth' });
                 //                el.scrollIntoView();
             }
-        }, 250);
+        }, 200);
 
     }
 
@@ -1733,11 +1733,14 @@ export class RCMDE {
             };
             let arrayPos = nthIndexOf(text, '\n', pos.line) + pos.ch;
             arrayPos = Math.max(0, arrayPos);
-            if (arrayPos == 0) {
-                insertedCursor = cursorAnchor + text;
-            } else {
-                insertedCursor = text.substr(0, arrayPos) + cursorAnchor + text.substr(arrayPos);
-            }
+            console.log(this.codemirror.getTokenAt(pos)); // see token
+            if (!(this.codemirror.getLine(pos.line).includes("!{"))) { // check if we are not in a media entry
+                if (arrayPos == 0) {
+                    insertedCursor = cursorAnchor + text;
+                } else {
+                    insertedCursor = text.substr(0, arrayPos) + cursorAnchor + text.substr(arrayPos);
+                }
+            };
         };
         self.changed = true;
         self.saved = false;
