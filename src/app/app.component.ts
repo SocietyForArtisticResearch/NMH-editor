@@ -23,7 +23,10 @@ import { switchMap } from 'rxjs/operators';
 export class AppComponent implements OnInit {
     @HostListener('window:beforeunload', ['$event'])
     respondToUnload($event) {
-        $event.returnValue = 'are you sure you want to leave';
+        if (!this.rcExpoModel.mde.saved) {
+            $event.returnValue = 'are you sure you want to leave';
+        } 
+        // if no value is provided, event will pass silently
     }
     // rcExpoModel is injected into this compenent (and all its children through their constructors !)
     showMedia: boolean = false;

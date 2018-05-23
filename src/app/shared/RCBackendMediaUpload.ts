@@ -49,7 +49,7 @@ export class RCBackendMediaUpload {
         let rcMetaData: RCMetaData = {
             // default values:
             copyrightholder: copyrightholder,
-            description: '',
+            description: 'description',
             name: selectedFile.name
         };
 
