@@ -1872,10 +1872,10 @@ export class RCMDE {
         var cm = this.codemirror;
         var wrapper = cm.getWrapperElement();
         var preview = wrapper.nextSibling;
-        morphdom(preview, this.options.previewRender(this.value(), preview), {
-            childrenOnly: true
-        });
-        //        preview.innerHTML = this.options.previewRender(this.value(), preview);
+        // morphdom(preview, this.options.previewRender(this.value(), preview), {
+        //     childrenOnly: true
+        // });
+        preview.innerHTML = this.options.previewRender(this.value(), preview);
         this.render();
     }
 
