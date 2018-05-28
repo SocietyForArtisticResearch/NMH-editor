@@ -44,7 +44,7 @@ export class DocUploaderComponent implements OnInit {
 
     onJsonSelected(event) {
         this.selectedJson = <File>event.target.files[0];
-        if (!Utils.checkTypeUsingFilename(this.selectedJson.name, ['.json'])) {
+        if (!Utils.checkTypeUsingFilename(this.selectedJson.name, ['json'])) {
             alert('This is not an exposition, please provide .json or use import external format');
         }
     }

@@ -9,7 +9,7 @@
 		</div>
 		<div class="col-md-4">
 			<h5>Import/export to disc</h5>
-			<label for="jsonFileSelect">Select saved exposition (.json):</label>
+			<label for="jsonFileSelect">Select saved exposition (.json). Media files will not be saved:</label>
 			<input id="jsonFileSelect" class="form-control-file" type="file" (change)="onJsonSelected($event)" name="jsonImport">
 			<button class="btn btn-xs" (click)="onJsonImport()">Import in RC format (.json)</button>
 			<br><br>
