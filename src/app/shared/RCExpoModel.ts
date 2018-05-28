@@ -132,7 +132,7 @@ export class RCExpoModel {
                 // console.log(expositionJSON.media);
                 self.exposition.integrateSerializedMediaInfo(JSON.parse(expositionJSON.media));
                 //                self.mde.value(self.exposition.markdownInput);
-                //              self.mde.render();
+                              self.mde.render();
                 //                console.log(self.exposition.media);
 
             }
