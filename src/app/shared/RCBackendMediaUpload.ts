@@ -75,11 +75,14 @@ export class RCBackendMediaUpload {
             let expositionId = this.rcExpoModel.exposition.id;
 
             var fd = new FormData();
+            
             fd.append('mediatype', fileType);
             fd.append('name', rcMetaData.name);
             fd.append('media', selectedFile);
             fd.append('copyrightholder', rcMetaData.copyrightholder);
             fd.append('description', rcMetaData.description);
+            fd.append('thumb',new File([""], "")); // RC api required thumb.
+
 
             //console.log('formdata',fd);
 

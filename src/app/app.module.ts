@@ -22,6 +22,7 @@ import { DragAndDropComponent } from './drag-and-drop/drag-and-drop.component';
 import { DragDropDirective } from './drag-and-drop/drag-drop.directive';
 import { VideoToolComponent } from './tools/video-tool/video-tool.component';
 import { ImageToolComponent } from './tools/image-tool/image-tool.component';
+import { PdfToolComponent } from './tools/pdf-tool/pdf-tool.component';
 
 // url routing
 const appRoutes: Routes = [
@@ -44,7 +45,8 @@ const appRoutes: Routes = [
     DragAndDropComponent,
     DragDropDirective,
     VideoToolComponent,
-    ImageToolComponent
+    ImageToolComponent,
+    PdfToolComponent
   ],
   imports: [
     SortablejsModule.forRoot({ animation: 150 }),
