@@ -121,7 +121,6 @@ export class BasicToolComponent implements OnInit {
         // local change, use local method:
         if (this.toolForm.dirty && !(this.editInQueue)) {
             this.onSubmit();
-            console.log('update local property',val);
         }
     }
 
@@ -130,7 +129,6 @@ export class BasicToolComponent implements OnInit {
         this.rcobject.updateHTML();
         this.rcExpoModel.mde.forceRender();
         this.rcExpoModel.saveToRC();
-        console.log('alternative method',this.rcobject);
     }
 
     onRCMetaDataChange(val) {
@@ -156,7 +154,6 @@ export class BasicToolComponent implements OnInit {
     }
 
     commitRCMetaDataEdit() {
-        console.log('commit changes in metadata');
         // commit changes to RC backend
         let newCopyright = this.toolForm.get('copyright').value;
         let newDescription = this.toolForm.get('description').value;
@@ -167,6 +164,11 @@ export class BasicToolComponent implements OnInit {
             description : newDescription ,
             name : newName
         }
+
+        // make the local object's in RCExpoModel update already.
+        this.rcobject.name = newName;
+        this.rcobject.copyright = newCopyright;
+        this.rcobject.description = newDescription;
 
         this.rcBackendMediaUpload.editObjectFromRC(this.rcobject.id,metadata);
         this.editInQueue = false;
