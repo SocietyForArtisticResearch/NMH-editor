@@ -103,6 +103,13 @@
 						   (onChangedObject)="onChangedObject($event)"
 		    >		
 		    </app-video-tool>
+		    <app-pdf-tool *ngSwitchCase="'RCPdf'"
+				    [id]="'editor'+selectedObject.id" 
+						   [rcobject]="selectedObject"
+						   (onRemoveObject)="objectWasRemoved($event)"
+						   (onChangedObject)="onChangedObject($event)"
+		    >		
+		    </app-pdf-tool>
 		</div>
 	    </div>
 	</div>

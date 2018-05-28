@@ -2,7 +2,7 @@ import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
 import { DragDropDirective } from './drag-drop.directive';
 import { Backend } from '../shared/Backend';
 import { RCExpoModel } from '../shared/RCExpoModel';
-import { RCImage, RCObject, RCAudio, RCVideo } from '../shared/rcexposition';
+import { RCImage, RCObject, RCAudio, RCVideo, RCPdf } from '../shared/rcexposition';
 import { RCMDE, insertMedia } from '../shared/rcmde';
 import * as Utils from '../shared/utils';
 import { HttpClient, HttpRequest, HttpEventType, HttpResponse } from '@angular/common/http';
@@ -117,7 +117,7 @@ export class DragAndDropComponent implements OnInit {
         } else if (mimeType.includes('pdf')) {
             let pdfName = 'pdf' + this.rcExpoModel.exposition.media.length;
             let pdfUri = Backend.baseAddress + result.url;
-            newRCObject = new RCVideo(Utils.uniqueID(), pdfName);
+            newRCObject = new RCPdf(Utils.uniqueID(), pdfName);
             newRCObject.url = pdfUri;
         } else {
             console.log('do not know what to do with mimeType: ', mimeType);
