@@ -149,14 +149,14 @@ export class RCExpoModel {
         xhttp.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
                 let expositionJSON = JSON.parse(xhttp.responseText);
-                //                console.log(JSON.parse(expositionJSON.media));
+                // console.log(JSON.parse(expositionJSON.media));
                 console.log("Loading expo data:")
                 console.log(expositionJSON);
                 self.exposition.title = expositionJSON.title;
                 // self.exposition.toc = JSON.parse(expositionJSON.toc);
                 self.exposition.markdownInput = expositionJSON.markdown;
                 self.exposition.renderedHTML = expositionJSON.html;
-                //              self.exposition.media = RCExpositionDeserializer.restoreObject(JSON.parse(expositionJSON.media));
+                // self.exposition.media = RCExpositionDeserializer.restoreObject(JSON.parse(expositionJSON.media));
                 self.exposition.style = expositionJSON.style;
                 self.mde.exposition = self.exposition;
                 self.mde.value(self.exposition.markdownInput);
@@ -242,7 +242,7 @@ export class RCExpoModel {
         this.syncModelWithRC(() => {
             // render againg
             self.mde.value(self.exposition.markdownInput);
-            self.mde.render();
+            self.mde.forceRender();
         });
 
 

@@ -176,7 +176,6 @@ export class RCBackendMediaUpload {
                     // debug
                     // console.log('rcobject.thumb',rcobj.thumb);
 
-
                     rcobj.thumb = rcobj.thumb + '&t=' + new Date().getTime();  
                     rcobj.url = rcobj.url + '&t=' + new Date().getTime();
                 }; 
