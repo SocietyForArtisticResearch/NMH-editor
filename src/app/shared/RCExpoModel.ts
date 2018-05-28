@@ -253,7 +253,7 @@ export class RCExpoModel {
             }
         }, 12000);
 
-        this.syncInterval = setInterval(() => { if (document.hasFocus()) { console.log("snyced"); self.syncModelWithRC() } }
+        this.syncInterval = setInterval(() => { if (document.hasFocus()) { console.log("synced"); self.syncModelWithRC() } }
             , 40000);
 
         document.addEventListener('visibilitychange', function () {

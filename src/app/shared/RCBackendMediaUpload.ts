@@ -169,12 +169,11 @@ export class RCBackendMediaUpload {
             } else if (event instanceof HttpResponse) {
                 onProgress('done');
                 
-
                 let refreshImagesWhenComplete = ( ) => {
                     // this should force the image to refresh
                     let rcobj = this.rcExpoModel.exposition.getObjectWithID(rcobjectid);
-                    rcobj.thumb = rcobj.thumb.split('?')[0] + '?=' + new Date().getTime();  
-                    rcobj.url = rcobj.url.split('?')[0] + '?=' + new Date().getTime();
+                    rcobj.thumb = rcobj.thumb + '&t=' + new Date().getTime();  
+                    rcobj.url = rcobj.url + '&t=' + new Date().getTime();
                 }; 
 
                 this.rcExpoModel.syncModelWithRC(refreshImagesWhenComplete);
@@ -205,6 +204,7 @@ export class RCBackendMediaUpload {
                 let body = this.response;
                 console.log('edit tool call',body);
                 that.rcExpoModel.syncModelWithRC();
+                that.rcExpoModel.mde.render();
             } else {
                 console.log('RC Simple Media API error, edit (status, response):  ', this.status, this.response);
             }
