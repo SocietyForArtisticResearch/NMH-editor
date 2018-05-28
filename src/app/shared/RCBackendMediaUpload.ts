@@ -168,10 +168,15 @@ export class RCBackendMediaUpload {
                 onProgress('uploading ' + Math.round(100 * event.loaded / event.total) + '%');
             } else if (event instanceof HttpResponse) {
                 onProgress('done');
-                
+
                 let refreshImagesWhenComplete = ( ) => {
                     // this should force the image to refresh
+
                     let rcobj = this.rcExpoModel.exposition.getObjectWithID(rcobjectid);
+                    // debug
+                    console.log('rcobject.thumb',rcobj.thumb);
+
+
                     rcobj.thumb = rcobj.thumb + '&t=' + new Date().getTime();  
                     rcobj.url = rcobj.url + '&t=' + new Date().getTime();
                 }; 
