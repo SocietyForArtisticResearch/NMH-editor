@@ -42,12 +42,15 @@ export class BasicToolComponent implements OnInit {
     fileUploadStatus: string = null;
 
     imageUserClasses: any[] = [
-        {Value: 'rcImageFullWidth', text: 'big' },
-        {Value: 'rcImageMedium', text: 'medium' },
-        {Value: 'rcImageSmall', text: 'small'},
-        {Value: 'rcImageFloatLeft', text: 'small & float left'},
-        {Value: 'rcImageFloatRight', text: 'small & float right'},
-        {Value: 'custom', text: 'custom (not available yet)' }];
+        { Value: 'big', text: 'big' },
+        { Value: 'medium', text: 'medium' },
+        { Value: 'small', text: 'small' },
+        { Value: 'floatLeftSmall', text: 'small & float left' },
+        { Value: 'floatRightSmall', text: 'small & float right' },
+        { Value: 'floatLeftMedium', text: 'medium & float left' },
+        { Value: 'floatRightMedium', text: 'medium & float right' },
+        { Value: 'custom', text: 'custom (not available yet)' }
+    ];
 
 
     identifier: number;

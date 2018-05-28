@@ -65,6 +65,16 @@
 					Browser does not support audio.
 				    </video>
 				</div>
+
+				<div *ngSwitchCase="'RCPdf'">
+				    <p class="image-preview">▶</p>
+				    <video class="pdf-preview">
+					<source src={{rcObject.thumb}}
+ 						    height="66" 
+						    width="66">
+					Browser does not support audio.
+				    </video>
+				</div>
 			    </div>
 
 			</td>

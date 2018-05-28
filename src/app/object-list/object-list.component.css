@@ -1,5 +1,13 @@
 .video-preview {
     width:75px;
+    height:75px;
+    object-fit: cover;
+}
+
+.pdf-preview {
+	width: 75px;
+	height: 75px;
+	object-fit: cover;
 }
 
 .rc-object-list {
