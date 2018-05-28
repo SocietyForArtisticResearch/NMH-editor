@@ -128,5 +128,9 @@ export class AppComponent implements OnInit {
         return false;
     }
 
+    forceRender() {
+        this.rcExpoModel.mde.force();
+    }
+
 
 }
