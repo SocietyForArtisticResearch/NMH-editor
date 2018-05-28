@@ -113,6 +113,8 @@ export class DocUploaderComponent implements OnInit {
             let exposition = RCExpositionDeserializer.restoreObject(expositionJSON);
             //  console.log(exposition);
             exposition.media.forEach(m => m.html = undefined);
+            exposition.id = this.rcExpoModel.exposition.id;
+            exposition.currentWeave = this.rcExpoModel.exposition.currentWeave;
             this.rcExpoModel.exposition = exposition;
             this.rcExpoModel.mde.exposition = exposition;
             //          console.log(exposition.markdownInput);
