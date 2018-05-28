@@ -102,14 +102,14 @@ export class RCExpoModel {
                     var mde = that.mde;
                     let medialist = JSON.parse(xhttp.responseText);
                     that.exposition.integrateRCMediaList(medialist);
-                    //                    console.log(that.exposition.media);
+                       //                 console.log(that.exposition.media);
                     if (continueFunction != undefined) {
                         continueFunction();
                     }
-                    //                    console.log(medialist)
-
+                   
                 };
                 that.loadSerializedMedia();
+                            console.log('exposition media after merge: ',that.exposition.media);
             };
 
             xhttp.open("GET", `${Backend.rcBaseAddress}text-editor/simple-media-list?research=${id}`, true);
@@ -242,7 +242,7 @@ export class RCExpoModel {
         this.syncModelWithRC(() => {
             // render againg
             self.mde.value(self.exposition.markdownInput);
-            self.mde.forceRender();
+            self.mde.render();
         });
 
 
