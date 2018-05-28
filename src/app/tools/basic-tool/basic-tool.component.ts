@@ -84,7 +84,8 @@ export class BasicToolComponent implements OnInit {
             'name': new FormControl(this.rcobject.name,
                 [
                     forbiddenNameValidator(this.rcExpoModel, this.rcobject.name), // <-- Here's how you pass in the custom validator.
-                    Validators.required
+                    Validators.required,
+                    Validators.minLength(4)
                 ]),
             'fileUrl': new FormControl(this.rcobject.url, [Validators.required]),
             'widthInPixels': new FormControl(this.rcobject.pxWidth),
