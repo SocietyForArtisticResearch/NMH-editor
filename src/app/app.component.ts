@@ -129,7 +129,7 @@ export class AppComponent implements OnInit {
     }
 
     forceRender() {
-        this.rcExpoModel.mde.force();
+        this.rcExpoModel.mde.forceRender();
     }
 
 
