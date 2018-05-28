@@ -174,7 +174,7 @@ export class RCBackendMediaUpload {
 
                     let rcobj = this.rcExpoModel.exposition.getObjectWithID(rcobjectid);
                     // debug
-                    console.log('rcobject.thumb',rcobj.thumb);
+                    // console.log('rcobject.thumb',rcobj.thumb);
 
 
                     rcobj.thumb = rcobj.thumb + '&t=' + new Date().getTime();  
