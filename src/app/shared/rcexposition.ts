@@ -614,6 +614,7 @@ export class RCVideo extends RCMedia {
             };
             let source = document.createElement("source");
             source.setAttribute("src", this.url);
+            source.setAttribute("type", "video/mp4");
             video.appendChild(source);
             this.createBasicHTML();
             this.html.appendChild(video);
