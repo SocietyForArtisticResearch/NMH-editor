@@ -1752,9 +1752,9 @@ export class RCMDE {
         //        text = "# " + this.exposition.title + "\n" + text;
         let mediaCounter = 0;
         console.log(insertedCursor);
-        let insertedTools = insertedCursor.replace(re, function (m, p1) { ++mediaCounter; return self.mediaHTML(p1, mediaCounter) });
-        console.log(insertedTools);
-        let basicHTML = md.render(insertedTools);
+        let basicHTML = md.render(insertedCursor);
+        basicHTML = basicHTML.replace(re, function (m, p1) { ++mediaCounter; return self.mediaHTML(p1, mediaCounter) });
+
         let renderedHTML = "<div class=\"exposition\">" + "<div class=\"exposition-content\">" +
             "<h1 id=\"" + stringToId(this.exposition.title) + "\">" + this.exposition.title + "</h1>" + basicHTML + "</div>" + "</div>";
         self.exposition.markdownInput = text;
