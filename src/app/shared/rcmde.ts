@@ -1759,6 +1759,7 @@ export class RCMDE {
             "<h1 id=\"" + stringToId(this.exposition.title) + "\">" + this.exposition.title + "</h1>" + basicHTML + "</div>" + "</div>";
         self.exposition.markdownInput = text;
         self.exposition.renderedHTML = renderedHTML;
+        console.log(renderedHTML);
         self.exposition.getTOC();
         this.updateStyling();
         return self.exposition.renderedHTML;
