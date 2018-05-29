@@ -103,14 +103,11 @@ export class RCExpoModel {
                     var mde = that.mde;
                     let medialist = JSON.parse(xhttp.responseText);
                     that.exposition.integrateRCMediaList(medialist);
-                       //                 console.log(that.exposition.media);
-                    if (continueFunction != undefined) {
-                        continueFunction();
-                    }
-                   
+                    //                 console.log(that.exposition.media);
+
                 };
-                that.loadSerializedMedia();
-                            console.log('exposition media after merge: ',that.exposition.media);
+                that.loadSerializedMedia(continueFunction);
+                //                console.log('exposition media after merge: ', that.exposition.media);
             };
 
             xhttp.open("GET", `${Backend.rcBaseAddress}text-editor/simple-media-list?research=${id}`, true);
@@ -121,7 +118,7 @@ export class RCExpoModel {
     }
 
 
-    loadSerializedMedia() {
+    loadSerializedMedia(continueFunction?: () => void) {
         let id = this.exposition.id;
         let weave = this.exposition.currentWeave;
         var xhttp = new XMLHttpRequest();
@@ -133,9 +130,12 @@ export class RCExpoModel {
                 // console.log(expositionJSON.media);
                 self.exposition.integrateSerializedMediaInfo(JSON.parse(expositionJSON.media));
                 //                self.mde.value(self.exposition.markdownInput);
-                 //             self.mde.render();
+                //             self.mde.render();
                 //                console.log(self.exposition.media);
 
+                if (continueFunction != undefined) {
+                    continueFunction();
+                }
             }
         };
         xhttp.open("GET", `${Backend.rcBaseAddress}text-editor/load?research=${id}&weave=${weave}`, true);
@@ -156,17 +156,17 @@ export class RCExpoModel {
                 self.exposition.title = expositionJSON.title;
                 // self.exposition.toc = JSON.parse(expositionJSON.toc);
                 self.exposition.markdownInput = expositionJSON.markdown;
-                
+
                 // CASPER TEST: remove this:
                 // self.exposition.renderedHTML = expositionJSON.html;
-                console.log('this is the exposition.media array before render in LoadExpositionData(), ',self.exposition.media);
-                
+                console.log('this is the exposition.media array before render in LoadExpositionData(), ', self.exposition.media);
+
                 // self.exposition.media = RCExpositionDeserializer.restoreObject(JSON.parse(expositionJSON.media));
-                
+
                 self.exposition.style = expositionJSON.style;
                 self.mde.exposition = self.exposition;
-                self.mde.value(self.exposition.markdownInput);
-                self.mde.render();
+                // self.mde.value(self.exposition.markdownInput);
+                // self.mde.render();
             }
         };
         xhttp.open("GET", `${Backend.rcBaseAddress}text-editor/load?research=${id}&weave=${weave}`, true);
@@ -259,10 +259,12 @@ export class RCExpoModel {
             }
         }, 12000);
 
-        this.syncInterval = setInterval(() => 
-            { if (document.hasFocus()) { 
-                console.log("synced"); 
-                self.syncModelWithRC() } }
+        this.syncInterval = setInterval(() => {
+            if (document.hasFocus()) {
+                console.log("synced");
+                self.syncModelWithRC()
+            }
+        }
             , 40000);
 
         document.addEventListener('visibilitychange', function () {
