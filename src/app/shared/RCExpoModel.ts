@@ -156,8 +156,13 @@ export class RCExpoModel {
                 self.exposition.title = expositionJSON.title;
                 // self.exposition.toc = JSON.parse(expositionJSON.toc);
                 self.exposition.markdownInput = expositionJSON.markdown;
-                self.exposition.renderedHTML = expositionJSON.html;
+                
+                // CASPER TEST: remove this:
+                // self.exposition.renderedHTML = expositionJSON.html;
+                console.log('this is the exposition.media array before render in LoadExpositionData(), ',self.exposition.media);
+                
                 // self.exposition.media = RCExpositionDeserializer.restoreObject(JSON.parse(expositionJSON.media));
+                
                 self.exposition.style = expositionJSON.style;
                 self.mde.exposition = self.exposition;
                 self.mde.value(self.exposition.markdownInput);
