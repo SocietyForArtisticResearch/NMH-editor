@@ -93,6 +93,7 @@ export class RCExpoModel {
     }
 
     syncModelWithRC(continueFunction?: () => void) {
+        console.log('sync started');
         try {
             let id = this.exposition.id;
             var xhttp = new XMLHttpRequest();
