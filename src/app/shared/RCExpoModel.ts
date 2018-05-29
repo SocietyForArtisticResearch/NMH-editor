@@ -132,7 +132,7 @@ export class RCExpoModel {
                 // console.log(expositionJSON.media);
                 self.exposition.integrateSerializedMediaInfo(JSON.parse(expositionJSON.media));
                 //                self.mde.value(self.exposition.markdownInput);
-                              self.mde.render();
+                 //             self.mde.render();
                 //                console.log(self.exposition.media);
 
             }
@@ -253,7 +253,10 @@ export class RCExpoModel {
             }
         }, 12000);
 
-        this.syncInterval = setInterval(() => { if (document.hasFocus()) { console.log("synced"); self.syncModelWithRC() } }
+        this.syncInterval = setInterval(() => 
+            { if (document.hasFocus()) { 
+                console.log("synced"); 
+                self.syncModelWithRC() } }
             , 40000);
 
         document.addEventListener('visibilitychange', function () {

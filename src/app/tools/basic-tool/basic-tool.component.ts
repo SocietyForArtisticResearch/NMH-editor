@@ -49,7 +49,7 @@ export class BasicToolComponent implements OnInit {
         { Value: 'floatRightSmall', text: 'small & float right' },
         { Value: 'floatLeftMedium', text: 'medium & float left' },
         { Value: 'floatRightMedium', text: 'medium & float right' },
-        { Value: 'custom', text: 'custom (not available yet)' }
+        { Value: 'custom', text: 'user defined' }
     ];
 
 
@@ -76,7 +76,7 @@ export class BasicToolComponent implements OnInit {
         this.identifier = this.rcobject.id;
 
         let copyrightValue = this.rcobject.copyright ? this.rcobject.copyright : '© 2018';
-        let imageClassSelectValue = this.rcobject.userClass ? this.rcobject.userClass : 'rcImageFullWidth';
+        let imageClassSelectValue = this.rcobject.userClass ? this.rcobject.userClass : 'big';
         //console.log('value',imageClassSelectValue,'userclass:', this.rcobject.userClass)
 
         // initialize fields with data from object:
@@ -211,8 +211,7 @@ export class BasicToolComponent implements OnInit {
     }*/
 
     ngOnChanges(changes: SimpleChanges) {
-        console.log('what has changed:',changes);
-        let imageClassSelectValue = this.rcobject.userClass ? this.rcobject.userClass : 'rcImageFullWidth';
+        let imageClassSelectValue = this.rcobject.userClass ? this.rcobject.userClass : 'big';
 
         // if the object was changed in model (through resync for example), fill fields with data from model
         if (this.toolForm) {
