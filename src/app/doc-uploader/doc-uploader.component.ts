@@ -80,7 +80,7 @@ export class DocUploaderComponent implements OnInit {
                 // This is an upload progress event. Compute and show the % done:
                 this.fileUploadStatus = Math.round(100 * event.loaded / event.total) + '%';
             } else if (event instanceof HttpResponse) {
-                this.fileUploadStatus = 'done';
+                this.fileUploadStatus = '...converting, please stand by';
                 window.setTimeout(() => { this.fileUploadStatus = null }, 1000);
                 console.log(event);
                 console.log(event);
@@ -89,6 +89,8 @@ export class DocUploaderComponent implements OnInit {
         });
 
         this.rcExpoModel.mde.render();
+
+        this.fileUploadStatus = 'completed';
     }
 
     onDocImportResult(result) {
