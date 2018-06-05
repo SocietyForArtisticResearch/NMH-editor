@@ -78,9 +78,14 @@ export class DocUploaderComponent implements OnInit {
             // Look for upload progress events.
             if (event.type === HttpEventType.UploadProgress) {
                 // This is an upload progress event. Compute and show the % done:
-                this.fileUploadStatus = Math.round(100 * event.loaded / event.total) + '%';
+                var doneRatio = event.loaded / event.total;
+                if (doneRatio > 0.99) {
+                    this.fileUploadStatus = 'converting, please wait';
+                } else {
+                    this.fileUploadStatus = Math.round(100 * event.loaded / event.total) + '%';
+                }
             } else if (event instanceof HttpResponse) {
-                this.fileUploadStatus = '...converting, please stand by';
+                this.fileUploadStatus = 'conversion complete';
                 window.setTimeout(() => { this.fileUploadStatus = null }, 1000);
                 console.log(event);
                 console.log(event);
@@ -90,7 +95,7 @@ export class DocUploaderComponent implements OnInit {
 
         this.rcExpoModel.mde.render();
 
-        this.fileUploadStatus = 'completed';
+        this.fileUploadStatus = 'done';
     }
 
     onDocImportResult(result) {
