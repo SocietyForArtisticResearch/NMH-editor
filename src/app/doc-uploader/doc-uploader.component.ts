@@ -39,6 +39,7 @@ export class DocUploaderComponent implements OnInit {
         this.selectedFile = <File>event.target.files[0];
         if (!Utils.checkTypeUsingFilename(this.selectedFile.name, this.allowedTypes)) {
             alert('Sorry, we do not support the filetype of "' + this.selectedFile.name + '"\n\nSupported filetypes are: ' + this.formattedTypes());
+            this.selectedFile = null;
         }
     }
 
@@ -46,6 +47,7 @@ export class DocUploaderComponent implements OnInit {
         this.selectedJson = <File>event.target.files[0];
         if (!Utils.checkTypeUsingFilename(this.selectedJson.name, ['json'])) {
             alert('This is not an exposition, please provide .json or use import external format');
+            this.selectedJson = null;
         }
     }
 
