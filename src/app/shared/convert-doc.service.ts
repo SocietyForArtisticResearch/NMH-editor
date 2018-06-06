@@ -30,10 +30,11 @@ export class ConvertDocService {
         xhr.onreadystatechange = function() {
              if (xhr.readyState === 4) {
                  let file = xhr.response; //Outputs a DOMString by default
-                 FileSaver.saveAs(file, "convert." + type); 
+                 FileSaver.saveAs(file, "convert." + fileType); 
                  statusCallback("complete");    
              }
         };
+    }
 
         /*
         let url;
