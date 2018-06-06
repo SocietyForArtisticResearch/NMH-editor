@@ -1277,7 +1277,9 @@ function wordCount(data) {
 }
 
 function openPreview(editor) {
-    window.open('//' + location.hostname + "/view/" + String(editor.exposition.id) + "/" + String(editor.exposition.currentWeave), '_blank');
+    let currentTime = new Date().getTime();
+    // casper@luc: current time is added so the browser doesn't show a cached version.
+    window.open('//' + location.hostname + "/view/" + String(editor.exposition.id) + "/" + String(editor.exposition.currentWeave) + '?t='+ currentTime, '_blank');
     // console.log('this is called');
     // console.log(editor.openPreviewCallback);
     // editor.openPreviewCallback();
