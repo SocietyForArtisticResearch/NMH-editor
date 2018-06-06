@@ -12,19 +12,37 @@ export class ConvertDocService {
 
     }
 
-    convert(markdownString: string, fileType: string) { //get file from service
+    convert(markdownString: string, fileType: string, statusCallback : (status: string) => void ) { //get file from service
         //        let url = "https://sar-announcements.com:3000/export/" + fileType;
         //        console.log("CONVERTING");
         //      console.log(markdownString);
+        let url :string = null;
+        if (Backend.useRC) {
+            url = Backend.rcExport + '?type=' + fileType;
+        }
 
+        var data = { markdown: markdownString };
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", url, true);
+        xhr.responseType = "blob";
+        xhr.setRequestHeader("Content-type", "application/json");
+        xhr.send(JSON.stringify(data));
+        xhr.onreadystatechange = function() {
+             if (xhr.readyState === 4) {
+                 let file = xhr.response; //Outputs a DOMString by default
+                 FileSaver.saveAs(file, "convert." + type); 
+                 statusCallback("complete");    
+             }
+        };
+
+        /*
         let url;
         const fd = new FormData();
         
-        fd.append('type',fileType);
         fd.append('markdown',encodeURIComponent(markdownString));
 
         if (Backend.useRC) {
-            url = Backend.rcExport;
+            url = Backend.rcExport '?type=' + fileType;
         } else {
             url = Backend.sarExport + fileType;
         };
@@ -45,6 +63,7 @@ export class ConvertDocService {
                 FileSaver.saveAs(response, filename);
             });
     }
+    */
 
 
 

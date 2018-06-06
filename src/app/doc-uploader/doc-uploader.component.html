@@ -28,6 +28,7 @@
 			    <option value="epub">EPUB (.epub)</option>
 			</select> 
 			<button class="btn btn-xs" (click)="otherFormatDownload()">Export {{selectedExportFormat}}</button>
+			<span *ngIf="exportStatus">{{exportStatus}}</span>
 
 		</div>
 	</div>

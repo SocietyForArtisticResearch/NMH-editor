@@ -20,6 +20,8 @@ export class DocUploaderComponent implements OnInit {
     selectedExportFormat: string = "docx";
     fileUploadStatus: string = null;
 
+    exportStatus: string = null;
+
     allowedTypes: string[] = ['docx', 'htm', 'html', 'odt', 'tex', 'txt', 'md', 'markdown'];
 
     constructor(
@@ -149,8 +151,9 @@ export class DocUploaderComponent implements OnInit {
     otherFormatDownload() {
         let exposition = this.rcExpoModel.exposition;
         let markdownString: string = exposition.asMarkdown();
-        console.log('arguments:', markdownString, this.selectedExportFormat);
-        this.convertDocService.convert(markdownString, this.selectedExportFormat);
+        //console.log('arguments:', markdownString, this.selectedExportFormat);
+        this.exportStatus = "converting";
+        this.convertDocService.convert(markdownString, this.selectedExportFormat, (status :string) => {this.exportStatus = status});
     }
 }
 
