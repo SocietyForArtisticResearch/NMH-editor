@@ -18,13 +18,18 @@ export class ConvertDocService {
         //      console.log(markdownString);
 
         let url;
+        let requestObject = {
+            type : fileType,
+            markdown : markdownString
+        };
+
         if (Backend.useRC) {
-            url = Backend.rcExport + "?type=" + fileType + "&markdown=" + encodeURIComponent(markdownString);
+            url = Backend.rcExport;
         } else {
             url = Backend.sarExport + fileType;
         };
 
-        let expositionJson = { markdown: markdownString };
+        //let expositionJson = { markdown: markdownString };
         let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
 
 
@@ -33,7 +38,7 @@ export class ConvertDocService {
             responseType: 'blob' as 'text'
         };
 
-        this.http.post(url, expositionJson, options).subscribe(
+        this.http.post(url, requestObject, options).subscribe(
             (response: any) => { // download file
                 console.log(response);
                 let filename = 'file.' + fileType;
