@@ -18,15 +18,17 @@ export class ConvertDocService {
         //      console.log(markdownString);
         let url :string = null;
         if (Backend.useRC) {
-            url = Backend.rcExport + '?type=' + fileType;
+            url = Backend.rcExport;
         }
 
-        var data = { markdown: markdownString };
+        let encodedMarkdown = encodeURIComponent(markdownString);
+
+        let data = `type=${fileType}&markdown=${encodedMarkdown}`;
+
         var xhr = new XMLHttpRequest();
         xhr.open("POST", url, true);
         xhr.responseType = "blob";
-        xhr.setRequestHeader("Content-type", "application/json");
-        xhr.send(JSON.stringify(data));
+        xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         xhr.onreadystatechange = function() {
              if (xhr.readyState === 4) {
                  let file = xhr.response; //Outputs a DOMString by default
@@ -34,6 +36,7 @@ export class ConvertDocService {
                  statusCallback("complete");    
              }
         };
+        xhr.send(data);
     }
 
         /*
