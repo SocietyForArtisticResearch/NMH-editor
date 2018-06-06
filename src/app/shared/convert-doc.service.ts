@@ -18,9 +18,8 @@ export class ConvertDocService {
         //      console.log(markdownString);
 
         let url;
-        let requestObject = {
-            markdown : markdownString
-        };
+        const fd = new FormData();
+        fd.append('markdown',markdownString);
 
         if (Backend.useRC) {
             url = Backend.rcExport + '?type=' + fileType;
@@ -29,7 +28,7 @@ export class ConvertDocService {
         };
 
         //let expositionJson = { markdown: markdownString };
-        let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+        let headers = new HttpHeaders({ 'Content-Type': 'multipart/form-data' });
 
 
         const options = {
@@ -37,7 +36,7 @@ export class ConvertDocService {
             responseType: 'blob' as 'text'
         };
 
-        this.http.post(url, requestObject, options).subscribe(
+        this.http.post(url, fd, options).subscribe(
             (response: any) => { // download file
                 console.log(response);
                 let filename = 'file.' + fileType;
