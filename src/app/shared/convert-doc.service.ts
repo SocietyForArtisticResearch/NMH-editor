@@ -19,7 +19,7 @@ export class ConvertDocService {
 
         let url;
         const fd = new FormData();
-        fd.append('markdown',markdownString);
+        fd.append('markdown',encodeURIComponent(markdownString));
 
         if (Backend.useRC) {
             url = Backend.rcExport + '?type=' + fileType;
