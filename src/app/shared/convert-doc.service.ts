@@ -19,12 +19,11 @@ export class ConvertDocService {
 
         let url;
         let requestObject = {
-            type : fileType,
             markdown : markdownString
         };
 
         if (Backend.useRC) {
-            url = Backend.rcExport;
+            url = Backend.rcExport + '?type=' + fileType;
         } else {
             url = Backend.sarExport + fileType;
         };
