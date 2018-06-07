@@ -170,19 +170,10 @@ export class RCBackendMediaUpload {
                 onProgress('done');
 
                 let refreshImagesWhenComplete = ( ) => {
-                    // this should force the image to refresh
-                    /*
+                    // we update the version, 
+                    // because otherwise browser would display old cached version of the image and/or thumb.
                     let rcobj = this.rcExpoModel.exposition.getObjectWithID(rcobjectid);
-                    // debug
-                    // console.log('rcobject.thumb',rcobj.thumb);
-                    
-                    rcobj.thumb = Utils.urlStripQueries(rcobj.thumb); // strip old date
-                    rcobj.thumb = rcobj.thumb + '&t=' + new Date().getTime();  
-                    
-                    rcobj.url = Utils.urlStripQueries(rcobj.url); // strip old date
-                    rcobj.url = rcobj.url + '&t=' + new Date().getTime();
-                    */
-
+                    rcobj.setVersion(new Date().getTime());
                 }; 
 
                 this.rcExpoModel.syncModelWithRC(refreshImagesWhenComplete);

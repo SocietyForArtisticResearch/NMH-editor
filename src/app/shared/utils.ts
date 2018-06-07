@@ -26,3 +26,7 @@ export function checkTypeUsingFilename(filename:string ,allowed : string[]) {
 	let checker = check => check !== ext // ext does not equal allowed, thus 
 	return !allowed.every(checker); // if all is true (no match) = wrong type.
 }
+
+export function urlStripQueries(url : string) {
+   return url.split("?")[0];
+};
