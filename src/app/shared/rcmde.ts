@@ -1279,7 +1279,7 @@ function wordCount(data) {
 function openPreview(editor) {
     let currentTime = new Date().getTime();
     // casper@luc: current time is added so the browser doesn't show a cached version.
-    window.open('//' + location.hostname + "/view/" + String(editor.exposition.id) + "/" + String(editor.exposition.currentWeave) + '?t='+ currentTime, '_blank');
+    window.open('//' + location.hostname + "/view/" + String(editor.exposition.id) + "/" + String(editor.exposition.currentWeave) + '?t=' + currentTime, '_blank');
     // console.log('this is called');
     // console.log(editor.openPreviewCallback);
     // editor.openPreviewCallback();
@@ -1753,7 +1753,7 @@ export class RCMDE {
         self.saved = false;
         //        text = "# " + this.exposition.title + "\n" + text;
         let mediaCounter = 0;
-        console.log(insertedCursor);
+        //        console.log(insertedCursor);
         let basicHTML = md.render(insertedCursor);
         basicHTML = basicHTML.replace(re, function (m, p1) { ++mediaCounter; return self.mediaHTML(p1, mediaCounter) });
 
@@ -1761,7 +1761,7 @@ export class RCMDE {
             "<h1 id=\"" + stringToId(this.exposition.title) + "\">" + this.exposition.title + "</h1>" + basicHTML + "</div>" + "</div>";
         self.exposition.markdownInput = text;
         self.exposition.renderedHTML = renderedHTML;
-        console.log(renderedHTML);
+        //      console.log(renderedHTML);
         self.exposition.getTOC();
         this.updateStyling();
         return self.exposition.renderedHTML;
