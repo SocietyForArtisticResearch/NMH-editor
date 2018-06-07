@@ -1738,10 +1738,12 @@ export class RCMDE {
                 line: cursor.line,
                 ch: cursor.ch
             };
+            let state = getState(self, pos);
             let arrayPos = nthIndexOf(text, '\n', pos.line) + pos.ch;
             arrayPos = Math.max(0, arrayPos);
             //            console.log(this.codemirror.getTokenAt(pos)); // see token
-            if (!(this.codemirror.getLine(pos.line).includes("!{"))) { // check if we are not in a media entry
+            if (!(this.codemirror.getLine(pos.line).includes("!{")) || !(state.bold) || !(state.italic)
+                || !(state.link) || !(state.strikethrough) || !(state.unorderedlist) || !(state.code) || !(state.orderedlist)) { // check if we are not in a media entry
                 if (arrayPos == 0) {
                     insertedCursor = cursorAnchor + text;
                 } else {
