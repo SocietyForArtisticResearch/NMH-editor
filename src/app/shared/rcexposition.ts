@@ -294,6 +294,7 @@ export class RCObject {
     id: number;
     htmlId: string;
     url: string;
+    version: number;
     thumb: string;
     expositionID: number;
     html: HTMLElement;
@@ -364,8 +365,26 @@ export class RCObject {
         return "";
     }
 
+    setVersion(versionNumber: number) {
+        this.version = versionNumber;
+        this.updateURLs();
+    }
+
+    updateURLs() {
+        let verString = "";
+        if (this.version != undefined) {
+            verString = `&t=${this.version}`
+        };
+        this.url = `${Backend.rcBaseAddress}text-editor/simple-media-resource?research=${this.expositionID}&simple-media=${this.id}${verString}`;
+        this.thumb = `${Backend.rcBaseAddress}text-editor/simple-media-thumb?research=${this.expositionID}&simple-media=${this.id}&width=132&height=132${verString}`;
+    }
+
     rcURL(expositionId: number) {
-        return `${Backend.rcBaseAddress}text-editor/simple-media-resource?research=${expositionId}&simple-media=${this.id}`;
+        let verString = "";
+        if (this.version != undefined) {
+            verString = `&t=${this.version}`
+        };
+        return `${Backend.rcBaseAddress}text-editor/simple-media-resource?research=${expositionId}&simple-media=${this.id}${verString}`;
     }
 
 
