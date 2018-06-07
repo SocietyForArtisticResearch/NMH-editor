@@ -171,13 +171,18 @@ export class RCBackendMediaUpload {
 
                 let refreshImagesWhenComplete = ( ) => {
                     // this should force the image to refresh
-
+                    /*
                     let rcobj = this.rcExpoModel.exposition.getObjectWithID(rcobjectid);
                     // debug
                     // console.log('rcobject.thumb',rcobj.thumb);
-
+                    
+                    rcobj.thumb = Utils.urlStripQueries(rcobj.thumb); // strip old date
                     rcobj.thumb = rcobj.thumb + '&t=' + new Date().getTime();  
+                    
+                    rcobj.url = Utils.urlStripQueries(rcobj.url); // strip old date
                     rcobj.url = rcobj.url + '&t=' + new Date().getTime();
+                    */
+
                 }; 
 
                 this.rcExpoModel.syncModelWithRC(refreshImagesWhenComplete);
