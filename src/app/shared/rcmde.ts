@@ -2195,9 +2195,7 @@ export class RCMDE {
                         el.innerHTML = '<i style="cursor:pointer">Not saved</i>';
                         if (self.userSaveCallback) {
                             el.onclick = self.userSaveCallback;
-                        } else {
-                            //console.log('function not defined', this);
-                        }
+                        } 
                     };
                     onUpdate = function (el) {
                         el.setAttribute("id", "rcSave");
@@ -2207,9 +2205,7 @@ export class RCMDE {
                             el.innerHTML = '<i style="cursor:pointer">Not saved</i>';
                             if (self.userSaveCallback) {
                                 el.onclick = self.userSaveCallback;
-                            } else {
-                                console.log('function not defined', this);
-                            }
+                            } 
                         }
                     };
                 } else if (name === "autosave") {
