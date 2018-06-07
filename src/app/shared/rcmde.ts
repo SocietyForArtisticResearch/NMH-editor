@@ -2196,7 +2196,7 @@ export class RCMDE {
                         if (self.userSaveCallback) {
                             el.onclick = self.userSaveCallback;
                         } else {
-                            console.log('function not defined', this);
+                            //console.log('function not defined', this);
                         }
                     };
                     onUpdate = function (el) {
