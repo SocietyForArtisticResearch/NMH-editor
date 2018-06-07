@@ -251,7 +251,7 @@ export class RCExposition {
 
     integrateSerializedMediaInfo(infoList: Array<any>) {
         infoList.forEach(info => {
-            let ob = this.getObjectWithIDOrName(info.id, info.name);
+            let ob = this.getObjectWithIDorName(info.id, info.name);
             if (ob != undefined) {
                 if (info.userClass != undefined) {
                     ob.userClass = info.userClass;
