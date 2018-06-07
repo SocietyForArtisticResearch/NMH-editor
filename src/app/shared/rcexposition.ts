@@ -142,6 +142,14 @@ export class RCExposition {
         return this.media.find(obj => obj.name == name);
     }
 
+    getObjectWithIDorName(id: number, name: string) {
+        let ob = this.getObjectWithID(id);
+        if (ob == undefined) {
+            ob = this.getObjectWithName(name);
+        };
+        return ob;
+    }
+
     removeObjectWithID(id: number) {
         this.media = this.media.filter(obj => obj.id !== id);
     }
@@ -243,7 +251,7 @@ export class RCExposition {
 
     integrateSerializedMediaInfo(infoList: Array<any>) {
         infoList.forEach(info => {
-            let ob = this.getObjectWithID(info.id);
+            let ob = this.getObjectWithIDOrName(info.id, info.name);
             if (ob != undefined) {
                 if (info.userClass != undefined) {
                     ob.userClass = info.userClass;
@@ -374,7 +382,7 @@ export class RCObject {
     }
 
     getMediaInfo() {
-        return { id: this.id, userClass: this.userClass, tocDepth: this.tocDepth }
+        return { id: this.id, name: this.name, userClass: this.userClass, tocDepth: this.tocDepth }
     }
 }
 
