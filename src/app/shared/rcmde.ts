@@ -1738,7 +1738,7 @@ export class RCMDE {
                 line: cursor.line,
                 ch: cursor.ch
             };
-            let state = getState(self, pos);
+            let state = getState(self.codemirror, pos);
             let arrayPos = nthIndexOf(text, '\n', pos.line) + pos.ch;
             arrayPos = Math.max(0, arrayPos);
             //            console.log(this.codemirror.getTokenAt(pos)); // see token
@@ -2197,7 +2197,7 @@ export class RCMDE {
                         el.innerHTML = '<i style="cursor:pointer">Not saved</i>';
                         if (self.userSaveCallback) {
                             el.onclick = self.userSaveCallback;
-                        } 
+                        }
                     };
                     onUpdate = function (el) {
                         el.setAttribute("id", "rcSave");
@@ -2207,7 +2207,7 @@ export class RCMDE {
                             el.innerHTML = '<i style="cursor:pointer">Not saved</i>';
                             if (self.userSaveCallback) {
                                 el.onclick = self.userSaveCallback;
-                            } 
+                            }
                         }
                     };
                 } else if (name === "autosave") {
