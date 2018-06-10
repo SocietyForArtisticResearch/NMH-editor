@@ -1742,6 +1742,7 @@ export class RCMDE {
             let arrayPos = nthIndexOf(text, '\n', pos.line) + pos.ch;
             arrayPos = Math.max(0, arrayPos);
             //            console.log(this.codemirror.getTokenAt(pos)); // see token
+            console.log("curLine: " + this.codemirror.getLine(pos.line));
             if (!(this.codemirror.getLine(pos.line).includes("!{")) || !(state.bold) || !(state.italic)
                 || !(state.link) || !(state.strikethrough) || !(state.unorderedlist) || !(state.code) || !(state.orderedlist)) { // check if we are not in a media entry
                 if (arrayPos == 0) {
