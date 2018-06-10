@@ -1886,6 +1886,7 @@ export class RCMDE {
         var wrapper = cm.getWrapperElement();
         var preview = wrapper.nextSibling;
         if (clearPreview) {
+            console.log("clearing preview");
             preview.innterHTML = "";
         }
         morphdom(preview, this.options.previewRender(this.value(), preview), {
