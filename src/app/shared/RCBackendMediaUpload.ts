@@ -75,13 +75,13 @@ export class RCBackendMediaUpload {
             let expositionId = this.rcExpoModel.exposition.id;
 
             var fd = new FormData();
-            
+
             fd.append('mediatype', fileType);
             fd.append('name', rcMetaData.name);
             fd.append('media', selectedFile);
             fd.append('copyrightholder', rcMetaData.copyrightholder);
             fd.append('description', rcMetaData.description);
-            fd.append('thumb',new File([""], "")); // RC api required thumb.
+            fd.append('thumb', new File([""], "")); // RC api required thumb.
 
 
             //console.log('formdata',fd);
@@ -108,7 +108,7 @@ export class RCBackendMediaUpload {
         }
     }
 
-    removeObjectFromRC(rcobjectid: number, reSync: boolean = true, onSuccess? : ( ) => void ) {
+    removeObjectFromRC(rcobjectid: number, reSync: boolean = true, onSuccess?: () => void) {
         let id = this.rcExpoModel.exposition.id;
         var xhttp = new XMLHttpRequest();
         var that = this;
@@ -143,7 +143,7 @@ export class RCBackendMediaUpload {
             name: oldRCObject.name // old name, so that reference in expo doesn't break!
         }
 
-         // prepare metadata
+        // prepare metadata
         let fd = new FormData();
         fd.append('name', metadata.name);
         fd.append('copyrightholder', metadata.copyrightholder);
@@ -155,10 +155,10 @@ export class RCBackendMediaUpload {
         let expositionId = this.rcExpoModel.exposition.id;
 
         var req = new HttpRequest('POST', editApiUrl + `?research=${expositionId}&simple-media=${rcobjectid}`, fd, {
-                reportProgress: true
+            reportProgress: true
         });
 
-        console.log('request',req);
+        console.log('request', req);
 
         this.http.request(req).subscribe(event => {
             // Via this API, you get access to the raw event stream.
@@ -169,12 +169,14 @@ export class RCBackendMediaUpload {
             } else if (event instanceof HttpResponse) {
                 onProgress('done');
 
-                let refreshImagesWhenComplete = ( ) => {
+                let refreshImagesWhenComplete = () => {
                     // we update the version, 
                     // because otherwise browser would display old cached version of the image and/or thumb.
                     let rcobj = this.rcExpoModel.exposition.getObjectWithID(rcobjectid);
                     rcobj.setVersion(new Date().getTime());
-                }; 
+                    // get images in preview to be rerenderd by clearing preview before forcing
+                    this.rcExpoModel.mde.forceRender(true);
+                };
 
                 this.rcExpoModel.syncModelWithRC(refreshImagesWhenComplete);
 
@@ -182,7 +184,7 @@ export class RCBackendMediaUpload {
                 onResult(event.body);
             }
         });
-        
+
     }
 
     editObjectFromRC(rcobjectid: number, metadata: RCMetaData) {
@@ -202,7 +204,7 @@ export class RCBackendMediaUpload {
         xhttp.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
                 let body = this.response;
-                console.log('edit tool call',body);
+                console.log('edit tool call', body);
                 that.rcExpoModel.syncModelWithRC();
                 that.rcExpoModel.mde.render();
             } else {

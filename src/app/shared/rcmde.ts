@@ -1880,17 +1880,22 @@ export class RCMDE {
     }
 
     /// This renders the preview and the editor once
-    forceRender() {
+    forceRender(clearPreview: false) {
         //        this._rendered = null;
         var cm = this.codemirror;
         var wrapper = cm.getWrapperElement();
         var preview = wrapper.nextSibling;
+        if (clearPreview) {
+            preview.innterHTML = "";
+        }
         morphdom(preview, this.options.previewRender(this.value(), preview), {
             childrenOnly: true
         });
         //        preview.innerHTML = this.options.previewRender(this.value(), preview);
         this.render();
     }
+
+
 
 
     // Safari, in Private Browsing Mode, looks like it supports localStorage but all calls to setItem throw QuotaExceededError. We're going to detect this and set a variable accordingly.
