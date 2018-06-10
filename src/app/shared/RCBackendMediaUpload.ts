@@ -168,6 +168,7 @@ export class RCBackendMediaUpload {
                 onProgress('uploading ' + Math.round(100 * event.loaded / event.total) + '%');
             } else if (event instanceof HttpResponse) {
                 onProgress('done');
+                console.log(event);
 
                 let refreshImagesWhenComplete = () => {
                     // we update the version, 

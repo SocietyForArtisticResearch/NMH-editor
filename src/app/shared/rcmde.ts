@@ -1743,6 +1743,7 @@ export class RCMDE {
             arrayPos = Math.max(0, arrayPos);
             //            console.log(this.codemirror.getTokenAt(pos)); // see token
             console.log("curLine: " + this.codemirror.getLine(pos.line));
+            console.log("includes?: " + this.codemirror.getLine(pos.line).includes("!{"));
             if (!(this.codemirror.getLine(pos.line).includes("!{")) || !(state.bold) || !(state.italic)
                 || !(state.link) || !(state.strikethrough) || !(state.unorderedlist) || !(state.code) || !(state.orderedlist)) { // check if we are not in a media entry
                 if (arrayPos == 0) {
@@ -1887,7 +1888,6 @@ export class RCMDE {
         var wrapper = cm.getWrapperElement();
         var preview = wrapper.nextSibling;
         if (clearPreview) {
-            console.log("clearing preview");
             preview.innterHTML = "";
         }
         morphdom(preview, this.options.previewRender(this.value(), preview), {
