@@ -30,7 +30,7 @@
 
 app-markdown-tool .CodeMirror { 
     /* width: calc(50% - 29px); */
-    width: calc(50% - 29px);
+    width: 50%;
    
     top: 150px;
     bottom:35px;
