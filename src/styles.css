@@ -90,7 +90,7 @@ app-markdown-tool .editor-preview-side {
     app-markdown-tool .CodeMirror { 
 		width: calc(100% - 15px); 
 	
-		/* top: 260px; */
+		top: 260px;
 		bottom: 0; /* this is for status bar, otherwise usertext goes under it */
 
         height: auto; 
@@ -104,7 +104,7 @@ app-markdown-tool .editor-preview-side {
         width: calc(100% - 15px); 
     
 
-        /* top: 260px; */
+        top: 100px;
         bottom: 0; /* this is for status bar, otherwise usertext goes under it */
 
         height: auto; 
