@@ -158,11 +158,7 @@ export class RCBackendMediaUpload {
             reportProgress: true
         });
 
-<<<<<<< HEAD
         //console.log('request',req);
-=======
-        console.log('request', req);
->>>>>>> 6aa91905adab2df21eb8fe402cf3f9bf932501cd
 
         this.http.request(req).subscribe(event => {
             // Via this API, you get access to the raw event stream.
@@ -210,11 +206,8 @@ export class RCBackendMediaUpload {
         xhttp.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
                 let body = this.response;
-<<<<<<< HEAD
+
                 //console.log('edit tool call',body);
-=======
-                console.log('edit tool call', body);
->>>>>>> 6aa91905adab2df21eb8fe402cf3f9bf932501cd
                 that.rcExpoModel.syncModelWithRC();
                 that.rcExpoModel.mde.render();
             } else {
