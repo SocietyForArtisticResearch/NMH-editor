@@ -421,6 +421,13 @@ export class RCMedia extends RCObject {
         }
     }
 
+    setVersion(versionNumber: number) {
+        this.version = versionNumber;
+        this.updateURLs();
+        this.updateHTML();
+    }
+
+
     updateHTML() {
         this.html = undefined;
         this.createHTML();

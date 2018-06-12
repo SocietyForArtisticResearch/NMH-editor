@@ -1738,10 +1738,11 @@ export class RCMDE {
                 line: cursor.line,
                 ch: cursor.ch
             };
+            let state = getState(self.codemirror, pos);
             let arrayPos = nthIndexOf(text, '\n', pos.line) + pos.ch;
             arrayPos = Math.max(0, arrayPos);
-            //            console.log(this.codemirror.getTokenAt(pos)); // see token
-            if (!(this.codemirror.getLine(pos.line).includes("!{"))) { // check if we are not in a media entry
+            if (!(this.codemirror.getLine(pos.line).includes("!{")) && !(state.bold) && !(state.italic)
+                && !(state.link) && !(state.strikethrough) && !(state.unorderedlist) && !(state.code) && !(state.orderedlist)) { // check if we are not in a media entry
                 if (arrayPos == 0) {
                     insertedCursor = cursorAnchor + text;
                 } else {
@@ -1878,17 +1879,22 @@ export class RCMDE {
     }
 
     /// This renders the preview and the editor once
-    forceRender() {
+    forceRender(clearPreview: false) {
         //        this._rendered = null;
         var cm = this.codemirror;
         var wrapper = cm.getWrapperElement();
         var preview = wrapper.nextSibling;
+        if (clearPreview) {
+            preview.innterHTML = "";
+        }
         morphdom(preview, this.options.previewRender(this.value(), preview), {
             childrenOnly: true
         });
         //        preview.innerHTML = this.options.previewRender(this.value(), preview);
         this.render();
     }
+
+
 
 
     // Safari, in Private Browsing Mode, looks like it supports localStorage but all calls to setItem throw QuotaExceededError. We're going to detect this and set a variable accordingly.
@@ -2195,7 +2201,7 @@ export class RCMDE {
                         el.innerHTML = '<i style="cursor:pointer">Not saved</i>';
                         if (self.userSaveCallback) {
                             el.onclick = self.userSaveCallback;
-                        } 
+                        }
                     };
                     onUpdate = function (el) {
                         el.setAttribute("id", "rcSave");
@@ -2205,7 +2211,7 @@ export class RCMDE {
                             el.innerHTML = '<i style="cursor:pointer">Not saved</i>';
                             if (self.userSaveCallback) {
                                 el.onclick = self.userSaveCallback;
-                            } 
+                            }
                         }
                     };
                 } else if (name === "autosave") {
