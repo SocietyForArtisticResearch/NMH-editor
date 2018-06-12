@@ -93,7 +93,7 @@ export class RCExpoModel {
     }
 
     syncModelWithRC(continueFunction?: () => void) {
-        console.log('sync started');
+        //console.log('sync started');
         try {
             let id = this.exposition.id;
             var xhttp = new XMLHttpRequest();
@@ -150,16 +150,17 @@ export class RCExpoModel {
         xhttp.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
                 let expositionJSON = JSON.parse(xhttp.responseText);
-                // console.log(JSON.parse(expositionJSON.media));
-                console.log("Loading expo data:")
-                console.log(expositionJSON);
+        // console.log(JSON.parse(expositionJSON.media));
+        //console.log("Loading expo data:")
+        //console.log(expositionJSON);
+
                 self.exposition.title = expositionJSON.title;
                 // self.exposition.toc = JSON.parse(expositionJSON.toc);
                 self.exposition.markdownInput = expositionJSON.markdown;
 
                 // CASPER TEST: remove this:
                 // self.exposition.renderedHTML = expositionJSON.html;
-                console.log('this is the exposition.media array before render in LoadExpositionData(), ', self.exposition.media);
+                // console.log('this is the exposition.media array before render in LoadExpositionData(), ', self.exposition.media);
 
                 // self.exposition.media = RCExpositionDeserializer.restoreObject(JSON.parse(expositionJSON.media));
 
@@ -184,8 +185,8 @@ export class RCExpoModel {
         let weave = this.exposition.currentWeave;
         let fd = new FormData();
         let self = this;
-        console.log("toc: ");
-        console.log(this.exposition.getTOC());
+        //console.log("toc: ");
+        //console.log(this.exposition.getTOC());
         // console.log("Serialize media:");
         // console.log(this.exposition.media);
         // console.log(this.exposition.serializeMedia());
@@ -202,7 +203,7 @@ export class RCExpoModel {
             // console.log('debug save: ', xhttp.responseText);
             self.mde.displaySaveStatus();
 
-            console.log("saved");
+    //console.log("saved");
         };
         xhttp.open("POST", `${Backend.rcBaseAddress}text-editor/save?research=${id}&weave=${weave}`, true);
         xhttp.send(fd);
@@ -227,7 +228,7 @@ export class RCExpoModel {
                 that.mde.render();
             }
         };
-        console.log("starting request, with url:", expositionJSONUrl);
+        //console.log("starting request, with url:", expositionJSONUrl);
         xhttp.open("GET", expositionJSONUrl, true);
         xhttp.send();
     }

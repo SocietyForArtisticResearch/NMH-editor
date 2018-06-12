@@ -34,7 +34,7 @@ export class ImageToolComponent extends BasicToolComponent {
         newObject.thumb = this.rcobject.thumb;
         newObject.transcodingStatus = this.rcobject.transcodingStatus;
         newObject.userClass = formModel.imageClassSelect;
-        console.log('debug prepareSaveObject, pxWidth&pxHeight should be null',newObject);
+        //console.log('debug prepareSaveObject, pxWidth&pxHeight should be null',newObject);
         return newObject;
     }
 }

@@ -133,10 +133,10 @@ export class BasicToolComponent implements OnInit {
 
     onRCMetaDataChange(val) {
         if (!this.toolForm.dirty) {
-            console.log('the form was not changed');
+//console.log('the form was not changed');
             return; // nothing changed, nothing saved
         }
-        console.log('the form was changed');
+//console.log('the form was changed');
         // only update after 2 seconds of inactivity (to avoid tsunami of update calls)
         if (this.editInQueue) {
             // reset timer
