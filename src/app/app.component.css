@@ -112,6 +112,7 @@ input.editableTitle:focus, input.editableTitle {
     margin-top:15px;
     margin-bottom:2px;
     font-size:24px;
+    width:80%;
 }
 
 
