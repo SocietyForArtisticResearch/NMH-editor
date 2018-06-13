@@ -59,6 +59,7 @@ app-markdown-tool .editor-statusbar {
     z-index:1000;
     background-color:white;
     margin:0 0 0 0;
+    width: 50%;
 }
 
 app-markdown-tool .editor-preview-side {    
