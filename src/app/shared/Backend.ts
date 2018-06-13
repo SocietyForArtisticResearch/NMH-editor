@@ -9,13 +9,13 @@ export class Backend {
     static import: string = "https://sar-announcements.com:3000/import";
     static sarExport: string = "https://sar-announcements.com:3000/export";
 
-    static rcMediaUpload: string = "https://dev.researchcatalogue.net/text-editor/simple-media-add";
-    static rcMediaRemove: string = "https://dev.researchcatalogue.net/text-editor/simple-media-remove";
-    static rcMediaEdit: string = "https://dev.researchcatalogue.net/text-editor/simple-media-edit";
-    static rcBaseAddress: string = "https://dev.researchcatalogue.net/";
-    static rcMediaList: string = "https://dev.researchcatalogue.net/text-editor/simple-media-list";
-    static rcImport: string = "https://dev.researchcatalogue.net/text-editor/import";
-    static rcExport: string = "https://dev.researchcatalogue.net/text-editor/export";
+    static rcMediaUpload: string = "/text-editor/simple-media-add";
+    static rcMediaRemove: string = "/text-editor/simple-media-remove";
+    static rcMediaEdit: string = "/text-editor/simple-media-edit";
+    static rcBaseAddress: string = location.hostname;
+    static rcMediaList: string = "/text-editor/simple-media-list";
+    static rcImport: string = "/text-editor/import";
+    static rcExport: string = "/text-editor/export";
 
 
     // set if RC is to be used as backend
