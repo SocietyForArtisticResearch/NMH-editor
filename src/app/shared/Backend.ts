@@ -10,11 +10,18 @@ export class Backend {
     static sarExport: string = "https://sar-announcements.com:3000/export";
 
 
-    static rcBaseAddress: string = location.protocol + "//" + location.hostname + "/";
+    // static rcBaseAddress: string = location.protocol + "//" + location.hostname + "/";
+    // static rcMediaUpload: string = Backend.rcBaseAddress + "text-editor/simple-media-add";
+    // static rcMediaRemove: string = Backend.rcBaseAddress + "text-editor/simple-media-remove";
+    // static rcMediaEdit: string = Backend.rcBaseAddress + "text-editor/simple-media-edit";
+    // static rcMediaList: string = Backend.rcBaseAddress + "text-editor/simple-media-list";
+    // static rcImport: string = Backend.rcBaseAddress + "text-editor/import";
+    // static rcExport: string = Backend.rcBaseAddress + "text-editor/export";
+
+    static rcBaseAddress: string = "/";
     static rcMediaUpload: string = Backend.rcBaseAddress + "text-editor/simple-media-add";
     static rcMediaRemove: string = Backend.rcBaseAddress + "text-editor/simple-media-remove";
     static rcMediaEdit: string = Backend.rcBaseAddress + "text-editor/simple-media-edit";
-
     static rcMediaList: string = Backend.rcBaseAddress + "text-editor/simple-media-list";
     static rcImport: string = Backend.rcBaseAddress + "text-editor/import";
     static rcExport: string = Backend.rcBaseAddress + "text-editor/export";
