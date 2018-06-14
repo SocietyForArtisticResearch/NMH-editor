@@ -18,6 +18,7 @@ export class Backend {
     // static rcImport: string = Backend.rcBaseAddress + "text-editor/import";
     // static rcExport: string = Backend.rcBaseAddress + "text-editor/export";
 
+    static rcAbsoluteBaseAddress: string = location.protocol + "//" + location.hostname + "/";
     static rcBaseAddress: string = "/";
     static rcMediaUpload: string = Backend.rcBaseAddress + "text-editor/simple-media-add";
     static rcMediaRemove: string = Backend.rcBaseAddress + "text-editor/simple-media-remove";

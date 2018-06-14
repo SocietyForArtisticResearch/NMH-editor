@@ -62,7 +62,7 @@ export class RCExposition {
         this.media = [];
     }
 
-    replaceToolsWithImages(text) {
+    replaceToolsWithImages(text, absoluteURLs = false) {
         let self = this;
         let re = /!{([^\}]*)}/g;
         //        let re = /!{(\w+)}/g;
@@ -76,7 +76,7 @@ export class RCExposition {
                     } else {
                         return obj.id == n;
                     }
-                }).rcURL(self.id) + ")";
+                }).rcURL(self.id, absoluteURLs) + ")";
             });
         } else {
             insertedTools = text.replace(re, function (m, p1) { return "![" + name + "](" + self.media.find(obj => obj.name == p1).url + ")"; });
@@ -88,12 +88,12 @@ export class RCExposition {
      * Returns a markdown string of the whole exposition
      * @returns {string} Markdown representation of the exposition 
      */
-    asMarkdown(replaceTools = true) {
+    asMarkdown(replaceTools = true, absoluteURLs = false) {
         //     let markdown = `% ${this.title}
         // % ${this.authors.join(';')}
         // `;
         //    return (markdown + RCExposition.replaceToolsWithImages(this.markdownInput));
-        return this.replaceToolsWithImages(this.markdownInput);
+        return this.replaceToolsWithImages(this.markdownInput, absoluteURLs);
     }
 
     /**
@@ -379,12 +379,16 @@ export class RCObject {
         this.thumb = `${Backend.rcBaseAddress}text-editor/simple-media-thumb?research=${this.expositionID}&simple-media=${this.id}&width=132&height=132${verString}`;
     }
 
-    rcURL(expositionId: number) {
+    rcURL(expositionId: number, absolute = false) {
+        let base = Backend.rcBaseAddress;
         let verString = "";
         if (this.version != undefined) {
             verString = `&t=${this.version}`
         };
-        return `${Backend.rcBaseAddress}text-editor/simple-media-resource?research=${expositionId}&simple-media=${this.id}${verString}`;
+        if (absolute) {
+            base = Backend.rcAbsoluteBaseAddress;
+        };
+        return `${base}text-editor/simple-media-resource?research=${expositionId}&simple-media=${this.id}${verString}`;
     }
 
 

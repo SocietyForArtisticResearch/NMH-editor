@@ -1688,7 +1688,7 @@ export class RCMDE {
         if (isNaN(n)) {
             tool = this.exposition.getObjectWithName(nameOrID);
         } else {
-            tool = this.exposition.getObjectWithID(n);
+            tool = this.exposition.getObjectWithIDorName(n, nameOrID);
         }
         str = nameOrID.big();
         if (tool !== undefined) {
