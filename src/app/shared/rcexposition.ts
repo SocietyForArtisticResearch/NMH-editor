@@ -65,19 +65,21 @@ export class RCExposition {
     replaceToolsWithImages(text, absoluteURLs = false) {
         let self = this;
         let re = /!{([^\}]*)}/g;
+        let comments = /(?=<!--)([\s\S]*?)-->/g;
         //        let re = /!{(\w+)}/g;
         let insertedTools;
         if (Backend.useRC) {
-            insertedTools = text.replace(re, function (m, p1) {
-                return "![" + name + "](" + self.media.find(obj => {
-                    let n = parseInt(p1);
-                    if (isNaN(n)) {
-                        return obj.name == p1
-                    } else {
-                        return obj.id == n;
-                    }
-                }).rcURL(self.id, absoluteURLs) + ")";
-            });
+            insertedTools = text.replace(comments, () => "") // filter comments
+                .replace(re, function (m, p1) {
+                    return "![" + name + "](" + self.media.find(obj => {
+                        let n = parseInt(p1);
+                        if (isNaN(n)) {
+                            return obj.name == p1
+                        } else {
+                            return obj.id == n;
+                        }
+                    }).rcURL(self.id, absoluteURLs) + ")";
+                });
         } else {
             insertedTools = text.replace(re, function (m, p1) { return "![" + name + "](" + self.media.find(obj => obj.name == p1).url + ")"; });
         }
@@ -94,6 +96,10 @@ export class RCExposition {
         // `;
         //    return (markdown + RCExposition.replaceToolsWithImages(this.markdownInput));
         return this.replaceToolsWithImages(this.markdownInput, absoluteURLs);
+    }
+
+    asMarkdownForExport() {
+        return `# ${this.title} \n\n` + this.asMarkdown(true, true)
     }
 
     /**

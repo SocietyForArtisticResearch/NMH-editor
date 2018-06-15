@@ -150,7 +150,7 @@ export class DocUploaderComponent implements OnInit {
 
     otherFormatDownload() {
         let exposition = this.rcExpoModel.exposition;
-        let markdownString: string = exposition.asMarkdown(true, true); // get absolute urls
+        let markdownString: string = exposition.asMarkdownForExport(); // get absolute urls
         //console.log('arguments:', markdownString, this.selectedExportFormat);
         this.exportStatus = "converting";
         this.convertDocService.convert(markdownString, this.selectedExportFormat, (status: string) => { this.exportStatus = status });
