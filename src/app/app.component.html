@@ -33,7 +33,12 @@
 
 	    <!-- <button type="button" class="btn btn-primary" (click)="forceRender">force !</button> -->
 	    
-	    <app-drag-and-drop *ngIf="!showMedia" class="dropZone" (onChangedObject)=onChangedObject($event)></app-drag-and-drop>  
+	    <app-drag-and-drop 
+	    	*ngIf="!showMedia" 
+	    	class="dropZone" 
+	    	(onChangedObject)=onChangedObject($event)
+	    	isMediaInserted="true">
+	    </app-drag-and-drop>  
 	    
 
 	    <hr>
