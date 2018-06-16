@@ -25,7 +25,7 @@ export class AppComponent implements OnInit {
     respondToUnload($event) {
         if (!this.rcExpoModel.mde.saved) {
             $event.returnValue = 'are you sure you want to leave';
-        } 
+        }
         // if no value is provided, event will pass silently
     }
     // rcExpoModel is injected into this compenent (and all its children through their constructors !)
@@ -58,7 +58,8 @@ export class AppComponent implements OnInit {
 
     toggleStyle() {
         this.editStyle = !this.editStyle;
-        this.styleButtonMessage = this.editStyle ? "Edit text" : "Edit style";
+        this.styleButtonMessage = this.editStyle ? "Edit style" : "Edit style";
+        //	this.styleButtonMessage = this.editStyle ? "Edit text" : "Edit style";
     }
 
     onChangedObject(identity) {

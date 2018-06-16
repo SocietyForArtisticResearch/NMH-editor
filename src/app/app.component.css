@@ -159,14 +159,14 @@ hr {
 .btn  {
     background-color:#fbfbff;
     color:#333;
-    border-radius:3px;
+    border-radius:1px;
     border-color:black;
 }
 
 .btn:active {
     background:#dedede;
     color:#333;
-    border-radius:3px;
+    border-radius:1px;
     border-color:black;
 }
 

@@ -15,14 +15,16 @@
     
     top: 150px;
     bottom:35px;
-
+    background-color: #fBfBf9;
 
     height: auto;
     min-height: auto;
     overflow-y: hidden;
     position:absolute;
+
+    border-bottom: 1px solid #ddd;
     
-    border-bottom: none;
+    /* border-bottom: none; */
     z-index: 10;
     /* border-right: none; */
 }
@@ -34,13 +36,15 @@ app-markdown-tool .CodeMirror {
    
     top: 150px;
     bottom:35px;
-
+    background-color: #fBfBf9;
+    
     height:unset;
     min-height: unset;
     overflow-y: hidden;
     position:absolute;
     
-    border-bottom: none;
+/*    border-bottom: none; */
+    border-bottom: 1px solid #ddd;
     z-index: 10;
     /* border-right: none; */
 	/* border-right: none  */
@@ -65,7 +69,9 @@ app-markdown-tool .editor-statusbar {
 app-markdown-tool .editor-preview-side {    
     position: absolute;
     top:150px;
-    width:50%;
+    width:47%;
+    border-left: none;
+    border-top: none;
     max-height: calc(100vh - 150px);
 }
 
@@ -92,30 +98,30 @@ app-markdown-tool .editor-preview-side {
     }
 
     app-markdown-tool .CodeMirror { 
-		width: calc(100% - 15px); 
+		width: 100%; 
 	
-		top: 220px;
+		top: 0px;
 		bottom: 0; /* this is for status bar, otherwise usertext goes under it */
 
         height: auto; 
-        min-height: auto; /* no minimum hieght, to facilitate statusbar. */
+        min-height: 500px; /* no minimum hieght, to facilitate statusbar. */
 
 		overflow-y: scroll; 
-		position: fixed;
+		position: relative;
     }
 
     .css-edit-screen  .CodeMirror {
-        width: calc(100% - 15px); 
+        width: 100%; 
     
 
-        top: 220px;
+        top: 0px;
         bottom: 0; /* this is for status bar, otherwise usertext goes under it */
 
         height: auto; 
-        min-height: auto; /* no minimum hieght, to facilitate statusbar. */
+        min-height: 500px; /* no minimum hieght, to facilitate statusbar. */
 
         overflow-y: scroll; 
-        position: fixed;
+        position: relative;
     }
 
     .CodeMirror-scroll {
