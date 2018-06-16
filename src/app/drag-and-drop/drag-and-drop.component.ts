@@ -17,6 +17,7 @@ import { RCBackendMediaUpload } from '../shared/RCBackendMediaUpload';
 export class DragAndDropComponent implements OnInit {
     @Output() onChangedObject = new EventEmitter<number>();
     @Input() isBigger: boolean;
+    @Input() isMediaInserted: boolean;
 
     fileUploadStatus: string = null;
 
