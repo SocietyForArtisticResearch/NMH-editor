@@ -106,7 +106,6 @@ app-markdown-tool .editor-preview-side {
         height: auto; 
         min-height: 500px; /* no minimum hieght, to facilitate statusbar. */
 
-		overflow-y: scroll; 
 		position: relative;
     }
 
@@ -120,7 +119,6 @@ app-markdown-tool .editor-preview-side {
         height: auto; 
         min-height: 500px; /* no minimum hieght, to facilitate statusbar. */
 
-        overflow-y: scroll; 
         position: relative;
     }
 
