@@ -1419,7 +1419,7 @@ var toolbarBuiltInButtons = {
     "footnote": {
         name: "footnote",
         action: drawFootnote,
-        className: "fa fa-superscript",
+        className: "fa fa-asterisk",
         title: "Insert Footnote",
         default: true
     },
