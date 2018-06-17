@@ -175,6 +175,10 @@ hr {
 }
 
 @media only screen and (max-width: 800px) {
+    .modal {
+        width:100%;
+    }
+
     .style-modal-window {
         max-width: 100vw;
         max-height: 100vh;
