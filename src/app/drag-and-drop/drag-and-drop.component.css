@@ -41,4 +41,8 @@
   .dropzone-inner {
     margin-bottom:5px;
   }
+
+  .dropzone-bigger {
+    height:35px;
+  }
 }

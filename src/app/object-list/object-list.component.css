@@ -98,9 +98,10 @@ li {
 }
 
 @media only screen and (max-width: 800px) {
+
 	.rc-object-list {
 	    /* height:calc(100vh - 150px); */
-	    height:400px;
+	    /*height:400px;*/
 	}
 
 	

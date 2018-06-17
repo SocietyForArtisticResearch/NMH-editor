@@ -1,7 +1,6 @@
 <div class="panel panel-primary">
   <div class="panel-body" [ngClass]="{collapse: collapsed}">
     <form [formGroup]="toolForm" #formDir="ngForm" (ngSubmit)="onSubmit()">
-      <div class="form-group">
         <div *ngIf="allowEditName()">
           <label for="tool-edit-header-{{id}}">Name:</label>
           <input 
@@ -12,53 +11,54 @@
                 placeholder="name" 
                 size="7">
         </div>
-      </div>
-      <div class="form-group">
-          <label for="fileSelect">{{userMessage}}</label>
-          <input formControlName="filePickerButton" id="fileSelect" class="form-control-file" type="file" (change)="onFileSelect($event)" name="fileSelect">
-          <p *ngIf="fileUploadStatus">{{fileUploadStatus}}</p>
-          <p class="fileName">{{rcobjectGetUrl()}}</p>
-          <div class="fileUrlElements">
-          <label for="'fileUrlField'+{{id}}">File url:</label>
-          <input formControlName="fileUrl" class="" id="'fileUrlField'+{{id}}" type="text">
-          </div>
-          
-         <fieldset class="rc-object-meta-properties" *ngIf="toolForm.controls['fileUrl'].status === 'VALID'">
-            <div [style.display]="rcobject.__className === 'RCImage' ? 'default' : 'none' ">
-            <label for="imageClassSelect">
-              How should this image be displayed?
-            </label>
-            <select formControlName="imageClassSelect" name="imageClassSelect">
-              <option *ngFor="let imgClass of imageUserClasses" 
-                [value]="imgClass.Value"
-                [attr.selected]="rcobject.userclass == imgClass.Value ? true: null">
-                {{imgClass.text}}
-              </option>
-            </select>
-            <p *ngIf="rcobject.userClass">Use .{{rcobject.userClass}} in your stylesheet</p>
-          </div>
 
-            <!-- 
-            <div *ngIf="toolForm.controls['imageClassSelect'].value == 'custom css'">
-            <label for="customUserClass">provide your custom class name: </label>
-            <input fromControlName="customUserClass" size="7" name="customUserClass">
-            </div>
-  
 
-            <label for="{{'pxWidthField'+id}}">Width in pixels:</label>
-            <input formControlName="widthInPixels" class="f" id="{{'pxWidthField'+id}}" type="number">
-
-            <label for="{{'pxHeightField'+id}}">Height in pixels:</label>
-            <input formControlName="heightInPixels" class="" id="{{'pxHeightField'+id}}" type="number"> -->
-
-            <label for="'copyright'+id">Copyright:</label>
-            <input formControlName="copyright" id="{{'copyrightField'+id}}">
-
-            <label for="'description'+id">Description:</label>
-            <textarea rows="8" cols="40" formControlName='description' id="{{'descriptionField'+id}}"></textarea>
-          </fieldset>
-          <!-- <button [disabled]="toolForm.invalid" type="submit" class="btn btn-primary" >Update</button> -->
+        <label for="fileSelect">{{userMessage}}</label>
+        <input formControlName="filePickerButton" id="fileSelect" class="form-control-file" type="file" (change)="onFileSelect($event)" name="fileSelect">
+        <p *ngIf="fileUploadStatus">{{fileUploadStatus}}</p>
+        <p class="fileName">{{rcobjectGetUrl()}}</p>
+        
+        <div class="fileUrlElements">
+        <label for="'fileUrlField'+{{id}}">File url:</label>
+        <input formControlName="fileUrl" class="" id="'fileUrlField'+{{id}}" type="text">
         </div>
+        
+        <fieldset class="rc-object-meta-properties" *ngIf="toolForm.controls['fileUrl'].status === 'VALID'">
+            <div [style.display]="rcobject.__className === 'RCImage' ? 'default' : 'none' ">
+               <label for="imageClassSelect">
+               How should this image be displayed?
+               </label>
+                <select formControlName="imageClassSelect" name="imageClassSelect">
+                  <option *ngFor="let imgClass of imageUserClasses" 
+                    [value]="imgClass.Value"
+                    [attr.selected]="rcobject.userclass == imgClass.Value ? true: null">
+                    {{imgClass.text}}
+                  </option>
+                </select>
+                <p *ngIf="rcobject.userClass">Use .{{rcobject.userClass}} in your stylesheet</p>
+            </div>
+
+          <!-- 
+          <div *ngIf="toolForm.controls['imageClassSelect'].value == 'custom css'">
+          <label for="customUserClass">provide your custom class name: </label>
+          <input fromControlName="customUserClass" size="7" name="customUserClass">
+          </div>
+
+
+          <label for="{{'pxWidthField'+id}}">Width in pixels:</label>
+          <input formControlName="widthInPixels" class="f" id="{{'pxWidthField'+id}}" type="number">
+
+          <label for="{{'pxHeightField'+id}}">Height in pixels:</label>
+          <input formControlName="heightInPixels" class="" id="{{'pxHeightField'+id}}" type="number"> -->
+
+          <label for="'copyright'+id">Copyright:</label>
+          <input formControlName="copyright" id="{{'copyrightField'+id}}">
+
+          <label for="'description'+id">Description:</label>
+          <textarea rows="8" cols="40" formControlName='description' id="{{'descriptionField'+id}}"></textarea>
+        </fieldset>
+        <!-- <button [disabled]="toolForm.invalid" type="submit" class="btn btn-primary" >Update</button> -->
+
      </form>
   </div>
 </div>
