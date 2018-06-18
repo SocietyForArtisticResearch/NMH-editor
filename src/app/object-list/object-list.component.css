@@ -108,7 +108,7 @@ li {
 }
 
 .object-table td {
-	overflow-x: scroll;
+	overflow-x: hidden;
 }
 
 .th-col-preview {
@@ -124,7 +124,7 @@ li {
 }
 
 .th-col-action-2 {
-	width: 50px;
+	width: 65px;
 }
 
 
@@ -161,7 +161,7 @@ li {
 
 	.object-table th, td {
        text-align: left;
-       padding: 3px;
+       padding: 0px;
 	}
 }
 
@@ -176,7 +176,7 @@ li {
 	}
 
 	.th-col-action-2 {
-		width:100%;
+		width: 100%;
 	}
 
 
