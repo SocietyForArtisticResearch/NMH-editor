@@ -120,6 +120,29 @@ li {
 
 /* table sytling */
 
+.object-table {
+	table-layout: auto;
+	width:100%;
+}
+
+.th-col-preview {
+	width: 100px;
+}
+
+.th-col-name {
+	width:100%;
+}
+
+.th-col-action {
+	width: 40px;
+}
+
+.th-col-action-2 {
+	width: 50px;
+}
+
+
+
 .object-table tr:nth-child(even) {
 	background: #ddd;
 }
