@@ -110,6 +110,13 @@ li {
 	}
 }
 
+@media only screen and (max-width: 320px) {
+	.container-fluid {
+		padding-right:0;
+		padding-left:0;
+	}
+}
+
 
 /* table sytling */
 
