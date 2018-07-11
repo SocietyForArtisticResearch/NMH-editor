@@ -2289,8 +2289,6 @@ export class RCMDE {
 
     // for importing from word etc.
     static replaceImagesWithTools(md, lst) {
-        console.log(md);
-        console.log(lst);
         //        let re = /!\[.*\]\(.*\)(\{[^}]*\})?/g;
         //      let re2 = /<embed src=.*\/>/g;
         let re = /(!\[.*\]\(.*\)(\{[^}]*\})?)|(<embed src=.*\/>)|(<img src=.*\/>)/g;
