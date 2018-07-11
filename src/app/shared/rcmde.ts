@@ -2295,11 +2295,13 @@ export class RCMDE {
         //      let re2 = /<embed src=.*\/>/g;
         let re = /(!\[.*\]\(.*\)(\{[^}]*\})?)|(<embed src=.*\/>)|(<img src=.*\/>)/g;
         let images = {};
-        let imageNameRe = /(image[0-9]*)/g;
+        //let imageNameRe = /(image[0-9]*)/g;
+        let imageNameRe = /([a-z_|A-Z||0-9])+\.(png|PNG|emf|EMF|jpg|JPG|bmp|BMP|tifF|TIFF|gif|GIF)/g;
         //        let re = /!\[.*\]\(.*\){.*}/g;
         let c = 0;
         let insertedTools = md.replace(re, function (m, p1) {
-            let name = m.match(imageNameRe)[0];
+            //            let name = m.match(imageNameRe)[0];
+            let name = m.match(imageNameRe)[0].split('.')[0];
             let id = images[name];
             if (id == undefined) {
                 // new image
