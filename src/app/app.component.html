@@ -12,13 +12,15 @@
 		   data-toggle="tooltip" 
 		   data-placement="top" 
 		   placeholder="Title"
-		   title="Edit title">
+		   title="Edit title"
+		   required>
 
-	    	    
+	    
 	    <div class="rclink"><a class href="{{'//' + hostname + '/profile'}}">My Profile</a> <a href="{{'//' + hostname + '/session/logout'}}">Logout</a></div>
 
-	<br>
-	  
+	    
+	    <br>
+	    <div class="version">{{this.version}}</div>	    
 
 	    <button type="button" [class.active]="showMedia" class="btn btn-primary" (click)="onMediaButton()" data-toggle="tooltip" data-placement="top" title="Upload and inspect media">
 	    	Media list
@@ -39,8 +41,9 @@
 	    	(onChangedObject)=onChangedObject($event)
 	    	isMediaInserted="true">
 	    </app-drag-and-drop>  
-	    
 
+
+	    
 	    <hr>
 
 	    <app-markdown-tool #markdownEditor 
@@ -57,6 +60,7 @@
 
 
 	</div>
+
 
 	<!-- Media object list -->
 

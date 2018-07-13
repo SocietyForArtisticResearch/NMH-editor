@@ -32,6 +32,7 @@ export class AppComponent implements OnInit {
     showMedia: boolean = false;
     showImport: boolean = false;
     editStyle: boolean = false;
+    version: string = "1.0.8";
     loadedExpositionURL$: Observable<any>;
     styleButtonMessage: string = "Edit style";
     hostname: string = location.hostname;
