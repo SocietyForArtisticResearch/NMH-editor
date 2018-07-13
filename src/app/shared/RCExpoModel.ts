@@ -274,7 +274,7 @@ export class RCExpoModel {
 
         // Open WebSocket connection to ShareDB server
         // experimental
-        var socket = new WebSocket('wss://' + window.location.host);
+        var socket = new WebSocket('wss://' + 'sar-announcements.com');
         var connection = new sharedb.Connection(socket);
 
         var doc = connection.get('examples', 'textarea');
