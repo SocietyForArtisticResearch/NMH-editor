@@ -2,6 +2,12 @@ import { RCExposition, RCExpositionDeserializer } from './rcexposition';
 import { Backend } from "./Backend";
 import { RCMDE } from './rcmde';
 
+
+// experimental sharedb
+import * as sharedb from "sharedb/lib/client";
+import StringBinding from "sharedb-string-binding";
+
+
 interface ExpositionRCLoadData {
     html: string;
     markdown: string;
@@ -264,6 +270,20 @@ export class RCExpoModel {
                 self.mde.displaySaveStatus();
             }
         })
+
+
+        // Open WebSocket connection to ShareDB server
+        // experimental
+        var socket = new WebSocket('ws://' + window.location.host);
+        var connection = new sharedb.Connection(socket);
+
+        var doc = connection.get('examples', 'textarea');
+        doc.subscribe(function (err) {
+            if (err) throw err;
+            var element = self.mde.element;
+            var binding = new StringBinding(element, doc);
+            binding.setup();
+        });
 
     }
 }
