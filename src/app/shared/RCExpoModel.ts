@@ -4,8 +4,8 @@ import { RCMDE } from './rcmde';
 
 
 // experimental sharedb
-import * as sharedb from "sharedb/lib/client";
-import StringBinding from "sharedb-string-binding";
+//import * as sharedb from "sharedb/lib/client";
+//import StringBinding from "sharedb-string-binding";
 
 
 interface ExpositionRCLoadData {
@@ -275,16 +275,16 @@ export class RCExpoModel {
         // Open WebSocket connection to ShareDB server
         // experimental
         //        var socket = new WebSocket('wss://' + 'sar-announcements.com:8080');
-        var socket = new WebSocket('ws://' + '198.20.97.202:8999');
-        var connection = new sharedb.Connection(socket);
+        // var socket = new WebSocket('ws://' + '198.20.97.202:8999');
+        // var connection = new sharedb.Connection(socket);
 
-        var doc = connection.get('examples', 'textarea');
-        doc.subscribe(function (err) {
-            if (err) throw err;
-            var element = self.mde.element;
-            var binding = new StringBinding(element, doc);
-            binding.setup();
-        });
+        // var doc = connection.get('examples', 'textarea');
+        // doc.subscribe(function (err) {
+        //     if (err) throw err;
+        //     var element = self.mde.element;
+        //     var binding = new StringBinding(element, doc);
+        //     binding.setup();
+        // });
 
     }
 }
