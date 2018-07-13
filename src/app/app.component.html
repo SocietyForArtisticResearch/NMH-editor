@@ -4,17 +4,22 @@
 	<!--   <div [ngClass]="{ 'shifted' : showMedia }">
 	-->
 	<div [ngClass]="{ 'hideBecauseModalIsVisible' : shouldHideBecauseModalIsVisible() }">
-	    <input class="editableTitle" 
-		   type='text' 
-		   value="{{this.rcExpoModel.exposition.title}}" 
-		   [(ngModel)]="this.rcExpoModel.exposition.title" 
-		   (keyup)="this.rcExpoModel.mde.forceRender()" 
-		   data-toggle="tooltip" 
-		   data-placement="top" 
-		   placeholder="Title"
-		   minlength="4" 
-		   title="Edit title"
-		   required>
+	    <input
+		id="titleField"
+		name="titleField"
+		class="editableTitle" 
+		type='text' 
+		value="{{this.rcExpoModel.exposition.title}}" 
+		[(ngModel)]="this.rcExpoModel.exposition.title" 
+		(keyup)="this.rcExpoModel.mde.forceRender()" 
+		data-toggle="tooltip" 
+		data-placement="top" 
+		placeholder="Title"
+		minlength="4" 
+		title="Edit title"
+		required>
+	    
+	    <!-- <div *ngIf="this.rcExpoModel.exposition.title.invalid && this.rcExpoModel.exposition.title.touched" class="alert-length">Too short</div> -->
 	    
 	    <div class="rclink"><a class href="{{'//' + hostname + '/profile'}}">My Profile</a> <a href="{{'//' + hostname + '/session/logout'}}">Logout</a></div>
 
