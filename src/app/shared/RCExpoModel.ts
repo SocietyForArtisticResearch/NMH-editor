@@ -232,17 +232,22 @@ export class RCExpoModel {
 
         let cm = this.mde.codemirror;
 
-        cm.on('change', function () {
-            //            if (source != 'user') return;
-            console.log("sending change");
-            doc.submitOp(self.mde.value(), { source: 'editor' });
-        });
+        doc.subscribe(function (err) {
+            if (err) throw err;
+            self.mde.value(doc.data)
 
-        doc.on('op', function (op, source) {
-            console.log("getting change:")
-            console.log(op);
-            if (source == 'editor') return;
-            self.mde.value(op);
+            cm.on('change', function () {
+                //            if (source != 'user') return;
+                console.log("sending change");
+                doc.submitOp(self.mde.value(), { source: 'editor' });
+            });
+
+            doc.on('op', function (op, source) {
+                console.log("getting change:")
+                console.log(op);
+                if (source == 'editor') return;
+                self.mde.value(op);
+            });
         });
 
         // ShareDBCodeMirror.attachDocToCodeMirror(doc, cm, {
