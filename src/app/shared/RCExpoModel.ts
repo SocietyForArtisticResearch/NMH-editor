@@ -1,10 +1,12 @@
 import { RCExposition, RCExpositionDeserializer } from './rcexposition';
 import { Backend } from "./Backend";
 import { RCMDE } from './rcmde';
+import richText from 'rich-text';
 
 
 // experimental sharedb
 import * as sharedb from "sharedb/lib/client";
+sharedb.types.register(richText.type);
 //import StringBinding from "sharedb-string-binding";
 //import ShareDBCodeMirror from "sharedb-codemirror";
 
@@ -226,6 +228,7 @@ export class RCExpoModel {
         let connection = new sharedb.Connection(socket);
 
         let doc = connection.get('examples', 'richtext');
+        console.log(doc);
 
         let cm = this.mde.codemirror;
 
