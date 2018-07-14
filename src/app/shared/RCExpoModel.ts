@@ -255,7 +255,7 @@ export class RCExpoModel {
         //     // });
         // });
 
-        var shareDBCodeMirror = new ShareDBCodeMirror(cm, { key: 'content' });
+        var shareDBCodeMirror = new ShareDBCodeMirror(cm, { verbose: true, key: 'content' });
         shareDBCodeMirror.attachDoc(doc, (error) => {
             if (error) {
                 console.error(error);
