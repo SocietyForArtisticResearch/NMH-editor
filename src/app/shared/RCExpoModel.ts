@@ -243,12 +243,12 @@ export class RCExpoModel {
                 doc.submitOp(self.mde.value(), { source: 'editor' });
             });
 
-            doc.on('op', function (op, source) {
-                console.log("getting change:")
-                console.log(op);
-                if (source == 'editor') return;
-                //  self.mde.value(op);
-            });
+            // doc.on('op', function (op, source) {
+            //     console.log("getting change:")
+            //     console.log(op);
+            //     if (source == 'editor') return;
+            //     //  self.mde.value(op);
+            // });
         });
 
         // ShareDBCodeMirror.attachDocToCodeMirror(doc, cm, {
