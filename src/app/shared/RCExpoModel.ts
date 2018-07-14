@@ -227,12 +227,11 @@ export class RCExpoModel {
         let doc = connection.get('examples', 'textarea');
 
         let cm = this.mde.codemirror;
-        console.log(cm);
 
-        // ShareDBCodeMirror.attachDocToCodeMirror(doc, cm, {
-        //     key: 'content',
-        //     verbose: true
-        // });
+        ShareDBCodeMirror.attachDocToCodeMirror(doc, cm, {
+            key: 'content',
+            verbose: true
+        });
 
         // doc.subscribe(function (err) {
         //     if (err) throw err;
