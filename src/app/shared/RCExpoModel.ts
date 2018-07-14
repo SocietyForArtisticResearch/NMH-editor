@@ -221,6 +221,7 @@ export class RCExpoModel {
     }
 
     shareDBConnect() {
+        let self = this;
         let socket = new WebSocket('wss://' + 'doebereiner.org:8999');
         let connection = new sharedb.Connection(socket);
 
@@ -231,14 +232,14 @@ export class RCExpoModel {
         cm.on('change', function () {
             //            if (source != 'user') return;
             console.log("sending change");
-            doc.submitOp(this.mde.value(), { source: 'editor' });
+            doc.submitOp(self.mde.value(), { source: 'editor' });
         });
 
         doc.on('op', function (op, source) {
             console.log("getting change:")
             console.log(op);
             if (source == 'editor') return;
-            this.mde.value(op);
+            self.mde.value(op);
         });
 
         // ShareDBCodeMirror.attachDocToCodeMirror(doc, cm, {
