@@ -228,13 +228,14 @@ export class RCExpoModel {
         let connection = new sharedb.Connection(socket);
 
         let doc = connection.get('examples', 'richtext');
-        console.log(doc);
 
         let cm = this.mde.codemirror;
 
         doc.subscribe(function (err) {
             if (err) throw err;
-            self.mde.value(doc.data)
+            //self.mde.value(doc.data)
+
+            console.log(doc.data);
 
             cm.on('change', function () {
                 //            if (source != 'user') return;
@@ -246,7 +247,7 @@ export class RCExpoModel {
                 console.log("getting change:")
                 console.log(op);
                 if (source == 'editor') return;
-                self.mde.value(op);
+                //  self.mde.value(op);
             });
         });
 
