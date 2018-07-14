@@ -1,14 +1,17 @@
 import { RCExposition, RCExpositionDeserializer } from './rcexposition';
 import { Backend } from "./Backend";
 import { RCMDE } from './rcmde';
-import richText from 'rich-text';
+import otText from 'ot-text';
+
+//import richText from 'rich-text';
 
 
 // experimental sharedb
 import * as sharedb from "sharedb/lib/client";
-sharedb.types.register(richText.type);
+sharedb.types.map['json0'].registerSubtype(otText.type);
+//sharedb.types.register(richText.type);
 //import StringBinding from "sharedb-string-binding";
-//import ShareDBCodeMirror from "sharedb-codemirror";
+import ShareDBCodeMirror from "sharedb-codemirror";
 
 interface ExpositionRCLoadData {
     html: string;
@@ -231,30 +234,31 @@ export class RCExpoModel {
 
         let cm = this.mde.codemirror;
 
-        doc.subscribe(function (err) {
-            if (err) throw err;
-            //self.mde.value(doc.data)
+        // doc.subscribe(function (err) {
+        //     if (err) throw err;
+        //     //self.mde.value(doc.data)
 
-            console.log(doc.data);
+        //     console.log(doc.data);
 
-            cm.on('change', function () {
-                //            if (source != 'user') return;
-                console.log("sending change");
-                doc.submitOp(self.mde.value(), { source: 'editor' });
-            });
+        //     cm.on('change', function (cmObject, change) {
+        //         //            if (source != 'user') return;
+        //         console.log("sending change");
+        //         console.log(change);
+        //         doc.submitOp(self.mde.value(), { source: 'editor' });
+        //     });
 
-            // doc.on('op', function (op, source) {
-            //     console.log("getting change:")
-            //     console.log(op);
-            //     if (source == 'editor') return;
-            //     //  self.mde.value(op);
-            // });
-        });
-
-        // ShareDBCodeMirror.attachDocToCodeMirror(doc, cm, {
-        //     key: 'content',
-        //     verbose: true
+        //     // doc.on('op', function (op, source) {
+        //     //     console.log("getting change:")
+        //     //     console.log(op);
+        //     //     if (source == 'editor') return;
+        //     //     //  self.mde.value(op);
+        //     // });
         // });
+
+        ShareDBCodeMirror.attachDocToCodeMirror(doc, cm, {
+            key: 'content',
+            verbose: true
+        });
 
         // doc.subscribe(function (err) {
         //     if (err) throw err;
