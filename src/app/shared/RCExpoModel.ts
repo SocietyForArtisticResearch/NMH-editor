@@ -255,17 +255,17 @@ export class RCExpoModel {
         //     // });
         // });
 
-        var shareDBCodeMirror = new ShareDBCodeMirror(cm, { verbose: true, key: 'content' });
-        shareDBCodeMirror.attachDoc(doc, (error) => {
-            if (error) {
-                console.error(error);
-            }
-        });
-
-        // ShareDBCodeMirror.attachDocToCodeMirror(doc, cm, {
-        //     key: 'content',
-        //     verbose: true
+        // var shareDBCodeMirror = new ShareDBCodeMirror(cm, { verbose: true, key: 'content' });
+        // shareDBCodeMirror.attachDoc(doc, (error) => {
+        //     if (error) {
+        //         console.error(error);
+        //     }
         // });
+
+        ShareDBCodeMirror.attachDocToCodeMirror(doc, cm, {
+            key: 'content',
+            verbose: true
+        });
 
         // doc.subscribe(function (err) {
         //     if (err) throw err;
