@@ -6,7 +6,7 @@ import { RCMDE } from './rcmde';
 // experimental sharedb
 import * as sharedb from "sharedb/lib/client";
 //import StringBinding from "sharedb-string-binding";
-import ShareDBCodeMirror from "sharedb-codemirror";
+//import ShareDBCodeMirror from "sharedb-codemirror";
 
 interface ExpositionRCLoadData {
     html: string;
@@ -225,7 +225,7 @@ export class RCExpoModel {
         let socket = new WebSocket('wss://' + 'doebereiner.org:8999');
         let connection = new sharedb.Connection(socket);
 
-        let doc = connection.get('examples', 'textarea');
+        let doc = connection.get('examples', 'richtext');
 
         let cm = this.mde.codemirror;
 
