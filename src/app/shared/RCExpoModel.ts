@@ -228,12 +228,15 @@ export class RCExpoModel {
 
         let cm = this.mde.codemirror;
 
-        cm.on('change', function (delta, oldDelta, source) {
-            if (source != 'user') return;
-            doc.submitOp(delta, { source: 'editor' });
+        cm.on('change', function () {
+            //            if (source != 'user') return;
+            console.log("sending change");
+            doc.submitOp(this.mde.value(), { source: 'editor' });
         });
 
         doc.on('op', function (op, source) {
+            console.log("getting change:")
+            console.log(op);
             if (source == 'editor') return;
             this.mde.value(op);
         });
