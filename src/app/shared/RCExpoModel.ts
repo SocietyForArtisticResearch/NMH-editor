@@ -234,46 +234,12 @@ export class RCExpoModel {
 
         let cm = this.mde.codemirror;
 
-        // doc.subscribe(function (err) {
-        //     if (err) throw err;
-        //     //self.mde.value(doc.data)
-
-        //     console.log(doc.data);
-
-        //     cm.on('change', function (cmObject, change) {
-        //         //            if (source != 'user') return;
-        //         console.log("sending change");
-        //         console.log(change);
-        //         doc.submitOp(self.mde.value(), { source: 'editor' });
-        //     });
-
-        //     // doc.on('op', function (op, source) {
-        //     //     console.log("getting change:")
-        //     //     console.log(op);
-        //     //     if (source == 'editor') return;
-        //     //     //  self.mde.value(op);
-        //     // });
-        // });
-
-        // var shareDBCodeMirror = new ShareDBCodeMirror(cm, { verbose: true, key: 'content' });
-        // shareDBCodeMirror.attachDoc(doc, (error) => {
-        //     if (error) {
-        //         console.error(error);
-        //     }
-        // });
-
-        ShareDBCodeMirror.attachDocToCodeMirror(doc, cm, {
-            key: 'content',
-            verbose: true
+        var shareDBCodeMirror = new ShareDBCodeMirror(cm, { verbose: true, key: 'content' });
+        shareDBCodeMirror.attachDoc(doc, (error) => {
+            if (error) {
+                console.error(error);
+            }
         });
-
-        // doc.subscribe(function (err) {
-        //     if (err) throw err;
-        //     var element = self.mde.element;
-        //     var binding = new StringBinding(element, doc);
-        //     binding.setup();
-        // });
-
 
     }
 
