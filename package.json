@@ -46,7 +46,7 @@
     "rich-text": "^3.1.0",
     "rxjs": "^5.5.6",
     "sharedb": "^1.0.0-beta.9",
-    "sharedb-codemirror": "^0.2.1",
+    "sharedb-codemirror": "git+https://github.com/nickasd/sharedb-codemirror.git",
     "sharedb-string-binding": "^1.0.0",
     "sortablejs": "^1.7.0",
     "tinymce": "^4.7.6",

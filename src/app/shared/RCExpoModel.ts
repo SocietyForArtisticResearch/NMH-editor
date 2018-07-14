@@ -8,7 +8,7 @@ import otText from 'ot-text';
 
 // experimental sharedb
 import * as sharedb from "sharedb/lib/client";
-sharedb.types.map['json0'].registerSubtype(otText.type);
+//sharedb.types.map['json0'].registerSubtype(otText.type);
 //sharedb.types.register(richText.type);
 //import StringBinding from "sharedb-string-binding";
 import ShareDBCodeMirror from "sharedb-codemirror";
@@ -255,10 +255,17 @@ export class RCExpoModel {
         //     // });
         // });
 
-        ShareDBCodeMirror.attachDocToCodeMirror(doc, cm, {
-            key: 'content',
-            verbose: true
+        var shareDBCodeMirror = new ShareDBCodeMirror(cm, { key: 'content' });
+        shareDBCodeMirror.attachDoc(doc, (error) => {
+            if (error) {
+                console.error(error);
+            }
         });
+
+        // ShareDBCodeMirror.attachDocToCodeMirror(doc, cm, {
+        //     key: 'content',
+        //     verbose: true
+        // });
 
         // doc.subscribe(function (err) {
         //     if (err) throw err;
