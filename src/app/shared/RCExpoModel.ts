@@ -279,6 +279,7 @@ export class RCExpoModel {
 
         var doc = connection.get('examples', 'textarea');
 
+        console.log(self);
         ShareDBCodeMirror.attachDocToCodeMirror(doc, self.mde.codemirror, {
             key: 'content',
             verbose: true

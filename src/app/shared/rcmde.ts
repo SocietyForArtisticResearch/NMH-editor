@@ -1512,7 +1512,7 @@ export class RCMDE {
     options: any;
     element: HTMLTextAreaElement;
     _rendered: HTMLElement;
-    codemirror: CodeMirror;
+    public codemirror: CodeMirror;
     gui: any;
     public drawMediaCallback: () => void;
     public openPreviewCallback: () => void;
