@@ -5,8 +5,8 @@ import { RCMDE } from './rcmde';
 
 // experimental sharedb
 import * as sharedb from "sharedb/lib/client";
-import StringBinding from "sharedb-string-binding";
-
+//import StringBinding from "sharedb-string-binding";
+import ShareDBCodeMirror from "sharedb-codemirror";
 
 interface ExpositionRCLoadData {
     html: string;
@@ -278,12 +278,18 @@ export class RCExpoModel {
         var connection = new sharedb.Connection(socket);
 
         var doc = connection.get('examples', 'textarea');
-        doc.subscribe(function (err) {
-            if (err) throw err;
-            var element = self.mde.element;
-            var binding = new StringBinding(element, doc);
-            binding.setup();
+
+        ShareDBCodeMirror.attachDocToCodeMirror(doc, self.mde.codemirror, {
+            key: 'content',
+            verbose: true
         });
+
+        // doc.subscribe(function (err) {
+        //     if (err) throw err;
+        //     var element = self.mde.element;
+        //     var binding = new StringBinding(element, doc);
+        //     binding.setup();
+        // });
 
     }
 }
