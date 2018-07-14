@@ -228,10 +228,20 @@ export class RCExpoModel {
 
         let cm = this.mde.codemirror;
 
-        ShareDBCodeMirror.attachDocToCodeMirror(doc, cm, {
-            key: 'content',
-            verbose: true
+        cm.on('change', function (delta, oldDelta, source) {
+            if (source != 'user') return;
+            doc.submitOp(delta, { source: 'editor' });
         });
+
+        doc.on('op', function (op, source) {
+            if (source == 'editor') return;
+            this.mde.value(op);
+        });
+
+        // ShareDBCodeMirror.attachDocToCodeMirror(doc, cm, {
+        //     key: 'content',
+        //     verbose: true
+        // });
 
         // doc.subscribe(function (err) {
         //     if (err) throw err;
