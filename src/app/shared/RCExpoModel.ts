@@ -274,13 +274,14 @@ export class RCExpoModel {
 
         // Open WebSocket connection to ShareDB server
         // experimental
-        var socket = new WebSocket('wss://' + 'doebereiner.org:8999');
-        var connection = new sharedb.Connection(socket);
+        let socket = new WebSocket('wss://' + 'doebereiner.org:8999');
+        let connection = new sharedb.Connection(socket);
 
-        var doc = connection.get('examples', 'textarea');
+        let doc = connection.get('examples', 'textarea');
 
-        console.log(self);
-        ShareDBCodeMirror.attachDocToCodeMirror(doc, self.mde.codemirror, {
+        let cm = self.mde.codemirror;
+        console.log(cm);
+        ShareDBCodeMirror.attachDocToCodeMirror(doc, cm, {
             key: 'content',
             verbose: true
         });
