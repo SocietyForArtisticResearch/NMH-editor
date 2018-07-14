@@ -220,6 +220,29 @@ export class RCExpoModel {
         xhttp.send();
     }
 
+    shareDBConnect() {
+        let socket = new WebSocket('wss://' + 'doebereiner.org:8999');
+        let connection = new sharedb.Connection(socket);
+
+        let doc = connection.get('examples', 'textarea');
+
+        let cm = this.mde.codemirror;
+        console.log(cm);
+
+        // ShareDBCodeMirror.attachDocToCodeMirror(doc, cm, {
+        //     key: 'content',
+        //     verbose: true
+        // });
+
+        // doc.subscribe(function (err) {
+        //     if (err) throw err;
+        //     var element = self.mde.element;
+        //     var binding = new StringBinding(element, doc);
+        //     binding.setup();
+        // });
+
+
+    }
 
     loadExpositionFromRC(id: number, weave: number) {
         Backend.useRC = true;
@@ -274,25 +297,6 @@ export class RCExpoModel {
 
         // Open WebSocket connection to ShareDB server
         // experimental
-        let socket = new WebSocket('wss://' + 'doebereiner.org:8999');
-        let connection = new sharedb.Connection(socket);
-
-        let doc = connection.get('examples', 'textarea');
-
-        let cm = self.mde.codemirror;
-        console.log(cm);
-
-        // ShareDBCodeMirror.attachDocToCodeMirror(doc, cm, {
-        //     key: 'content',
-        //     verbose: true
-        // });
-
-        // doc.subscribe(function (err) {
-        //     if (err) throw err;
-        //     var element = self.mde.element;
-        //     var binding = new StringBinding(element, doc);
-        //     binding.setup();
-        // });
-
+        setTimeout(() => self.shareDBConnect(), 2000);
     }
 }
