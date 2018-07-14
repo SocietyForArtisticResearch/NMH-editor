@@ -281,10 +281,11 @@ export class RCExpoModel {
 
         let cm = self.mde.codemirror;
         console.log(cm);
-        ShareDBCodeMirror.attachDocToCodeMirror(doc, cm, {
-            key: 'content',
-            verbose: true
-        });
+
+        // ShareDBCodeMirror.attachDocToCodeMirror(doc, cm, {
+        //     key: 'content',
+        //     verbose: true
+        // });
 
         // doc.subscribe(function (err) {
         //     if (err) throw err;
