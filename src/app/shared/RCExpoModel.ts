@@ -242,19 +242,21 @@ export class RCExpoModel {
 
         socket.onmessage = function (event) {
             console.log(event.data);
+            console.log(event.data == "exposition created");
+            if (event.data == "exposition created") {
+                let connection = new sharedb.Connection(socket);
 
-            // let connection = new sharedb.Connection(socket);
+                let doc = connection.get('expositions', String(self.exposition.id));
 
-            // let doc = connection.get('expositions', String(self.exposition.id));
+                let cm = self.mde.codemirror;
 
-            // let cm = self.mde.codemirror;
-
-            // var shareDBCodeMirror = new ShareDBCodeMirror(cm, { verbose: true, key: 'content' });
-            // shareDBCodeMirror.attachDoc(doc, (error) => {
-            //     if (error) {
-            //         console.error(error);
-            //     }
-            // });
+                var shareDBCodeMirror = new ShareDBCodeMirror(cm, { verbose: true, key: 'content' });
+                shareDBCodeMirror.attachDoc(doc, (error) => {
+                    if (error) {
+                        console.error(error);
+                    }
+                });
+            }
         }
 
     }
