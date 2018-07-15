@@ -232,7 +232,7 @@ export class RCExpoModel {
         // initial message
         socket.onopen = function (event) {
             let msg = {
-                message: "openExposition",
+                message: "open exposition",
                 id: String(self.exposition.id),
                 markdown: self.exposition.markdownInput
             };
@@ -242,19 +242,20 @@ export class RCExpoModel {
 
         socket.onmessage = function (event) {
             console.log(event.data);
+
+            // let connection = new sharedb.Connection(socket);
+
+            // let doc = connection.get('expositions', String(self.exposition.id));
+
+            // let cm = self.mde.codemirror;
+
+            // var shareDBCodeMirror = new ShareDBCodeMirror(cm, { verbose: true, key: 'content' });
+            // shareDBCodeMirror.attachDoc(doc, (error) => {
+            //     if (error) {
+            //         console.error(error);
+            //     }
+            // });
         }
-        // let connection = new sharedb.Connection(socket);
-
-        // let doc = connection.get('expositions', String(self.exposition.id));
-
-        // let cm = self.mde.codemirror;
-
-        // var shareDBCodeMirror = new ShareDBCodeMirror(cm, { verbose: true, key: 'content' });
-        // shareDBCodeMirror.attachDoc(doc, (error) => {
-        //     if (error) {
-        //         console.error(error);
-        //     }
-        // });
 
     }
 
