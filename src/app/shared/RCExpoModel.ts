@@ -234,7 +234,7 @@ export class RCExpoModel {
             let msg = {
                 message: "openExposition",
                 id: String(self.exposition.id),
-                markdow: self.mde.value()
+                markdown: self.exposition.markdownInput
             };
             socket.send(JSON.stringify(msg));
 
