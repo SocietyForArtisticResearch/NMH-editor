@@ -228,18 +228,30 @@ export class RCExpoModel {
     shareDBConnect() {
         let self = this;
         let socket = new WebSocket('wss://' + 'doebereiner.org:8999');
-        let connection = new sharedb.Connection(socket);
 
-        let doc = connection.get('examples', 'richtext');
+        // initial message
+        socket.onopen = function (event) {
+            let msg = {
+                message: "openExposition",
+                id: String(self.exposition.id),
+                markdow: self.mde.value()
+            };
+            socket.send(JSON.stringify(msg));
 
-        let cm = this.mde.codemirror;
+            let connection = new sharedb.Connection(socket);
 
-        var shareDBCodeMirror = new ShareDBCodeMirror(cm, { verbose: true, key: 'content' });
-        shareDBCodeMirror.attachDoc(doc, (error) => {
-            if (error) {
-                console.error(error);
-            }
-        });
+            let doc = connection.get('expositions', String(self.exposition.id));
+
+            let cm = self.mde.codemirror;
+
+            var shareDBCodeMirror = new ShareDBCodeMirror(cm, { verbose: true, key: 'content' });
+            shareDBCodeMirror.attachDoc(doc, (error) => {
+                if (error) {
+                    console.error(error);
+                }
+            });
+
+        };
 
     }
 
@@ -296,6 +308,6 @@ export class RCExpoModel {
 
         // Open WebSocket connection to ShareDB server
         // experimental
-        setTimeout(() => self.shareDBConnect(), 2000);
+        setTimeout(() => self.shareDBConnect(), 1000);
     }
 }
