@@ -71,6 +71,17 @@ export class AppComponent implements OnInit {
         insertMedia(editor, rcobject.name);
     }
 
+    onKeyup(event) {
+        let newValue = event.target.value;
+        if (newValue.length >= 3) {
+            this.rcExpoModel.exposition.title = newValue;
+            this.rcExpoModel.mde.forceRender()
+
+        } else {
+            console.log('title too short');
+        }
+    }
+
     closeMedia() {
         this.showMedia = false;
         this.markdownEditor.refocus();

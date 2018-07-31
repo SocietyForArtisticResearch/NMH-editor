@@ -12,9 +12,9 @@
 	       required
 		   type='text' 
 		   value="{{this.rcExpoModel.exposition.title}}" 
-		   [(ngModel)]="this.rcExpoModel.exposition.title" 
-		   (keyup)="this.rcExpoModel.mde.forceRender()" 
-		   data-toggle="tooltip" 
+		   [ngModel]="this.rcExpoModel.exposition.title" 
+   		   (keyup)="onKeyup($event)"
+		   data-toggle="tooltip"
 		   data-placement="top" 
 		   placeholder="Title"
 		   title="Edit title">
