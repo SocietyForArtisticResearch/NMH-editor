@@ -7,7 +7,8 @@
 	    <input class="editableTitle" 
 		   type='text' 
 		   value="{{this.rcExpoModel.exposition.title}}" 
-		   [(ngModel)]="this.rcExpoModel.exposition.title" 
+		   [ngModel]="this.rcExpoModel.exposition.title" 
+		   (ngModelChange)="onChange($event)"
 		   (keyup)="this.rcExpoModel.mde.forceRender()" 
 		   data-toggle="tooltip" 
 		   data-placement="top" 
