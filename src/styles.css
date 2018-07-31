@@ -66,6 +66,10 @@ app-markdown-tool .editor-statusbar {
     width: 50%;
 }
 
+app-markdown-tool .editor-statusbar span {
+    min-width: 6em;
+}
+
 app-markdown-tool .editor-preview-side {    
     position: absolute;
     top:150px;

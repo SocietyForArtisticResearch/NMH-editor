@@ -5,21 +5,33 @@
 	-->
 	<div [ngClass]="{ 'hideBecauseModalIsVisible' : shouldHideBecauseModalIsVisible() }">
 	    <input class="editableTitle" 
+	       id="editableTitleField"
+	       name="editableTitleField"
+	       #editableTitleField="ngModel"
+	       minlength="4"
+	       required
 		   type='text' 
 		   value="{{this.rcExpoModel.exposition.title}}" 
-		   [ngModel]="this.rcExpoModel.exposition.title" 
-		   (ngModelChange)="onChange($event)"
+		   [(ngModel)]="this.rcExpoModel.exposition.title" 
 		   (keyup)="this.rcExpoModel.mde.forceRender()" 
 		   data-toggle="tooltip" 
 		   data-placement="top" 
 		   placeholder="Title"
 		   title="Edit title">
-
-	    	    
+		<div *ngIf="editableTitleField.invalid && (editableTitleField.dirty || editableTitleField.touched)"
+		    class="alert alert-danger">
+		  <div *ngIf="editableTitleField.errors.minlength">
+		    Exposition title must be at least 4 characters long.
+		  </div>
+		  <div *ngIf="editableTitleField.errors.required">
+		  	Exposition title cannot be empty.
+		  </div>
+		</div>    
 	    <div class="rclink"><a class href="{{'//' + hostname + '/profile'}}">My Profile</a> <a href="{{'//' + hostname + '/session/logout'}}">Logout</a></div>
 
-	<br>
-	  
+	    
+	    <br>
+	    <div class="version">{{this.version}}</div>	    
 
 	    <button type="button" [class.active]="showMedia" class="btn btn-primary" (click)="onMediaButton()" data-toggle="tooltip" data-placement="top" title="Upload and inspect media">
 	    	Media list
@@ -40,8 +52,9 @@
 	    	(onChangedObject)=onChangedObject($event)
 	    	isMediaInserted="true">
 	    </app-drag-and-drop>  
-	    
 
+
+	    
 	    <hr>
 
 	    <app-markdown-tool #markdownEditor 
@@ -58,6 +71,7 @@
 
 
 	</div>
+
 
 	<!-- Media object list -->
 

@@ -1,6 +1,17 @@
 import { RCExposition, RCExpositionDeserializer } from './rcexposition';
 import { Backend } from "./Backend";
 import { RCMDE } from './rcmde';
+import otText from 'ot-text';
+
+//import richText from 'rich-text';
+
+
+// experimental sharedb
+import * as sharedb from "sharedb/lib/client";
+//sharedb.types.map['json0'].registerSubtype(otText.type);
+//sharedb.types.register(richText.type);
+//import StringBinding from "sharedb-string-binding";
+import ShareDBCodeMirror from "sharedb-codemirror";
 
 interface ExpositionRCLoadData {
     html: string;
@@ -19,6 +30,7 @@ export class RCExpoModel {
     exposition: RCExposition;
     saveInterval: any;
     syncInterval: any;
+    canBeSaved: boolean;
     markdownInput: string;
     markdownProcessed: string;
     mde: any;
@@ -150,24 +162,12 @@ export class RCExpoModel {
         xhttp.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
                 let expositionJSON = JSON.parse(xhttp.responseText);
-        // console.log(JSON.parse(expositionJSON.media));
-        //console.log("Loading expo data:")
-        //console.log(expositionJSON);
-
                 self.exposition.title = expositionJSON.title;
-                // self.exposition.toc = JSON.parse(expositionJSON.toc);
                 self.exposition.markdownInput = expositionJSON.markdown;
-
-                // CASPER TEST: remove this:
-                // self.exposition.renderedHTML = expositionJSON.html;
-                // console.log('this is the exposition.media array before render in LoadExpositionData(), ', self.exposition.media);
-
-                // self.exposition.media = RCExpositionDeserializer.restoreObject(JSON.parse(expositionJSON.media));
-
                 self.exposition.style = expositionJSON.style;
                 self.mde.exposition = self.exposition;
-                // self.mde.value(self.exposition.markdownInput);
-                // self.mde.render();
+                // it is safe to save, because loading was successful
+                self.canBeSaved = true;
             }
         };
         xhttp.open("GET", `${Backend.rcBaseAddress}text-editor/load?research=${id}&weave=${weave}`, true);
@@ -177,36 +177,28 @@ export class RCExpoModel {
 
 
     saveToRC() {
-        // let saveObject: ExpositionRCLoadData = {
-        //     html: this.exposition.renderedHTML,
-        //     markdown: this.exposition.markdownInput
-        // };
-        let id = this.exposition.id;
-        let weave = this.exposition.currentWeave;
-        let fd = new FormData();
-        let self = this;
-        //console.log("toc: ");
-        //console.log(this.exposition.getTOC());
-        // console.log("Serialize media:");
-        // console.log(this.exposition.media);
-        // console.log(this.exposition.serializeMedia());
-        // console.log("End serialize:");
-        fd.append("html", this.exposition.renderedHTML);
-        fd.append("markdown", this.exposition.markdownInput);
-        fd.append("media", this.exposition.serializeMedia()); // TODO send media list/see if necessary
-        fd.append("style", this.exposition.style);
-        fd.append("title", this.exposition.title);
-        fd.append("toc", JSON.stringify(this.exposition.getTOC()));
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function () {
-            self.mde.saved = true;
-            // console.log('debug save: ', xhttp.responseText);
-            self.mde.displaySaveStatus();
 
-    //console.log("saved");
-        };
-        xhttp.open("POST", `${Backend.rcBaseAddress}text-editor/save?research=${id}&weave=${weave}`, true);
-        xhttp.send(fd);
+        // Only save if it can be saved and markdown input is neither null nor undefined
+        if (this.canBeSaved && (this.exposition.markdownInput !== null) && (this.exposition.markdownInput !== undefined)) {
+            let id = this.exposition.id;
+            let weave = this.exposition.currentWeave;
+            let fd = new FormData();
+            let self = this;
+            fd.append("html", this.exposition.renderedHTML);
+            fd.append("markdown", this.exposition.markdownInput);
+            fd.append("media", this.exposition.serializeMedia()); // TODO send media list/see if necessary
+            fd.append("style", this.exposition.style);
+            fd.append("title", this.exposition.title);
+            fd.append("toc", JSON.stringify(this.exposition.getTOC()));
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                self.mde.saved = true;
+                self.mde.displaySaveStatus();
+
+            };
+            xhttp.open("POST", `${Backend.rcBaseAddress}text-editor/save?research=${id}&weave=${weave}`, true);
+            xhttp.send(fd);
+        }
     }
 
     loadExpositionFromURL(expositionJSONUrl: string) {
@@ -233,26 +225,66 @@ export class RCExpoModel {
         xhttp.send();
     }
 
+    shareDBConnect() {
+        let self = this;
+        let socket = new WebSocket('wss://' + 'doebereiner.org:8999');
 
+        // initial message
+        socket.onopen = function (event) {
+            let msg = {
+                message: "open exposition",
+                id: String(self.exposition.id),
+                markdown: self.exposition.markdownInput
+            };
+            socket.send(JSON.stringify(msg));
+
+        };
+
+        socket.onmessage = function (event) {
+            console.log(event.data);
+            console.log(event.data == "exposition created");
+            if (event.data == "exposition created") {
+                let connection = new sharedb.Connection(socket);
+
+                let doc = connection.get('expositions', String(self.exposition.id));
+
+                let cm = self.mde.codemirror;
+
+                var shareDBCodeMirror = new ShareDBCodeMirror(cm, { verbose: true, key: 'content' });
+                shareDBCodeMirror.attachDoc(doc, (error) => {
+                    if (error) {
+                        console.error(error);
+                    }
+                });
+            }
+        }
+
+    }
 
     loadExpositionFromRC(id: number, weave: number) {
         Backend.useRC = true;
 
         let self = this;
+
+        // initially false
+        self.canBeSaved = false;
+        // create exposition object
         let new_exposition = new RCExposition('');
         new_exposition.id = id;
         new_exposition.currentWeave = weave;
         this.exposition = new_exposition;
 
+        // load data
         this.loadExpositionData();
 
+        // sync media model with rc
         this.syncModelWithRC(() => {
-            // render againg
+            // render again
             self.mde.value(self.exposition.markdownInput);
             self.mde.render();
         });
 
-
+        // save every 12 seconds if needs to be saved
         this.saveInterval = setInterval(() => {
             if (document.hasFocus() && !self.mde.saved) {
                 self.saveToRC();
@@ -260,16 +292,16 @@ export class RCExpoModel {
             }
         }, 12000);
 
+        // synchronize media every 40 seconds due to transcoding status
         this.syncInterval = setInterval(() => {
             if (document.hasFocus()) {
-                console.log("synced");
+                //console.log("synced");
                 self.syncModelWithRC()
             }
-        }
-            , 40000);
+        }, 40000);
 
+        // tab/browser visbility and reload
         document.addEventListener('visibilitychange', function () {
-
             if (!document.hidden) {
                 self.loadExpositionData();
                 self.syncModelWithRC();
@@ -279,5 +311,9 @@ export class RCExpoModel {
             }
         })
 
+
+        // Open WebSocket connection to ShareDB server
+        // experimental
+        // setTimeout(() => self.shareDBConnect(), 1000);
     }
 }

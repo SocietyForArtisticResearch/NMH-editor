@@ -7,7 +7,7 @@
 <div class="container-fluid">
     
     <div class="row" >
-	<div class="col-sm-6 rc-object-list">
+	<div class="rc-object-list">
 	    
 	    <app-drag-and-drop 
 		class="drag-and-drop-box" 
@@ -18,25 +18,25 @@
 	    <div *ngIf="mediaHasObjects()">
 
 	    </div>
-	    <span class="glyphicon glyphicon-info-sign"></span><span>&nbsp;Double click an image to insert. press ESC to close</span>
+	    <div class="press-escape-msg">
+	    <span class="glyphicon glyphicon-info-sign"></span>&nbsp;Double click an image to insert. press ESC to close.
+	    </div>
 	    <table width="100%" style="margin: 0px;" class="object-table">
 		<thead>
 		    <tr>
-			<th width="25%"><span class="object-list-preview">Preview</span></th>
+			<th class="th-col-preview"><span class="object-list-preview">Preview</span></th>
 			<!-- 						<th><span class="object-list-id">ID</span></th>
 			-->
-			<th width="65%"><span class="object-list-name">Name</span></th>
-			<th width="5%"><span class="object-list-name">Action</span></th>
-			<th width="5%">&nbsp;</th>
+			<th class="th-col-name"><span class="object-list-name">Name</span></th>
+			<th class="th-col-action"><span class="object-list-name">Action</span></th>
+			<th class="th-col-action-2">&nbsp;</th>
 		    </tr>
 		</thead>
-		<tbody>
-		    <tr 
-			*ngFor="let rcObject of rcExpoModel.exposition.media" 
+		<tbody *ngFor="let rcObject of rcExpoModel.exposition.media" 
 				[class.selected]="isObjectSelected(rcObject)"
 			(click)="onSelect(rcObject)"
-			(dblclick)="onDoubleClick(rcObject)"
-			>
+			(dblclick)="onDoubleClick(rcObject)">
+			<tr>
 			<td>
 			    <div [ngSwitch]="rcObject.__className">
 				<div *ngSwitchCase="'RCImage'">
@@ -86,43 +86,53 @@
 
 			<td><button [disabled]="busy" class="align-right btn btn-danger btn-sm" (click)="trashObject(rcObject)">&times;</button></td>
 			<td><button class="align-right btn btn-primary btn-sm" (click)="onDoubleClick(rcObject)">insert</button></td>
-		    </tr>
+			</tr>
+			<tr *ngIf="isObjectSelected(rcObject)">
+			<td colspan="5">
+				<div>	
+	    			<div >
+						<div [ngSwitch]="selectedObject.__className">
+						    <app-image-tool *ngSwitchCase="'RCImage'"
+								    [id]="'editor'+selectedObject.id" 
+										   [rcobject]="selectedObject"
+										   (onRemoveObject)="objectWasRemoved($event)"
+										   (onChangedObject)="onChangedObject($event)"
+						    >		
+						    </app-image-tool>
+						    <app-audio-tool *ngSwitchCase="'RCAudio'"
+								    [id]="'editor'+selectedObject.id" 
+										   [rcobject]="selectedObject"
+										   (onRemoveObject)="objectWasRemoved($event)"
+										   (onChangedObject)="onChangedObject($event)"
+						    >		
+						    </app-audio-tool>
+						    <app-video-tool *ngSwitchCase="'RCVideo'"
+								    [id]="'editor'+selectedObject.id" 
+										   [rcobject]="selectedObject"
+										   (onRemoveObject)="objectWasRemoved($event)"
+										   (onChangedObject)="onChangedObject($event)"
+						    >		
+						    </app-video-tool>
+						    <app-pdf-tool *ngSwitchCase="'RCPdf'"
+								    [id]="'editor'+selectedObject.id" 
+										   [rcobject]="selectedObject"
+										   (onRemoveObject)="objectWasRemoved($event)"
+										   (onChangedObject)="onChangedObject($event)"
+						    >		
+		    				</app-pdf-tool>
+						</div>
+	    			</div>
+				</div>
+			</td>
+		 </tr>
+		</tbody>
+
+
 	    </table>
 	</div>
-	<div class="col-sm-6">	
-	    <div *ngIf="selectedObject ? true : false">
-		<div [ngSwitch]="selectedObject.__className">
-		    <app-image-tool *ngSwitchCase="'RCImage'"
-				    [id]="'editor'+selectedObject.id" 
-						   [rcobject]="selectedObject"
-						   (onRemoveObject)="objectWasRemoved($event)"
-						   (onChangedObject)="onChangedObject($event)"
-		    >		
-		    </app-image-tool>
-		    <app-audio-tool *ngSwitchCase="'RCAudio'"
-				    [id]="'editor'+selectedObject.id" 
-						   [rcobject]="selectedObject"
-						   (onRemoveObject)="objectWasRemoved($event)"
-						   (onChangedObject)="onChangedObject($event)"
-		    >		
-		    </app-audio-tool>
-		    <app-video-tool *ngSwitchCase="'RCVideo'"
-				    [id]="'editor'+selectedObject.id" 
-						   [rcobject]="selectedObject"
-						   (onRemoveObject)="objectWasRemoved($event)"
-						   (onChangedObject)="onChangedObject($event)"
-		    >		
-		    </app-video-tool>
-		    <app-pdf-tool *ngSwitchCase="'RCPdf'"
-				    [id]="'editor'+selectedObject.id" 
-						   [rcobject]="selectedObject"
-						   (onRemoveObject)="objectWasRemoved($event)"
-						   (onChangedObject)="onChangedObject($event)"
-		    >		
-		    </app-pdf-tool>
-		</div>
-	    </div>
-	</div>
+	
+
+
     </div>
     <div class="row">
 	<!-- <button (click)="createImageTool()" class="btn btn-primary">Add image</button>

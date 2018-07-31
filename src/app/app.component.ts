@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild, AfterViewInit, HostListener } from '@angular/core';
+
 import { RCExpoModel } from './shared/RCExpoModel';
 import { RCBackendMediaUpload } from './shared/RCBackendMediaUpload';
 import { RCMDE, insertMediaToken, insertMedia } from './shared/rcmde';
@@ -32,6 +33,7 @@ export class AppComponent implements OnInit {
     showMedia: boolean = false;
     showImport: boolean = false;
     editStyle: boolean = false;
+    version: string = "1.0.8";
     loadedExpositionURL$: Observable<any>;
     styleButtonMessage: string = "Edit style";
     hostname: string = location.hostname;
@@ -67,15 +69,6 @@ export class AppComponent implements OnInit {
         let editor: RCMDE = this.rcExpoModel.mde;
         this.objectList.onChangedObject(identity); // to update selected tool to newest in the object list.
         insertMedia(editor, rcobject.name);
-    }
-
-    onChange(newValue) {
-        if (newValue.length < 3) {
-            return;
-        } else {
-            this.rcExpoModel.exposition.title = newValue;
-            console.log("hallo", newValue);
-        }
     }
 
     closeMedia() {

@@ -71,14 +71,15 @@ export class RCExposition {
         if (Backend.useRC) {
             insertedTools = text.replace(comments, () => "") // filter comments
                 .replace(re, function (m, p1) {
-                    return "![" + name + "](" + self.media.find(obj => {
-                        let n = parseInt(p1);
-                        if (isNaN(n)) {
-                            return obj.name == p1
-                        } else {
-                            return obj.id == n;
-                        }
-                    }).rcURL(self.id, absoluteURLs) + ")";
+                    // return "![" + name + "](" + self.media.find(obj => {
+                    //     let n = parseInt(p1);
+                    //     if (isNaN(n)) {
+                    //         return obj.name == p1
+                    //     } else {
+                    //         return obj.id == n;
+                    //     }
+                    // }).rcURL(self.id, absoluteURLs) + ")";
+                    return "![" + name + "](" + self.getObjectWithIDorName(parseInt(p1), p1).rcURL(self.id, absoluteURLs) + ")";
                 });
         } else {
             insertedTools = text.replace(re, function (m, p1) { return "![" + name + "](" + self.media.find(obj => obj.name == p1).url + ")"; });
