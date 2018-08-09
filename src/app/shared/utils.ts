@@ -33,7 +33,7 @@ export function urlStripQueries(url : string) {
 
 export function dateAndTimeString() {
     let currentdate = new Date(); 
-    let datetime = "Last Sync: " + currentdate.getDate() + "/"
+    let datetime = "timestamp - " + currentdate.getDate() + "/"
                 + (currentdate.getMonth()+1)  + "/" 
                 + currentdate.getFullYear() + " @ "  
                 + currentdate.getHours() + ":"  

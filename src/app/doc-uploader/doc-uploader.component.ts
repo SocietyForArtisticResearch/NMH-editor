@@ -91,7 +91,6 @@ export class DocUploaderComponent implements OnInit {
             } else if (event instanceof HttpResponse) {
                 this.fileUploadStatus = 'conversion complete';
                 window.setTimeout(() => { this.fileUploadStatus = null }, 1000);
-                console.log('doc convert has responded',Utils.dateAndTimeString());
                 this.onDocImportResult(event.body);
             }
         });
@@ -103,8 +102,13 @@ export class DocUploaderComponent implements OnInit {
 
     onDocImportResult(result) {
         if (Backend.useRC) {
-            this.rcExpoModel.syncModelWithRC(() => this.rcExpoModel.mde.importDocJSON(result));
-            this.rcExpoModel.saveToRC();
+            console.log('there is result, sync starts',Utils.dateAndTimeString());
+            this.rcExpoModel.syncModelWithRC(
+                () => {
+                    this.rcExpoModel.mde.importDocJSON(result);
+                    this.rcExpoModel.saveToRC();
+                    console.log('incomplete syncModelWithRC',Utils.dateAndTimeString());
+            });
         } else {
             this.rcExpoModel.mde.importDocJSON(result);
             this.rcExpoModel.mde.saved = false;
