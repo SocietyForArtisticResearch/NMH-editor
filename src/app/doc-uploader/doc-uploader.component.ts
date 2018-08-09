@@ -102,7 +102,7 @@ export class DocUploaderComponent implements OnInit {
 
     onDocImportResult(result) {
         if (Backend.useRC) {
-            console.log('there is result, rcExpoModel.syncModelWithRC called',Utils.dateAndTimeString());
+            //console.log('there is result, rcExpoModel.syncModelWithRC called',Utils.dateAndTimeString());
             this.rcExpoModel.syncModelWithRC(
                 () => {
                     console.log('finished sync, call importDocJSON',Utils.dateAndTimeString());
@@ -111,7 +111,7 @@ export class DocUploaderComponent implements OnInit {
                     this.rcExpoModel.mde.saved = false;
             });
         } else {
-            console.log('Backend.useRC = false, importDocJSON is called');
+            //console.log('Backend.useRC = false, importDocJSON is called');
             this.rcExpoModel.mde.importDocJSON(result);
             this.rcExpoModel.mde.saved = false;
         }
