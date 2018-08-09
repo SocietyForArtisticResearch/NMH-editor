@@ -1922,7 +1922,7 @@ export class RCMDE {
             if (this.saved) {
                 el.innerHTML = "<b><u>All changes saved</u></b>";
             } else {
-                el.innerHTML = '<a href="#">Not saved</a>';
+                el.innerHTML = '<a title="click to save now" href="#">Not saved</a>';
                 if (this.userSaveCallback) {
                     el.onclick = this.userSaveCallback;
                 }
@@ -2200,7 +2200,7 @@ export class RCMDE {
                 } else if (name === "rcSave") {
                     defaultValue = function (el) {
                         el.setAttribute("id", "rcSave");
-                        el.innerHTML = '<i style="cursor:pointer">Not saved</i>';
+                        el.innerHTML = '<i title="click to save now" style="cursor:pointer">Not saved</i>';
                         if (self.userSaveCallback) {
                             el.onclick = self.userSaveCallback;
                         }
@@ -2210,7 +2210,7 @@ export class RCMDE {
                         if (self.saved) {
                             el.innerHTML = "<b><u>All changes saved</u></b>";
                         } else {
-                            el.innerHTML = '<i style="cursor:pointer">Not saved</i>';
+                            el.innerHTML = '<i title="click to save now" style="cursor:pointer">Not saved</i>';
                             if (self.userSaveCallback) {
                                 el.onclick = self.userSaveCallback;
                             }
