@@ -91,6 +91,7 @@ export class DocUploaderComponent implements OnInit {
             } else if (event instanceof HttpResponse) {
                 this.fileUploadStatus = 'conversion complete';
                 window.setTimeout(() => { this.fileUploadStatus = null }, 1000);
+                console.log('doc convert has responded');
                 this.onDocImportResult(event.body);
             }
         });
