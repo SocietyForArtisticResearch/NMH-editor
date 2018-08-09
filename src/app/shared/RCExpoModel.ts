@@ -116,9 +116,9 @@ export class RCExpoModel {
                     let medialist = JSON.parse(xhttp.responseText);
                     that.exposition.integrateRCMediaList(medialist);
                     //                 console.log(that.exposition.media);
-
+                    that.loadSerializedMedia(continueFunction);
                 };
-                that.loadSerializedMedia(continueFunction);
+                // OLD LOCATION WRONG PLACE ? that.loadSerializedMedia(continueFunction);
                 //                console.log('exposition media after merge: ', that.exposition.media);
             };
 
