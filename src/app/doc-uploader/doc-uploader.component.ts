@@ -105,12 +105,13 @@ export class DocUploaderComponent implements OnInit {
             console.log('there is result, rcExpoModel.syncModelWithRC called',Utils.dateAndTimeString());
             this.rcExpoModel.syncModelWithRC(
                 () => {
+                    console.log('finished sync, call importDocJSON',Utils.dateAndTimeString());
                     this.rcExpoModel.mde.importDocJSON(result);
                     // this.rcExpoModel.saveToRC(); C: deleted, I suspect this results in copies
                     this.rcExpoModel.mde.saved = false;
-                    console.log('syncModelWithRC finished',Utils.dateAndTimeString());
             });
         } else {
+            console.log('Backend.useRC = false, importDocJSON is called');
             this.rcExpoModel.mde.importDocJSON(result);
             this.rcExpoModel.mde.saved = false;
         }
