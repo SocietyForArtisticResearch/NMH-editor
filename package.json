@@ -1,6 +1,6 @@
 {
   "name": "nmh-editor",
-  "version": "0.0.0",
+  "version": "1.0.10",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
@@ -73,5 +73,21 @@
     "ts-node": "~4.1.0",
     "tslint": "~5.9.1",
     "typescript": "~2.5.3"
-  }
+  },
+  "description": "This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.7.",
+  "main": "karma.conf.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/casperschipper/MNH-editor.git"
+  },
+  "keywords": [
+    "researchcatalogue",
+    "markdown",
+    "text-editor"
+  ],
+  "author": "Society for Artistic Research",
+  "bugs": {
+    "url": "https://github.com/casperschipper/MNH-editor/issues"
+  },
+  "homepage": "https://github.com/casperschipper/MNH-editor#readme"
 }
