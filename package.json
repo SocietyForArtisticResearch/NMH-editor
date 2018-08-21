@@ -78,7 +78,7 @@
   "main": "karma.conf.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/SocietyForArtisticResearch/MNH-editor.git"
+    "url": "git+https://github.com/SocietyForArtisticResearch/NMH-editor.git"
   },
   "keywords": [
     "researchcatalogue",
@@ -87,7 +87,7 @@
   ],
   "author": "Society for Artistic Research",
   "bugs": {
-    "url": "https://github.com/SocietyForArtisticResearch/MNH-editor/issues"
+    "url": "https://github.com/SocietyForArtisticResearch/NMH-editor/issues"
   },
-  "homepage": "https://github.com/SocietyForArtisticResearch/MNH-editor#readme"
+  "homepage": "https://github.com/SocietyForArtisticResearch/NMH-editor#readme"
 }
