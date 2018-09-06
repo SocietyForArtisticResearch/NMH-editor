@@ -71,15 +71,7 @@ export class RCExposition {
         if (Backend.useRC) {
             insertedTools = text.replace(comments, () => "") // filter comments
                 .replace(re, function (m, p1) {
-                    // return "![" + name + "](" + self.media.find(obj => {
-                    //     let n = parseInt(p1);
-                    //     if (isNaN(n)) {
-                    //         return obj.name == p1
-                    //     } else {
-                    //         return obj.id == n;
-                    //     }
-                    // }).rcURL(self.id, absoluteURLs) + ")";
-                    return "![" + name + "](" + self.getObjectWithIDorName(parseInt(p1), p1).rcURL(self.id, absoluteURLs) + ")";
+                    return "![" + name + "](" + self.getObjectWithIDorName(parseInt(p1), p1).rcURL(self.id, absoluteURLs, true) + ")";
                 });
         } else {
             insertedTools = text.replace(re, function (m, p1) { return "![" + name + "](" + self.media.find(obj => obj.name == p1).url + ")"; });
@@ -386,7 +378,7 @@ export class RCObject {
         this.thumb = `${Backend.rcBaseAddress}text-editor/simple-media-thumb?research=${this.expositionID}&simple-media=${this.id}&width=132&height=132${verString}`;
     }
 
-    rcURL(expositionId: number, absolute = false) {
+    rcURL(expositionId: number, absolute = false, thumb = false) {
         let base = Backend.rcBaseAddress;
         let verString = "";
         if (this.version != undefined) {
@@ -395,8 +387,20 @@ export class RCObject {
         if (absolute) {
             base = Backend.rcAbsoluteBaseAddress;
         };
-        return `${base}text-editor/simple-media-resource?research=${expositionId}&simple-media=${this.id}${verString}`;
+        if (thumb) {
+            return `${base}text-editor/simple-media-thumb?research=${expositionId}&simple-media=${this.id}&width=100&height=100${verString}`;
+        } else {
+            return `${base}text-editor/simple-media-resource?research=${expositionId}&simple-media=${this.id}${verString}`;
+        }
     }
+
+
+    // return image also for other media types
+    rcImageURL(expositionId: number, absolute = false) {
+        return this.rcURL(expositionId, absolute);
+    }
+
+
 
 
     getTOC(weave) {
@@ -508,6 +512,10 @@ export class RCPdf extends RCMedia {
     //     this.__className = "RCPdf";
     // }
 
+    rcImageURL(expositionId: number, absolute = false) {
+        return this.rcURL(expositionId, absolute, true);
+    }
+
     createHTML() {
         if (this.html === undefined) {
             let pdf = document.createElement("object");
@@ -590,6 +598,12 @@ export class RCAudio extends RCMedia {
     //     this.loop = loop;
     //     this.__className = "RCAudio";
     // }
+
+    rcImageURL(expositionId: number, absolute = false) {
+        return this.rcURL(expositionId, absolute, true);
+    }
+
+
     createHTML() {
         if (this.html === undefined) {
             let audio = document.createElement("audio");
@@ -640,6 +654,10 @@ export class RCVideo extends RCMedia {
     //     this.loop = loop;
     //     this.__className = "RCVideo";
     // }
+
+    rcImageURL(expositionId: number, absolute = false) {
+        return this.rcURL(expositionId, absolute, true);
+    }
 
     createHTML() {
         if (this.html === undefined) {
