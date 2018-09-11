@@ -134,12 +134,14 @@ export class ObjectListComponent implements OnInit {
     }
 
     trashObject(rcObject) {
-        if (Backend.useRC) {
-            this.busy = true;
-            this.rcBackendMediaUpload.removeObjectFromRC(rcObject.id,true, ( ) => { this.busy = false });
-            // will resync
-        }
+        if(confirm("Are you sure you want to delete "+rcObject.id + "?")) {
+            if (Backend.useRC) {
+                this.busy = true;
+                this.rcBackendMediaUpload.removeObjectFromRC(rcObject.id,true, ( ) => { this.busy = false });
+                // will resync
+            }
         this.rcExpoModel.exposition.removeObjectWithID(rcObject.id);
+        }
     }
 
     ngOnInit() {
