@@ -2296,7 +2296,7 @@ export class RCMDE {
         let re = /(!\[.*\]\(.*\)(\{[^}]*\})?)|(<embed src=.*\/>)|(<img src=.*\/>)/g;
         let images = {};
         //let imageNameRe = /(image[0-9]*)/g;
-        let imageNameRe = /([a-z_|A-Z||0-9])+\.(png|PNG|emf|EMF|jpg|JPG|bmp|BMP|tifF|TIFF|gif|GIF)/g;
+        let imageNameRe = /([a-z_|A-Z||0-9])+\.(png|PNG|emf|EMF|jpg|JPG|jpeg|bmp|BMP|tifF|TIFF|gif|GIF)/g;
         //        let re = /!\[.*\]\(.*\){.*}/g;
         let c = 0;
         let insertedTools = md.replace(re, function (m, p1) {
