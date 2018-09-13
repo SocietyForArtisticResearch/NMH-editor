@@ -1701,7 +1701,14 @@ export class RCMDE {
             //          console.log(html);
             str = RCMDE.outerHTML(html);
         } else {
+            let box = document.createElement("label");
+            //            box.className = "rcobject nonexistent";
+            box.innerHTML = `Media "${nameOrID}" does not exist in media list`;
+            box.style.padding = "10px 10px 10px 10px";
+            box.style.border = "1px dashed #777";
+            box.style.backgroundColor = "#ffb7b7";
             console.log("Didn't find media: " + nameOrID);
+            return RCMDE.outerHTML(box);
         }
         return str;
     }
@@ -2296,7 +2303,7 @@ export class RCMDE {
         let re = /(!\[.*\]\(.*\)(\{[^}]*\})?)|(<embed src=.*\/>)|(<img src=.*\/>)/g;
         let images = {};
         //let imageNameRe = /(image[0-9]*)/g;
-        let imageNameRe = /([a-z_|A-Z||0-9])+\.(png|PNG|emf|EMF|jpg|JPG|bmp|BMP|tifF|TIFF|gif|GIF)/g;
+        let imageNameRe = /([a-z_|A-Z||0-9])+\.(png|PNG|emf|EMF|wmf|WMF|jpg|JPG|jpeg|bmp|BMP|tifF|TIFF|gif|GIF)/g;
         //        let re = /!\[.*\]\(.*\){.*}/g;
         let c = 0;
         let insertedTools = md.replace(re, function (m, p1) {
@@ -2349,6 +2356,7 @@ export class RCMDE {
 
 
     importDocJSON(json) {
+        //        console.log(json);
         let exposition = this.exposition;
         //        let ids = this.exposition.addImageList(json.media);
         //        let names = json.media.map(id => exposition.getObjectWithID(id).name);

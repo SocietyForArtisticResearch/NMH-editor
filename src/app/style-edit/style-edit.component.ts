@@ -27,7 +27,7 @@ export class StyleEditComponent implements AfterViewInit {
         // puts curser in box
         this.editor.focus();
         // note that codemirror does not use textarea for value exchange
-        this.editor.setValue(this.rcExpoModel.exposition.style.replace(';', ';\n'));
+        this.editor.setValue(this.rcExpoModel.exposition.style);
 
         this.editor.on('change', function (cMirror) {
             // get value right from instance

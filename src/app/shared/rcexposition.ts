@@ -71,7 +71,7 @@ export class RCExposition {
         if (Backend.useRC) {
             insertedTools = text.replace(comments, () => "") // filter comments
                 .replace(re, function (m, p1) {
-                    return "![" + name + "](" + self.getObjectWithIDorName(parseInt(p1), p1).rcURL(self.id, absoluteURLs, true) + ")";
+                    return "![" + name + "](" + self.getObjectWithIDorName(parseInt(p1), p1).rcImageURL(self.id, absoluteURLs) + ")";
                 });
         } else {
             insertedTools = text.replace(re, function (m, p1) { return "![" + name + "](" + self.media.find(obj => obj.name == p1).url + ")"; });
@@ -507,14 +507,9 @@ export class RCPdf extends RCMedia {
         this.__className = "RCPdf";
     }
 
-    // constructor(name: string, url: string, userClass, pxWidth?: number, pxHeight?: number) {
-    //     super(name, url, "rcpdf", userClass, pxWidth, pxHeight);
-    //     this.__className = "RCPdf";
+    // rcImageURL(expositionId: number, absolute = false) {
+    //     return this.rcURL(expositionId, absolute, true);
     // }
-
-    rcImageURL(expositionId: number, absolute = false) {
-        return this.rcURL(expositionId, absolute, true);
-    }
 
     createHTML() {
         if (this.html === undefined) {
@@ -550,11 +545,6 @@ export class RCSvg extends RCMedia {
         super(id, name, "rcsvg");
         this.__className = "RCSvg";
     }
-
-    // constructor(name: string, url: string, userClass, pxWidth?: number, pxHeight?: number) {
-    //     super(name, url, "rcsvg", userClass, pxWidth, pxHeight);
-    //     this.__className = "RCSvg";
-    // }
 
     createHTML() {
         if (this.html === undefined) {
@@ -592,16 +582,9 @@ export class RCAudio extends RCMedia {
         this.__className = "RCAudio";
     }
 
-    // constructor(name: string, url: string, autoplay, loop, userClass, pxWidth?: number, pxHeight?: number) {
-    //     super(name, url, "rcaudio", userClass, pxWidth, pxHeight);
-    //     this.autoplay = autoplay;
-    //     this.loop = loop;
-    //     this.__className = "RCAudio";
+    // rcImageURL(expositionId: number, absolute = false) {
+    //     return this.rcURL(expositionId, absolute, true);
     // }
-
-    rcImageURL(expositionId: number, absolute = false) {
-        return this.rcURL(expositionId, absolute, true);
-    }
 
 
     createHTML() {
@@ -648,16 +631,9 @@ export class RCVideo extends RCMedia {
     }
 
 
-    // constructor(name, url, autoplay, loop, userClass, pxWidth?: number, pxHeight?: number) {
-    //     super(name, url, "rcvideo", userClass, pxWidth, pxHeight);
-    //     this.autoplay = autoplay;
-    //     this.loop = loop;
-    //     this.__className = "RCVideo";
+    // rcImageURL(expositionId: number, absolute = false) {
+    //     return this.rcURL(expositionId, absolute, true);
     // }
-
-    rcImageURL(expositionId: number, absolute = false) {
-        return this.rcURL(expositionId, absolute, true);
-    }
 
     createHTML() {
         if (this.html === undefined) {
