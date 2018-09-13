@@ -1704,6 +1704,7 @@ export class RCMDE {
             let box = document.createElement("label");
             //            box.className = "rcobject nonexistent";
             box.innerHTML = `Media "${nameOrID}" does not exist in media list`;
+            box.title = 'Upload any media in medialist and name it "${nameOrID}"';
             box.style.padding = "10px 10px 10px 10px";
             box.style.border = "1px dashed #777";
             box.style.backgroundColor = "#ffb7b7";
