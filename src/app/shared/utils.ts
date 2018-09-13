@@ -27,6 +27,11 @@ export function checkTypeUsingFilename(filename:string ,allowed : string[]) {
 	return !allowed.every(checker); // if all is true (no match) = wrong type.
 }
 
+export function checkFilenameCharacters(filename:string) {
+    var reg = /^([a-zA-Z0-9]|_)+\.(docx|html|htm|odt|text|txt|md|markdown)$/
+    return reg.test(filename);
+}
+
 export function urlStripQueries(url : string) {
    return url.split("?")[0];
 };
