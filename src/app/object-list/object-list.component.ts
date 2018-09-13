@@ -134,7 +134,7 @@ export class ObjectListComponent implements OnInit {
     }
 
     trashObject(rcObject) {
-        if(confirm("Are you sure you want to delete "+rcObject.id + "?")) {
+        if(confirm("Are you sure you want to delete "+rcObject.name + "?")) {
             if (Backend.useRC) {
                 this.busy = true;
                 this.rcBackendMediaUpload.removeObjectFromRC(rcObject.id,true, ( ) => { this.busy = false });
