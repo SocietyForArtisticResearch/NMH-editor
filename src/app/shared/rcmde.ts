@@ -2349,6 +2349,7 @@ export class RCMDE {
 
 
     importDocJSON(json) {
+        console.log(json);
         let exposition = this.exposition;
         //        let ids = this.exposition.addImageList(json.media);
         //        let names = json.media.map(id => exposition.getObjectWithID(id).name);
