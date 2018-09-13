@@ -1702,8 +1702,10 @@ export class RCMDE {
             str = RCMDE.outerHTML(html);
         } else {
             let box = document.createElement("div");
-            box.className = "rcobject nonexistent";
+            //            box.className = "rcobject nonexistent";
             box.innerHTML = `${nameOrID} does not exist in media list`;
+            box.style.padding = "20 20 20 20";
+            box.style.border = "1px dashed #777";
             console.log("Didn't find media: " + nameOrID);
             return RCMDE.outerHTML(box);
         }
