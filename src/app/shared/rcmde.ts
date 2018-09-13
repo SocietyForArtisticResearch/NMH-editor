@@ -1701,11 +1701,12 @@ export class RCMDE {
             //          console.log(html);
             str = RCMDE.outerHTML(html);
         } else {
-            let box = document.createElement("div");
+            let box = document.createElement("span");
             //            box.className = "rcobject nonexistent";
             box.innerHTML = `${nameOrID} does not exist in media list`;
-            box.style.padding = "20 20 20 20";
+            box.style.padding = "20px 20px 20px 20px";
             box.style.border = "1px dashed #777";
+            box.style.backgroundColor = "#ffb7b7";
             console.log("Didn't find media: " + nameOrID);
             return RCMDE.outerHTML(box);
         }
