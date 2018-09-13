@@ -1701,7 +1701,11 @@ export class RCMDE {
             //          console.log(html);
             str = RCMDE.outerHTML(html);
         } else {
+            let box = document.createElement("div");
+            box.className = "rcobject nonexistent";
+            box.innerHTML = `{nameOrID} does not exist in media list`;
             console.log("Didn't find media: " + nameOrID);
+            return box;
         }
         return str;
     }
