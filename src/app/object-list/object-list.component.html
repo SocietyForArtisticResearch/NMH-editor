@@ -34,9 +34,8 @@
 		</thead>
 		<tbody *ngFor="let rcObject of rcExpoModel.exposition.media" 
 				[class.selected]="isObjectSelected(rcObject)"
-			(click)="onSelect(rcObject)"
-			(dblclick)="onDoubleClick(rcObject)">
-			<tr>
+			(click)="onSelect(rcObject)">
+			<tr (dblclick)="onDoubleClick(rcObject)">
 			<td>
 			    <div [ngSwitch]="rcObject.__className">
 				<div *ngSwitchCase="'RCImage'">
