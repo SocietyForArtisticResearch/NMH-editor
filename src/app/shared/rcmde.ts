@@ -1705,7 +1705,7 @@ export class RCMDE {
             box.className = "rcobject nonexistent";
             box.innerHTML = `{nameOrID} does not exist in media list`;
             console.log("Didn't find media: " + nameOrID);
-            return box;
+            return RCMDE.outerHTML(box);
         }
         return str;
     }
