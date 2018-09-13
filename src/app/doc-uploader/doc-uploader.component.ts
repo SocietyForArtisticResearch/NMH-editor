@@ -43,7 +43,7 @@ export class DocUploaderComponent implements OnInit {
             alert('Sorry, we do not support the filetype of "' + this.selectedFile.name + '"\n\nSupported filetypes are: ' + this.formattedTypes());
             this.selectedFile = null;
         }
-        if (!Utils.checkFilenameCharacters(this.selectedFil.name)) {
+        if (!Utils.checkFilenameCharacters(this.selectedFile.name)) {
             alert('Sorry, your filename contains unsupported characters. Please rename and try again.')
         }
     }
