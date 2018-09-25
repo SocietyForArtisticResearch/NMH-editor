@@ -507,9 +507,9 @@ export class RCPdf extends RCMedia {
         this.__className = "RCPdf";
     }
 
-    // rcImageURL(expositionId: number, absolute = false) {
-    //     return this.rcURL(expositionId, absolute, true);
-    // }
+    rcImageURL(expositionId: number, absolute = false) {
+        return this.rcURL(expositionId, absolute, true);
+    }
 
     createHTML() {
         if (this.html === undefined) {
@@ -582,9 +582,9 @@ export class RCAudio extends RCMedia {
         this.__className = "RCAudio";
     }
 
-    // rcImageURL(expositionId: number, absolute = false) {
-    //     return this.rcURL(expositionId, absolute, true);
-    // }
+    rcImageURL(expositionId: number, absolute = false) {
+        return this.rcURL(expositionId, absolute, true);
+    }
 
 
     createHTML() {
@@ -631,9 +631,9 @@ export class RCVideo extends RCMedia {
     }
 
 
-    // rcImageURL(expositionId: number, absolute = false) {
-    //     return this.rcURL(expositionId, absolute, true);
-    // }
+    rcImageURL(expositionId: number, absolute = false) {
+        return this.rcURL(expositionId, absolute, true);
+    }
 
     createHTML() {
         if (this.html === undefined) {
