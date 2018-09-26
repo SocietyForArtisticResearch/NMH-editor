@@ -1683,7 +1683,7 @@ export class RCMDE {
         return node.outerHTML || new XMLSerializer().serializeToString(node);
     }
 
-    mediaHTML(nameOrID: string, counter: number) {
+    mediaHTML(nameOrID: string, counter: number, caption: string) {
         let n = parseInt(nameOrID);
         let tool;
         let str;
@@ -1695,6 +1695,9 @@ export class RCMDE {
         str = nameOrID.big();
         if (tool !== undefined) {
             //            console.log(counter);
+            if (caption !== undefined) {
+                tool.caption = caption;
+            };
             tool.createHTML();
             let html = tool.html.cloneNode(true);
             html.id = html.id + "-" + String(counter);
@@ -1737,7 +1740,8 @@ export class RCMDE {
      */
     markdown(text: string) {
         let self = this;
-        let re = /!{([^\}]*)}/g;
+        //let re = /!{([^\}]*)}/g;
+        let re = /!{([^\}]*)}(\[([^\}]*)\])?/g;
         let insertedCursor = text;
         //        let re = /!{(\w+)}/g;
         if (this.codemirror.hasFocus()) {
@@ -1766,7 +1770,8 @@ export class RCMDE {
         let mediaCounter = 0;
         //        console.log(insertedCursor);
         let basicHTML = md.render(insertedCursor);
-        basicHTML = basicHTML.replace(re, function (m, p1) { ++mediaCounter; return self.mediaHTML(p1, mediaCounter) });
+        //        basicHTML = basicHTML.replace(re, function (m, p1) { ++mediaCounter; return self.mediaHTML(p1, mediaCounter) });
+        basicHTML = basicHTML.replace(re, function (m, p1, p2, p3) { ++mediaCounter; return self.mediaHTML(p1, mediaCounter, p3) });
 
         let renderedHTML = "<div class=\"exposition\">" + "<div class=\"exposition-content\">" +
             "<h1 id=\"" + stringToId(this.exposition.title) + "\">" + this.exposition.title + "</h1>" + basicHTML + "</div>" + "</div>";

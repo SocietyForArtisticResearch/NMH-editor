@@ -289,6 +289,7 @@ export class RCObject {
     copyright: string;
     objectClass: string;
     userClass: string;
+    caption: string;
     tocDepth: number;
     id: number;
     htmlId: string;
@@ -350,6 +351,16 @@ export class RCObject {
 
     createHTML() {
         this.createBasicHTML;
+    }
+
+    setCaption(caption: string) {
+        this.caption = caption;
+    }
+
+    createCaptionObject() {
+        let cap = document.createElement("figcaption");
+        cap.innerHTML = this.caption;
+        return cap;
     }
 
     addTOC(depth: number) {
@@ -442,7 +453,6 @@ export class RCMedia extends RCObject {
         this.updateHTML();
     }
 
-
     updateHTML() {
         this.html = undefined;
         this.createHTML();
@@ -477,6 +487,7 @@ export class RCImage extends RCMedia {
 
     createHTML() {
         if (this.html === undefined) {
+            let fig = document.createElement("figure");
             let img = document.createElement("img");
             img.setAttribute("src", this.url);
             if ((this.pxHeight !== undefined) && (this.pxHeight)) {
@@ -486,8 +497,12 @@ export class RCImage extends RCMedia {
                 img.setAttribute("width", String(this.pxWidth));
             };
             img.setAttribute("alt", this.name);
+            fig.appendChild(img);
+            if (this.caption !== undefined) {
+                fig.appendChild(this.createCaptionObject());
+            };
             this.createBasicHTML();
-            this.html.appendChild(img);
+            this.html.appendChild(fig);
         } else {
             this.createBasicHTML();
         }
@@ -513,6 +528,7 @@ export class RCPdf extends RCMedia {
 
     createHTML() {
         if (this.html === undefined) {
+            let fig = document.createElement("figure");
             let pdf = document.createElement("object");
             pdf.setAttribute("data", this.url);
             pdf.setAttribute("type", "application/pdf");
@@ -523,8 +539,12 @@ export class RCPdf extends RCMedia {
                 pdf.setAttribute("width", String(this.pxWidth));
             };
             pdf.setAttribute("title", this.name);
+            fig.appendChild(pdf);
+            if (this.caption !== undefined) {
+                fig.appendChild(this.createCaptionObject());
+            };
             this.createBasicHTML();
-            this.html.appendChild(pdf);
+            this.html.appendChild(fig);
         } else {
             this.createBasicHTML();
         }
@@ -548,6 +568,7 @@ export class RCSvg extends RCMedia {
 
     createHTML() {
         if (this.html === undefined) {
+            let fig = document.createElement("figure");
             let svg = document.createElement("object");
             svg.setAttribute("data", this.url);
             svg.setAttribute("type", "image/svg+xml");
@@ -558,8 +579,12 @@ export class RCSvg extends RCMedia {
                 svg.setAttribute("width", String(this.pxWidth));
             };
             svg.setAttribute("title", this.name);
+            fig.appendChild(svg);
+            if (this.caption !== undefined) {
+                fig.appendChild(this.createCaptionObject());
+            };
             this.createBasicHTML();
-            this.html.appendChild(svg);
+            this.html.appendChild(fig);
         } else {
             this.createBasicHTML();
         }
@@ -589,6 +614,7 @@ export class RCAudio extends RCMedia {
 
     createHTML() {
         if (this.html === undefined) {
+            let fig = document.createElement("figure");
             let audio = document.createElement("audio");
             audio.setAttribute("controls", "true");
             if (this.autoplay == true) {
@@ -606,8 +632,12 @@ export class RCAudio extends RCMedia {
             let source = document.createElement("source");
             source.setAttribute("src", this.url);
             audio.appendChild(source);
+            fig.appendChild(audio);
+            if (this.caption !== undefined) {
+                fig.appendChild(this.createCaptionObject());
+            };
             this.createBasicHTML();
-            this.html.appendChild(audio);
+            this.html.appendChild(fig);
         } else {
             this.createBasicHTML();
         }
@@ -637,6 +667,7 @@ export class RCVideo extends RCMedia {
 
     createHTML() {
         if (this.html === undefined) {
+            let fig = document.createElement("figure");
             let video = document.createElement("video");
             video.setAttribute("controls", "true");
             if (this.autoplay) {
@@ -655,8 +686,12 @@ export class RCVideo extends RCMedia {
             source.setAttribute("src", this.url);
             source.setAttribute("type", "video/mp4");
             video.appendChild(source);
+            fig.appendChild(video);
+            if (this.caption !== undefined) {
+                fig.appendChild(this.createCaptionObject());
+            };
             this.createBasicHTML();
-            this.html.appendChild(video);
+            this.html.appendChild(fig);
         } else {
             this.createBasicHTML();
         }
