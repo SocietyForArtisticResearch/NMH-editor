@@ -353,10 +353,6 @@ export class RCObject {
         this.createBasicHTML;
     }
 
-    setCaption(caption: string) {
-        this.caption = caption;
-    }
-
     createCaptionObject() {
         let cap = document.createElement("figcaption");
         cap.innerHTML = this.caption;

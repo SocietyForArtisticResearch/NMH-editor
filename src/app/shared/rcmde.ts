@@ -1695,12 +1695,11 @@ export class RCMDE {
         str = nameOrID.big();
         if (tool !== undefined) {
             //            console.log(counter);
-            console.log("caption: ");
-            console.log(caption);
             if (caption !== undefined) {
                 tool.caption = caption;
             };
-            tool.createHTML();
+            //            tool.createHTML();
+            tool.updateHTML();
             let html = tool.html.cloneNode(true);
             html.id = html.id + "-" + String(counter);
             //          console.log(html);
