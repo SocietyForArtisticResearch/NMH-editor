@@ -56,7 +56,10 @@
 
           <label for="'description'+id">Description:</label>
           <textarea rows="8" cols="40" formControlName='description' id="{{'descriptionField'+id}}"></textarea>
-        </fieldset>
+
+          <label for="'caption'+id">Caption text:</label>
+          <input formControlName='caption' id="{{'caption'+id}}">
+          </fieldset>
         <!-- <button [disabled]="toolForm.invalid" type="submit" class="btn btn-primary" >Update</button> -->
 
      </form>

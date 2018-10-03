@@ -94,6 +94,7 @@ export class BasicToolComponent implements OnInit {
             'filePickerButton': new FormControl(null),
             'copyright' : new FormControl(copyrightValue),
             'description' : new FormControl(this.rcobject.description),
+            'caption' : new FormControl(this.rcobject.caption)
         });
 
         // if using RC, use different callbacks on changing the fields
@@ -106,6 +107,7 @@ export class BasicToolComponent implements OnInit {
             this.toolForm.get('imageClassSelect').valueChanges.subscribe (val => { this.imageClassChange(val); });
             this.toolForm.get('copyright').valueChanges.subscribe( val =>  { this.onRCMetaDataChange(val); });
             this.toolForm.get('description').valueChanges.subscribe( val =>  { this.onRCMetaDataChange(val); });
+            this.toolForm.get('caption').valueChanges.subscribe( val => { this.onCaptionChange(val); });
         }
 
         if (!Backend.useRC) { // if not on RC, update the model using old methods:
@@ -137,7 +139,7 @@ export class BasicToolComponent implements OnInit {
             return; // nothing changed, nothing saved
         }
 //console.log('the form was changed');
-        // only update after 2 seconds of inactivity (to avoid tsunami of update calls)
+        // only update after .2 seconds of inactivity (to avoid tsunami of update calls)
         if (this.editInQueue) {
             // reset timer
             clearTimeout(this.editRequestTimer);
@@ -149,8 +151,14 @@ export class BasicToolComponent implements OnInit {
             this.editInQueue = true;
             this.editRequestTimer = setTimeout(( ) => {
                 this.commitRCMetaDataEdit();
-            },200); // 2 seconds ?
+            },200); // .2 seconds ?
         }
+    }
+
+    onCaptionChange(val) {
+        let field = this.toolForm.get('caption');
+        let rcObject = this.rcExpoModel.exposition.getObjectWithID(this.rcobject.id);
+        rcObject.caption = field.value;
     }
 
     commitRCMetaDataEdit() {
