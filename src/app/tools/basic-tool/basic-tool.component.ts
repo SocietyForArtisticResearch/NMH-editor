@@ -75,11 +75,8 @@ export class BasicToolComponent implements OnInit {
     ngOnInit() {
         this.identifier = this.rcobject.id;
 
-        let copyrightValue = this.rcobject.copyright ? this.rcobject.copyright : '© 2018';
-        console.log( "what is the userclass on init : ", this.rcobject.userClass );
-        let imageClassSelectValue = this.rcobject.userClass ? this.rcobject.userClass : 'big';
-
-        console.log("this should always be big: ",imageClassSelectValue);
+        //let copyrightValue = this.rcobject.copyright ? this.rcobject.copyright : '© 2018';
+      
         //console.log('value',imageClassSelectValue,'userclass:', this.rcobject.userClass)
 
         // initialize fields with data from object:
@@ -93,9 +90,9 @@ export class BasicToolComponent implements OnInit {
             'fileUrl': new FormControl(this.rcobject.url, [Validators.required]),
             'widthInPixels': new FormControl(this.rcobject.pxWidth),
             'heightInPixels': new FormControl(this.rcobject.pxHeight),
-            'imageClassSelect' : new FormControl(imageClassSelectValue),
+            'imageClassSelect' : new FormControl(this.rcobject.userClass),
             'filePickerButton': new FormControl(null),
-            'copyright' : new FormControl(copyrightValue),
+            'copyright' : new FormControl(this.rcobject.copyright),
             'description' : new FormControl(this.rcobject.description),
             'caption' : new FormControl(this.rcobject.caption)
         });
