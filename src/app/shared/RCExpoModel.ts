@@ -114,11 +114,11 @@ export class RCExpoModel {
             xhttp.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
                     var mde = that.mde;
-                    
+
                     try {
                         let medialist = JSON.parse(xhttp.responseText);
                         that.exposition.integrateRCMediaList(medialist);
-                    //                 console.log(that.exposition.media);
+                        //                 console.log(that.exposition.media);
                         that.loadSerializedMedia(continueFunction);
                     } catch (err) {
                         alert('JSON.parse failed, please contact RC support\n\n' + err);
@@ -171,7 +171,7 @@ export class RCExpoModel {
         var self = this;
         xhttp.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
-                try {    
+                try {
                     let expositionJSON = JSON.parse(xhttp.responseText);
                     self.exposition.title = expositionJSON.title;
                     self.exposition.markdownInput = expositionJSON.markdown;
@@ -179,7 +179,7 @@ export class RCExpoModel {
                     self.mde.exposition = self.exposition;
                     // it is safe to save, because loading was successful
                     self.canBeSaved = true;
-                } 
+                }
                 catch (err) {
                     alert("JSON parse failed, please contact RC support\n error message: \n" + err + "\nhttp response:\n" + xhttp.responseText);
                 }
@@ -191,10 +191,10 @@ export class RCExpoModel {
 
 
 
-    saveToRC() {
+    saveToRC(displayStatus: boolean = true) {
 
         // Only save if it can be saved and markdown input is neither null nor undefined
-        if (this.canBeSaved && (this.exposition.markdownInput !== null) && (this.exposition.markdownInput !== undefined) && (this.exposition.markdownInput !== "") ) {
+        if (this.canBeSaved && (this.exposition.markdownInput !== null) && (this.exposition.markdownInput !== undefined) && (this.exposition.markdownInput !== "")) {
             let id = this.exposition.id;
             let weave = this.exposition.currentWeave;
             let fd = new FormData();
@@ -204,20 +204,22 @@ export class RCExpoModel {
             fd.append("media", this.exposition.serializeMedia()); // TODO send media list/see if necessary
             fd.append("style", this.exposition.style);
             fd.append("title", this.exposition.title);
-            
+
             try {
                 fd.append("toc", JSON.stringify(this.exposition.getTOC()));
-            } 
+            }
             catch (err) {
                 alert("please contact rc support, error is:\n" + err);
             }
-            
+
 
             var xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
                     self.mde.saved = true;
-                    self.mde.displaySaveStatus();
+                    if (displayStatus) {
+                        self.mde.displaySaveStatus();
+                    }
                 } else {
                     console.log("xhttp state:", xhttp);
                 }
@@ -333,11 +335,11 @@ export class RCExpoModel {
             if (!document.hidden) {
                 console.log('document is coming into visibility')
                 self.loadExpositionData();
-                self.syncModelWithRC( () => {
+                self.syncModelWithRC(() => {
                     // render again
                     self.mde.value(self.exposition.markdownInput);
                     self.mde.render();
-                }); 
+                });
             } else {
                 console.log('document is going hidden visibility')
                 self.saveToRC();
