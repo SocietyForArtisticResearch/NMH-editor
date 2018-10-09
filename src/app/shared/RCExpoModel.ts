@@ -2,6 +2,7 @@ import { RCExposition, RCExpositionDeserializer } from './rcexposition';
 import { Backend } from "./Backend";
 import { RCMDE } from './rcmde';
 import otText from 'ot-text';
+import * as Utils from "./utils";
 
 //import richText from 'rich-text';
 
@@ -113,10 +114,18 @@ export class RCExpoModel {
             xhttp.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
                     var mde = that.mde;
-                    let medialist = JSON.parse(xhttp.responseText);
-                    that.exposition.integrateRCMediaList(medialist);
+                    
+                    try {
+                        let medialist = JSON.parse(xhttp.responseText);
+                        that.exposition.integrateRCMediaList(medialist);
                     //                 console.log(that.exposition.media);
-                    that.loadSerializedMedia(continueFunction);
+                        that.loadSerializedMedia(continueFunction);
+                    } catch (err) {
+                        alert('JSON.parse failed, please contact RC support\n\n' + err);
+                    }
+
+
+
                 };
                 // OLD LOCATION WRONG PLACE ? that.loadSerializedMedia(continueFunction);
                 //                console.log('exposition media after merge: ', that.exposition.media);
@@ -125,7 +134,7 @@ export class RCExpoModel {
             xhttp.open("GET", `${Backend.rcBaseAddress}text-editor/simple-media-list?research=${id}`, true);
             xhttp.send();
         } catch (err) {
-            console.log('an error occured trying to sync media: ', err);
+            alert('an error occured trying to sync media, please contact RC support \n\n err' + err + 'http result\n' + xhttp.responseText);
         }
     }
 
@@ -185,7 +194,7 @@ export class RCExpoModel {
     saveToRC() {
 
         // Only save if it can be saved and markdown input is neither null nor undefined
-        if (this.canBeSaved && (this.exposition.markdownInput !== null) && (this.exposition.markdownInput !== undefined)) {
+        if (this.canBeSaved && (this.exposition.markdownInput !== null) && (this.exposition.markdownInput !== undefined) && (this.exposition.markdownInput !== "") ) {
             let id = this.exposition.id;
             let weave = this.exposition.currentWeave;
             let fd = new FormData();
@@ -195,12 +204,23 @@ export class RCExpoModel {
             fd.append("media", this.exposition.serializeMedia()); // TODO send media list/see if necessary
             fd.append("style", this.exposition.style);
             fd.append("title", this.exposition.title);
-            fd.append("toc", JSON.stringify(this.exposition.getTOC()));
+            
+            try {
+                fd.append("toc", JSON.stringify(this.exposition.getTOC()));
+            } 
+            catch (err) {
+                alert("please contact rc support, error is:\n" + err);
+            }
+            
+
             var xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function () {
-                self.mde.saved = true;
-                self.mde.displaySaveStatus();
-
+                if (this.readyState == 4 && this.status == 200) {
+                    self.mde.saved = true;
+                    self.mde.displaySaveStatus();
+                } else {
+                    console.log("xhttp state:", xhttp);
+                }
             };
             xhttp.open("POST", `${Backend.rcBaseAddress}text-editor/save?research=${id}&weave=${weave}`, true);
             xhttp.send(fd);
@@ -294,6 +314,7 @@ export class RCExpoModel {
         // save every 12 seconds if needs to be saved
         this.saveInterval = setInterval(() => {
             if (document.hasFocus() && !self.mde.saved) {
+                console.log("save - " + Utils.dateAndTimeString())
                 self.saveToRC();
                 self.mde.displaySaveStatus();
             }
@@ -305,14 +326,16 @@ export class RCExpoModel {
                 //console.log("synced");
                 self.syncModelWithRC()
             }
-        }, 40000);
+        }, 30000);
 
         // tab/browser visbility and reload
         document.addEventListener('visibilitychange', function () {
             if (!document.hidden) {
+                console.log('document is coming into visibility')
                 self.loadExpositionData();
                 self.syncModelWithRC();
             } else {
+                console.log('document is going hidden visibility')
                 self.saveToRC();
                 self.mde.displaySaveStatus();
             }
