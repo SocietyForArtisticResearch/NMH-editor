@@ -191,7 +191,7 @@ export class RCExpoModel {
 
 
 
-    saveToRC(displayStatus: boolean = true) {
+    saveToRC(displayStatus: boolean = true, continueFunction?: () => void) {
 
         // Only save if it can be saved and markdown input is neither null nor undefined
         if (this.canBeSaved && (this.exposition.markdownInput !== null) && (this.exposition.markdownInput !== undefined) && (this.exposition.markdownInput !== "")) {
@@ -222,6 +222,9 @@ export class RCExpoModel {
                     }
                 } else {
                     console.log("xhttp state:", xhttp);
+                }
+                if (continueFunction != undefined) {
+                    continueFunction();
                 }
             };
             xhttp.open("POST", `${Backend.rcBaseAddress}text-editor/save?research=${id}&weave=${weave}`, true);
