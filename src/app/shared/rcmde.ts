@@ -1931,7 +1931,7 @@ export class RCMDE {
     }
 
 
-  displaySaveStatus() {
+    displaySaveStatus() {
         var el = document.getElementById("rcSave");
         let self = this;
         if (el != null && el != undefined && el.innerHTML != "") {
@@ -1943,7 +1943,7 @@ export class RCMDE {
                     let callback = this.userSaveCallback;
                     el.onclick = (evt) => {
                         el.innerHTML = "<b>Saving..</b>";
-                        callback.call(el, evt);
+                        setTimeout(() => callback.call(el, evt), 10);
                     }
                 }
             }
