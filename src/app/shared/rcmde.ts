@@ -1931,20 +1931,23 @@ export class RCMDE {
     }
 
 
-    displaySaveStatus() {
+  displaySaveStatus() {
         var el = document.getElementById("rcSave");
+        let self = this;
         if (el != null && el != undefined && el.innerHTML != "") {
             if (this.saved) {
                 el.innerHTML = "<b><u>All changes saved</u></b>";
             } else {
-                el.innerHTML = '<a title="click to save now" href="#">Not saved</a>';
+                el.innerHTML = '<a class="mdeSaveStatus" title="click to save now" href="#">Not saved</a>';
                 if (this.userSaveCallback) {
-                    el.onclick = this.userSaveCallback;
+                    let callback = this.userSaveCallback;
+                    el.onclick = (evt) => {
+                        el.innerHTML = "<b>Saving..</b>";
+                        callback.call(el, evt);
+                    }
                 }
             }
         }
-
-
     }
 
     // old autosave, unused
