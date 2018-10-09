@@ -159,7 +159,7 @@ export class BasicToolComponent implements OnInit {
         let field = this.toolForm.get('caption');
         let rcObject = this.rcExpoModel.exposition.getObjectWithID(this.rcobject.id);
         rcObject.caption = field.value;
-        rcObject.updateHTML();
+        this.rcobject.updateHTML();
         this.rcExpoModel.mde.forceRender();
         this.rcExpoModel.saveToRC();
         //console.log("detected caption change");
