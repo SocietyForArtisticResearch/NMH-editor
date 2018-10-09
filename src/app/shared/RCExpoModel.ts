@@ -154,6 +154,7 @@ export class RCExpoModel {
         xhttp.send();
     }
 
+    // used when RC is the backend : 
     loadExpositionData() {
         let id = this.exposition.id;
         let weave = this.exposition.currentWeave;
@@ -161,13 +162,18 @@ export class RCExpoModel {
         var self = this;
         xhttp.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
-                let expositionJSON = JSON.parse(xhttp.responseText);
-                self.exposition.title = expositionJSON.title;
-                self.exposition.markdownInput = expositionJSON.markdown;
-                self.exposition.style = expositionJSON.style;
-                self.mde.exposition = self.exposition;
-                // it is safe to save, because loading was successful
-                self.canBeSaved = true;
+                try {    
+                    let expositionJSON = JSON.parse(xhttp.responseText);
+                    self.exposition.title = expositionJSON.title;
+                    self.exposition.markdownInput = expositionJSON.markdown;
+                    self.exposition.style = expositionJSON.style;
+                    self.mde.exposition = self.exposition;
+                    // it is safe to save, because loading was successful
+                    self.canBeSaved = true;
+                } 
+                catch (err) {
+                    alert("JSON parse failed, please contact RC support\n error message: \n" + err + "\nhttp response:\n" + xhttp.responseText);
+                }
             }
         };
         xhttp.open("GET", `${Backend.rcBaseAddress}text-editor/load?research=${id}&weave=${weave}`, true);
@@ -201,6 +207,7 @@ export class RCExpoModel {
         }
     }
 
+    // Not used when RC is backend:
     loadExpositionFromURL(expositionJSONUrl: string) {
         // This is the older (local) backend (not using RC)
         Backend.useRC = false;
