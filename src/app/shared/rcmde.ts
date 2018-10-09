@@ -1943,7 +1943,8 @@ export class RCMDE {
                     let callback = this.userSaveCallback;
                     el.onclick = (evt) => {
                         el.innerHTML = "<b>Saving..</b>";
-                        setTimeout(() => callback.call(el, evt), 10);
+                        console.log(el.innerHTML);
+                        setTimeout(() => callback.call(el, evt), 600);
                     }
                 }
             }
