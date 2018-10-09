@@ -57,8 +57,12 @@
           <label for="'description'+id">Description:</label>
           <textarea rows="8" cols="40" formControlName='description' id="{{'descriptionField'+id}}"></textarea>
 
-          <label for="'caption'+id">Caption text:</label>
-          <input size="30" formControlName='caption' id="{{'caption'+id}}">
+          <div style="display:none">
+            <label for="'caption'+id">Caption text:</label>
+            <input size="30" formControlName='caption' id="{{'caption'+id}}">
+          </div>
+
+          
           </fieldset>
         <!-- <button [disabled]="toolForm.invalid" type="submit" class="btn btn-primary" >Update</button> -->
 
