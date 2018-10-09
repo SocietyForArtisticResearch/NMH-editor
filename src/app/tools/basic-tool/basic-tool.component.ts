@@ -76,6 +76,7 @@ export class BasicToolComponent implements OnInit {
         this.identifier = this.rcobject.id;
 
         let copyrightValue = this.rcobject.copyright ? this.rcobject.copyright : '© 2018';
+        console.log( "what is the userclass on init : ", this.rcobject.userClass );
         let imageClassSelectValue = this.rcobject.userClass ? this.rcobject.userClass : 'big';
         //console.log('value',imageClassSelectValue,'userclass:', this.rcobject.userClass)
 
