@@ -333,7 +333,11 @@ export class RCExpoModel {
             if (!document.hidden) {
                 console.log('document is coming into visibility')
                 self.loadExpositionData();
-                self.syncModelWithRC();
+                self.syncModelWithRC( () => {
+                    // render again
+                    self.mde.value(self.exposition.markdownInput);
+                    self.mde.render();
+                }); 
             } else {
                 console.log('document is going hidden visibility')
                 self.saveToRC();
