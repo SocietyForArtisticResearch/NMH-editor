@@ -190,7 +190,7 @@ export class RCExpoModel {
     }
 
 
-
+    // continue function is only being called after successfully saving
     saveToRC(displayStatus: boolean = true, continueFunction?: () => void) {
 
         // Only save if it can be saved and markdown input is neither null nor undefined
@@ -218,13 +218,14 @@ export class RCExpoModel {
                 if (this.readyState == 4 && this.status == 200) {
                     self.mde.saved = true;
                     if (displayStatus) {
+                        console.log("displaying status");
                         self.mde.displaySaveStatus();
+                    }
+                    if (continueFunction != undefined) {
+                        continueFunction();
                     }
                 } else {
                     console.log("xhttp state:", xhttp);
-                }
-                if (continueFunction != undefined) {
-                    continueFunction();
                 }
             };
             xhttp.open("POST", `${Backend.rcBaseAddress}text-editor/save?research=${id}&weave=${weave}`, true);
