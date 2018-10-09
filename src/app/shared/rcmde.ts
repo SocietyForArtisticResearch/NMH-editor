@@ -1938,13 +1938,13 @@ export class RCMDE {
             if (this.saved) {
                 el.innerHTML = "<b><u>All changes saved</u></b>";
             } else {
-                el.innerHTML = '<a class="mdeSaveStatus" title="click to save now" href="#">Not saved</a>';
+                el.innerHTML = '<i title="click to save now" style="cursor:pointer">Not saved</i>'; //'<a class="mdeSaveStatus" title="click to save now" href="#">Not saved</a>';
                 if (this.userSaveCallback) {
                     let callback = this.userSaveCallback;
                     el.onclick = (evt) => {
                         el.innerHTML = "<b>Saving..</b>";
                         console.log(el.innerHTML);
-                        setTimeout(() => callback.call(el, evt), 500);
+                        setTimeout(() => callback.call(el, evt), 100);
                     }
                 }
             }
@@ -2225,7 +2225,7 @@ export class RCMDE {
                             el.onclick = (evt) => {
                                 el.innerHTML = "<b>Saving..</b>";
                                 console.log(el.innerHTML);
-                                setTimeout(() => callback.call(el, evt), 500);
+                                setTimeout(() => callback.call(el, evt), 100);
                             }
                         }
                     };
@@ -2240,7 +2240,7 @@ export class RCMDE {
                                 el.onclick = (evt) => {
                                     el.innerHTML = "<b>Saving..</b>";
                                     console.log(el.innerHTML);
-                                    setTimeout(() => callback.call(el, evt), 500);
+                                    setTimeout(() => callback.call(el, evt), 100);
                                 }
                             }
                         }
