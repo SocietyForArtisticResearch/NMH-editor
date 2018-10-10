@@ -218,7 +218,6 @@ export class RCExpoModel {
                 if (this.readyState == 4 && this.status == 200) {
                     self.mde.saved = true;
                     if (displayStatus) {
-                        console.log("displaying status");
                         self.mde.displaySaveStatus();
                     }
                     if (continueFunction != undefined) {
