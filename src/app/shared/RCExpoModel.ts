@@ -174,9 +174,14 @@ export class RCExpoModel {
                 try {
                     let expositionJSON = JSON.parse(xhttp.responseText);
 
+                    //DEBUG
+                    console.log(expositionJSON);
+
                     if (expositionJSON.editormetadata != undefined) {
                         try {
                             let metadataObj = JSON.parse(expositionJSON.editormetadata);
+                            //
+                            console.log("Calling save callback");
                             callback(metadataObj.contentVersion);
                         } catch (err) {
                             console.log("Could not parse editor metadata: " + err);
@@ -239,6 +244,9 @@ export class RCExpoModel {
     // continue function is only being called after successfully saving
     saveToRC(displayStatus: boolean = true, continueFunction?: () => void) {
         this.getRemoteContentVersion(remoteVersion => {
+            // DEBUG
+            console.log("save callback starting");
+
             let upcomingVersion = this.exposition.contentVersion + (this.mde.saved ? 0 : 1); // Saved will be false if there has been a change to the content
             let confirmedSave = true;
 
