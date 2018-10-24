@@ -276,6 +276,8 @@ export class RCExpoModel {
                     "contentversion": upcomingVersion
                 }));
 
+                console.log(fd);
+
                 try {
                     fd.append("toc", JSON.stringify(this.exposition.getTOC()));
                 }
@@ -287,8 +289,6 @@ export class RCExpoModel {
                 xhttp.onreadystatechange = function () {
                     if (this.readyState == 4 && this.status == 200) {
                         self.mde.saved = true;
-                        // DEBUG
-                        console.log(fd)
                         if (displayStatus) {
                             self.mde.displaySaveStatus();
                         }
@@ -300,6 +300,8 @@ export class RCExpoModel {
                     }
                 };
                 xhttp.open("POST", `${Backend.rcBaseAddress}text-editor/save?research=${id}&weave=${weave}`, true);
+                // DEBUG
+                console.log(fd);
                 xhttp.send(fd);
             }
             // DEBUG
