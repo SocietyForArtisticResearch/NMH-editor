@@ -275,6 +275,8 @@ export class RCExpoModel {
                 xhttp.onreadystatechange = function () {
                     if (this.readyState == 4 && this.status == 200) {
                         self.mde.saved = true;
+                        // DEBUG
+                        console.log(fd)
                         if (displayStatus) {
                             self.mde.displaySaveStatus();
                         }
@@ -288,7 +290,12 @@ export class RCExpoModel {
                 xhttp.open("POST", `${Backend.rcBaseAddress}text-editor/save?research=${id}&weave=${weave}`, true);
                 xhttp.send(fd);
             }
+            // DEBUG
+            else {
+                console.log(`confirmed: ${confirmedSave} canbeSaved: ${this.canBeSaved} null:${this.exposition.markdownInput !== null} undefined:${this.exposition.markdownInput !== undefined}  empty:${this.exposition.markdownInput !== ""}`);
+            }
         })
+
     }
 
 
