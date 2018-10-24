@@ -177,15 +177,16 @@ export class RCExpoModel {
                     //DEBUG
                     console.log(expositionJSON);
 
-                    if (expositionJSON.editormetadata != undefined) {
-                        try {
-                            let metadataObj = JSON.parse(expositionJSON.editormetadata);
-                            //
-                            console.log("Calling save callback");
-                            callback(metadataObj.contentVersion);
-                        } catch (err) {
-                            console.log("Could not parse editor metadata: " + err);
-                        }
+                    //                    if (expositionJSON.editormetadata != undefined) {
+                    try {
+                        let metadataObj = JSON.parse(expositionJSON.editormetadata);
+                        //
+                        //                      console.log("Calling save callback");
+                        callback(metadataObj.contentVersion);
+                    } catch (err) {
+                        callback(0);
+                        //                        console.log("Could not parse editor metadata: " + err);
+                        //                    }
                     }
                 }
                 catch (err) {
