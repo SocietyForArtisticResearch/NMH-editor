@@ -31,6 +31,7 @@ export class RCExpoModel {
     exposition: RCExposition;
     saveInterval: any;
     syncInterval: any;
+    editorVersion: string = "1.0.13";
     canBeSaved: boolean;
     markdownInput: string;
     markdownProcessed: string;
@@ -163,6 +164,36 @@ export class RCExpoModel {
         xhttp.send();
     }
 
+    getRemoteContentVersion(callback?: (number) => void) {
+        let id = this.exposition.id;
+        let weave = this.exposition.currentWeave;
+        var xhttp = new XMLHttpRequest();
+        var self = this;
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                try {
+                    let expositionJSON = JSON.parse(xhttp.responseText);
+
+                    if (expositionJSON.editormetadata != undefined) {
+                        try {
+                            let metadataObj = JSON.parse(expositionJSON.editormetadata);
+                            callback(metadataObj.contentVersion);
+                        } catch (err) {
+                            console.log("Could not parse editor metadata: " + err);
+                        }
+                    }
+                }
+                catch (err) {
+                    alert("JSON parse failed, please contact RC support\n error message: \n" + err + "\nhttp response:\n" + xhttp.responseText);
+                }
+            }
+        };
+        xhttp.open("GET", `${Backend.rcBaseAddress}text-editor/load?research=${id}&weave=${weave}`, true);
+        xhttp.send();
+
+    }
+
+
     // used when RC is the backend : 
     loadExpositionData() {
         let id = this.exposition.id;
@@ -177,6 +208,21 @@ export class RCExpoModel {
                     self.exposition.markdownInput = expositionJSON.markdown;
                     self.exposition.style = expositionJSON.style;
                     self.mde.exposition = self.exposition;
+
+                    if (expositionJSON.editormetadata != undefined) {
+                        try {
+                            let metadataObj = JSON.parse(expositionJSON.editormetadata);
+                            self.exposition.contentVersion = metadataObj.contentVersion;
+                        } catch (err) {
+                            alert("Could not parse editor metadata: " + err);
+                        }
+                    } else {
+                        self.exposition.contentVersion = 0;
+                    }
+
+                    // DEBUG
+                    console.log(self.exposition);
+
                     // it is safe to save, because loading was successful
                     self.canBeSaved = true;
                 }
@@ -192,45 +238,59 @@ export class RCExpoModel {
 
     // continue function is only being called after successfully saving
     saveToRC(displayStatus: boolean = true, continueFunction?: () => void) {
+        this.getRemoteContentVersion(remoteVersion => {
+            let upcomingVersion = this.exposition.contentVersion + (this.mde.saved ? 0 : 1); // Saved will be false if there has been a change to the content
+            let confirmedSave = true;
 
-        // Only save if it can be saved and markdown input is neither null nor undefined
-        if (this.canBeSaved && (this.exposition.markdownInput !== null) && (this.exposition.markdownInput !== undefined) && (this.exposition.markdownInput !== "")) {
-            let id = this.exposition.id;
-            let weave = this.exposition.currentWeave;
-            let fd = new FormData();
-            let self = this;
-            fd.append("html", this.exposition.renderedHTML);
-            fd.append("markdown", this.exposition.markdownInput);
-            fd.append("media", this.exposition.serializeMedia()); // TODO send media list/see if necessary
-            fd.append("style", this.exposition.style);
-            fd.append("title", this.exposition.title);
-
-            try {
-                fd.append("toc", JSON.stringify(this.exposition.getTOC()));
-            }
-            catch (err) {
-                alert("please contact rc support, error is:\n" + err);
-            }
-
-
-            var xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function () {
-                if (this.readyState == 4 && this.status == 200) {
-                    self.mde.saved = true;
-                    if (displayStatus) {
-                        self.mde.displaySaveStatus();
-                    }
-                    if (continueFunction != undefined) {
-                        continueFunction();
-                    }
-                } else {
-                    console.log("xhttp state:", xhttp);
+            if (remoteVersion >= upcomingVersion) {
+                if (!window.confirm("The exposition has been changed somewhere else. Do you still whish to save your version and possibly lose changes?")) {
+                    confirmedSave = false
                 }
-            };
-            xhttp.open("POST", `${Backend.rcBaseAddress}text-editor/save?research=${id}&weave=${weave}`, true);
-            xhttp.send(fd);
-        }
+            }
+
+            // Only save if it can be saved and markdown input is neither null nor undefined
+            if (confirmedSave && this.canBeSaved && (this.exposition.markdownInput !== null) && (this.exposition.markdownInput !== undefined) && (this.exposition.markdownInput !== "")) {
+                let id = this.exposition.id;
+                let weave = this.exposition.currentWeave;
+                let fd = new FormData();
+                let self = this;
+                fd.append("html", this.exposition.renderedHTML);
+                fd.append("markdown", this.exposition.markdownInput);
+                fd.append("media", this.exposition.serializeMedia()); // TODO send media list/see if necessary
+                fd.append("style", this.exposition.style);
+                fd.append("title", this.exposition.title);
+                fd.append("editormetadata", JSON.stringify({
+                    "editorversion": this.editorVersion,
+                    "contentversion": upcomingVersion
+                }));
+
+                try {
+                    fd.append("toc", JSON.stringify(this.exposition.getTOC()));
+                }
+                catch (err) {
+                    alert("please contact rc support, error is:\n" + err);
+                }
+
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                        self.mde.saved = true;
+                        if (displayStatus) {
+                            self.mde.displaySaveStatus();
+                        }
+                        if (continueFunction != undefined) {
+                            continueFunction();
+                        }
+                    } else {
+                        console.log("xhttp state:", xhttp);
+                    }
+                };
+                xhttp.open("POST", `${Backend.rcBaseAddress}text-editor/save?research=${id}&weave=${weave}`, true);
+                xhttp.send(fd);
+            }
+        })
     }
+
 
     // Not used when RC is backend:
     loadExpositionFromURL(expositionJSONUrl: string) {
@@ -337,14 +397,22 @@ export class RCExpoModel {
         document.addEventListener('visibilitychange', function () {
             if (!document.hidden) {
                 console.log('document is coming into visibility')
-                self.loadExpositionData();
+
+                self.getRemoteContentVersion(remoteVersion => {
+                    if (remoteVersion > self.exposition.contentVersion) {
+                        if (window.confirm("The exposition has been changed somewhere else. Do you whish to reload the content and possibly lose your changes?")) {
+                            self.loadExpositionData();
+                        }
+                    }
+                });
+
                 self.syncModelWithRC(() => {
                     // render again
                     self.mde.value(self.exposition.markdownInput);
                     self.mde.render();
                 });
             } else {
-                console.log('document is going hidden visibility')
+                console.log('document is going into hidden visibility')
                 self.saveToRC();
                 self.mde.displaySaveStatus();
             }

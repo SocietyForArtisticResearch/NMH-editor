@@ -33,7 +33,7 @@ export class AppComponent implements OnInit {
     showMedia: boolean = false;
     showImport: boolean = false;
     editStyle: boolean = false;
-    version: string = "1.0.12";
+    version: string;
     loadedExpositionURL$: Observable<any>;
     styleButtonMessage: string = "Edit style";
     hostname: string = location.hostname;
@@ -129,6 +129,7 @@ export class AppComponent implements OnInit {
             let rcIdNumber = Number(decodeURIComponent(rcId));
             let weaveNumber = Number(decodeURIComponent(weave));
             this.rcExpoModel.loadExpositionFromRC(rcIdNumber, weaveNumber);
+            this.version = this.rcExpoModel.editorVersion;
         } else if (url) {
             url = decodeURIComponent(url);
             this.rcExpoModel.loadExpositionFromURL(url);

@@ -46,7 +46,8 @@ export class RCExposition {
     authors: string[];
     breakpoint: number;
     markdownInput: string;
-    id: number
+    id: number;
+    contentVersion: number;
     //    markdownOutput: string;
     renderedHTML: string;
     toc: any;
