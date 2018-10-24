@@ -215,6 +215,9 @@ export class RCExpoModel {
                     self.exposition.style = expositionJSON.style;
                     self.mde.exposition = self.exposition;
 
+                    // DEBUG
+                    console.log(expositionJSON);
+
                     if (expositionJSON.editormetadata != undefined) {
                         try {
                             let metadataObj = JSON.parse(expositionJSON.editormetadata);
