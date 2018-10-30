@@ -175,9 +175,9 @@ export class RCExpoModel {
                     let expositionJSON = JSON.parse(xhttp.responseText);
 
                     //DEBUG
-                    console.log(expositionJSON);
+                    // console.log(expositionJSON);
 
-                    //                    if (expositionJSON.editormetadata != undefined) {
+                    //                    if (expositionJSON.editor     != undefined) {
                     try {
                         let metadataObj = JSON.parse(expositionJSON.metadata);
                         //
@@ -216,7 +216,7 @@ export class RCExpoModel {
                     self.mde.exposition = self.exposition;
 
                     // DEBUG
-                    console.log(expositionJSON);
+                    // console.log(expositionJSON);
 
                     if (expositionJSON.editormetadata != undefined) {
                         try {
@@ -276,7 +276,7 @@ export class RCExpoModel {
                     "contentversion": upcomingVersion
                 }));
 
-                console.log(fd);
+                // console.log(fd);
 
                 try {
                     fd.append("toc", JSON.stringify(this.exposition.getTOC()));
@@ -296,12 +296,12 @@ export class RCExpoModel {
                             continueFunction();
                         }
                     } else {
-                        console.log("xhttp state:", xhttp);
+                        //console.log("xhttp state:", xhttp);
                     }
                 };
                 xhttp.open("POST", `${Backend.rcBaseAddress}text-editor/save?research=${id}&weave=${weave}`, true);
                 // DEBUG
-                console.log(fd);
+                // console.log(fd);
                 xhttp.send(fd);
             }
             // DEBUG
