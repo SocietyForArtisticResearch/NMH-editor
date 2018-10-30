@@ -44,7 +44,7 @@ export class DocUploaderComponent implements OnInit {
             this.selectedFile = null;
         }
         if (!Utils.checkFilenameCharacters(this.selectedFile.name)) {
-            alert('Sorry, your filename contains unsupported characters. Please rename and try again.')
+            alert('Sorry, your filename contains unsupported characters (spaces for example). Please rename and try again.')
         }
     }
 
