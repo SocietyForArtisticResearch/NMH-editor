@@ -179,7 +179,7 @@ export class RCExpoModel {
 
                     //                    if (expositionJSON.editormetadata != undefined) {
                     try {
-                        let metadataObj = JSON.parse(expositionJSON.editormetadata);
+                        let metadataObj = JSON.parse(expositionJSON.metadata);
                         //
                         //                      console.log("Calling save callback");
                         callback(metadataObj.contentVersion);
@@ -220,7 +220,7 @@ export class RCExpoModel {
 
                     if (expositionJSON.editormetadata != undefined) {
                         try {
-                            let metadataObj = JSON.parse(expositionJSON.editormetadata);
+                            let metadataObj = JSON.parse(expositionJSON.metadata);
                             self.exposition.contentVersion = metadataObj.contentVersion;
                         } catch (err) {
                             alert("Could not parse editor metadata: " + err);
@@ -271,7 +271,7 @@ export class RCExpoModel {
                 fd.append("media", this.exposition.serializeMedia()); // TODO send media list/see if necessary
                 fd.append("style", this.exposition.style);
                 fd.append("title", this.exposition.title);
-                fd.append("editormetadata", JSON.stringify({
+                fd.append("metadata", JSON.stringify({
                     "editorversion": this.editorVersion,
                     "contentversion": upcomingVersion
                 }));
