@@ -203,7 +203,7 @@ export class RCExpoModel {
 
 
     // used when RC is the backend : 
-    loadExpositionData() {
+    loadExpositionData(continueFunction?: () => void) {
         let id = this.exposition.id;
         let weave = this.exposition.currentWeave;
         var xhttp = new XMLHttpRequest();
@@ -236,6 +236,10 @@ export class RCExpoModel {
 
                     // it is safe to save, because loading was successful
                     self.canBeSaved = true;
+
+                    if (continueFunction != undefined) {
+                        continueFunction();
+                    }
                 }
                 catch (err) {
                     alert("JSON parse failed, please contact RC support\n error message: \n" + err + "\nhttp response:\n" + xhttp.responseText);
@@ -394,14 +398,25 @@ export class RCExpoModel {
         new_exposition.currentWeave = weave;
         this.exposition = new_exposition;
 
-        // load data
-        this.loadExpositionData();
+        // // load data
+        // this.loadExpositionData();
 
-        // sync media model with rc
-        this.syncModelWithRC(() => {
-            // render again
-            self.mde.value(self.exposition.markdownInput);
-            self.mde.render();
+        // // sync media model with rc
+        // this.syncModelWithRC(() => {
+        //     // render again
+        //     self.mde.value(self.exposition.markdownInput);
+        //     self.mde.render();
+        // });
+
+        // LOAD EXPOSITION DATA and afterwards call SYNCMODEL which afterwards RENDERS
+        // load data
+        this.loadExpositionData(() => {
+            // sync media model with rc
+            this.syncModelWithRC(() => {
+                // render again
+                self.mde.value(self.exposition.markdownInput);
+                self.mde.render();
+            })
         });
 
         // save every 12 seconds if needs to be saved
@@ -429,16 +444,28 @@ export class RCExpoModel {
                 self.getRemoteContentVersion(remoteVersion => {
                     if (remoteVersion > self.exposition.contentVersion) {
                         if (window.confirm("The exposition has been changed somewhere else. Do you whish to reload the content and possibly lose your changes?")) {
-                            self.loadExpositionData();
+
+                            // LOAD EXPOSITION DATA and afterwards call SYNCMODEL which afterwards RENDERS
+                            // load data
+                            self.loadExpositionData(() => {
+                                // sync media model with rc
+                                self.syncModelWithRC(() => {
+                                    // render again
+                                    self.mde.value(self.exposition.markdownInput);
+                                    self.mde.render();
+                                })
+                            });
+
                         }
                     }
                 });
 
-                self.syncModelWithRC(() => {
-                    // render again
-                    self.mde.value(self.exposition.markdownInput);
-                    self.mde.render();
-                });
+                // self.syncModelWithRC(() => {
+                //     // render again
+                //     self.mde.value(self.exposition.markdownInput);
+                //     self.mde.render();
+                // });
+
             } else {
                 console.log('document is going into hidden visibility')
                 if (!self.mde.saved) {
