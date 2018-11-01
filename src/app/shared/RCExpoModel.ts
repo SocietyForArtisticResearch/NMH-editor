@@ -254,6 +254,10 @@ export class RCExpoModel {
             let upcomingVersion = this.exposition.contentVersion + (this.mde.saved ? 0 : 1); // Saved will be false if there has been a change to the content
             let confirmedSave = true;
 
+            // DEBUG
+            console.log(`remote version: ${remoteVersion}`);
+            console.log(`upcoming version: ${upcomingVersion}`);
+
             if (remoteVersion >= upcomingVersion) {
                 if (!window.confirm("The exposition has been changed somewhere else. Do you still whish to save your version and possibly lose changes?")) {
                     confirmedSave = false
