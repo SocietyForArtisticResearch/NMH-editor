@@ -220,7 +220,7 @@ export class RCExpoModel {
                     // DEBUG
                     console.log(expositionJSON);
 
-                    if (expositionJSON.editormetadata != undefined) {
+                    if (expositionJSON.metadata != undefined) {
                         try {
                             let metadataObj = JSON.parse(expositionJSON.metadata);
                             self.exposition.contentVersion = metadataObj.contentVersion;
