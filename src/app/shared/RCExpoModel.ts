@@ -441,8 +441,12 @@ export class RCExpoModel {
                 });
             } else {
                 console.log('document is going into hidden visibility')
-                self.saveToRC();
-                self.mde.displaySaveStatus();
+                if (!self.mde.saved) {
+                    self.saveToRC();
+                    self.mde.displaySaveStatus();
+                } else {
+                    console.log("not saving hding expo because there have been no changes.")
+                }
             }
         })
 
