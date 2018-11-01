@@ -265,7 +265,7 @@ export class RCExpoModel {
             console.log(`upcoming version: ${upcomingVersion}`);
 
             if (remoteVersion >= upcomingVersion) {
-                if (!window.confirm("The exposition has been changed somewhere else. Do you still whish to save your version and possibly lose changes?")) {
+                if (!window.confirm("The exposition is about to be saved. However, it has been changed somewhere else. Do you still whish to save your version and overwrite the remote version?")) {
                     confirmedSave = false
                 }
             }
