@@ -182,6 +182,8 @@ export class RCExpoModel {
                         let metadataObj = JSON.parse(expositionJSON.metadata);
                         //
                         //                      console.log("Calling save callback");
+                        // DEBUG
+                        console.log(metadataObj);
                         callback(metadataObj.contentVersion);
                     } catch (err) {
                         callback(0);
