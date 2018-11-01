@@ -127,7 +127,7 @@ export class DocUploaderComponent implements OnInit {
         }
         let reader = new FileReader();
         reader.onload = (e) => {
-            let expositionJSON = JSON.parse(reader.result);
+            let expositionJSON = JSON.parse(String(reader.result));
             //  console.log(expositionJSON);
             let exposition = RCExpositionDeserializer.restoreObject(expositionJSON);
             //  console.log(exposition);
