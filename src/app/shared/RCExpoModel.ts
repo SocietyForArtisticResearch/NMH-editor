@@ -279,7 +279,7 @@ export class RCExpoModel {
                 fd.append("title", this.exposition.title);
                 fd.append("metadata", JSON.stringify({
                     "editorversion": this.editorVersion,
-                    "contentversion": upcomingVersion
+                    "contentVersion": upcomingVersion
                 }));
 
                 // console.log(fd);
