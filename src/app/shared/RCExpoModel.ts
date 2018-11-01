@@ -295,6 +295,7 @@ export class RCExpoModel {
                 xhttp.onreadystatechange = function () {
                     if (this.readyState == 4 && this.status == 200) {
                         self.mde.saved = true;
+                        self.exposition.contentVersion = upcomingVersion;
                         if (displayStatus) {
                             self.mde.displaySaveStatus();
                         }
