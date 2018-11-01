@@ -183,7 +183,7 @@ export class RCExpoModel {
                         //
                         //                      console.log("Calling save callback");
                         // DEBUG
-                        console.log(metadataObj);
+                        //console.log(metadataObj);
                         callback(metadataObj.contentVersion);
                     } catch (err) {
                         callback(0);
@@ -453,7 +453,10 @@ export class RCExpoModel {
                                     // render again
                                     self.mde.value(self.exposition.markdownInput);
                                     self.mde.render();
+                                    self.mde.saved = true;
+                                    self.mde.displaySaveStatus();
                                 })
+
                             });
 
                         }
