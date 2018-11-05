@@ -4,7 +4,13 @@
 
 .container.main-app {
     width:97%;
+    margin-left:1.5%;
+    margin-right:1.5%;
     height:100%;
+}
+
+.main-app-inner {
+    width: 102vw;
 }
 
 .left-hand-collumn {
@@ -162,6 +168,7 @@ hr {
     color:#333;
     border-radius:1px;
     border-color:black;
+    font-size:14px;
 }
 
 .btn:active {

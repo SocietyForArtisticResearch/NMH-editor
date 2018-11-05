@@ -1,9 +1,10 @@
 <div class="container main-app">
     <div class="row">
-
 	<!--   <div [ngClass]="{ 'shifted' : showMedia }">
 	-->
-	<div [ngClass]="{ 'hideBecauseModalIsVisible' : shouldHideBecauseModalIsVisible() }">
+	<div [ngClass]="{ 
+		'hideBecauseModalIsVisible' : shouldHideBecauseModalIsVisible(), 
+		'main-app-inner' : true }">
 	    <input class="editableTitle" 
 	       id="editableTitleField"
 	       name="editableTitleField"
@@ -26,8 +27,9 @@
 		  <div *ngIf="editableTitleField.errors.required">
 		  	Exposition title cannot be empty.
 		  </div>
-		</div>    
-	    <div class="rclink"><a class href="{{'//' + hostname + '/profile'}}">My Profile</a> <a href="{{'//' + hostname + '/session/logout'}}">Logout</a></div>
+		</div>
+		<div class="rclink"><a class href="{{'//' + hostname + '/profile'}}">My Profile</a> <a href="{{'//' + hostname + '/session/logout'}}">Logout</a></div>    
+	    
 
 	    
 	    <br>
