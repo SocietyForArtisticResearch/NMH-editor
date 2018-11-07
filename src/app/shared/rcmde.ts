@@ -1553,7 +1553,12 @@ export class RCMDE {
             var link = document.createElement("link");
             link.rel = "stylesheet";
             link.href = "https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css";
-            document.getElementsByTagName("head")[0].appendChild(link);
+            // insert before
+            var firstChild = document.getElementsByTagName("head")[0].children[0];
+            document.getElementsByTagName("head")[0].insertBefore(link,firstChild);
+
+            // old code
+            // document.getElementsByTagName("head")[0].appendChild(link);
         }
 
 

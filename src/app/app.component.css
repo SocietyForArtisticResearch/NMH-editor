@@ -78,7 +78,8 @@
     font-size: 28px;
     font-weight: bold;
     z-index:1051;
-    position:relative;
+    right: 50px;
+    margin-left: auto;
 }
 
 .close:hover,
@@ -98,8 +99,9 @@
     top:0;
     left:0;
     width:90%;
-    height: 25vh;
-    min-height: 220px;
+    height: 42vh;
+    min-height:250px;
+    min-height: 250px;
 }
 
 @media only screen and (max-width: 995px) {
@@ -188,6 +190,13 @@ hr {
     text-align: right;
     color:#CCC;
     display: inline;
+}
+
+@media only screen and (min-width:1200px) {
+    .container {
+        /* because of strange quantized bootstrap width ? */
+        max-width:unset;
+    }
 }
 
 

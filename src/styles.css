@@ -1,13 +1,20 @@
 /*@import "https://cdnjs.cloudflare.com/ajax/libs/simplemde/1.11.2/simplemde.min.css"*/
 @import "./assets/simplemde/simplemde.css";
 
-
+body {
+    font-size:14px;
+}
 
 .btn {
+    font-size:12px;
     margin-left:2px;
     margin-right:2px;
 	margin-top:5px;
 	margin-bottom:5px;
+}
+
+.fa {
+    font-size:14px;
 }
 
 
@@ -30,7 +37,6 @@
     z-index: 10;
     /* border-right: none; */
 }
-
 
 app-markdown-tool .CodeMirror { 
     /* width: calc(50% - 29px); */
