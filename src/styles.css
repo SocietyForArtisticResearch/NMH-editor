@@ -11,6 +11,11 @@ body {
     margin-right:2px;
 	margin-top:5px;
 	margin-bottom:5px;
+    background-color:#e8e8e8;
+}
+
+.btn:hover {
+    background-color:#f7f7f7;
 }
 
 .fa {
