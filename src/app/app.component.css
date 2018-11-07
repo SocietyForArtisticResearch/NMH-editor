@@ -166,11 +166,14 @@ hr {
 }
 
 .btn  {
-    background-color:#fbfbff;
     color:#333;
     border-radius:1px;
     border-color:black;
     font-size:14px;
+}
+
+.btn.tab-control {
+    background-color:#fbfbff;
 }
 
 .btn:hover {
