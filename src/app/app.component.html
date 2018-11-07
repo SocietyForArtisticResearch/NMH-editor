@@ -35,14 +35,14 @@
 	    <br>
 	    <div class="version">{{this.version}}</div>	    
 
-	    <button type="button" [class.active]="showMedia" class="btn btn-primary" (click)="onMediaButton()" data-toggle="tooltip" data-placement="top" title="Upload and inspect media">
+	    <button type="button" [class.active]="showMedia" class="btn btn-primary tab-control" (click)="onMediaButton()" data-toggle="tooltip" data-placement="top" title="Upload and inspect media">
 	    	Media list
 	    </button>
 	    
-	    <button type="button" [disabled]="showImport" class="btn btn-primary" (click)="showImport = true" data-toggle="tooltip" data-placement="top" title="Import a Word file and export the exposition">	    Import/Export
+	    <button type="button" [disabled]="showImport" class="btn btn-primary tab-control" (click)="showImport = true" data-toggle="tooltip" data-placement="top" title="Import a Word file and export the exposition">	    Import/Export
 	    </button>
 	    
-	    <button type="button" [class.active]="editStyle" class="btn btn-primary edit-style-button" (click)="toggleStyle()" data-toggle="tooltip" data-placement="top" title="Edit the CSS styling">
+	    <button type="button" [class.active]="editStyle" class="btn btn-primary tab-control edit-style-button" (click)="toggleStyle()" data-toggle="tooltip" data-placement="top" title="Edit the CSS styling">
 	    	{{styleButtonMessage}}
 	    </button>
 
