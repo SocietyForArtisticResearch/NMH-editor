@@ -6,20 +6,24 @@
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
-  <script>
-   
-   /*
-      Luc: New Bug after upgrade (November 16, 2018)
-      https://github.com/algolia/algoliasearch-client-javascript/issues/691
-    */
 
-   (window as any).process = {
-       env: { DEBUG: undefined },
-   };
-
-  </script>
 </head>
 <body>
-  <app-root></app-root>
+    <app-root></app-root>
 </body>
+
+<script>
+ 
+ /*
+    Luc: New Bug after upgrade (November 16, 2018)
+    https://github.com/algolia/algoliasearch-client-javascript/issues/691
+  */
+ var global = global || window;
+ var Buffer = Buffer || [];
+ var process = process || {
+     env: { DEBUG: undefined },
+     version: []
+ };    */
+
+</script>
 </html>
