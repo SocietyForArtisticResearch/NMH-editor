@@ -29,6 +29,7 @@ interface ExpositionRCLoadData {
  */
 export class RCExpoModel {
     exposition: RCExposition;
+    rtConnection: boolean = false;
     saveInterval: any;
     syncInterval: any;
     editorVersion: string = "1.0.15";
@@ -264,7 +265,7 @@ export class RCExpoModel {
             console.log(`remote version: ${remoteVersion}`);
             console.log(`upcoming version: ${upcomingVersion}`);
 
-            if (remoteVersion >= upcomingVersion) {
+            if ((remoteVersion >= upcomingVersion) && !this.rtConnection) {
                 if (!window.confirm("The exposition is about to be saved. However, it has been changed somewhere else. Do you still whish to save your version and overwrite the remote version?")) {
                     confirmedSave = false
                 }
@@ -349,6 +350,9 @@ export class RCExpoModel {
         xhttp.send();
     }
 
+
+    //////// Real-time editing
+
     shareDBConnect() {
         let self = this;
         let socket = new WebSocket('wss://' + 'doebereiner.org:8999');
@@ -361,12 +365,9 @@ export class RCExpoModel {
                 markdown: self.exposition.markdownInput
             };
             socket.send(JSON.stringify(msg));
-
         };
 
         socket.onmessage = function (event) {
-            console.log(event.data);
-            console.log(event.data == "exposition created");
             if (event.data == "exposition created") {
                 let connection = new sharedb.Connection(socket);
 
@@ -378,11 +379,18 @@ export class RCExpoModel {
                 shareDBCodeMirror.attachDoc(doc, (error) => {
                     if (error) {
                         console.error(error);
+                    } else {
+                        self.rtConnection = true;
                     }
                 });
+            } else {
+                console.log(event.data);
             }
         }
 
+        socket.onclose = function (event) {
+            self.rtConnection = false;
+        };
     }
 
     loadExpositionFromRC(id: number, weave: number) {
@@ -398,15 +406,6 @@ export class RCExpoModel {
         new_exposition.currentWeave = weave;
         this.exposition = new_exposition;
 
-        // // load data
-        // this.loadExpositionData();
-
-        // // sync media model with rc
-        // this.syncModelWithRC(() => {
-        //     // render again
-        //     self.mde.value(self.exposition.markdownInput);
-        //     self.mde.render();
-        // });
 
         // LOAD EXPOSITION DATA and afterwards call SYNCMODEL which afterwards RENDERS
         // load data
@@ -483,6 +482,6 @@ export class RCExpoModel {
 
         // Open WebSocket connection to ShareDB server
         // experimental
-        // setTimeout(() => self.shareDBConnect(), 1000);
+        setTimeout(() => self.shareDBConnect(), 1000);
     }
 }
