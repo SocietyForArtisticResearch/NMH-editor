@@ -355,7 +355,7 @@ export class RCExpoModel {
 
     shareDBConnect() {
         let self = this;
-        let socket = new WebSocket('wss://' + 'doebereiner.org:8999');
+        let socket = new WebSocket('wss://' + 'sar-announcements.com:8999');
 
         // initial message
         socket.onopen = function (event) {
@@ -371,6 +371,7 @@ export class RCExpoModel {
             console.log("event");
             console.log(event);
             if (event.data == "exposition created") {
+                console.log("data is exposition created");
                 let connection = new sharedb.Connection(socket);
 
                 let doc = connection.get('expositions', String(self.exposition.id));
@@ -378,6 +379,7 @@ export class RCExpoModel {
                 let cm = self.mde.codemirror;
 
                 var shareDBCodeMirror = new ShareDBCodeMirror(cm, { verbose: true, key: 'content' });
+
                 shareDBCodeMirror.attachDoc(doc, (error) => {
                     if (error) {
                         console.log("attachdocerror");
@@ -386,6 +388,7 @@ export class RCExpoModel {
                         self.rtConnection = true;
                     }
                 });
+
             } else {
                 console.log("got the following data");
                 console.log(event.data);
