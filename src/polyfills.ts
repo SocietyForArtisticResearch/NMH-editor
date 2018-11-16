@@ -66,12 +66,3 @@ import 'zone.js/dist/zone';  // Included with Angular CLI.
  */
 
 
-
-/*
- Luc: New Bug after upgrade (November 16, 2018)
- https://github.com/algolia/algoliasearch-client-javascript/issues/691
-*/
-
-(window as any).process = {
-    env: { DEBUG: undefined },
-};
