@@ -30,9 +30,10 @@ interface ExpositionRCLoadData {
 export class RCExpoModel {
     exposition: RCExposition;
     rtConnection: boolean = false;
+    rtPingTimeout: any;
     saveInterval: any;
     syncInterval: any;
-    editorVersion: string = "1.0.15";
+    editorVersion: string = "1.1.0";
     canBeSaved: boolean;
     markdownInput: string;
     markdownProcessed: string;
@@ -353,9 +354,22 @@ export class RCExpoModel {
 
     //////// Real-time editing
 
+
+
     shareDBConnect() {
         let self = this;
         let socket = new WebSocket('wss://' + 'sar-announcements.com:8999');
+
+
+        var heartbeat = function () {
+            clearTimeout(self.rtPingTimeout);
+
+            self.rtPingTimeout = setTimeout(() => {
+                //                self.rtConnection = false;
+                socket.close();
+            }, 30000 + 1000);
+        }
+
 
         // initial message
         socket.onopen = function (event) {
@@ -365,8 +379,10 @@ export class RCExpoModel {
                 markdown: self.exposition.markdownInput
             };
             socket.send(JSON.stringify(msg));
+            heartbeat();
         };
 
+        // connection to database
         socket.onmessage = function (event) {
             console.log("event");
             console.log(event);
@@ -395,10 +411,17 @@ export class RCExpoModel {
             }
         }
 
+        socket.addEventListener('ping', heartbeat);
+
         socket.onclose = function (event) {
+            console.log("closed connection");
             self.rtConnection = false;
+            clearTimeout(self.rtPingTimeout);
         };
     }
+
+
+    ///////
 
     loadExpositionFromRC(id: number, weave: number) {
         Backend.useRC = true;
