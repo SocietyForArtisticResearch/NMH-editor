@@ -363,7 +363,7 @@ export class RCExpoModel {
 
         var heartbeat = function () {
             clearTimeout(self.rtPingTimeout);
-            socket.send('pong');
+
             self.rtPingTimeout = setTimeout(() => {
                 //                self.rtConnection = false;
                 socket.close();
@@ -411,7 +411,7 @@ export class RCExpoModel {
             }
         }
 
-        socket.addEventListener('ping', heartbeat);
+        //     socket.addEventListener('ping', heartbeat);
 
         socket.onclose = function (event) {
             console.log("closed connection");
