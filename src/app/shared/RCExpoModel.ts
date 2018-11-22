@@ -397,6 +397,11 @@ export class RCExpoModel {
                     self.rtConnection = false;
                 };
 
+                socket.onerror = function (event) {
+                    console.log("error, perhaps closed?");
+                    self.rtConnection = false;
+                };
+
 
                 let doc = connection.get('expositions', String(self.exposition.id));
 
