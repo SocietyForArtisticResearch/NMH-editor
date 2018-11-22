@@ -402,6 +402,7 @@ export class RCExpoModel {
                     self.rtConnection = false;
                 };
 
+                window.addEventListener('offline', () => { console.log('went offline') });
 
                 let doc = connection.get('expositions', String(self.exposition.id));
 
