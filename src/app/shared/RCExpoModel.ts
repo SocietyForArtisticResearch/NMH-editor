@@ -4,8 +4,8 @@ import { RCMDE } from './rcmde';
 import otText from 'ot-text';
 import * as Utils from "./utils";
 
-//import richText from 'rich-text';
-
+// Experimental reconnecting
+import ReconnectingWebSocket from 'reconnecting-websocket';
 
 // experimental sharedb
 import * as sharedb from "sharedb/lib/client";
@@ -358,7 +358,8 @@ export class RCExpoModel {
 
     shareDBConnect() {
         let self = this;
-        let socket = new WebSocket('wss://' + 'sar-announcements.com:8999');
+        //        let socket = new WebSocket('wss://' + 'sar-announcements.com:8999');
+        let socket = new ReconnectingWebSocket('wss://' + 'sar-announcements.com:8999');
 
 
         // var heartbeat = function () {
@@ -384,7 +385,7 @@ export class RCExpoModel {
 
         // connection to database
         socket.onmessage = function (event) {
-            console.log("event");
+            console.log("event";)
             console.log(event);
             if (event.data == "exposition created") {
                 console.log("data is exposition created");
@@ -415,16 +416,16 @@ export class RCExpoModel {
         //     heartbeat();
         // });
 
-        socket.onerror = function (event) {
-            console.log("some error");
-            console.log(socket.readyState);
-        }
+        // socket.onerror = function (event) {
+        //     console.log("some error");
+        //     console.log(socket.readyState);
+        // }
 
-        socket.onclose = function (event) {
-            console.log("closed connection");
-            self.rtConnection = false;
-            //          clearTimeout(self.rtPingTimeout);
-        };
+        // socket.onclose = function (event) {
+        //     console.log("closed connection");
+        //     self.rtConnection = false;
+        //     //          clearTimeout(self.rtPingTimeout);
+        // };
     }
 
 
