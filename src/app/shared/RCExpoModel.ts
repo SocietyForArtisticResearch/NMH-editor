@@ -385,7 +385,7 @@ export class RCExpoModel {
 
         // connection to database
         socket.onmessage = function (event) {
-            console.log("event";)
+            console.log("event");
             console.log(event);
             if (event.data == "exposition created") {
                 console.log("data is exposition created");
