@@ -5,7 +5,7 @@ import otText from 'ot-text';
 import * as Utils from "./utils";
 
 // Experimental reconnecting
-import ReconnectingWebSocket from 'reconnecting-websocket';
+//import ReconnectingWebSocket from 'reconnecting-websocket';
 
 // experimental sharedb
 import * as sharedb from "sharedb/lib/client";
@@ -358,8 +358,8 @@ export class RCExpoModel {
 
     shareDBConnect() {
         let self = this;
-        //        let socket = new WebSocket('wss://' + 'sar-announcements.com:8999');
-        let socket = new ReconnectingWebSocket('wss://' + 'sar-announcements.com:8999', [], { debug: true });
+        let socket = new WebSocket('wss://' + 'sar-announcements.com:8999');
+        // let socket = new ReconnectingWebSocket('wss://' + 'sar-announcements.com:8999', [], { debug: true });
 
 
         // var heartbeat = function () {
@@ -390,6 +390,13 @@ export class RCExpoModel {
             if (event.data == "exposition created") {
                 console.log("data is exposition created");
                 let connection = new sharedb.Connection(socket);
+
+
+                socket.onclose = function (event) {
+                    console.log("closed connection");
+                    self.rtConnection = false;
+                };
+
 
                 let doc = connection.get('expositions', String(self.exposition.id));
 
