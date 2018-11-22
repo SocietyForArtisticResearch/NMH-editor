@@ -30,7 +30,7 @@ interface ExpositionRCLoadData {
 export class RCExpoModel {
     exposition: RCExposition;
     rtConnection: boolean = false;
-    rtPingTimeout: any;
+    //  rtPingTimeout: any;
     saveInterval: any;
     syncInterval: any;
     editorVersion: string = "1.1.0";
@@ -361,14 +361,14 @@ export class RCExpoModel {
         let socket = new WebSocket('wss://' + 'sar-announcements.com:8999');
 
 
-        var heartbeat = function () {
-            clearTimeout(self.rtPingTimeout);
+        // var heartbeat = function () {
+        //     clearTimeout(self.rtPingTimeout);
 
-            self.rtPingTimeout = setTimeout(() => {
-                //                self.rtConnection = false;
-                socket.close();
-            }, 30000 + 1000);
-        }
+        //     self.rtPingTimeout = setTimeout(() => {
+        //         //                self.rtConnection = false;
+        //         socket.close();
+        //     }, 30000 + 1000);
+        // }
 
 
         // initial message
@@ -379,7 +379,7 @@ export class RCExpoModel {
                 markdown: self.exposition.markdownInput
             };
             socket.send(JSON.stringify(msg));
-            heartbeat();
+            //      heartbeat();
         };
 
         // connection to database
@@ -404,10 +404,6 @@ export class RCExpoModel {
                         self.rtConnection = true;
                     }
                 });
-
-            } else if (event.data == "connected to server") {
-                console.log("got connected message");
-                heartbeat();
             } else {
                 console.log("got the following data");
                 console.log(event.data);
@@ -422,7 +418,7 @@ export class RCExpoModel {
         socket.onclose = function (event) {
             console.log("closed connection");
             self.rtConnection = false;
-            clearTimeout(self.rtPingTimeout);
+            //          clearTimeout(self.rtPingTimeout);
         };
     }
 
