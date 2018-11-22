@@ -411,7 +411,7 @@ export class RCExpoModel {
             }
         }
 
-        socket.addEventListener('connected', () => {
+        socket.addEventListener('connected to server', () => {
             console.log("got connected message");
             heartbeat();
         });
