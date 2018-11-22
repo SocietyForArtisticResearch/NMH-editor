@@ -411,7 +411,10 @@ export class RCExpoModel {
             }
         }
 
-        //     socket.addEventListener('ping', heartbeat);
+        socket.addEventListener('connected', () => {
+            console.log("got connected message");
+            heartbeat();
+        });
 
         socket.onclose = function (event) {
             console.log("closed connection");
