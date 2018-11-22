@@ -359,7 +359,7 @@ export class RCExpoModel {
     shareDBConnect() {
         let self = this;
         //        let socket = new WebSocket('wss://' + 'sar-announcements.com:8999');
-        let socket = new ReconnectingWebSocket('wss://' + 'sar-announcements.com:8999');
+        let socket = new ReconnectingWebSocket('wss://' + 'sar-announcements.com:8999', [], { debug: true });
 
 
         // var heartbeat = function () {
