@@ -405,16 +405,19 @@ export class RCExpoModel {
                     }
                 });
 
+            } else if (event.data == "connected to server") {
+                console.log("got connected message");
+                heartbeat();
             } else {
                 console.log("got the following data");
                 console.log(event.data);
             }
         }
 
-        socket.addEventListener('connected to server', () => {
-            console.log("got connected message");
-            heartbeat();
-        });
+        // socket.addEventListener('connected to server', () => {
+        //     console.log("got connected message");
+        //     heartbeat();
+        // });
 
         socket.onclose = function (event) {
             console.log("closed connection");
