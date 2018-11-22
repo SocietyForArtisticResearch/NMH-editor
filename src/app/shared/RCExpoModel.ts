@@ -415,6 +415,11 @@ export class RCExpoModel {
         //     heartbeat();
         // });
 
+        socket.onerror = function (event) {
+            console.log("some error");
+            console.log(socket.readyState);
+        }
+
         socket.onclose = function (event) {
             console.log("closed connection");
             self.rtConnection = false;
