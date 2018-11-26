@@ -34,6 +34,7 @@ export class RCExpoModel {
     saveInterval: any;
     syncInterval: any;
     editorVersion: string = "1.1.0";
+    socket: WebSocket;
     canBeSaved: boolean;
     markdownInput: string;
     markdownProcessed: string;
@@ -358,8 +359,17 @@ export class RCExpoModel {
 
     shareDBConnect() {
         let self = this;
+        if (self.socket !== null) {
+            self.socket.onmessage = null;
+            self.socket.onerror = null;
+            self.socket.onclose = null;
+        }
         let socket = new WebSocket('wss://' + 'sar-announcements.com:8999');
+        self.socket = socket;
         // let socket = new ReconnectingWebSocket('wss://' + 'sar-announcements.com:8999', [], { debug: true });
+
+        console.log("setting rtconnection to true");
+        self.rtConnection = true;
 
 
         // var heartbeat = function () {
@@ -417,8 +427,6 @@ export class RCExpoModel {
                     if (error) {
                         console.log("attachdocerror");
                         console.error(error);
-                    } else {
-                        self.rtConnection = true;
                     }
                 });
             } else {
@@ -426,6 +434,12 @@ export class RCExpoModel {
                 console.log(event.data);
             }
         }
+
+        socket.onerror = function (event) {
+            self.rtConnection = false;
+            socket.close();
+        };
+
 
         // socket.addEventListener('connected to server', () => {
         //     console.log("got connected message");
@@ -537,7 +551,7 @@ export class RCExpoModel {
         // Open WebSocket connection to ShareDB server
         // experimental
         setInterval(() => {
-            if (!this.rtConnection && window.navigator.onLine) { self.shareDBConnect(); }
+            if (!self.rtConnection && window.navigator.onLine) { self.shareDBConnect(); }
         },
             2000);
     }
