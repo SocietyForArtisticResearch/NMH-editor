@@ -359,7 +359,7 @@ export class RCExpoModel {
 
     shareDBConnect() {
         let self = this;
-        if (self.socket !== null) {
+        if (self.socket !== undefined) {
             self.socket.onmessage = null;
             self.socket.onerror = null;
             self.socket.onclose = null;
