@@ -393,16 +393,19 @@ export class RCExpoModel {
 
 
                 socket.onclose = function (event) {
-                    console.log("closed connection");
+                    console.log("ws closed connection");
                     self.rtConnection = false;
                 };
 
                 socket.onerror = function (event) {
-                    console.log("error, perhaps closed?");
-                    self.rtConnection = false;
+                    console.log("ws connection closed due to error");
+                    socket.close();
                 };
 
-                window.addEventListener('offline', () => { console.log('went offline') });
+                window.addEventListener('offline', () => {
+                    console.log('went offline');
+                    socket.close();
+                });
 
                 let doc = connection.get('expositions', String(self.exposition.id));
 
@@ -533,6 +536,9 @@ export class RCExpoModel {
 
         // Open WebSocket connection to ShareDB server
         // experimental
-        setTimeout(() => self.shareDBConnect(), 1000);
+        setInterval(() => {
+            if (!this.rtConnection && window.navigator.onLine) { self.shareDBConnect(); }
+        },
+            2000);
     }
 }
