@@ -218,7 +218,7 @@ export class RCExpoModel {
                     self.mde.exposition = self.exposition;
 
                     // DEBUG
-                    console.log(expositionJSON);
+                    console.log("expositionJSON: ", expositionJSON);
 
                     if (expositionJSON.metadata != undefined) {
                         try {
@@ -232,7 +232,7 @@ export class RCExpoModel {
                     }
 
                     // DEBUG
-                    console.log(self.exposition);
+                    console.log("Exposition: ", self.exposition);
 
                     // it is safe to save, because loading was successful
                     self.canBeSaved = true;
@@ -478,7 +478,7 @@ export class RCExpoModel {
                     console.log("not saving hding expo because there have been no changes.")
                 }
             }
-        })
+        });
 
 
         // Open WebSocket connection to ShareDB server
