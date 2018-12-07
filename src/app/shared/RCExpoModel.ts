@@ -203,7 +203,7 @@ export class RCExpoModel {
 
 
     // used when RC is the backend : 
-    loadExpositionData(continueFunction?: () => void) {
+    loadExpositionData(continueFunction?: (string) => void) {
         let id = this.exposition.id;
         let weave = this.exposition.currentWeave;
         var xhttp = new XMLHttpRequest();
@@ -231,15 +231,15 @@ export class RCExpoModel {
                         self.exposition.contentVersion = 0;
                     }
 
-                    // DEBUG
-                    console.log("Exposition: ", self.exposition);
-
                     // it is safe to save, because loading was successful
                     self.canBeSaved = true;
 
                     if (continueFunction != undefined) {
-                        continueFunction();
+                        continueFunction(self.exposition.markdownInput);
                     }
+
+                    // DEBUG
+                    console.log("Exposition: ", self.exposition);
                 }
                 catch (err) {
                     alert("JSON parse failed, please contact RC support\n error message: \n" + err + "\nhttp response:\n" + xhttp.responseText);
@@ -410,11 +410,11 @@ export class RCExpoModel {
 
         // LOAD EXPOSITION DATA and afterwards call SYNCMODEL which afterwards RENDERS
         // load data
-        this.loadExpositionData(() => {
+        this.loadExpositionData((markdown) => {
             // sync media model with rc
             this.syncModelWithRC(() => {
                 // render again
-                self.mde.value(self.exposition.markdownInput);
+                self.mde.value(markdown);
                 self.mde.render();
             })
         });
@@ -447,11 +447,11 @@ export class RCExpoModel {
 
                             // LOAD EXPOSITION DATA and afterwards call SYNCMODEL which afterwards RENDERS
                             // load data
-                            self.loadExpositionData(() => {
+                            self.loadExpositionData((markdown) => {
                                 // sync media model with rc
                                 self.syncModelWithRC(() => {
                                     // render again
-                                    self.mde.value(self.exposition.markdownInput);
+                                    self.mde.value(markdown);
                                     self.mde.render();
                                     self.mde.saved = true;
                                     self.mde.displaySaveStatus();
