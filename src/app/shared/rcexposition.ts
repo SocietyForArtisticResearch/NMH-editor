@@ -614,6 +614,7 @@ export class RCAudio extends RCMedia {
             let fig = document.createElement("figure");
             let audio = document.createElement("audio");
             audio.setAttribute("controls", "true");
+            audio.setAttribute("preload","none");
             if (this.autoplay == true) {
                 audio.setAttribute("autoplay", "true");
             };
@@ -626,6 +627,9 @@ export class RCAudio extends RCMedia {
             if ((this.pxWidth !== undefined) && (this.pxWidth)) {
                 audio.setAttribute("width", String(this.pxWidth));
             };
+
+
+
             let source = document.createElement("source");
             source.setAttribute("src", this.url);
             audio.appendChild(source);
@@ -667,6 +671,7 @@ export class RCVideo extends RCMedia {
             let fig = document.createElement("figure");
             let video = document.createElement("video");
             video.setAttribute("controls", "true");
+            video.setAttribute("preload","none");
             if (this.autoplay) {
                 video.setAttribute("autplay", "true");
             };
