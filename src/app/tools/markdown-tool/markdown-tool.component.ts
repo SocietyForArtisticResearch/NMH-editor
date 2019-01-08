@@ -29,12 +29,12 @@ export class MarkdownToolComponent implements AfterViewInit {
         this.mde = new Editor.RCMDE(expoModel.exposition, {
             element: this.textarea.nativeElement,
             showIcons: ["code"],
-            spellChecker: true
+            spellChecker: false
         });
 
         Editor.toggleSideBySide(this.mde);
         expoModel.mde = this.mde;
-
+        this.mde.editor.getInputField().spellcheck = true;
 
         this.mde.value(this.testString());
 
