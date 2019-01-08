@@ -34,7 +34,8 @@ export class MarkdownToolComponent implements AfterViewInit {
 
         Editor.toggleSideBySide(this.mde);
         expoModel.mde = this.mde;
-        this.mde.editor.getInputField().spellcheck = true;
+
+        this.mde.codemirror.editor.getInputField().spellcheck = true;
 
         this.mde.value(this.testString());
 
