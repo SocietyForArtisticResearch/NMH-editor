@@ -19,9 +19,9 @@ import { stringToId } from './utils'
 
 
 
-//import * as CodeMirrorSpellChecker from 'codemirror-spell-checker'
-// var CodeMirrorSpellChecker = require("codemirror-spell-checker");
-// var marked = require("marked");
+import * as CodeMirrorSpellChecker from 'codemirror-spell-checker'
+//var CodeMirrorSpellChecker = require("codemirror-spell-checker");
+//var marked = require("marked");
 
 function nthIndexOf(input: string, pattern: string, n: number) {
     var i = -1;
@@ -1555,7 +1555,7 @@ export class RCMDE {
             link.href = "https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css";
             // insert before
             var firstChild = document.getElementsByTagName("head")[0].children[0];
-            document.getElementsByTagName("head")[0].insertBefore(link,firstChild);
+            document.getElementsByTagName("head")[0].insertBefore(link, firstChild);
 
             // old code
             // document.getElementsByTagName("head")[0].appendChild(link);
@@ -1838,83 +1838,83 @@ export class RCMDE {
         }, false);
 
         var mode, backdrop;
-        // if (options.spellChecker !== false) {
-        //     mode = "spell-checker";
-        //     backdrop = options.parsingConfig;
-        //     backdrop.name = "gfm";
-        //     backdrop.gitHubSpice = false;
+        if (options.spellChecker !== false) {
+            mode = "spell-checker";
+            backdrop = options.parsingConfig;
+            backdrop.name = "gfm";
+            backdrop.gitHubSpice = false;
 
-        //     CodeMirrorSpellChecker({
-        //         codeMirrorInstance: CodeMirror
-        //     });
-        // } else {
-        mode = options.parsingConfig;
-        mode.name = "gfm";
-        mode.gitHubSpice = false;
-        //        }
-
-        this.codemirror = CodeMirror.fromTextArea(el, {
-            mode: mode,
-            backdrop: backdrop,
-            theme: "paper",
-            tabSize: (options.tabSize != undefined) ? options.tabSize : 2,
-            indentUnit: (options.tabSize != undefined) ? options.tabSize : 2,
-            indentWithTabs: (options.indentWithTabs === false) ? false : true,
-            lineNumbers: false,
-            autofocus: (options.autofocus === true) ? true : false,
-            extraKeys: keyMaps,
-            lineWrapping: (options.lineWrapping === false) ? false : true,
-            allowDropFileTypes: ["text/plain"],
-            placeholder: options.placeholder || el.getAttribute("placeholder") || "",
-            styleSelectedText: (options.styleSelectedText != undefined) ? options.styleSelectedText : true
-        });
-
-        if (options.forceSync === true) {
-            var cm = this.codemirror;
-            cm.on("change", function () {
-                cm.save();
+            CodeMirrorSpellChecker({
+                codeMirrorInstance: CodeMirror
             });
+        } else {
+            mode = options.parsingConfig;
+            mode.name = "gfm";
+            mode.gitHubSpice = false;
+            //        }
+
+            this.codemirror = CodeMirror.fromTextArea(el, {
+                mode: mode,
+                backdrop: backdrop,
+                theme: "paper",
+                tabSize: (options.tabSize != undefined) ? options.tabSize : 2,
+                indentUnit: (options.tabSize != undefined) ? options.tabSize : 2,
+                indentWithTabs: (options.indentWithTabs === false) ? false : true,
+                lineNumbers: false,
+                autofocus: (options.autofocus === true) ? true : false,
+                extraKeys: keyMaps,
+                lineWrapping: (options.lineWrapping === false) ? false : true,
+                allowDropFileTypes: ["text/plain"],
+                placeholder: options.placeholder || el.getAttribute("placeholder") || "",
+                styleSelectedText: (options.styleSelectedText != undefined) ? options.styleSelectedText : true
+            });
+
+            if (options.forceSync === true) {
+                var cm = this.codemirror;
+                cm.on("change", function () {
+                    cm.save();
+                });
+            }
+
+            this.gui = {};
+
+            if (options.toolbar !== false) {
+                this.gui.toolbar = this.createToolbar();
+            }
+            if (options.status !== false) {
+                this.gui.statusbar = this.createStatusbar();
+            }
+            if (options.autosave != undefined && options.autosave.enabled === true) {
+                this.autosave();
+            }
+
+            this.gui.sideBySide = this.createSideBySide();
+
+            this._rendered = this.element;
+
+
+            // Fixes CodeMirror bug (#344)
+            var temp_cm = this.codemirror;
+            setTimeout(function () {
+                temp_cm.refresh();
+            }.bind(temp_cm), 0);
         }
 
-        this.gui = {};
-
-        if (options.toolbar !== false) {
-            this.gui.toolbar = this.createToolbar();
+        /// This renders the preview and the editor once
+        forceRender(clearPreview: false) {
+            //        this._rendered = null;
+            var cm = this.codemirror;
+            var wrapper = cm.getWrapperElement();
+            var preview = wrapper.nextSibling;
+            if (clearPreview) {
+                preview.innterHTML = "";
+            }
+            morphdom(preview, this.options.previewRender(this.value(), preview), {
+                childrenOnly: true
+            });
+            //        preview.innerHTML = this.options.previewRender(this.value(), preview);
+            this.render();
         }
-        if (options.status !== false) {
-            this.gui.statusbar = this.createStatusbar();
-        }
-        if (options.autosave != undefined && options.autosave.enabled === true) {
-            this.autosave();
-        }
-
-        this.gui.sideBySide = this.createSideBySide();
-
-        this._rendered = this.element;
-
-
-        // Fixes CodeMirror bug (#344)
-        var temp_cm = this.codemirror;
-        setTimeout(function () {
-            temp_cm.refresh();
-        }.bind(temp_cm), 0);
-    }
-
-    /// This renders the preview and the editor once
-    forceRender(clearPreview: false) {
-        //        this._rendered = null;
-        var cm = this.codemirror;
-        var wrapper = cm.getWrapperElement();
-        var preview = wrapper.nextSibling;
-        if (clearPreview) {
-            preview.innterHTML = "";
-        }
-        morphdom(preview, this.options.previewRender(this.value(), preview), {
-            childrenOnly: true
-        });
-        //        preview.innerHTML = this.options.previewRender(this.value(), preview);
-        this.render();
-    }
 
 
 
