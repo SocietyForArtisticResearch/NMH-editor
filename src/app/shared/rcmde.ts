@@ -1851,70 +1851,70 @@ export class RCMDE {
             mode = options.parsingConfig;
             mode.name = "gfm";
             mode.gitHubSpice = false;
-            //        }
-
-            this.codemirror = CodeMirror.fromTextArea(el, {
-                mode: mode,
-                backdrop: backdrop,
-                theme: "paper",
-                tabSize: (options.tabSize != undefined) ? options.tabSize : 2,
-                indentUnit: (options.tabSize != undefined) ? options.tabSize : 2,
-                indentWithTabs: (options.indentWithTabs === false) ? false : true,
-                lineNumbers: false,
-                autofocus: (options.autofocus === true) ? true : false,
-                extraKeys: keyMaps,
-                lineWrapping: (options.lineWrapping === false) ? false : true,
-                allowDropFileTypes: ["text/plain"],
-                placeholder: options.placeholder || el.getAttribute("placeholder") || "",
-                styleSelectedText: (options.styleSelectedText != undefined) ? options.styleSelectedText : true
-            });
-
-            if (options.forceSync === true) {
-                var cm = this.codemirror;
-                cm.on("change", function () {
-                    cm.save();
-                });
-            }
-
-            this.gui = {};
-
-            if (options.toolbar !== false) {
-                this.gui.toolbar = this.createToolbar();
-            }
-            if (options.status !== false) {
-                this.gui.statusbar = this.createStatusbar();
-            }
-            if (options.autosave != undefined && options.autosave.enabled === true) {
-                this.autosave();
-            }
-
-            this.gui.sideBySide = this.createSideBySide();
-
-            this._rendered = this.element;
-
-
-            // Fixes CodeMirror bug (#344)
-            var temp_cm = this.codemirror;
-            setTimeout(function () {
-                temp_cm.refresh();
-            }.bind(temp_cm), 0);
         }
 
-        /// This renders the preview and the editor once
-        forceRender(clearPreview: false) {
-            //        this._rendered = null;
+        this.codemirror = CodeMirror.fromTextArea(el, {
+            mode: mode,
+            backdrop: backdrop,
+            theme: "paper",
+            tabSize: (options.tabSize != undefined) ? options.tabSize : 2,
+            indentUnit: (options.tabSize != undefined) ? options.tabSize : 2,
+            indentWithTabs: (options.indentWithTabs === false) ? false : true,
+            lineNumbers: false,
+            autofocus: (options.autofocus === true) ? true : false,
+            extraKeys: keyMaps,
+            lineWrapping: (options.lineWrapping === false) ? false : true,
+            allowDropFileTypes: ["text/plain"],
+            placeholder: options.placeholder || el.getAttribute("placeholder") || "",
+            styleSelectedText: (options.styleSelectedText != undefined) ? options.styleSelectedText : true
+        });
+
+        if (options.forceSync === true) {
             var cm = this.codemirror;
-            var wrapper = cm.getWrapperElement();
-            var preview = wrapper.nextSibling;
-            if (clearPreview) {
-                preview.innterHTML = "";
-            }
-            morphdom(preview, this.options.previewRender(this.value(), preview), {
-                childrenOnly: true
+            cm.on("change", function () {
+                cm.save();
             });
-            //        preview.innerHTML = this.options.previewRender(this.value(), preview);
-            this.render();
         }
+
+        this.gui = {};
+
+        if (options.toolbar !== false) {
+            this.gui.toolbar = this.createToolbar();
+        }
+        if (options.status !== false) {
+            this.gui.statusbar = this.createStatusbar();
+        }
+        if (options.autosave != undefined && options.autosave.enabled === true) {
+            this.autosave();
+        }
+
+        this.gui.sideBySide = this.createSideBySide();
+
+        this._rendered = this.element;
+
+
+        // Fixes CodeMirror bug (#344)
+        var temp_cm = this.codemirror;
+        setTimeout(function () {
+            temp_cm.refresh();
+        }.bind(temp_cm), 0);
+    }
+
+    /// This renders the preview and the editor once
+    forceRender(clearPreview: false) {
+        //        this._rendered = null;
+        var cm = this.codemirror;
+        var wrapper = cm.getWrapperElement();
+        var preview = wrapper.nextSibling;
+        if (clearPreview) {
+            preview.innterHTML = "";
+        }
+        morphdom(preview, this.options.previewRender(this.value(), preview), {
+            childrenOnly: true
+        });
+        //        preview.innerHTML = this.options.previewRender(this.value(), preview);
+        this.render();
+    }
 
 
 
