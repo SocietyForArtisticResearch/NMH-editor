@@ -34,7 +34,7 @@ export class MarkdownToolComponent implements AfterViewInit {
 
         // this allows rcmde to call a function outside angular
         this.mde.outsideAngularCallbackWrapper = (callback) => {
-            this._ngZone.runOutsideAngular(callback());
+            this._ngZone.runOutsideAngular(callback);
         };
 
         Editor.toggleSideBySide(this.mde);
