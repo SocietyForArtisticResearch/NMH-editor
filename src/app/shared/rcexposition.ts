@@ -614,6 +614,7 @@ export class RCAudio extends RCMedia {
             let fig = document.createElement("figure");
             let audio = document.createElement("audio");
             audio.setAttribute("controls", "true");
+            audio.setAttribute("preload", "none");
             if (this.autoplay == true) {
                 audio.setAttribute("autoplay", "true");
             };
@@ -667,6 +668,7 @@ export class RCVideo extends RCMedia {
             let fig = document.createElement("figure");
             let video = document.createElement("video");
             video.setAttribute("controls", "true");
+            video.setAttribute("preload", "none");
             if (this.autoplay) {
                 video.setAttribute("autplay", "true");
             };
