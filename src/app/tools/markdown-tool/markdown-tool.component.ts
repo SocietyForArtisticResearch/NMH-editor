@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild, AfterViewInit, ElementRef, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, AfterViewInit, ElementRef, Output, EventEmitter, NgZone } from '@angular/core';
 import { RCExpoModel } from '../../shared/RCExpoModel';
 import * as Editor from '../../shared/rcmde';
 import { Backend } from '../../shared/Backend';
@@ -21,7 +21,7 @@ export class MarkdownToolComponent implements AfterViewInit {
     content: string;
     mde: any;
 
-    constructor(private rcExpoModel: RCExpoModel) { }
+    constructor(private rcExpoModel: RCExpoModel, private _ngZone: NgZone) { }
 
 
     ngAfterViewInit() {
@@ -31,6 +31,11 @@ export class MarkdownToolComponent implements AfterViewInit {
             showIcons: ["code"],
             spellChecker: false
         });
+
+        // this allows rcmde to call a function outside angular
+        this.mde.outsideAngularCallbackWrapper = (callback) => {
+            this._ngZone.runOutsideAngular(callback());
+        };
 
         Editor.toggleSideBySide(this.mde);
         expoModel.mde = this.mde;

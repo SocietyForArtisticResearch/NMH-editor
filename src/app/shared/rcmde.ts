@@ -913,8 +913,10 @@ export function toggleSideBySide(editor) {
 
     var sideBySideRenderingFunction = function () {
         //        preview.innerHTML = editor.options.previewRender(editor.value(), preview);
-        morphdom(preview, editor.options.previewRender(editor.value(), preview), {
-            childrenOnly: true
+        editor.outsideAngularCallbackWrapper(() => {
+            morphdom(preview, editor.options.previewRender(editor.value(), preview), {
+                childrenOnly: true
+            });
         });
     };
 
@@ -1517,6 +1519,9 @@ export class RCMDE {
     public drawMediaCallback: () => void;
     public openPreviewCallback: () => void;
     public userSaveCallback: (this: HTMLElement, ev: MouseEvent) => any;
+    // outsideAngularCallbackWrapper uses NgZone to
+    // call a function outside of Angular's change detection
+    public outsideAngularCallbackWrapper: (callback: () => any) => any;
     autosaveTimeoutId: number;
     toolbar: any[];
     toolbarElements: any;

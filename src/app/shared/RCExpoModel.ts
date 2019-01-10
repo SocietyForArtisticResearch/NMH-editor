@@ -31,7 +31,7 @@ export class RCExpoModel {
     exposition: RCExposition;
     saveInterval: any;
     syncInterval: any;
-    editorVersion: string = "1.0.16";
+    editorVersion = '1.0.16';
     canBeSaved: boolean;
     markdownInput: string;
     markdownProcessed: string;
@@ -40,13 +40,13 @@ export class RCExpoModel {
     constructor() {
         // number of Y cells should be updated by number of tools).
 
-        let defaultStyle = `.exposition {
+        const defaultStyle = `.exposition {
         background - color: #FFFFFF;
 
         font-family: "Helvetica", sans-serif;
         font-size: 100 %; 
         line-height: 125 %; 
-    } 
+     }
 
 .exposition-content {
     margin: 40px;
