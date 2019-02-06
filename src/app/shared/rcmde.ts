@@ -18,7 +18,6 @@ import { RCImage, RCAudio, RCSvg, RCPdf, RCVideo, RCExposition } from '../shared
 import { stringToId } from './utils'
 
 
-
 import * as CodeMirrorSpellChecker from 'codemirror-spell-checker'
 //var CodeMirrorSpellChecker = require("codemirror-spell-checker");
 //var marked = require("marked");
@@ -2330,7 +2329,7 @@ export class RCMDE {
         let re = /(!\[.*\]\(.*\)(\{[^}]*\})?)|(<embed src=.*\/>)|(<img src=.*\/>)/g;
         let images = {};
         //let imageNameRe = /(image[0-9]*)/g;
-        let imageNameRe = /([a-z_|A-Z||0-9])+\.(png|PNG|emf|EMF|wmf|WMF|jpg|JPG|jpeg|bmp|BMP|tifF|TIFF|gif|GIF)/g;
+        let imageNameRe = /([a-z_|A-Z||0-9])+\.(png|PNG|emf|EMF|wmf|WMF|jpg|JPG|jpeg|bmp|BMP|tiff|TIFF|gif|GIF)/g;
         //        let re = /!\[.*\]\(.*\){.*}/g;
         let c = 0;
         let insertedTools = md.replace(re, function (m, p1) {
