@@ -31,7 +31,7 @@ export class RCExpoModel {
     exposition: RCExposition;
     saveInterval: any;
     syncInterval: any;
-    editorVersion = '1.0.16';
+    editorVersion = '1.0.17';
     canBeSaved: boolean;
     markdownInput: string;
     markdownProcessed: string;
