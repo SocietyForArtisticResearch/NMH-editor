@@ -1,4 +1,7 @@
+IMPORTANT: This project is no longer maintained. It has been moved to https://github.com/SocietyForArtisticResearch/texteditor-elm. 
+
 # NMHEditor
+
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.7.
 
